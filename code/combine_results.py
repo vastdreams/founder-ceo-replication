@@ -13,7 +13,13 @@ import pathlib
 
 HERE = pathlib.Path(__file__).parent
 OUT = HERE.parent / "outputs"
-SRC = {"returns_stats.json": None, "ops_stats.json": None, "board_stats.json": None, "coding_stats.json": None}
+SRC = {
+    "returns_stats.json": None,
+    "ops_stats.json": None,
+    "board_stats.json": None,
+    "coding_stats.json": None,
+    "pre1998_stats.json": None,
+}
 for k in SRC:
     p = OUT / k
     SRC[k] = json.loads(p.read_text()) if p.exists() else {}
@@ -87,7 +93,13 @@ def table(title, columns, rows, stat_ids, notes):
     return {"title": title, "columns": columns, "rows": rows, "stat_ids": stat_ids, "notes": notes}
 
 
-RS, OS, BS, CS = "returns_stats.json", "ops_stats.json", "board_stats.json", "coding_stats.json"
+RS, OS, BS, CS, PS = (
+    "returns_stats.json",
+    "ops_stats.json",
+    "board_stats.json",
+    "coding_stats.json",
+    "pre1998_stats.json",
+)
 GROUPS = [
     ("forced", "Forced exits"),
     ("retired", "Voluntary retirements"),
@@ -717,6 +729,48 @@ def main():
                 )
             )
 
+    rob = next(x for x in sections if x["title"] == "Robustness")
+    rob["statistics"] += [
+        st
+        for st in [
+            stat(
+                PS,
+                "pre.events_with_tsr",
+                "Pre-1998 departures with a proxy return graph",
+                "count",
+                "count",
+                "robustness",
+            ),
+            stat(PS, "pre.n_forced", "Pre-1998 forced exits with a proxy return graph", "count", "count", "robustness"),
+            stat(
+                PS,
+                "pre.forced.abn_tsr_3y.median",
+                "Median 3-year TSR minus reported index, forced, 1992-1997",
+                "pct",
+                "Wilcoxon",
+                "robustness",
+            ),
+            stat(
+                PS,
+                "pre.retired.abn_tsr_3y.median",
+                "Median 3-year TSR minus reported index, retired, 1992-1997",
+                "pct",
+                "Wilcoxon",
+                "robustness",
+            ),
+            stat(
+                PS,
+                "pre.forced_vs_retired.abn_tsr_3y.diff_median",
+                "Forced minus retired, 3-year TSR, 1992-1997",
+                "pp",
+                "Mann-Whitney U",
+                "robustness",
+            ),
+        ]
+        if st
+    ]
+    rob["source_files"] = sorted({st["source_file"] for st in rob["statistics"]})
+
     # re-letter to the founder_ceo_jfe rule set: A,B -> Section 2; C -> 3; D,E -> 4; F -> 5; G -> 6; H -> appendix
     letter = {
         "Sample": "A",
@@ -747,7 +801,7 @@ def main():
             "How reliable are the founder and reason codes?",
             f"The model coded {v(CS, 'b.model_founder_codes', 'count')} forced exits as founder removals. A hand review of "
             f"{v(CS, 'b.founders_reviewed', 'count')} cases confirmed {v(CS, 'b.founders_confirmed', 'count')} founders and rejected "
-            f"{v(CS, 'b.founders_rejected', 'count')} model codes, an error rate of {v(CS, 'b.model_error_rate', 'pct')}. The reviewed codes are used throughout.",
+            f"{v(CS, 'b.founders_rejected', 'count')} model codes, an error rate of {v(CS, 'b.model_error_rate', 'pct')}, and added {v(CS, 'b.founders_added', 'count')} founders the model left unclear. The reviewed codes are used throughout.",
             {
                 "test": "hand review",
                 "data": "paper/founder_review.csv",
@@ -761,6 +815,7 @@ def main():
                     ("b.founders_reviewed", "Founder codes reviewed by hand", "count"),
                     ("b.founders_confirmed", "Founders confirmed", "count"),
                     ("b.founders_rejected", "Model founder codes rejected", "count"),
+                    ("b.founders_added", "Founders added where the model was unclear", "count"),
                     ("b.model_error_rate", "Model error rate on founder codes", "pct"),
                 ]
             ],
@@ -787,6 +842,11 @@ def main():
             {"name": "matching_rule_pct", "value": 30, "source": "ops_matched.py"},
             {"name": "winsor_lower_pct", "value": 1, "source": "stats_ops.py"},
             {"name": "winsor_upper_pct", "value": 99, "source": "stats_ops.py"},
+            {
+                "name": "replication_repo_url",
+                "value": "https://gitlab.com/vast-dreams/founder-ceo-replication",
+                "source": "public replication archive",
+            },
         ],
         "sections": sections,
     }

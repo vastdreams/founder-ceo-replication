@@ -17,6 +17,9 @@ for name in ("founder_review.csv", "conduct_review.csv"):
     shutil.copy(ROOT / "data" / name, ROOT / "paper" / name)
 published = json.loads((ROOT / "results" / "combined_results.json").read_text())
 (ROOT / "outputs").mkdir(exist_ok=True)
+# Pre-1998 statistics come from proxy performance graphs (code/pre1998_tsr.py, event-level inputs in
+# data/pre1998_tsr.parquet); the graph extraction itself needs SEC filings, so they enter as published.
+shutil.copy(ROOT / "results" / "pre1998_stats.json", ROOT / "outputs" / "pre1998_stats.json")
 for step in ["founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "combine_results.py"]:
     r = subprocess.run([sys.executable, "-W", "ignore", step], cwd=ROOT / "code", capture_output=True, text=True)
     if r.returncode:

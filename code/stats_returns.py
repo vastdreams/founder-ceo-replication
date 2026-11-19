@@ -82,7 +82,7 @@ def skew_adj(prefix, x):
 
 def main():
     d = pd.read_parquet(HERE / "out" / "returns.parquet")
-    coding = HERE / "out" / "event_coding_v1.jsonl"
+    coding = HERE / "out" / "event_coding_final.jsonl"
     if coding.exists():  # v1 labels replace the regex flags (hand validation pending, see paper/DECISIONS.md)
         c = pd.DataFrame([json.loads(x) for x in open(coding)]).rename(columns={"forced": "forced_llm"})
         d = d.merge(

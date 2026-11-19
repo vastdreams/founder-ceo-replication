@@ -12,7 +12,7 @@ HERE = pathlib.Path(__file__).parent
 
 def main():
     ev = pd.read_parquet(HERE / "out" / "events.parquet")[["event_id", "code"]]
-    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_v1.jsonl")])[
+    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_final.jsonl")])[
         ["event_id", "ceo_is_founder"]
     ]
     rv = pd.read_csv(HERE.parent / "paper" / "founder_review.csv")[["event_id", "decision"]]
@@ -26,7 +26,8 @@ def main():
     rvf = pd.read_csv(HERE.parent / "paper" / "founder_review.csv")
     stats = {
         "b.founders_reviewed": {"value": float(len(rvf))},
-        "b.founders_confirmed": {"value": float((rvf["decision"] == "yes").sum())},
+        "b.founders_confirmed": {"value": float(((rvf["decision"] == "yes") & (rvf["model_code"] == "yes")).sum())},
+        "b.founders_added": {"value": float(((rvf["decision"] == "yes") & (rvf["model_code"] != "yes")).sum())},
         "b.founders_rejected": {"value": float(((rvf["decision"] == "no") & (rvf["model_code"] == "yes")).sum())},
         "b.model_founder_codes": {"value": float((rvf["model_code"] == "yes").sum())},
         "b.model_error_rate": {

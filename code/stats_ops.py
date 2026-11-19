@@ -1,6 +1,6 @@
 """Statistics for matched-firm long-run returns and operating performance (sections E and H).
 
-Input : analysis/out/ops_matched.parquet (ops_matched.py), analysis/out/event_coding_v1.jsonl
+Input : analysis/out/ops_matched.parquet (ops_matched.py), analysis/out/event_coding_final.jsonl
 Output: outputs/ops_stats.json
 Operating ROA changes are winsorized at the 1st and 99th percentiles of the pooled sample before testing
 (Barber and Lyon 1996 recommend median tests; both are reported). Matched BHARs are tested with the
@@ -27,7 +27,7 @@ def wins(s, lo=0.01, hi=0.99):
 def main():
     R.clear()
     d = pd.read_parquet(HERE / "out" / "ops_matched.parquet")
-    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_v1.jsonl")]).rename(
+    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_final.jsonl")]).rename(
         columns={"forced": "forced_llm"}
     )
     d = d.merge(c[["event_id", "ceo_is_founder", "primary_reason"]], on="event_id", how="left")

@@ -36,7 +36,7 @@ def main():
     R.clear()
     raw = [json.loads(x) for x in open(HERE / "out" / "board_raw.jsonl")]
     ev = pd.read_parquet(HERE / "out" / "events.parquet")
-    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_v1.jsonl")])
+    c = pd.DataFrame([json.loads(x) for x in open(HERE / "out" / "event_coding_final.jsonl")])
     ev = ev.merge(c[["event_id", "ceo_is_founder"]], on="event_id", how="left")
     ff = HERE / "out" / "founder_final.parquet"
     if ff.exists():  # hand-reviewed founder flag

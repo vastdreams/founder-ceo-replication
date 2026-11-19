@@ -50,3 +50,14 @@ and the public replication repo. The repo's secret scanner flags their `source_k
 
 Sentences that call a result significant use the `|sig` placeholder, so the text cannot claim
 significance the statistics do not show.
+
+## D-07 (20 Nov 2026): reasons come from a second, evidence-based coding pass
+
+Each forced exit is coded a second time from the dataset notes plus the 8-K filed within 10 days
+of the announcement, press releases the dataset cites, the CEO's Wikipedia article and matched NYT
+Archive articles (1991-2026). These second-pass labels replace the first pass (notes only) for
+every forced exit. Retirements keep the first pass. The two passes agree on 89% of primary reasons.
+The second pass found no relationship or sexual-misconduct case that the hand review in
+`conduct_review.csv` had not already checked. It flagged 25 founders the founder review had not
+covered. Each was checked by hand and added to `founder_review.csv` (15 yes, 10 no). Hand
+decisions still override model labels.

@@ -48,17 +48,21 @@ _NEWS: dict = {}
 def news_for(eid, cache=None):
     cache = _NEWS if cache is None else cache
     if not cache:
-        for name in ("nyt", "guardian", "nyt_archive_matched"):
+        for name in ("evidence", "nyt", "guardian", "nyt_archive_matched"):
             p = pathlib.Path.home() / f"world_raw/news/{name}.jsonl"
             if p.exists():
                 for line in open(p):
                     r = json.loads(line)
                     cache.setdefault(str(r["event_id"]), []).extend(
-                        f"[{name} {(d.get('pub_date') or '')[:10]}] {d.get('headline') or ''}. {d.get('abstract') or d.get('trail') or ''} "
-                        f"{d.get('lead_paragraph') or ''} {(d.get('body') or '')[:2500]}"
+                        (
+                            f"[{d.get('source', name)}] {d['text'][:3500]}"
+                            if d.get("text")
+                            else f"[{name} {(d.get('pub_date') or '')[:10]}] {d.get('headline') or ''}. "
+                            f"{d.get('abstract') or d.get('trail') or ''} {d.get('lead_paragraph') or ''} {(d.get('body') or '')[:2500]}"
+                        )
                         for d in r.get("docs", [])
                     )
-    return "\n".join(cache.get(str(eid), [])[:8])
+    return "\n".join(cache.get(str(eid), [])[:10])
 
 
 async def main():

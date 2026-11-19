@@ -1,0 +1,61 @@
+{
+ "pre.events_1992_1997": {
+  "value": 648.0
+ },
+ "pre.events_with_tsr": {
+  "value": 225.0
+ },
+ "pre.n_forced": {
+  "value": 45.0
+ },
+ "pre.n_retired": {
+  "value": 180.0
+ },
+ "pre.forced.abn_tsr_3y.mean": {
+  "value": -0.6940264198635672,
+  "n": 45,
+  "t": -3.274756333508553,
+  "p": 0.002065346897195312
+ },
+ "pre.forced.abn_tsr_3y.median": {
+  "value": -0.6833920495170118,
+  "n": 45,
+  "p": 0.001402337853789959
+ },
+ "pre.forced.abn_tsr_3y.share_negative": {
+  "value": 0.7777777777777778,
+  "n": 45
+ },
+ "pre.forced.abn_tsr_3y.count": {
+  "value": 45.0
+ },
+ "pre.retired.abn_tsr_3y.mean": {
+  "value": -0.2667395452752283,
+  "n": 180,
+  "t": -2.8943560710041245,
+  "p": 0.004272000766328574
+ },
+ "pre.retired.abn_tsr_3y.median": {
+  "value": -0.39548103180770766,
+  "n": 180,
+  "p": 2.981289792078942e-08
+ },
+ "pre.retired.abn_tsr_3y.share_negative": {
+  "value": 0.7055555555555556,
+  "n": 180
+ },
+ "pre.retired.abn_tsr_3y.count": {
+  "value": 180.0
+ },
+ "pre.forced_vs_retired.abn_tsr_3y.diff_mean": {
+  "value": -0.42728687458833886,
+  "n": 225,
+  "t": -1.848904654220289,
+  "p": 0.06926617047317546
+ },
+ "pre.forced_vs_retired.abn_tsr_3y.diff_median": {
+  "value": -0.28791101770930416,
+  "n": 225,
+  "p": 0.016670332378680843
+ }
+}

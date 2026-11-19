@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this archive, please cite the paper and the CEO dismissal database."
+title: "Firing the Founder: What Happens After US Boards Remove Their CEO (replication archive)"
+authors:
+  - family-names: Sehgal
+    given-names: Abhishek
+    affiliation: "FSE Research & Investments"
+date-released: 2026-11-20
+references:
+  - type: dataset
+    title: "Open Sourced Database for CEO Dismissal 1992-2023"
+    authors:
+      - family-names: Gentry
+        given-names: Richard J.
+      - family-names: Harrison
+        given-names: Joseph S.
+      - family-names: Quigley
+        given-names: Timothy J.
+      - family-names: Boivie
+        given-names: Steven
+    version: "10Oct2024"
+    url: "https://zenodo.org/records/17725939"

@@ -1,0 +1,20 @@
+{
+ "b.founders_reviewed": {
+  "value": 170.0
+ },
+ "b.founders_confirmed": {
+  "value": 135.0
+ },
+ "b.founders_rejected": {
+  "value": 33.0
+ },
+ "b.model_founder_codes": {
+  "value": 166.0
+ },
+ "b.model_error_rate": {
+  "value": 0.19879518072289157
+ },
+ "b.forced_founders_all_years": {
+  "value": 135.0
+ }
+}

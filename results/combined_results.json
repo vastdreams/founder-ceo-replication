@@ -1,0 +1,1524 @@
+{
+ "label": "What happens after the board removes the CEO",
+ "engine_version": "founder_ceo_exits 1.0",
+ "generated_at": "2026-11-19T15:12:53.674473Z",
+ "source_files": {
+  "outputs/board_stats.json": "215ea9c807d86a6a",
+  "outputs/coding_stats.json": "d45c6b698b546883",
+  "outputs/ops_stats.json": "cb418f7db81bf2ea",
+  "outputs/returns_stats.json": "0f5ab99ee8799512"
+ },
+ "constants": [
+  {
+   "name": "paper_ruleset",
+   "value": "founder_ceo_jfe",
+   "source": "backend ruleset"
+  },
+  {
+   "name": "estimation_window_start",
+   "value": -250,
+   "source": "event_study.py"
+  },
+  {
+   "name": "estimation_window_end",
+   "value": -30,
+   "source": "event_study.py"
+  },
+  {
+   "name": "min_estimation_days",
+   "value": 120,
+   "source": "event_study.py"
+  },
+  {
+   "name": "match_size_band_low",
+   "value": 0.7,
+   "source": "ops_matched.py"
+  },
+  {
+   "name": "match_size_band_high",
+   "value": 1.3,
+   "source": "ops_matched.py"
+  },
+  {
+   "name": "shumway_delist_return",
+   "value": -0.3,
+   "source": "event_study.py"
+  },
+  {
+   "name": "board_post_lag_days",
+   "value": 600,
+   "source": "extract_board.py"
+  },
+  {
+   "name": "sample_start_year",
+   "value": 1998,
+   "source": "build_events.py"
+  },
+  {
+   "name": "index_size",
+   "value": 1500,
+   "source": "Gentry et al. (2021): S&P 1500 firms"
+  },
+  {
+   "name": "matching_rule_pct",
+   "value": 30,
+   "source": "ops_matched.py"
+  },
+  {
+   "name": "winsor_lower_pct",
+   "value": 1,
+   "source": "stats_ops.py"
+  },
+  {
+   "name": "winsor_upper_pct",
+   "value": 99,
+   "source": "stats_ops.py"
+  }
+ ],
+ "sections": [
+  {
+   "section_id": "A",
+   "title": "Sample",
+   "question": "Which CEO departures are studied and how many have usable stock returns?",
+   "interpretation": "The sample holds 3,650 departures with returns: 1,396 forced exits and 2,254 voluntary retirements. Of the forced exits, 96 removed a founder, 165 were dismissals for conduct and 17 followed a relationship with an employee.",
+   "methodology": {
+    "test": "counts",
+    "data": "Gentry et al. (2021) CEO dismissal database v10Oct2024 linked to daily prices by SEC CIK",
+    "library_call": "analysis/build_events.py; analysis/event_study.py",
+    "caveat": "Founder status and reasons are coded from the dataset's notes and sources, then checked by hand (paper/FOUNDER_REVIEW.md)."
+   },
+   "statistics": [
+    {
+     "stat_id": "a.events_with_returns",
+     "label": "Departures with returns",
+     "value": 3650.0,
+     "formatted": "3,650",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.events_with_returns",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_forced",
+     "label": "Forced exits",
+     "value": 1396.0,
+     "formatted": "1,396",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_forced",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_retired",
+     "label": "Voluntary retirements",
+     "value": 2254.0,
+     "formatted": "2,254",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_retired",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_forced_founder",
+     "label": "Founder forced out",
+     "value": 96.0,
+     "formatted": "96",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_forced_founder",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_forced_nonfounder",
+     "label": "Non-founder forced out",
+     "value": 1300.0,
+     "formatted": "1,300",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_forced_nonfounder",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_conduct",
+     "label": "Dismissed for conduct",
+     "value": 165.0,
+     "formatted": "165",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_conduct",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_performance",
+     "label": "Dismissed for performance",
+     "value": 1231.0,
+     "formatted": "1,231",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_performance",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.n_relationship",
+     "label": "Relationship with an employee",
+     "value": 17.0,
+     "formatted": "17",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.n_relationship",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.first_year",
+     "label": "First event year",
+     "value": 1998.0,
+     "formatted": "1,998",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.first_year",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "a.last_year",
+     "label": "Last event year",
+     "value": 2024.0,
+     "formatted": "2,024",
+     "unit": "count",
+     "test": "",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "a.last_year",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    }
+   ],
+   "tables": [],
+   "warnings": [],
+   "source_files": [
+    "outputs/returns_stats.json"
+   ]
+  },
+  {
+   "section_id": "B",
+   "title": "Founder and reason coding",
+   "question": "How reliable are the founder and reason codes?",
+   "interpretation": "The model coded 166 forced exits as founder removals. A hand review of 170 cases confirmed 135 founders and rejected 33 model codes, an error rate of 19.9%. The reviewed codes are used throughout.",
+   "methodology": {
+    "test": "hand review",
+    "data": "paper/founder_review.csv",
+    "library_call": "analysis/code_events.py; analysis/founder_final.py",
+    "caveat": "Founder means founded or co-founded the firm or its direct predecessor; heirs are excluded."
+   },
+   "statistics": [
+    {
+     "stat_id": "b.model_founder_codes",
+     "label": "Forced exits coded founder by the model",
+     "value": 166.0,
+     "formatted": "166",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/coding_stats.json",
+     "source_key": "b.model_founder_codes",
+     "group": "coding",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "b.founders_reviewed",
+     "label": "Founder codes reviewed by hand",
+     "value": 170.0,
+     "formatted": "170",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/coding_stats.json",
+     "source_key": "b.founders_reviewed",
+     "group": "coding",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "b.founders_confirmed",
+     "label": "Founders confirmed",
+     "value": 135.0,
+     "formatted": "135",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/coding_stats.json",
+     "source_key": "b.founders_confirmed",
+     "group": "coding",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "b.founders_rejected",
+     "label": "Model founder codes rejected",
+     "value": 33.0,
+     "formatted": "33",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/coding_stats.json",
+     "source_key": "b.founders_rejected",
+     "group": "coding",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "b.model_error_rate",
+     "label": "Model error rate on founder codes",
+     "value": 0.19879518072289157,
+     "formatted": "19.9%",
+     "unit": "share",
+     "test": "count",
+     "source_file": "outputs/coding_stats.json",
+     "source_key": "b.model_error_rate",
+     "group": "coding",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    }
+   ],
+   "tables": [],
+   "warnings": [],
+   "source_files": [
+    "outputs/coding_stats.json"
+   ]
+  },
+  {
+   "section_id": "C",
+   "title": "Announcement returns",
+   "question": "How does the stock react when the board removes the CEO?",
+   "interpretation": "Over the three trading days around the announcement, forced exits earn a market-model abnormal return of -1.6% (p <0.001), while voluntary retirements earn -0.1% (p 0.329). The gap is -1.5 percentage points (p <0.001). When the CEO removed is the founder, the three-day abnormal return is -3.5%, against -1.5% for non-founders, a gap of -2.0 percentage points (p 0.139). In a regression with event-year effects the founder interaction is -1.8 percentage points (p 0.181). Dismissals for conduct earn -4.0% against -1.3% for performance dismissals, a gap of -2.7 percentage points (p 0.003). The 17 removals that followed a relationship with an employee average -2.6% (p 0.103).",
+   "methodology": {
+    "test": "Cross-sectional t, Boehmer-Musumeci-Poulsen standardized t, Wilcoxon signed-rank; Welch t for differences",
+    "data": "Daily total returns (Sharadar closeadj), market model estimated over days -250 to -30",
+    "library_call": "analysis/event_study.py; analysis/stats_returns.py",
+    "caveat": "Day 0 is the first trading day on or after the announcement."
+   },
+   "statistics": [
+    {
+     "stat_id": "car.forced.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], Forced exits",
+     "value": -0.01595973311520473,
+     "formatted": "-1.6%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced.mm_m1p1.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -4.333924565942377,
+     "p": 1.5701998058145425e-05
+    },
+    {
+     "stat_id": "car.retired.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], Voluntary retirements",
+     "value": -0.0012000186949290466,
+     "formatted": "-0.1%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.retired.mm_m1p1.mean",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 2249,
+     "t": -0.9756153000359388,
+     "p": 0.3293601107112363
+    },
+    {
+     "stat_id": "car.forced.mm_m1p1.bmp_t",
+     "label": "BMP standardized t, forced exits",
+     "value": -4.995670922559891,
+     "formatted": "-4.996",
+     "unit": "coefficient",
+     "test": "BMP 1991",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced.mm_m1p1.bmp_t",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "p": 5.863156737895281e-07
+    },
+    {
+     "stat_id": "car.forced.mm_m1p1.median",
+     "label": "Median CAR[-1,+1], forced exits",
+     "value": -0.007663565194455116,
+     "formatted": "-0.8%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced.mm_m1p1.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "p": 5.768730308812423e-10
+    },
+    {
+     "stat_id": "car.forced.ff5_m1p1.mean",
+     "label": "Mean five-factor CAR[-1,+1], forced exits",
+     "value": -0.016028540794738574,
+     "formatted": "-1.6%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced.ff5_m1p1.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -4.383621355177096,
+     "p": 1.2551163629043224e-05
+    },
+    {
+     "stat_id": "car.forced.mm_m5p5.mean",
+     "label": "Mean CAR[-5,+5], forced exits",
+     "value": -0.026954593952411614,
+     "formatted": "-2.7%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced.mm_m5p5.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1389,
+     "t": -4.7623996693292705,
+     "p": 2.1134498675776025e-06
+    },
+    {
+     "stat_id": "cardiff.forced_vs_retired.mm_m1p1.diff_mean",
+     "label": "Forced minus retired, mean CAR[-1,+1]",
+     "value": -0.014759714420275684,
+     "formatted": "-1.5 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "cardiff.forced_vs_retired.mm_m1p1.diff_mean",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 3639,
+     "t": -3.8015974781295543,
+     "p": 0.00014883028907849776
+    },
+    {
+     "stat_id": "cardiff.forced_vs_retired.mm_m1p1.diff_median",
+     "label": "Forced minus retired, median CAR[-1,+1]",
+     "value": -0.006188050845929913,
+     "formatted": "-0.6 percentage points",
+     "unit": "difference",
+     "test": "Mann-Whitney U",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "cardiff.forced_vs_retired.mm_m1p1.diff_median",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 3639,
+     "p": 5.04238798128319e-07
+    },
+    {
+     "stat_id": "car.forced_founder.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], founder forced out",
+     "value": -0.035010851502952245,
+     "formatted": "-3.5%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced_founder.mm_m1p1.mean",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 96,
+     "t": -2.6578960620984415,
+     "p": 0.009226082562344686
+    },
+    {
+     "stat_id": "car.forced_nonfounder.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], non-founder forced out",
+     "value": -0.014546358026160092,
+     "formatted": "-1.5%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.forced_nonfounder.mm_m1p1.mean",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1294,
+     "t": -3.79652320908048,
+     "p": 0.00015353869300995836
+    },
+    {
+     "stat_id": "cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean",
+     "label": "Founder minus non-founder, CAR[-1,+1]",
+     "value": -0.020464493476792155,
+     "formatted": "-2.0 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -1.4917638836253273,
+     "p": 0.13858002661911156
+    },
+    {
+     "stat_id": "reg.car_m1p1.forced_x_founder",
+     "label": "Regression: forced x founder",
+     "value": -0.017810015266106496,
+     "formatted": "-1.8 percentage points",
+     "unit": "difference",
+     "test": "OLS, clustered by year",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "reg.car_m1p1.forced_x_founder_v0",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 3639,
+     "t": -1.3391430740146457,
+     "p": 0.18052410021058807,
+     "se": 0.013299561198276948
+    },
+    {
+     "stat_id": "bhar.forced_founder.3y.median",
+     "label": "Median 3-year BHAR, founder forced out",
+     "value": -0.4124388839980342,
+     "formatted": "-41.2%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "bhar.forced_founder.3y.median",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 96,
+     "p": 0.013091258093085163
+    },
+    {
+     "stat_id": "exit.forced_founder.delisted_5y",
+     "label": "Share delisted within 5 years, founder forced out",
+     "value": 0.3870967741935484,
+     "formatted": "38.7%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced_founder.delisted_5y",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 93
+    },
+    {
+     "stat_id": "car.conduct.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], conduct",
+     "value": -0.039973546595531956,
+     "formatted": "-4.0%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.conduct.mm_m1p1.mean",
+     "group": "reason",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 165,
+     "t": -4.848875058414392,
+     "p": 2.8639156852660046e-06
+    },
+    {
+     "stat_id": "car.performance.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], performance",
+     "value": -0.012725219462752492,
+     "formatted": "-1.3%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.performance.mm_m1p1.mean",
+     "group": "reason",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1225,
+     "t": -3.165199358214285,
+     "p": 0.0015879757032663526
+    },
+    {
+     "stat_id": "cardiff.conduct_vs_performance.mm_m1p1.diff_mean",
+     "label": "Conduct minus performance",
+     "value": -0.027248327132779464,
+     "formatted": "-2.7 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "cardiff.conduct_vs_performance.mm_m1p1.diff_mean",
+     "group": "reason",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -2.970830040870451,
+     "p": 0.0032599852880299293
+    },
+    {
+     "stat_id": "car.relationship.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], relationship with an employee",
+     "value": -0.025864933639501694,
+     "formatted": "-2.6%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.relationship.mm_m1p1.mean",
+     "group": "reason",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 17,
+     "t": -1.72764971082936,
+     "p": 0.10329980199952829
+    },
+    {
+     "stat_id": "car.relationship.mm_m1p1.count",
+     "label": "Relationship cases with returns",
+     "value": 17.0,
+     "formatted": "17",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "car.relationship.mm_m1p1.count",
+     "group": "reason",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    }
+   ],
+   "tables": [
+    {
+     "title": "Table 1. Abnormal returns around the announcement, days -1 to +1",
+     "columns": [
+      "Group",
+      "Mean CAR",
+      "Median CAR",
+      "t",
+      "p",
+      "N"
+     ],
+     "rows": [
+      [
+       "Forced exits",
+       "-1.6%",
+       "-0.8%",
+       "-4.33",
+       "<0.001",
+       "1,390"
+      ],
+      [
+       "Voluntary retirements",
+       "-0.1%",
+       "-0.1%",
+       "-0.98",
+       "0.329",
+       "2,249"
+      ],
+      [
+       "Founder forced out",
+       "-3.5%",
+       "-1.9%",
+       "-2.66",
+       "0.009",
+       "96"
+      ],
+      [
+       "Non-founder forced out",
+       "-1.5%",
+       "-0.7%",
+       "-3.80",
+       "<0.001",
+       "1,294"
+      ],
+      [
+       "Dismissed for conduct",
+       "-4.0%",
+       "-1.7%",
+       "-4.85",
+       "<0.001",
+       "165"
+      ],
+      [
+       "Dismissed for performance",
+       "-1.3%",
+       "-0.7%",
+       "-3.17",
+       "0.002",
+       "1,225"
+      ],
+      [
+       "Relationship with an employee",
+       "-2.6%",
+       "-0.8%",
+       "-1.73",
+       "0.103",
+       "17"
+      ]
+     ],
+     "stat_ids": [
+      "car.forced.mm_m1p1.mean",
+      "car.forced.mm_m1p1.median",
+      "car.retired.mm_m1p1.mean",
+      "car.retired.mm_m1p1.median",
+      "car.forced_founder.mm_m1p1.mean",
+      "car.forced_founder.mm_m1p1.median",
+      "car.forced_nonfounder.mm_m1p1.mean",
+      "car.forced_nonfounder.mm_m1p1.median",
+      "car.conduct.mm_m1p1.mean",
+      "car.conduct.mm_m1p1.median",
+      "car.performance.mm_m1p1.mean",
+      "car.performance.mm_m1p1.median",
+      "car.relationship.mm_m1p1.mean",
+      "car.relationship.mm_m1p1.median"
+     ],
+     "notes": "CAR is the cumulative market-model abnormal return from day -1 to day +1, with the model estimated over days -250 to -30. t is the cross-sectional t of the mean; p is two-sided. Forced exits are Gentry et al. codes 3 and 4. Founder status and reasons are hand-checked codes."
+    }
+   ],
+   "warnings": [],
+   "source_files": [
+    "outputs/returns_stats.json"
+   ]
+  },
+  {
+   "section_id": "D",
+   "title": "Long-run returns",
+   "question": "Does the firm do better or worse in the years after the removal?",
+   "interpretation": "Against the market, the median forced-exit firm's three-year buy-and-hold abnormal return is -18.4%. Against a matched firm in the same industry with similar size and profitability, the median is -2.7% (p 0.489), and the forced-minus-retired difference is -1.8 percentage points (p 0.603).",
+   "methodology": {
+    "test": "Wilcoxon signed-rank; skewness-adjusted t with bootstrap CI (Lyon, Barber and Tsai 1999)",
+    "data": "Buy-and-hold returns from day +2, delisting returns per Shumway (1997)",
+    "library_call": "analysis/ops_matched.py; analysis/stats_ops.py",
+    "caveat": "Market-adjusted BHARs are right-skewed; matched-firm BHARs are the main test."
+   },
+   "statistics": [
+    {
+     "stat_id": "bhar.forced.3y.median",
+     "label": "Median 3-year market-adjusted BHAR, forced",
+     "value": -0.18444665255035775,
+     "formatted": "-18.4%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "bhar.forced.3y.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1394,
+     "p": 1.2345628803207132e-08
+    },
+    {
+     "stat_id": "bhar.retired.3y.median",
+     "label": "Median 3-year market-adjusted BHAR, retired",
+     "value": -0.06144228263087792,
+     "formatted": "-6.1%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "bhar.retired.3y.median",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 2254,
+     "p": 0.011510001944452028
+    },
+    {
+     "stat_id": "mbhar.forced.3y.median",
+     "label": "Median 3-year matched-firm BHAR, forced",
+     "value": -0.0270910815030721,
+     "formatted": "-2.7%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhar.forced.3y.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1322,
+     "p": 0.48890499270401977
+    },
+    {
+     "stat_id": "mbhar.retired.3y.median",
+     "label": "Median 3-year matched-firm BHAR, retired",
+     "value": -0.009272046233507858,
+     "formatted": "-0.9%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhar.retired.3y.median",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 2187,
+     "p": 0.7688440636438078
+    },
+    {
+     "stat_id": "mbhar.forced.5y.median",
+     "label": "Median 5-year matched-firm BHAR, forced",
+     "value": -0.07834199167203992,
+     "formatted": "-7.8%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhar.forced.5y.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1276,
+     "p": 0.0602213237454704
+    },
+    {
+     "stat_id": "mbhar.forced.3y.skewadj_t",
+     "label": "Skewness-adjusted t, 3-year matched BHAR, forced",
+     "value": 0.22642268713128944,
+     "formatted": "0.226",
+     "unit": "coefficient",
+     "test": "LBT 1999",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhar.forced.3y.skewadj_t",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1322,
+     "p": 0.8208726842884149,
+     "ci_low": -0.10681754643328273,
+     "ci_high": 0.13962208381855462
+    },
+    {
+     "stat_id": "mbhardiff.forced_vs_retired.3y.diff_median",
+     "label": "Forced minus retired, median 3-year matched BHAR",
+     "value": -0.017819035269564243,
+     "formatted": "-1.8 percentage points",
+     "unit": "difference",
+     "test": "Mann-Whitney U",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhardiff.forced_vs_retired.3y.diff_median",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 3509,
+     "p": 0.6028095710360438
+    },
+    {
+     "stat_id": "mbhardiff.forced_founder_vs_forced_nonfounder.3y.diff_median",
+     "label": "Founder minus non-founder, median 3-year matched BHAR",
+     "value": 0.018597356667626797,
+     "formatted": "1.9 percentage points",
+     "unit": "difference",
+     "test": "Mann-Whitney U",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "mbhardiff.forced_founder_vs_forced_nonfounder.3y.diff_median",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1322,
+     "p": 0.9913528171220325
+    }
+   ],
+   "tables": [
+    {
+     "title": "Table 2. Long-run returns and operating performance (medians)",
+     "columns": [
+      "Group",
+      "BHAR vs market, 3y",
+      "Matched BHAR, 1y",
+      "Matched BHAR, 3y",
+      "Matched BHAR, 5y",
+      "Abnormal ROA change, y1 (pp)",
+      "Abnormal ROA change, y3 (pp)"
+     ],
+     "rows": [
+      [
+       "Forced exits",
+       "-18.4%",
+       "-3.7%",
+       "-2.7%",
+       "-7.8%",
+       "-0.6 pp",
+       "0.0 pp"
+      ],
+      [
+       "Voluntary retirements",
+       "-6.1%",
+       "0.0%",
+       "-0.9%",
+       "1.4%",
+       "0.2 pp",
+       "0.1 pp"
+      ],
+      [
+       "Founder forced out",
+       "-41.2%",
+       "-3.6%",
+       "-1.2%",
+       "-5.7%",
+       "-1.5 pp",
+       "-0.5 pp"
+      ],
+      [
+       "Non-founder forced out",
+       "-17.6%",
+       "-3.7%",
+       "-3.0%",
+       "-7.9%",
+       "-0.5 pp",
+       "0.1 pp"
+      ],
+      [
+       "Dismissed for conduct",
+       "-27.3%",
+       "-4.4%",
+       "-5.9%",
+       "-7.0%",
+       "-0.8 pp",
+       "1.5 pp"
+      ],
+      [
+       "Dismissed for performance",
+       "-17.8%",
+       "-3.4%",
+       "-2.4%",
+       "-7.8%",
+       "-0.5 pp",
+       "-0.1 pp"
+      ]
+     ],
+     "stat_ids": [
+      "mbhar.forced.3y.median",
+      "mbhar.retired.3y.median",
+      "mbhar.forced_founder.3y.median",
+      "mbhar.forced_nonfounder.3y.median",
+      "mbhar.conduct.3y.median",
+      "mbhar.performance.3y.median"
+     ],
+     "notes": "Medians. BHAR vs market compounds from day +2 against the value-weighted market. Matched BHAR subtracts the buy-and-hold return of a control firm in the same Fama-French industry with market value within 30 percent and the closest operating ROA in the prior year. ROA is EBITDA over total assets from as-reported statements, winsorized at the 1st and 99th percentiles; changes are from year -1, measured against the control, in percentage points (pp). Delisted firms keep their final return."
+    }
+   ],
+   "warnings": [],
+   "source_files": [
+    "outputs/ops_stats.json",
+    "outputs/returns_stats.json"
+   ]
+  },
+  {
+   "section_id": "E",
+   "title": "Operating performance",
+   "question": "Does profitability change after the removal, relative to a matched firm?",
+   "interpretation": "In the first year after a forced exit, the median change in operating return on assets relative to the matched firm is -0.6 percentage points (p 0.037); by year three it is 0.0 percentage points (p 0.647).",
+   "methodology": {
+    "test": "Wilcoxon signed-rank on winsorized changes (Barber and Lyon 1996)",
+    "data": "Sharadar as-reported annual statements, EBITDA over total assets",
+    "library_call": "analysis/ops_matched.py; analysis/stats_ops.py",
+    "caveat": "Matched on industry, size within 70-130%, and pre-event ROA; no CEO turnover at the control within three years."
+   },
+   "statistics": [
+    {
+     "stat_id": "h.matched_events",
+     "label": "Events with a matched control",
+     "value": 3572.0,
+     "formatted": "3,572",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "h.matched_events",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "roa.forced.abn_d_1.median",
+     "label": "Median abnormal change in ROA, year 1, forced",
+     "value": -0.005773791923634558,
+     "formatted": "-0.6 percentage points",
+     "unit": "difference",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "roa.forced.abn_d_1.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1040,
+     "p": 0.03704347286932328
+    },
+    {
+     "stat_id": "roa.forced.abn_d_3.median",
+     "label": "Median abnormal change in ROA, year 3, forced",
+     "value": 0.0004620537026429443,
+     "formatted": "0.0 percentage points",
+     "unit": "difference",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "roa.forced.abn_d_3.median",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 822,
+     "p": 0.6471882150128541
+    },
+    {
+     "stat_id": "roa.retired.abn_d_1.median",
+     "label": "Median abnormal change in ROA, year 1, retired",
+     "value": 0.0017469152888655859,
+     "formatted": "0.2 percentage points",
+     "unit": "difference",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "roa.retired.abn_d_1.median",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1900,
+     "p": 0.3985328318916538
+    },
+    {
+     "stat_id": "roadiff.forced_vs_retired.abn_d_3.diff_median",
+     "label": "Forced minus retired, ROA change year 3",
+     "value": -0.0004569841539161755,
+     "formatted": "-0.0 percentage points",
+     "unit": "difference",
+     "test": "Mann-Whitney U",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "roadiff.forced_vs_retired.abn_d_3.diff_median",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 2450,
+     "p": 0.720058394173925
+    }
+   ],
+   "tables": [],
+   "warnings": [],
+   "source_files": [
+    "outputs/ops_stats.json"
+   ]
+  },
+  {
+   "section_id": "F",
+   "title": "What happened to the firm",
+   "question": "How often does the firm stop trading after the removal, and why?",
+   "interpretation": "Within five years, 33.1% of forced-exit firms leave the price file against 17.3% after retirements (p <0.001). Acquisitions account for 20.1% of forced-exit firms.",
+   "methodology": {
+    "test": "Chi-square test of proportions",
+    "data": "Sharadar delisting dates and corporate actions",
+    "library_call": "analysis/event_study.py; analysis/stats_returns.py",
+    "caveat": "Delisting type comes from Sharadar actions within 60 days of the last price; unmatched delistings are treated as performance delistings."
+   },
+   "statistics": [
+    {
+     "stat_id": "exit.forced.delisted_5y",
+     "label": "Delisted within 5 years, forced",
+     "value": 0.3313521545319465,
+     "formatted": "33.1%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced.delisted_5y",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1346
+    },
+    {
+     "stat_id": "exit.retired.delisted_5y",
+     "label": "Delisted within 5 years, retired",
+     "value": 0.17303267372296363,
+     "formatted": "17.3%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.retired.delisted_5y",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 2173
+    },
+    {
+     "stat_id": "exitdiff.forced_vs_retired.delisted_5y",
+     "label": "Forced minus retired, delisted within 5 years",
+     "value": 0.15831948080898287,
+     "formatted": "15.8 percentage points",
+     "unit": "difference",
+     "test": "chi-square",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exitdiff.forced_vs_retired.delisted_5y",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 3519,
+     "p": 6.155935922731729e-27
+    },
+    {
+     "stat_id": "exit.forced.acquired_5y",
+     "label": "Acquired within 5 years, forced",
+     "value": 0.20059435364041606,
+     "formatted": "20.1%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced.acquired_5y",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1346
+    },
+    {
+     "stat_id": "exit.forced.bankruptcy_5y",
+     "label": "Bankruptcy within 5 years, forced",
+     "value": 0.12109955423476969,
+     "formatted": "12.1%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced.bankruptcy_5y",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1346
+    },
+    {
+     "stat_id": "exit.forced_founder.delisted_5y",
+     "label": "Delisted within 5 years, founder forced out",
+     "value": 0.3870967741935484,
+     "formatted": "38.7%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced_founder.delisted_5y",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 93
+    }
+   ],
+   "tables": [
+    {
+     "title": "Table 3. Firms that stop trading within five years",
+     "columns": [
+      "Group",
+      "Stopped trading",
+      "Acquired",
+      "Bankruptcy",
+      "Other delisting",
+      "N"
+     ],
+     "rows": [
+      [
+       "Forced exits",
+       "33.1%",
+       "20.1%",
+       "12.1%",
+       "1.0%",
+       "1,346"
+      ],
+      [
+       "Voluntary retirements",
+       "17.3%",
+       "14.5%",
+       "2.7%",
+       "0.1%",
+       "2,173"
+      ],
+      [
+       "Founder forced out",
+       "38.7%",
+       "21.5%",
+       "12.9%",
+       "4.3%",
+       "93"
+      ],
+      [
+       "Non-founder forced out",
+       "32.7%",
+       "20.0%",
+       "12.1%",
+       "0.7%",
+       "1,253"
+      ],
+      [
+       "Dismissed for conduct",
+       "30.6%",
+       "24.4%",
+       "5.6%",
+       "0.6%",
+       "160"
+      ],
+      [
+       "Dismissed for performance",
+       "33.5%",
+       "19.5%",
+       "13.0%",
+       "1.0%",
+       "1,186"
+      ]
+     ],
+     "stat_ids": [],
+     "notes": "Share of firms whose stock leaves the price file within five years of the announcement, by the type of the last corporate action within 60 days of the final price. N counts events with a full five-year window."
+    }
+   ],
+   "warnings": [],
+   "source_files": [
+    "outputs/returns_stats.json"
+   ]
+  },
+  {
+   "section_id": "G",
+   "title": "The board afterwards",
+   "question": "Does the board change after it removes the CEO?",
+   "interpretation": "Two years after a forced exit, 48.4% of the pre-departure directors have left, against 37.8% after retirements (p <0.001).",
+   "methodology": {
+    "test": "Welch t; chi-square for proportions",
+    "data": "Director lists from the last proxy before and the first proxy at least 600 days after the departure",
+    "library_call": "analysis/extract_board.py; analysis/board_outcomes.py",
+    "caveat": "Director names are matched by surname and first initial."
+   },
+   "statistics": [
+    {
+     "stat_id": "board.forced.director_turnover.mean",
+     "label": "Share of pre-departure directors gone by year two, forced",
+     "value": 0.4843329562834713,
+     "formatted": "48.4%",
+     "unit": "share",
+     "test": "mean",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.forced.director_turnover.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 611,
+     "t": 40.620316232285155,
+     "p": 1.2562654092088456e-175
+    },
+    {
+     "stat_id": "board.retired.director_turnover.mean",
+     "label": "Share of pre-departure directors gone by year two, retired",
+     "value": 0.37808536558985595,
+     "formatted": "37.8%",
+     "unit": "share",
+     "test": "mean",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.retired.director_turnover.mean",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1310,
+     "t": 45.642727962340714,
+     "p": 6.039909477192684e-273
+    },
+    {
+     "stat_id": "boarddiff.forced_vs_retired.director_turnover.diff_mean",
+     "label": "Forced minus retired, director turnover",
+     "value": 0.10624759069361533,
+     "formatted": "10.6 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "boarddiff.forced_vs_retired.director_turnover.diff_mean",
+     "group": "",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1921,
+     "t": 7.318104273037314,
+     "p": 4.570302063754974e-13
+    },
+    {
+     "stat_id": "board.forced.split_after.mean",
+     "label": "Chair and CEO split after, forced",
+     "value": 0.6666666666666666,
+     "formatted": "66.7%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.forced.split_after.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 195,
+     "t": 19.697715603592208,
+     "p": 3.661528883652587e-48
+    },
+    {
+     "stat_id": "board.forced_founder.founder_stays.mean",
+     "label": "Founder still on the board in year two",
+     "value": 0.1,
+     "formatted": "10.0%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.forced_founder.founder_stays.mean",
+     "group": "founder",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 30
+    },
+    {
+     "stat_id": "board.forced_nonfounder.ceo_stays_director.mean",
+     "label": "Removed hired CEO still a director in year two",
+     "value": 0.03614457831325301,
+     "formatted": "3.6%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.forced_nonfounder.ceo_stays_director.mean",
+     "group": "forced",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 581,
+     "t": 4.663689526544407,
+     "p": 3.858753837572537e-06
+    },
+    {
+     "stat_id": "board.retired.ceo_stays_director.mean",
+     "label": "Retired CEO still a director in year two",
+     "value": 0.332824427480916,
+     "formatted": "33.3%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.retired.ceo_stays_director.mean",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1310,
+     "t": 25.553909452949057,
+     "p": 3.52198746633177e-117
+    },
+    {
+     "stat_id": "board.retired.split_after.mean",
+     "label": "Chair and CEO split after, retired",
+     "value": 0.6590909090909091,
+     "formatted": "65.9%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "board.retired.split_after.mean",
+     "group": "retired",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 440,
+     "t": 29.13302822113302,
+     "p": 1.2152028937286385e-104
+    },
+    {
+     "stat_id": "g.events_with_board_data",
+     "label": "Departures with board data before and after",
+     "value": 1921.0,
+     "formatted": "1,921",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/board_stats.json",
+     "source_key": "g.events_with_board_data",
+     "group": "sample",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    }
+   ],
+   "tables": [
+    {
+     "title": "Table 4. The board two years after the departure",
+     "columns": [
+      "Group",
+      "Pre-departure directors gone",
+      "Chair and CEO split",
+      "Departing CEO still a director",
+      "N"
+     ],
+     "rows": [
+      [
+       "Forced exits",
+       "48.4%",
+       "66.7%",
+       "3.9%",
+       "611"
+      ],
+      [
+       "Voluntary retirements",
+       "37.8%",
+       "65.9%",
+       "33.3%",
+       "1,310"
+      ],
+      [
+       "Founder forced out",
+       "52.6%",
+       "72.7%",
+       "10.0%",
+       "30"
+      ],
+      [
+       "Non-founder forced out",
+       "48.2%",
+       "66.3%",
+       "3.6%",
+       "581"
+      ]
+     ],
+     "stat_ids": [],
+     "notes": "Director lists come from the last proxy before the departure and the first proxy filed at least 600 days after it. Directors match on surname and first initial. Firms without both proxies, including most firms sold or delisted in between, are excluded."
+    }
+   ],
+   "warnings": [],
+   "source_files": [
+    "outputs/board_stats.json"
+   ]
+  },
+  {
+   "section_id": "H",
+   "title": "Robustness",
+   "question": "Do the main results survive other models, samples and definitions?",
+   "interpretation": "With the five-factor model, the founder gap is -1.8 percentage points (p 0.220) and the conduct gap is -2.4 percentage points (p 0.008). Adding the 24 retirements our coding identifies as pushed out gives a forced-exit return of -1.5%. Excluding 2008 and 2009 gives -1.7%. Using only strict matches, the median three-year matched return is -2.3%.",
+   "methodology": {
+    "test": "as in sections C and D",
+    "data": "as in sections C and D",
+    "library_call": "analysis/stats_returns.py; analysis/stats_ops.py",
+    "caveat": "Pushed retirements come from the model coding of the dataset notes and are not hand-checked."
+   },
+   "statistics": [
+    {
+     "stat_id": "rob.founder_vs_nonfounder_ff5.m1p1.diff_mean",
+     "label": "Founder minus non-founder, five-factor CAR[-1,+1]",
+     "value": -0.01770449440343752,
+     "formatted": "-1.8 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.founder_vs_nonfounder_ff5.m1p1.diff_mean",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -1.2330226560268953,
+     "p": 0.2202026028721074
+    },
+    {
+     "stat_id": "rob.conduct_vs_performance_ff5.m1p1.diff_mean",
+     "label": "Conduct minus performance, five-factor CAR[-1,+1]",
+     "value": -0.024254810242324155,
+     "formatted": "-2.4 percentage points",
+     "unit": "difference",
+     "test": "Welch t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.conduct_vs_performance_ff5.m1p1.diff_mean",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1390,
+     "t": -2.676965692129729,
+     "p": 0.007919314253703203
+    },
+    {
+     "stat_id": "rob.n_pushed_retirements",
+     "label": "Retirements coded as pushed out",
+     "value": 24.0,
+     "formatted": "24",
+     "unit": "count",
+     "test": "count",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.n_pushed_retirements",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023"
+    },
+    {
+     "stat_id": "rob.pushed.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], pushed retirements",
+     "value": 0.017582723337415115,
+     "formatted": "1.8%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.pushed.mm_m1p1.mean",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 24,
+     "t": 1.7301006433161557,
+     "p": 0.09701082593162912
+    },
+    {
+     "stat_id": "rob.forced_plus_pushed.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], forced plus pushed",
+     "value": -0.015390412779375256,
+     "formatted": "-1.5%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.forced_plus_pushed.mm_m1p1.mean",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1414,
+     "t": -4.244742658123644,
+     "p": 2.331145448125113e-05
+    },
+    {
+     "stat_id": "rob.forced_excl_crisis.mm_m1p1.mean",
+     "label": "Mean CAR[-1,+1], forced, excluding 2008-2009",
+     "value": -0.017325625991315666,
+     "formatted": "-1.7%",
+     "unit": "share",
+     "test": "one-sample t",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "rob.forced_excl_crisis.mm_m1p1.mean",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1257,
+     "t": -4.64277248846477,
+     "p": 3.7984354469529747e-06
+    },
+    {
+     "stat_id": "rob.mbhar_strict_matches.3y.median",
+     "label": "Median 3-year matched BHAR, strict matches only",
+     "value": -0.02292628885835485,
+     "formatted": "-2.3%",
+     "unit": "share",
+     "test": "Wilcoxon",
+     "source_file": "outputs/ops_stats.json",
+     "source_key": "rob.mbhar_strict_matches.3y.median",
+     "group": "robustness",
+     "population": "US public firms, S&P 1500, CEO departures 1998-2023",
+     "period": "1998-2023",
+     "n": 1246,
+     "p": 0.5769701690728402
+    }
+   ],
+   "tables": [],
+   "warnings": [],
+   "source_files": [
+    "outputs/ops_stats.json",
+    "outputs/returns_stats.json"
+   ]
+  }
+ ]
+}

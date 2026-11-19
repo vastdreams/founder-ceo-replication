@@ -12,7 +12,6 @@ Usage : python code_events.py v1            (notes only, all events)
 
 import asyncio
 import json
-import os
 import pathlib
 import sys
 
@@ -68,10 +67,9 @@ def news_for(eid, cache=None):
 async def main():
     import aiohttp
 
-    env = dict(
-        line_.strip().split("=", 1) for line_ in open(os.path.expanduser("~/.config/research-keys.env")) if "=" in line_
-    )
-    key = env["DEEPSEEK_API_KEY"].strip('"')
+    import keys
+
+    key = keys.get("DEEPSEEK_API_KEY")
     ev = pd.read_parquet(HERE / "events.parquet")
     if USE_NEWS:
         ev = ev[ev["forced"] == 1]

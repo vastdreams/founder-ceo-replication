@@ -17,12 +17,10 @@ Writes analysis/out/events.parquet. Rules:
 
 import pathlib
 import re
-import sys
 
 import pandas as pd
 
-sys.path.insert(0, str(pathlib.Path.home()))
-import fce_db  # noqa: E402
+import datasource  # noqa: E402
 
 OUT = pathlib.Path(__file__).parent / "out"
 OUT.mkdir(exist_ok=True)
@@ -41,23 +39,30 @@ def surname(n: str) -> str:
 
 
 def main():
-    con = fce_db.connect()
-    ev = pd.read_sql(
-        """
-        select g.dismissal_dataset_id as event_id, g.gvkey, g.coname, g.fyear, g.exec_fullname,
-               g.departure_code::int as code, g.ceo_dismissal::int as dismissal, g.notes, g.sources,
-               coalesce(g.date_departure_announced, g.left_ceo_office) as event_date,
-               g.date_departure_announced, g.left_ceo_office,
-               (select c.cik from world.gvkey_cik c where c.gvkey = g.gvkey order by c.n_links desc limit 1) as cik
-        from world.ceo_turnover_gentry g
-        where g.departure_code in (3, 4, 5)""",
-        con,
-    )
+    g = datasource.gentry()
+    g = g[pd.to_numeric(g["departure_code"], errors="coerce").isin([3, 4, 5])].copy()
+    links = datasource.gvkey_cik().sort_values("n_links", ascending=False, kind="stable").drop_duplicates("gvkey")
+    ev = pd.DataFrame(
+        {
+            "event_id": g["dismissal_dataset_id"],
+            "gvkey": g["gvkey"],
+            "coname": g["coname"],
+            "fyear": g["fyear"],
+            "exec_fullname": g["exec_fullname"],
+            "code": pd.to_numeric(g["departure_code"]).astype(int),
+            "dismissal": pd.to_numeric(g["ceo_dismissal"], errors="coerce").astype("Int64"),
+            "notes": g["notes"],
+            "sources": g["sources"],
+            "event_date": g["date_departure_announced"].fillna(g["left_ceo_office"]),
+            "date_departure_announced": g["date_departure_announced"],
+            "left_ceo_office": g["left_ceo_office"],
+        }
+    ).merge(links[["gvkey", "cik"]], on="gvkey", how="left")
     ev["event_date"] = pd.to_datetime(ev["event_date"])
     ev["forced"] = ev["code"].isin([3, 4]).astype(int)
     ev["conduct"] = (ev["code"] == 4).astype(int)
 
-    wd = pd.read_sql("select cik, founder from world.wikidata_founders", con)
+    wd = datasource.wikidata_founders()
     wd["s"] = wd["founder"].map(surname)
     wd_set = set(zip(wd["cik"], wd["s"]))
     notes = ev["notes"].fillna("")
@@ -68,12 +73,9 @@ def main():
     ev["founder_v0"] = ((ev["founder_notes"] + ev["founder_wikidata"]) > 0).astype(int)
     ev["relationship_v0"] = notes.str.contains(REL_RE).astype(int)
 
-    tk = pd.read_sql(
-        """select permaticker, ticker, name, isdelisted, firstpricedate, lastpricedate, category,
-                               (regexp_match(secfilings, 'CIK=0*([0-9]+)'))[1]::bigint as cik
-                        from sharadar.tickers where "table" = 'SEP'""",
-        con,
-    )
+    tk = datasource.securities("SEP")[
+        ["permaticker", "ticker", "name", "isdelisted", "firstpricedate", "lastpricedate", "category", "cik"]
+    ]
     tk = tk.dropna(subset=["cik"])
     tk["firstpricedate"] = pd.to_datetime(tk["firstpricedate"], errors="coerce")
     tk["lastpricedate"] = pd.to_datetime(tk["lastpricedate"], errors="coerce")

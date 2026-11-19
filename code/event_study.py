@@ -1,8 +1,8 @@
 """Short- and long-run stock returns around CEO departures.
 
-Inputs : analysis/out/events.parquet (build_events.py); sharadar.sep (closeadj = split- and
-         dividend-adjusted close, so its daily change is a total return); sharadar.actions (delisting
-         type); world.ff5_daily and world.mom_daily (Ken French, percent).
+Inputs : analysis/out/events.parquet (build_events.py); datasource.prices (closeadj = split- and dividend-adjusted
+         close, so its daily change is a total return); datasource.actions (delisting type); datasource.factors
+         (Ken French, percent). See DATA.md.
 Outputs: analysis/out/returns.parquet, one row per event with
   car_mm_{w}   market-model cumulative abnormal return, estimation window [-250,-30], >= 120 days
   car_ff5_{w}  Fama-French five-factor plus momentum abnormal return, same estimation window
@@ -14,13 +14,11 @@ compounds over the full horizon either way.
 """
 
 import pathlib
-import sys
 
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(pathlib.Path.home()))
-import fce_db  # noqa: E402
+import datasource  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent / "out"
 WINDOWS = {"m1p1": (-1, 1), "0p1": (0, 1), "m5p5": (-5, 5), "m30p30": (-30, 30)}
@@ -31,22 +29,12 @@ DELIST_BANKRUPT = {"bankruptcyliquidation"}
 
 
 def load():
-    con = fce_db.connect()
     ev = pd.read_parquet(HERE / "events.parquet")
     ev = ev[ev["permaticker"].notna()].copy()
     tick = tuple(ev["ticker"].dropna().unique())
-    px = pd.read_sql(
-        "select ticker, date, closeadj from sharadar.sep where ticker in %(t)s and closeadj > 0 order by ticker, date",
-        con,
-        params={"t": tick},
-    )
-    ff = pd.read_sql(
-        "select f.date, f.mkt_rf, f.smb, f.hml, f.rmw, f.cma, f.rf, m.mom from world.ff5_daily f join world.mom_daily m using(date)",
-        con,
-    )
-    act = pd.read_sql(
-        "select ticker, date::date as date, action from sharadar.actions where ticker in %(t)s", con, params={"t": tick}
-    )
+    px = datasource.prices(tick)
+    ff = datasource.factors()
+    act = datasource.actions(tick)
     ff["date"] = pd.to_datetime(ff["date"])
     px["date"] = pd.to_datetime(px["date"])
     act["date"] = pd.to_datetime(act["date"])

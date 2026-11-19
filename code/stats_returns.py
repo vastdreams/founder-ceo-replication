@@ -80,7 +80,8 @@ def skew_adj(prefix, x):
     )
 
 
-def main():
+def load_labelled():
+    """returns.parquet with the final labels: model codes, the hand founder review and the hand conduct review."""
     d = pd.read_parquet(HERE / "out" / "returns.parquet")
     coding = HERE / "out" / "event_coding_final.jsonl"
     if coding.exists():  # v1 labels replace the regex flags (hand validation pending, see paper/DECISIONS.md)
@@ -108,6 +109,11 @@ def main():
         d["relationship_v0"] = (d["primary_reason"] == "relationship_with_employee").astype(int)
         d["pushed_retirement"] = ((d["code"] == 5) & (d["forced_llm"] == "yes")).astype(int)
     d["year"] = pd.to_datetime(d["event_date"]).dt.year
+    return d
+
+
+def main():
+    d = load_labelled()
     f, r = d[d["forced"] == 1], d[d["forced"] == 0]
     groups = {
         "forced": f,
@@ -118,6 +124,13 @@ def main():
         "performance": f[f["conduct"] == 0],
         "relationship": f[f["relationship_v0"] == 1],
         "retired_founder": r[r["founder_v0"] == 1],
+        # sex vs money: sexual misconduct or a relationship with an employee, against financial misconduct
+        "sex_or_relationship": f[f["primary_reason"].isin(["relationship_with_employee", "other_sexual_misconduct"])],
+        "financial_misconduct": f[f["primary_reason"] == "financial_misconduct"],
+        # strict: the database codes the exit forced and the evidence-based coding agrees (D-09)
+        "forced_strict": f[f["forced_llm"] == "yes"],
+        "forced_strict_founder": f[(f["forced_llm"] == "yes") & (f["founder_v0"] == 1)],
+        "forced_strict_nonfounder": f[(f["forced_llm"] == "yes") & (f["founder_v0"] == 0)],
     }
 
     # H: robustness
@@ -163,6 +176,9 @@ def main():
         ("forced_founder", "forced_nonfounder"),
         ("conduct", "performance"),
         ("forced_founder", "retired_founder"),
+        ("sex_or_relationship", "financial_misconduct"),
+        ("forced_strict", "retired"),
+        ("forced_strict_founder", "forced_strict_nonfounder"),
     ]:
         for w in ("m1p1", "m5p5"):
             two_group(f"cardiff.{a}_vs_{b}.mm_{w}", groups[a][f"car_mm_{w}"], groups[b][f"car_mm_{w}"])
@@ -187,7 +203,12 @@ def main():
         for h in (1, 3, 5):
             one_group(f"bhar.{g}.{h}y", x[f"bhar_{h}y"])
             skew_adj(f"bhar.{g}.{h}y", x[f"bhar_{h}y"])
-    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder"), ("conduct", "performance")]:
+    for a, b in [
+        ("forced", "retired"),
+        ("forced_founder", "forced_nonfounder"),
+        ("conduct", "performance"),
+        ("forced_strict", "retired"),
+    ]:
         for h in (1, 3, 5):
             two_group(f"bhardiff.{a}_vs_{b}.{h}y", groups[a][f"bhar_{h}y"], groups[b][f"bhar_{h}y"])
 
@@ -198,7 +219,7 @@ def main():
         put(f"exit.{g}.delisted_5y", x5["delisted_5y"].mean() if len(x5) else None, n=len(x5))
         for k in ("acquired", "bankruptcy", "delisted_other", "unknown"):
             put(f"exit.{g}.{k}_5y", (x5["delist_kind_5y"] == k).mean() if len(x5) else None, n=len(x5))
-    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder")]:
+    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder"), ("forced_strict", "retired")]:
         xa, xb = groups[a].dropna(subset=["bhar_5y"]), groups[b].dropna(subset=["bhar_5y"])
         tab = [
             [xa["delisted_5y"].sum(), len(xa) - xa["delisted_5y"].sum()],
@@ -211,6 +232,58 @@ def main():
             n=len(xa) + len(xb),
             p=chi.pvalue,
         )
+
+    # F by horizon: delisted within 1, 3 and 5 years, each on the events whose horizon is complete
+    for g, x in groups.items():
+        for h in (1, 3):
+            xh = x.dropna(subset=[f"bhar_{h}y"])
+            put(f"exit.{g}.n{h}", len(xh))
+            put(f"exit.{g}.delisted_{h}y", xh[f"delisted_{h}y"].mean() if len(xh) else None, n=len(xh))
+            for k in ("acquired", "bankruptcy"):
+                put(f"exit.{g}.{k}_{h}y", (xh[f"delist_kind_{h}y"] == k).mean() if len(xh) else None, n=len(xh))
+
+    # C by detailed reason: every primary reason with at least 10 forced exits
+    f2 = f.copy()
+    for reason, x in f2.groupby("primary_reason"):
+        if len(x) >= 10:
+            one_group(f"car.reason.{reason}.mm_m1p1", x["car_mm_m1p1"])
+
+    # Before and after the announcement: market-adjusted CAR over trading days [-30,-2] and [+2,+60] (paths.py)
+    # ar_daily.parquet (paths.py) is built from licensed daily prices and is not published; the per-event window
+    # sums it yields are, as out/drift.parquet, so the public package rebuilds these statistics without it.
+    ar, dp = HERE / "out" / "ar_daily.parquet", HERE / "out" / "drift.parquet"
+    if ar.exists():
+        a = pd.read_parquet(ar)
+        pre = a[a["day"].between(-30, -2)].groupby("event_id")["ar_ma"].agg(["sum", "count"])
+        post = a[a["day"].between(2, 60)].groupby("event_id")["ar_ma"].agg(["sum", "count"])
+        ma3 = a[a["day"].between(-1, 1)].groupby("event_id")["ar_ma"].agg(["sum", "count"])
+        drift = pd.DataFrame(
+            {
+                "pre": pre["sum"].where(pre["count"] == 29),
+                "post": post["sum"].where(post["count"] == 59),
+                "car_ma_m1p1": ma3["sum"].where(ma3["count"] == 3),
+            }
+        ).reset_index()
+        drift.to_parquet(dp, index=False)
+    if dp.exists():
+        drift = pd.read_parquet(dp)
+        d = d.merge(drift[["event_id", "car_ma_m1p1"]], on="event_id", how="left")
+        one_group("rob.forced.ma_m1p1", d[d["forced"] == 1]["car_ma_m1p1"])
+        dd = d.merge(drift[["event_id", "pre", "post"]], on="event_id", how="left")
+        dg = {
+            "forced": dd[dd["forced"] == 1],
+            "retired": dd[dd["forced"] == 0],
+            "forced_founder": dd[(dd["forced"] == 1) & (dd["founder_v0"] == 1)],
+            "conduct": dd[(dd["forced"] == 1) & (dd["conduct"] == 1)],
+            "performance": dd[(dd["forced"] == 1) & (dd["conduct"] == 0)],
+        }
+        for g, x in dg.items():
+            one_group(f"drift.{g}.pre_m30m2", x["pre"])
+            one_group(f"drift.{g}.post_p2p60", x["post"])
+        for w in ("pre", "post"):
+            k = "pre_m30m2" if w == "pre" else "post_p2p60"
+            two_group(f"driftdiff.forced_vs_retired.{k}", dg["forced"][w], dg["retired"][w])
+            two_group(f"driftdiff.conduct_vs_performance.{k}", dg["conduct"][w], dg["performance"][w])
 
     (OUT / "returns_stats.json").write_text(json.dumps(R, indent=1))
     show = [

@@ -61,3 +61,39 @@ The second pass found no relationship or sexual-misconduct case that the hand re
 `conduct_review.csv` had not already checked. It flagged 25 founders the founder review had not
 covered. Each was checked by hand and added to `founder_review.csv` (15 yes, 10 no). Hand
 decisions still override model labels.
+
+## D-08 (20 Nov 2026): target the Journal of Corporate Finance
+
+The founder gap is not statistically significant, and the strongest results (conduct, delisting) are
+descriptive event-study evidence without a causal design. That fits the Journal of Corporate Finance
+better than the Journal of Financial Economics. The Review of Corporate Finance Studies is the
+fallback. Both follow Elsevier house style, so the rule set keeps its key `founder_ceo_jfe`. The title
+names scandal rather than sex, because the relationship result rests on 13 cases and is not significant.
+
+## D-09 (20 Nov 2026): a strict sample where the evidence agrees the exit was forced
+
+The CEO dismissal database codes some planned successions as forced, sometimes after later events
+(Enron 2001, Viasat 2020). Every main result is also reported on the exits that the evidence-based
+coding reads as forced too (Table IA.1), and the named founder cases (Table 6) come only from that
+strict sample. The full sample stays the main sample, because the database's coding is the field's
+standard and our coding reads many exits as "unclear" rather than "not forced".
+
+## D-10 (20 Nov 2026): market-adjusted returns for every window longer than a few days
+
+The market model's intercept, estimated over days -250 to -30, is strongly negative for firms about to
+fire their CEO. Projected over days +2 to +60 it manufactured a +5% "rebound" that the market-adjusted
+and buy-and-hold paths do not show. Windows before and after the announcement use returns minus the
+market; the three-day announcement return keeps the market model (its market-adjusted version is in
+Table IA.1).
+
+## D-11 (20 Nov 2026): every number carries its horizon and N, enforced in code
+
+combine_results.py gives each statistic a horizon (`period`) and a population from its key and stops
+the build if any statistic lacks N or a horizon, or any table lacks an N column. Table 1 maps the whole
+paper horizon by horizon with the number of forced exits measured at each.
+
+## D-12 (20 Nov 2026): title names sex and fraud
+
+The sex-or-relationship versus financial-misconduct comparison is now a tested result (Table 4, the
+difference in means p = 0.04 on 17 against 89 cases; medians p = 0.10). The title names both because
+the paper studies both; the text calls the comparison suggestive because the sex group is small.

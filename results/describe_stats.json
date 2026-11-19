@@ -1,0 +1,296 @@
+{
+ "desc.forced.mcap.median": {
+  "value": 1024973699.0,
+  "n": 1351
+ },
+ "desc.retired.mcap.median": {
+  "value": 1932670740.0,
+  "n": 2221
+ },
+ "desc.forced_founder.mcap.median": {
+  "value": 831311578.0,
+  "n": 97
+ },
+ "descdiff.forced_vs_retired.mcap.diff_median": {
+  "value": -907697041.0,
+  "n": 3572,
+  "p": 3.208918583306816e-24
+ },
+ "desc.forced.roa.median": {
+  "value": 0.07903700401248329,
+  "n": 1351
+ },
+ "desc.retired.roa.median": {
+  "value": 0.1229124916499666,
+  "n": 2221
+ },
+ "desc.forced_founder.roa.median": {
+  "value": 0.07644382157352905,
+  "n": 97
+ },
+ "descdiff.forced_vs_retired.roa.diff_median": {
+  "value": -0.04387548763748331,
+  "n": 3572,
+  "p": 3.535567417524482e-48
+ },
+ "desc.forced.salesg.median": {
+  "value": 0.032044271851144,
+  "n": 1321
+ },
+ "desc.retired.salesg.median": {
+  "value": 0.06686774792779049,
+  "n": 2184
+ },
+ "desc.forced_founder.salesg.median": {
+  "value": 0.0841273649574994,
+  "n": 97
+ },
+ "descdiff.forced_vs_retired.salesg.diff_median": {
+  "value": -0.03482347607664649,
+  "n": 3505,
+  "p": 1.9030389859102593e-09
+ },
+ "desc.forced.rnd.median": {
+  "value": 0.0,
+  "n": 1351
+ },
+ "desc.retired.rnd.median": {
+  "value": 0.0,
+  "n": 2221
+ },
+ "desc.forced_founder.rnd.median": {
+  "value": 0.0,
+  "n": 97
+ },
+ "descdiff.forced_vs_retired.rnd.diff_median": {
+  "value": 0.0,
+  "n": 3572,
+  "p": 0.12581740855332202
+ },
+ "desc.forced.capex.median": {
+  "value": 0.032372511944111663,
+  "n": 1351
+ },
+ "desc.retired.capex.median": {
+  "value": 0.035252418556824025,
+  "n": 2221
+ },
+ "desc.forced_founder.capex.median": {
+  "value": 0.043117253816218545,
+  "n": 97
+ },
+ "descdiff.forced_vs_retired.capex.diff_median": {
+  "value": -0.0028799066127123615,
+  "n": 3572,
+  "p": 0.00033340704798615566
+ },
+ "case.7398.car_m1p1": {
+  "value": 0.0967771911568257,
+  "n": 1
+ },
+ "case.7398.bhar_3y": {
+  "value": -0.23067883313642823,
+  "n": 1
+ },
+ "case.49.car_m1p1": {
+  "value": -0.3401419737976071,
+  "n": 1
+ },
+ "case.49.bhar_3y": {
+  "value": -1.1441488283449184,
+  "n": 1
+ },
+ "case.8761.car_m1p1": {
+  "value": 0.09571195084688497,
+  "n": 1
+ },
+ "case.8761.bhar_3y": {
+  "value": -0.9459637904099562,
+  "n": 1
+ },
+ "case.6350.car_m1p1": {
+  "value": -0.027906387323414165,
+  "n": 1
+ },
+ "case.6350.bhar_3y": {
+  "value": -1.1726037722241414,
+  "n": 1
+ },
+ "case.7657.car_m1p1": {
+  "value": 0.02507411464433594,
+  "n": 1
+ },
+ "case.7657.bhar_3y": {
+  "value": -0.4241965450387634,
+  "n": 1
+ },
+ "case.5723.car_m1p1": {
+  "value": 0.05603024385170215,
+  "n": 1
+ },
+ "case.5723.bhar_3y": {
+  "value": 1.7332277290081342,
+  "n": 1
+ },
+ "case.6659.car_m1p1": {
+  "value": -0.24525510838359998,
+  "n": 1
+ },
+ "case.6659.bhar_3y": {
+  "value": 1.1708298885335555,
+  "n": 1
+ },
+ "case.3455.car_m1p1": {
+  "value": -0.011795802668225148,
+  "n": 1
+ },
+ "case.3455.bhar_3y": {
+  "value": -0.6270289778120444,
+  "n": 1
+ },
+ "case.8370.car_m1p1": {
+  "value": 0.07897143829910047,
+  "n": 1
+ },
+ "case.8370.bhar_3y": {
+  "value": -0.275625353035607,
+  "n": 1
+ },
+ "case.6352.car_m1p1": {
+  "value": 0.0266162659528085,
+  "n": 1
+ },
+ "case.6352.bhar_3y": {
+  "value": -0.02087389352747193,
+  "n": 1
+ },
+ "case.7961.car_m1p1": {
+  "value": 0.14852143278387575,
+  "n": 1
+ },
+ "case.7961.bhar_3y": {
+  "value": 0.12900328078639878,
+  "n": 1
+ },
+ "case.9469.car_m1p1": {
+  "value": -0.08366849604510436,
+  "n": 1
+ },
+ "case.9469.bhar_3y": {
+  "value": 0.14899514709235606,
+  "n": 1
+ },
+ "case.n_listed": {
+  "value": 12.0
+ },
+ "_cases": [
+  {
+   "event_id": 7398,
+   "company": "Yahoo",
+   "ceo": "Jerry Yang",
+   "year": 2008,
+   "dismissal": "performance",
+   "mcap_m1": 37935372440.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 49,
+   "company": "WorldCom",
+   "ceo": "Bernard Ebbers",
+   "year": 2002,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 22768372498.0,
+   "fate_5y": "bankrupt"
+  },
+  {
+   "event_id": 8761,
+   "company": "Wynn Resorts",
+   "ceo": "Steve Wynn",
+   "year": 2018,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 17255491718.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 6350,
+   "company": "Chesapeake Energy",
+   "ceo": "Aubrey McClendon",
+   "year": 2013,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 13131058626.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 7657,
+   "company": "Monster Worldwide",
+   "ceo": "Andrew McKelvey",
+   "year": 2006,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 5832695560.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 5723,
+   "company": "AES",
+   "ceo": "Dennis Bakke",
+   "year": 2002,
+   "dismissal": "performance",
+   "mcap_m1": 4806171810.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 6659,
+   "company": "Mercury Interactive",
+   "ceo": "Amnon Landan",
+   "year": 2005,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 3985018048.0,
+   "fate_5y": "acquired"
+  },
+  {
+   "event_id": 3455,
+   "company": "Symbol Technologies",
+   "ceo": "Jerome Swartz",
+   "year": 2003,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 3983676968.0,
+   "fate_5y": "acquired"
+  },
+  {
+   "event_id": 8370,
+   "company": "WWE",
+   "ceo": "Vince McMahon",
+   "year": 2022,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 3579309371.0,
+   "fate_5y": "acquired"
+  },
+  {
+   "event_id": 6352,
+   "company": "Cree",
+   "ceo": "Neal Hunter",
+   "year": 2001,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 3442493332.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 7961,
+   "company": "Career Education",
+   "ceo": "John Larson",
+   "year": 2006,
+   "dismissal": "performance",
+   "mcap_m1": 3379581843.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 9469,
+   "company": "Acadia Healthcare",
+   "ceo": "Joey Jacobs",
+   "year": 2018,
+   "dismissal": "performance",
+   "mcap_m1": 3347413728.0,
+   "fate_5y": "still listed"
+  }
+ ]
+}

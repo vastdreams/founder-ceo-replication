@@ -1,0 +1,9 @@
+The data in data/events, data/reviews, results and data/inputs/gvkey_cik.parquet are licensed under the Creative
+Commons Attribution 4.0 International licence (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+Attribution: Sehgal, A. (2026), Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO,
+replication package, https://github.com/vastdreams/founder-ceo-replication
+
+data/inputs/gentry.parquet is the Open Sourced Database for CEO Dismissal 1992-2023 (10Oct2024), Gentry, Harrison,
+Quigley and Boivie, Zenodo record 17725939, CC BY 4.0, redistributed unchanged in content.
+data/inputs/wikidata_founders.parquet is from Wikidata (CC0). data/inputs/sec_filings.parquet is SEC EDGAR data
+(public domain).

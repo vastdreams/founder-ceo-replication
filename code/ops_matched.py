@@ -14,13 +14,11 @@ Inputs are as-reported (ARY) to avoid restated numbers the market had not seen.
 """
 
 import pathlib
-import sys
 
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(pathlib.Path.home()))
-import fce_db  # noqa: E402
+import datasource  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent / "out"
 HORIZONS = {1: 252, 3: 756, 5: 1260}
@@ -31,29 +29,23 @@ def num(s):
 
 
 def main():
-    con = fce_db.connect()
     ev = pd.read_parquet(HERE / "returns.parquet")
-    sf = pd.read_sql(
-        """select ticker, calendardate, assets, ebitda, netinc, revenue, marketcap, rnd, capex
-                        from sharadar.sf1 where dimension = 'ARY'""",
-        con,
-    )
+    sf = datasource.fundamentals()
     for c in ["assets", "ebitda", "netinc", "revenue", "marketcap", "rnd", "capex"]:
         sf[c] = num(sf[c])
     sf["year"] = pd.to_datetime(sf["calendardate"]).dt.year
-    sf = sf.sort_values("calendardate").drop_duplicates(["ticker", "year"], keep="last")
+    # One row per firm-year: the last fiscal year-end in the calendar year, as first filed (earliest datekey), so
+    # amendments never replace the as-reported numbers and the choice never depends on input order.
+    sf = sf.sort_values(["ticker", "year", "calendardate", "datekey"], ascending=[True, True, False, True], kind="stable")
+    sf = sf.drop_duplicates(["ticker", "year"], keep="first")
     sf["roa"] = sf["ebitda"] / sf["assets"].where(sf["assets"] > 0)
-    tk = pd.read_sql(
-        """select ticker, famaindustry, (regexp_match(secfilings, 'CIK=0*([0-9]+)'))[1]::bigint as cik
-                        from sharadar.tickers where "table" = 'SF1'""",
-        con,
-    ).drop_duplicates("ticker")
+    tk = datasource.securities("SF1").sort_values(["ticker", "permaticker"], kind="stable")
+    tk = tk[["ticker", "famaindustry", "cik"]].drop_duplicates("ticker")
     sf = sf.merge(tk, on="ticker", how="left")
-    turn = pd.read_sql(
-        """select c.cik, g.fyear from world.ceo_turnover_gentry g join world.gvkey_cik c using(gvkey)
-                          where g.departure_code not in (9)""",
-        con,
-    )
+    gt = datasource.gentry()
+    code = pd.to_numeric(gt["departure_code"], errors="coerce")
+    gt = gt[code.notna() & (code != 9)]  # as SQL "not in (9)": a missing code is not a turnover year
+    turn = gt.merge(datasource.gvkey_cik()[["gvkey", "cik"]], on="gvkey")[["cik", "fyear"]]
     turn_years = turn.groupby("cik")["fyear"].apply(set).to_dict()
     panel = sf.set_index(["ticker", "year"])
 
@@ -88,7 +80,8 @@ def main():
         if cand.empty:
             continue
         key = (cand["marketcap"] / me["marketcap"]).apply(np.log).abs() if relaxed else (cand["roa"] - me["roa"]).abs()
-        ctrl = cand.loc[key.idxmin()]
+        cand = cand.assign(_key=key).sort_values(["_key", "ticker"], kind="stable")  # ties go to the first ticker
+        ctrl = cand.iloc[0]
         r = {
             "event_id": e["event_id"],
             "ctrl_ticker": ctrl["ticker"],
@@ -115,12 +108,8 @@ def main():
     from event_study import delist_return
 
     ct = tuple(m["ctrl_ticker"].unique())
-    px = pd.read_sql(
-        "select ticker, date, closeadj from sharadar.sep where ticker in %(t)s and closeadj > 0", con, params={"t": ct}
-    )
-    act = pd.read_sql(
-        "select ticker, date::date as date, action from sharadar.actions where ticker in %(t)s", con, params={"t": ct}
-    )
+    px = datasource.prices(ct)
+    act = datasource.actions(ct)
     px["date"] = pd.to_datetime(px["date"])
     act["date"] = pd.to_datetime(act["date"])
     g = {t: d.set_index("date")["closeadj"].astype(float).sort_index() for t, d in px.groupby("ticker")}

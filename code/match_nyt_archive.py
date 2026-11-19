@@ -95,7 +95,11 @@ def main():
         for eid in ids:
             lo, hi, terms, sn, docs = meta[eid]
             for day, text, a in arts:
-                if lo <= day <= hi and terms[0] in text and (sn and sn in text or "chief executive" in text or "c.e.o" in text):
+                if (
+                    lo <= day <= hi
+                    and terms[0] in text
+                    and (sn and sn in text or "chief executive" in text or "c.e.o" in text)
+                ):
                     docs.append(a)
         del arts
     hits = 0

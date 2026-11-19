@@ -8,15 +8,13 @@ Output: analysis/out/board_raw.jsonl  {event_id, which: pre|post, accession, dat
 import asyncio
 import gzip
 import json
-import os
 import pathlib
 import sys
 
 import pandas as pd
 
-sys.path.insert(0, str(pathlib.Path.home()))
 sys.path.insert(0, str(pathlib.Path.home() / "world_raw"))
-import fce_db  # noqa: E402
+import datasource  # noqa: E402
 from extract_docs import cut, text_of  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent / "out"
@@ -30,19 +28,29 @@ List every director or nominee named. Use null when the text does not say. Do no
 
 
 def main_sync():
-    con = fce_db.connect()
-    pairs = pd.read_sql(
-        """
-      with ev as (select g.dismissal_dataset_id event_id, g.departure_code code, c.cik,
-                         coalesce(g.date_departure_announced, g.left_ceo_office) d
-                  from world.ceo_turnover_gentry g join world.gvkey_cik c using(gvkey)
-                  where g.departure_code in (3,4,5) and coalesce(g.date_departure_announced, g.left_ceo_office) >= '1998-01-01')
-      select ev.event_id, ev.code,
-        (select f.cik||'_'||f.accession from world.sec_filings f where f.cik=ev.cik and f.form='DEF 14A' and f.filing_date < ev.d order by f.filing_date desc limit 1) pre,
-        (select f.cik||'_'||f.accession from world.sec_filings f where f.cik=ev.cik and f.form='DEF 14A' and f.filing_date >= ev.d + 600 order by f.filing_date limit 1) post
-      from ev""",
-        con,
-    )
+    g = datasource.gentry()
+    g["d"] = g["date_departure_announced"].fillna(g["left_ceo_office"])
+    g["code"] = pd.to_numeric(g["departure_code"], errors="coerce")
+    g = g[g["code"].isin([3, 4, 5]) & (g["d"] >= "1998-01-01")]
+    ev = g.merge(datasource.gvkey_cik()[["gvkey", "cik"]], on="gvkey")[["dismissal_dataset_id", "code", "cik", "d"]]
+    ev = ev.rename(columns={"dismissal_dataset_id": "event_id"})
+    px = datasource.sec_filings(["DEF 14A"]).sort_values("filing_date")
+    px["key"] = px["cik"].astype(str) + "_" + px["accession"]
+    by = dict(list(px.groupby("cik")))
+    rows = []
+    for e in ev.itertuples():
+        f = by.get(e.cik)
+        before = f[f["filing_date"] < e.d] if f is not None else None
+        after = f[f["filing_date"] >= e.d + pd.Timedelta(days=600)] if f is not None else None
+        rows.append(
+            {
+                "event_id": e.event_id,
+                "code": e.code,
+                "pre": before["key"].iloc[-1] if before is not None and len(before) else None,
+                "post": after["key"].iloc[0] if after is not None and len(after) else None,
+            }
+        )
+    pairs = pd.DataFrame(rows)
     pairs["prio"] = pairs["code"].isin([3, 4]).map({True: 0, False: 1})
     return pairs.sort_values("prio")
 
@@ -50,8 +58,9 @@ def main_sync():
 async def main():
     import aiohttp
 
-    env = dict(x.strip().split("=", 1) for x in open(os.path.expanduser("~/.config/research-keys.env")) if "=" in x)
-    key = env["DEEPSEEK_API_KEY"].strip('"')
+    import keys
+
+    key = keys.get("DEEPSEEK_API_KEY")
     pairs = main_sync()
     seen = {(json.loads(x)["event_id"], json.loads(x)["which"]) for x in open(OUTF)} if OUTF.exists() else set()
     jobs = [

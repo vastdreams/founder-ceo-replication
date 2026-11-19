@@ -4,19 +4,17 @@ For each departure announced 1992-1997 we take the first proxy filed after the e
 covers both fiscal year t (the event year) and t+3. Abnormal TSR = company(t+3)/company(t) - index(t+3)/index(t),
 where index is the first index the firm reports (usually the S&P 500 or a broad market index). Values are
 read from the graph tables by the extraction step; every ratio here is computed in code.
-Inputs : ~/world_raw/sec/extract/DEF14A.jsonl, analysis/out/events.parquet, world.sec_filings (proxy dates)
+Inputs : ~/world_raw/sec/extract/DEF14A.jsonl, analysis/out/events.parquet, datasource.sec_filings (proxy dates)
 Output : analysis/out/pre1998_tsr.parquet and outputs/pre1998_stats.json
 """
 
 import json
 import pathlib
 import re
-import sys
 
 import pandas as pd
 
-sys.path.insert(0, str(pathlib.Path.home()))
-import fce_db  # noqa: E402
+import datasource  # noqa: E402
 from stats_returns import R, one_group, put, two_group  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent
@@ -36,14 +34,13 @@ def year_of(label):
 
 def main():
     R.clear()
-    con = fce_db.connect()
     ev = pd.read_parquet(HERE / "out" / "events.parquet")
     ff = HERE / "out" / "founder_final.parquet"
     if ff.exists():
         ev = ev.merge(pd.read_parquet(ff)[["event_id", "founder"]], on="event_id", how="left")
     ev["year"] = pd.to_datetime(ev["event_date"]).dt.year
     ev = ev[(ev["year"] >= 1992) & (ev["year"] <= 1997) & ev["cik"].notna()]
-    dates = pd.read_sql("select cik, accession, filing_date from world.sec_filings where form = 'DEF 14A'", con)
+    dates = datasource.sec_filings(["DEF 14A"])[["cik", "accession", "filing_date"]]
     dates["filing_date"] = pd.to_datetime(dates["filing_date"])
     graphs = {}
     for line in open(EXTRACT):

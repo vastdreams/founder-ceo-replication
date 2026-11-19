@@ -1,4 +1,16 @@
+# working folders the scripts write
 code/out/
+code/__pycache__/
+code/adapters/__pycache__/
 outputs/
-paper/
-__pycache__/
+paper/figdata/
+paper/*.csv
+# licensed or downloaded inputs: never commit these
+data/inputs/prices.*
+data/inputs/actions.*
+data/inputs/securities.*
+data/inputs/fundamentals.*
+data/inputs/factors.*
+data/inputs/*.xlsx
+data/inputs/edgar_submissions/
+.venv/

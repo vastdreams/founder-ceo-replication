@@ -206,7 +206,7 @@ def fig1_event_time(data: dict):
             if key in ("forced", "retired"):
                 ax.fill_between(days, s["lo"], s["hi"], color=color, alpha=0.12, linewidth=0, zorder=2)
             items.append((s["mean"][-1], f"{label}  {_pct(s['mean'][-1])}\nn = {s['n']:,}", color))
-        _end_labels(ax, 62, items, 0.03)
+        _end_labels(ax, 62, items, 0.05)  # two-line labels need about 5 points of the axis between them
         ax.set_xlim(-30, 60)
         ax.set_xticks([-30, -20, -10, 0, 10, 20, 30, 40, 50, 60])
         ax.set_xlabel("Trading days from the announcement (day 0)", color=MUTED, fontsize=8.5)
@@ -246,12 +246,12 @@ def fig2_long_run(data: dict):
     fn = data["long_run"]["forced"]["n"]
     for h in (1, 3, 5):
         ax.axvline(12 * h, color=HAIR, linewidth=0.8, zorder=0)
-        ax.text(12 * h, -0.88, f"{h} yr: n = {fn[12 * h - 1]:,} forced", ha="center", color=MUTED, fontsize=7)
+        ax.text(12 * h, -0.985, f"{h} yr: n = {fn[12 * h - 1]:,} forced", ha="center", color=MUTED, fontsize=7)
     ax.scatter([1.6], [0.105], color="white", edgecolor=MUTED, linewidth=1.2, s=22, marker="D")
     ax.text(
         2.6, 0.105, "median return against a matched firm at 1, 3 and 5 years", color=MUTED, fontsize=7.5, va="center"
     )
-    ax.set_ylim(-0.9, 0.14)
+    ax.set_ylim(-1.0, 0.14)
     ax.set_xlim(0, 62)
     ax.set_xticks([0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60])
     ax.set_xlabel("Months after the announcement (21 trading days each, from day +2)", color=MUTED, fontsize=8.5)

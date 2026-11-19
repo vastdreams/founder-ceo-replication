@@ -13,7 +13,8 @@ for f in (ROOT / "data").iterdir():
     if f.suffix in (".parquet", ".jsonl"):
         shutil.copy(f, OUT / f.name)
 (ROOT / "paper").mkdir(exist_ok=True)
-shutil.copy(ROOT / "data" / "founder_review.csv", ROOT / "paper" / "founder_review.csv")
+for name in ("founder_review.csv", "conduct_review.csv"):
+    shutil.copy(ROOT / "data" / name, ROOT / "paper" / name)
 published = json.loads((ROOT / "results" / "combined_results.json").read_text())
 (ROOT / "outputs").mkdir(exist_ok=True)
 for step in ["founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "combine_results.py"]:

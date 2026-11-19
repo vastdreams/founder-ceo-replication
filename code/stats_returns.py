@@ -99,6 +99,12 @@ def main():
                 how="left",
             )
             d["founder_v0"] = d["founder_v0"].fillna(0).astype(int)
+        cr = HERE.parent / "paper" / "conduct_review.csv"
+        if cr.exists():  # hand review of every sexual-conduct and relationship label (paper/conduct_review.csv)
+            rv = pd.read_csv(cr)[["event_id", "decision"]]
+            d = d.merge(rv, on="event_id", how="left")
+            d["primary_reason"] = d["decision"].fillna(d["primary_reason"])
+            d = d.drop(columns=["decision"])
         d["relationship_v0"] = (d["primary_reason"] == "relationship_with_employee").astype(int)
         d["pushed_retirement"] = ((d["code"] == 5) & (d["forced_llm"] == "yes")).astype(int)
     d["year"] = pd.to_datetime(d["event_date"]).dt.year

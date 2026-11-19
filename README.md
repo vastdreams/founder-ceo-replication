@@ -8,7 +8,8 @@ Code and event-level data for the paper by Abhishek Sehgal (2026). `python check
 |---|---|
 | `code/` | Every analysis step: building the event sample, the event study, coding, founder review, matched controls, statistics, board outcomes, the results payload and the draft builder |
 | `data/events.parquet` | CEO departures from the open CEO dismissal database (Gentry, Harrison, Quigley and Boivie 2021, Zenodo record 17725939, v10Oct2024, ODC-By), linked to SEC CIK and ticker |
-| `data/event_coding_v1.jsonl` | Model-drafted codes for founder status, reason and relationship details, each with its supporting quote |
+| `data/event_coding_v1.jsonl` | Codes for founder status, reason and relationship details. Drafted by a language model from the database notes; every sexual-conduct and relationship label was checked by hand (`data/conduct_review.csv`) and the model's free-text quotes are not published |
+| `data/conduct_review.csv` | The hand review of every sexual-conduct and relationship label, with the public-record basis for each decision |
 | `data/founder_review.csv` | The hand review of every founder code: decision and reason for each of 170 cases |
 | `data/founder_final.parquet` | The founder flag used in the paper |
 | `data/returns.parquet` | Per-event abnormal returns, buy-and-hold returns and delisting outcomes |

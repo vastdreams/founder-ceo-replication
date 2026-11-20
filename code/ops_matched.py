@@ -15,10 +15,9 @@ Inputs are as-reported (ARY) to avoid restated numbers the market had not seen.
 
 import pathlib
 
+import datasource  # noqa: E402
 import numpy as np
 import pandas as pd
-
-import datasource  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent / "out"
 HORIZONS = {1: 252, 3: 756, 5: 1260}
@@ -36,7 +35,9 @@ def main():
     sf["year"] = pd.to_datetime(sf["calendardate"]).dt.year
     # One row per firm-year: the last fiscal year-end in the calendar year, as first filed (earliest datekey), so
     # amendments never replace the as-reported numbers and the choice never depends on input order.
-    sf = sf.sort_values(["ticker", "year", "calendardate", "datekey"], ascending=[True, True, False, True], kind="stable")
+    sf = sf.sort_values(
+        ["ticker", "year", "calendardate", "datekey"], ascending=[True, True, False, True], kind="stable"
+    )
     sf = sf.drop_duplicates(["ticker", "year"], keep="first")
     sf["roa"] = sf["ebitda"] / sf["assets"].where(sf["assets"] > 0)
     tk = datasource.securities("SF1").sort_values(["ticker", "permaticker"], kind="stable")
@@ -73,7 +74,8 @@ def main():
         pool = base[
             (base["year"] == y0 - 1) & (base["famaindustry"] == me["famaindustry"]) & (base["ticker"] != e["ticker"])
         ]
-        pool = pool[[not any(abs(y - y0) <= 3 for y in turn_years.get(c, ())) for c in pool["cik"]]]
+        # no CEO turnover at the control in the three years up to the event: past information only (D-15)
+        pool = pool[[not any(y0 - 3 <= y <= y0 for y in turn_years.get(c, ())) for c in pool["cik"]]]
         size = pool[(pool["marketcap"] >= 0.7 * me["marketcap"]) & (pool["marketcap"] <= 1.3 * me["marketcap"])]
         relaxed = size.empty
         cand = pool if relaxed else size
@@ -114,6 +116,9 @@ def main():
     act["date"] = pd.to_datetime(act["date"])
     g = {t: d.set_index("date")["closeadj"].astype(float).sort_index() for t, d in px.groupby("ticker")}
     ga = dict(list(act.groupby("ticker")))
+    ff = datasource.factors().set_index("date").sort_index()
+    mkt = (ff["mkt_rf"].astype(float) + ff["rf"].astype(float)) / 100.0
+    kinds = []
     for h, n in HORIZONS.items():
         vals = []
         for _, e in m.iterrows():
@@ -128,11 +133,24 @@ def main():
                 vals.append(np.nan)
                 continue
             bh = w.iloc[-1] / w.iloc[0]
-            if s.index.max() < end:
-                bh *= 1 + delist_return(ga.get(e["ctrl_ticker"], act.iloc[:0]), s.index.max())[1]
+            gone = s.index.max() < end
+            kind = None
+            if gone:
+                kind, dl = delist_return(ga.get(e["ctrl_ticker"], act.iloc[:0]), s.index.max())
+                after = mkt[(mkt.index > s.index.max()) & (mkt.index <= end)]
+                bh *= (1 + dl) * float(np.prod(1 + after.values))  # proceeds reinvested in the market
             vals.append(bh - 1)
+            kinds.append((e["event_id"], h, int(gone), kind))
         m[f"bhr_{h}y_ctrl"] = vals
         m[f"mbhar_{h}y"] = m[f"bhr_{h}y"] - m[f"bhr_{h}y_ctrl"]
+    k = pd.DataFrame(kinds, columns=["event_id", "h", "ctrl_delisted", "ctrl_delist_kind"])
+    for h in HORIZONS:
+        kh = (
+            k[k["h"] == h]
+            .drop(columns="h")
+            .rename(columns={"ctrl_delisted": f"ctrl_delisted_{h}y", "ctrl_delist_kind": f"ctrl_delist_kind_{h}y"})
+        )
+        m = m.merge(kh, on="event_id", how="left")
     m.to_parquet(HERE / "ops_matched.parquet", index=False)
     print(len(m), "matched events;", int(m["match_relaxed"].sum()), "relaxed matches")
     print(

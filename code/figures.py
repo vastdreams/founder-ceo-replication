@@ -203,8 +203,9 @@ def fig1_event_time(data: dict):
         for key, label, color, lw in lines:
             s = et[key]
             ax.plot(days, s["mean"], color=color, linewidth=lw, zorder=3)
-            if key in ("forced", "retired"):
-                ax.fill_between(days, s["lo"], s["hi"], color=color, alpha=0.12, linewidth=0, zorder=2)
+            if key in ("forced", "retired", "forced_founder"):
+                alpha = 0.07 if key == "forced_founder" else 0.12  # few founders: a wide band, drawn lighter
+                ax.fill_between(days, s["lo"], s["hi"], color=color, alpha=alpha, linewidth=0, zorder=2)
             items.append((s["mean"][-1], f"{label}  {_pct(s['mean'][-1])}\nn = {s['n']:,}", color))
         _end_labels(ax, 62, items, 0.05)  # two-line labels need about 5 points of the axis between them
         ax.set_xlim(-30, 60)
@@ -215,7 +216,8 @@ def fig1_event_time(data: dict):
     for ax in axes:
         ax.set_ylim(-0.21, 0.025)
         ax.text(0, -0.205, "days " + MINUS + "1 to +1", ha="center", color=MUTED, fontsize=7)
-    axes[0].text(-29, -0.19, "shaded bands: 95% confidence interval", color=MUTED, fontsize=7)
+    for ax in axes:
+        ax.text(-29, -0.19, "shaded bands: 95% confidence interval", color=MUTED, fontsize=7)
     fig.subplots_adjust(wspace=0.55)
     return save(fig, "fig1_event_time")
 

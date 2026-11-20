@@ -8,17 +8,18 @@ Outputs: analysis/out/returns.parquet, one row per event with
   car_ff5_{w}  Fama-French five-factor plus momentum abnormal return, same estimation window
   bhar_{h}y    buy-and-hold return minus buy-and-hold market (Mkt-RF + RF) over h years from day +2
   delist_*     whether and how the stock left the price file inside each horizon
-Delisting rule (Shumway 1997 convention): the return after the last price is 0 for acquisitions and
-mergers, -30% for performance delistings, -100% for bankruptcy or liquidation. Market return
-compounds over the full horizon either way.
+Delisting rule: the return after the last price is 0 for acquisitions and mergers, -30% for other delistings and
+-100% for bankruptcy or liquidation; the proceeds are then reinvested in the market until the horizon ends, so a
+delisted firm's return is not set against a market that keeps compounding while its price is frozen (D-15).
+Horizon rule: a horizon counts only if it ends inside the data for every firm, delisted or not, so the long-run
+samples never condition on the outcome (D-15).
 """
 
 import pathlib
 
+import datasource  # noqa: E402
 import numpy as np
 import pandas as pd
-
-import datasource  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent / "out"
 WINDOWS = {"m1p1": (-1, 1), "0p1": (0, 1), "m5p5": (-5, 5), "m30p30": (-30, 30)}
@@ -91,19 +92,27 @@ def one(e, s, ff, acts):
         out[f"scar_mm_{name}"] = ar_mm.sum() / (resid_sd * np.sqrt(hi - lo + 1))
     last_price = s.index.max()
     kind, dlret = delist_return(acts, last_price)
+    data_end = ff.index.max()
     for h, n in HORIZONS.items():
         start = pos + 2
         end_date = days[min(start, len(days) - 1)] + pd.Timedelta(days=int(n * 365 / 252))
-        if end_date > pd.Timestamp("2026-06-01") and last_price >= pd.Timestamp("2026-06-01"):
-            continue  # horizon not yet complete for a still-listed firm
+        if end_date > data_end:
+            continue  # the horizon is not complete in the data: skipped for every firm, delisted or not
         rr = r.iloc[start : start + n]
         mk = ff["mkt"][(ff.index >= days[min(start, len(days) - 1)]) & (ff.index <= end_date)]
         firm = np.prod(1 + rr.values)
         delisted = last_price < end_date
         if delisted:
-            firm *= 1 + dlret
+            after = ff["mkt"][(ff.index > last_price) & (ff.index <= end_date)]
+            firm *= (1 + dlret) * np.prod(1 + after.values)  # proceeds reinvested in the market
         out[f"bhr_{h}y"] = firm - 1
         out[f"bhar_{h}y"] = firm - np.prod(1 + mk.values)
+        if h == 3:  # robustness: other delisting-return assumptions (D-15)
+            base = np.prod(1 + rr.values)
+            after = np.prod(1 + ff["mkt"][(ff.index > last_price) & (ff.index <= end_date)].values) if delisted else 1.0
+            worst = -1.0 if kind in ("bankruptcy", "delisted_other", "unknown") else 0.0
+            out["bhar_3y_dl0"] = base * after - np.prod(1 + mk.values)
+            out["bhar_3y_dlworst"] = base * ((1 + worst) * after if delisted else 1.0) - np.prod(1 + mk.values)
         out[f"delisted_{h}y"] = int(delisted)
         out[f"delist_kind_{h}y"] = kind if delisted else None
     return out

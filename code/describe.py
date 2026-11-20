@@ -12,6 +12,7 @@ Output : outputs/describe_stats.json (stats plus the case rows)
 
 import json
 import pathlib
+import re
 
 import numpy as np
 import pandas as pd
@@ -36,6 +37,9 @@ DISPLAY = {
     6352: ("Cree", "Neal Hunter"),
     7961: ("Career Education", "John Larson"),
     9469: ("Acadia Healthcare", "Joey Jacobs"),
+    7706: ("CarMax", "Austin Ligon"),
+    3135: ("ICN Pharmaceuticals", "Milan Panic"),
+    5615: ("Atmel", "George Perlegos"),
 }
 VARS = {"mcap_m1": "mcap", "roa_-1": "roa", "sales_g_-1": "salesg", "rnd_at_-1": "rnd", "capex_at_-1": "capex"}
 
@@ -43,6 +47,7 @@ VARS = {"mcap_m1": "mcap", "roa_-1": "roa", "sales_g_-1": "salesg", "rnd_at_-1":
 def main():
     R.clear()
     d = load_labelled()
+    # descriptives use every departure; the named cases need a precise announcement date for their three-day return
     ops = pd.read_parquet(HERE / "out" / "ops_matched.parquet")[["event_id", *VARS]]
     d = d.merge(ops, on="event_id", how="left")
     g = {
@@ -65,7 +70,7 @@ def main():
                 p=stats.mannwhitneyu(a, b).pvalue,
             )
     # Only exits the evidence-based coding also reads as forced (strict sample, D-09).
-    big = g["forced_founder"][g["forced_founder"]["forced_llm"] == "yes"]
+    big = g["forced_founder"][(g["forced_founder"]["forced_llm"] == "yes") & (g["forced_founder"]["dated"] == 1)]
     big = big.dropna(subset=["mcap_m1", "car_mm_m1p1"]).sort_values("mcap_m1", ascending=False)
     cases = []
     for _, e in big.head(N_CASES).iterrows():
@@ -78,7 +83,10 @@ def main():
             fate = {"acquired": "acquired", "bankruptcy": "bankrupt"}.get(e["delist_kind_5y"], "delisted")
         elif pd.isna(e.get("delisted_5y")):
             fate = "under 5 years of data"
-        company, ceo = DISPLAY.get(eid, (str(e["coname"]).title(), e["exec_fullname"]))
+        default = re.sub(r"\s+(Inc|Corp|Co|Ltd|Plc)\b.*$|\s+-.*$", "", str(e["coname"]).title()).strip()
+        name = re.sub(r",.*$", "", str(e["exec_fullname"]))
+        name = " ".join(w for w in name.split() if not re.fullmatch(r"[A-Z]\.", w))
+        company, ceo = DISPLAY.get(eid, (default, name))
         cases.append(
             {
                 "event_id": eid,
@@ -91,6 +99,39 @@ def main():
             }
         )
     put("case.n_listed", len(cases))
+    # Sample flow: from every firing in the database (1998-2023) to the main sample, and the founders likewise.
+    ev = pd.read_parquet(HERE / "out" / "events.parquet")
+    ev["year"] = pd.to_datetime(ev["event_date"]).dt.year
+    fe = ev[ev["code"].isin([3, 4]) & ev["year"].between(1998, 2023)]
+    put("flow.forced_db", len(fe))
+    put("flow.forced_cik", int(fe["cik"].notna().sum()))
+    put("flow.forced_priced", int(fe["permaticker"].notna().sum()))
+    allr = load_labelled()
+    fr = allr[allr["forced"] == 1]
+    put("flow.forced_returns", len(fr))
+    put("flow.forced_dated", int((fr["dated"] == 1).sum()))
+    fv = pd.read_csv(HERE.parent / "paper" / "founder_review.csv")
+    put("flow.founder_model", int((fv["model_code"] == "yes").sum()))
+    put("flow.founder_confirmed", int((fv["decision"] == "yes").sum()))
+    fy = fv[fv["decision"] == "yes"].merge(ev[["event_id", "year"]], on="event_id", how="left")
+    put("flow.founder_in_years", int(fy["year"].between(1998, 2023).sum()))
+    put("flow.founder_returns", int(((fr["founder_v0"] == 1)).sum()))
+    put("flow.founder_dated", int(((fr["founder_v0"] == 1) & (fr["dated"] == 1)).sum()))
+    # The paper's opening case, from the same price file: Nvidia's close on 12 November 2026 against 11 November (the
+    # board accepted Huang's resignation on 11 November), and from 6 November, the last close before the board's
+    # 8 November statement, to the last day in the file.
+    import datasource
+
+    hook = HERE / "out" / "hook_stats.json"  # the two Nvidia returns, published for readers without the price file
+    try:
+        nv = datasource.prices(["NVDA"]).set_index("date")["closeadj"]
+        if pd.Timestamp("2026-11-12") in nv.index:
+            put("hook.nvda.day_ret", nv[pd.Timestamp("2026-11-12")] / nv[pd.Timestamp("2026-11-11")] - 1, n=1)
+            put("hook.nvda.since_board_statement", nv.iloc[-1] / nv[pd.Timestamp("2026-11-06")] - 1, n=1)
+            hook.write_text(json.dumps({k: R[k] for k in ("hook.nvda.day_ret", "hook.nvda.since_board_statement")}))
+    except Exception:  # nosec B110 - no price source: use the published values
+        if hook.exists():
+            R.update(json.loads(hook.read_text()))
     out = HERE.parent / "outputs"
     (out / "describe_stats.json").write_text(json.dumps({**R, "_cases": cases}, indent=1))
     for c in cases:

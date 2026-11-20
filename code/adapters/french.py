@@ -9,7 +9,6 @@ import urllib.request
 import zipfile
 
 import pandas as pd
-
 from adapters.common import write
 
 BASE = "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/"
@@ -21,7 +20,9 @@ def _csv(url: str) -> pd.DataFrame:
     raw = urllib.request.urlopen(url, timeout=60).read()  # nosec B310 - fixed https source
     text = zipfile.ZipFile(io.BytesIO(raw)).read(zipfile.ZipFile(io.BytesIO(raw)).namelist()[0]).decode("latin1")
     lines = text.splitlines()
-    start = next(i for i, x in enumerate(lines) if x.strip().startswith(",") or x.lower().startswith(",mkt") or ",Mom" in x)
+    start = next(
+        i for i, x in enumerate(lines) if x.strip().startswith(",") or x.lower().startswith(",mkt") or ",Mom" in x
+    )
     rows = []
     for x in lines[start + 1 :]:
         parts = [p.strip() for p in x.split(",")]

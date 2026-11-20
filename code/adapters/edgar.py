@@ -12,7 +12,6 @@ import time
 import urllib.request
 
 import pandas as pd
-
 from adapters.common import out_dir, user_agent, write
 
 FORMS = {"8-K", "8-K/A", "DEF 14A"}
@@ -59,7 +58,11 @@ def main(ciks=None):
         out += list(rows(d["filings"]["recent"], cik))
         for extra in d["filings"].get("files", []):
             g = cache / extra["name"]
-            e = json.loads(g.read_text()) if g.exists() else get(f"https://data.sec.gov/submissions/{extra['name']}", ua)
+            e = (
+                json.loads(g.read_text())
+                if g.exists()
+                else get(f"https://data.sec.gov/submissions/{extra['name']}", ua)
+            )
             time.sleep(0.15)
             if e:
                 g.write_text(json.dumps(e))

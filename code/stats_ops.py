@@ -13,6 +13,7 @@ import pathlib
 import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
+from scipy import stats
 from stats_returns import R, one_group, put, skew_adj, two_group  # shared helpers and result dict
 
 HERE = pathlib.Path(__file__).parent
@@ -36,6 +37,7 @@ def main():
     if ff.exists():  # hand-reviewed founder flag
         d = d.drop(columns=["founder"]).merge(pd.read_parquet(ff)[["event_id", "founder"]], on="event_id", how="left")
         d["founder"] = d["founder"].fillna(0).astype(int)
+    # Long-run results use every departure: a few days of dating error cannot move them (D-15).
     for k in (0, 1, 2, 3):
         if f"abn_d_roa_{k}" in d:
             d[f"abn_d_roa_{k}_w"] = wins(d[f"abn_d_roa_{k}"])
@@ -77,6 +79,37 @@ def main():
     )
     for k in ("founder", "conduct", "log_mcap"):
         put(f"reg.mbhar_3y.{k}", m.params[k], se=m.bse[k], t=m.tvalues[k], p=m.pvalues[k], n=int(m.nobs))
+    # Who stops trading within five years, with controls: a linear probability model of delisting (and of each kind)
+    # on the firing dummy, log size, ROA in year -1, event-year and industry effects, SE clustered by year.
+    x = d.dropna(subset=["delisted_5y", "mcap_m1", "roa_-1"]).copy()
+    x["log_mcap"] = np.log(x["mcap_m1"].clip(lower=1))
+    x["roa_m1"] = wins(x["roa_-1"])
+    x["year"] = pd.to_datetime(x["event_date"]).dt.year
+    x["acquired"] = (x["delist_kind_5y"] == "acquired").astype(int)
+    x["bankrupt"] = (x["delist_kind_5y"] == "bankruptcy").astype(int)
+    x["gone"] = x["delisted_5y"].astype(int)
+    for y in ("gone", "acquired", "bankrupt"):
+        m5 = smf.ols(f"{y} ~ forced + log_mcap + roa_m1 + C(year) + C(famaindustry)", data=x).fit(
+            cov_type="cluster", cov_kwds={"groups": x["year"]}
+        )
+        put(
+            f"reg.exit5.{y}.forced",
+            m5.params["forced"],
+            se=m5.bse["forced"],
+            t=m5.tvalues["forced"],
+            p=m5.pvalues["forced"],
+            n=int(m5.nobs),
+        )
+    # Against the matched firm: did the firm, and did its matched control, stop trading within five years?
+    for g, flag in (("forced", 1), ("retired", 0)):
+        y = d[(d["forced"] == flag)].dropna(subset=["delisted_5y", "ctrl_delisted_5y"])
+        put(f"exit.ctrl_of_{g}.delisted_5y", y["ctrl_delisted_5y"].mean(), n=len(y))
+        put(f"exit.paired_{g}.delisted_5y", y["delisted_5y"].mean(), n=len(y))  # the firms themselves, same pairs
+        for kind in ("acquired", "bankruptcy"):
+            put(f"exit.ctrl_of_{g}.{kind}_5y", (y["ctrl_delist_kind_5y"] == kind).mean(), n=len(y))
+        diff = y["delisted_5y"].astype(float) - y["ctrl_delisted_5y"].astype(float)
+        t = stats.ttest_1samp(diff, 0.0)
+        put(f"exitdiff.{g}_vs_ctrl.delisted_5y", diff.mean(), n=len(y), t=t.statistic, p=t.pvalue)
     (OUT / "ops_stats.json").write_text(json.dumps(R, indent=1))
     for k in [
         "h.matched_events",

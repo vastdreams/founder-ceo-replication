@@ -18,9 +18,8 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
-import pandas as pd
-
 import datasource  # noqa: E402
+import pandas as pd
 
 HERE = pathlib.Path(__file__).parent / "out"
 OUTF = pathlib.Path.home() / "world_raw/news/evidence.jsonl"

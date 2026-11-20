@@ -29,5 +29,7 @@ def user_agent() -> str:
     """SEC asks automated clients to identify themselves: set SEC_USER_AGENT='Your Name your@email'."""
     ua = os.environ.get("SEC_USER_AGENT")
     if not ua:
-        raise SystemExit("Set SEC_USER_AGENT to 'Name email' before calling SEC EDGAR (https://www.sec.gov/os/accessing-edgar-data)")
+        raise SystemExit(
+            "Set SEC_USER_AGENT to 'Name email' before calling SEC EDGAR (https://www.sec.gov/os/accessing-edgar-data)"
+        )
     return ua

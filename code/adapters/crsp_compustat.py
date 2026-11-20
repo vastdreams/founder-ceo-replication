@@ -36,7 +36,6 @@ import zipfile
 
 import numpy as np
 import pandas as pd
-
 from adapters.common import write
 
 FF48_URL = "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Siccodes48.zip"
@@ -103,7 +102,11 @@ def main(folder: str):
 
     names = _read(d, "crsp_names").sort_values(["permno", "nameendt"])
     last = names.drop_duplicates("permno", keep="last")
-    span = dsf.groupby("permno")["date"].agg(["min", "max"]).rename(columns={"min": "firstpricedate", "max": "lastpricedate"})
+    span = (
+        dsf.groupby("permno")["date"]
+        .agg(["min", "max"])
+        .rename(columns={"min": "firstpricedate", "max": "lastpricedate"})
+    )
     dl = _read(d, "crsp_delist")
     dl["dlstdt"] = pd.to_datetime(dl["dlstdt"])
     dl["action"] = dl["dlstcd"].map(delist_action)
@@ -111,7 +114,11 @@ def main(folder: str):
     link = link[link["linktype"].isin(["LU", "LC"]) & link["linkprim"].isin(["P", "C"])]
     comp = _read(d, "comp_company")[["gvkey", "cik"]].dropna()
     comp["cik"] = pd.to_numeric(comp["cik"], errors="coerce")
-    perm_cik = link.merge(comp, on="gvkey")[["lpermno", "cik"]].drop_duplicates("lpermno").rename(columns={"lpermno": "permno"})
+    perm_cik = (
+        link.merge(comp, on="gvkey")[["lpermno", "cik"]]
+        .drop_duplicates("lpermno")
+        .rename(columns={"lpermno": "permno"})
+    )
     ranges = ff48()
     sec = last.merge(span, left_on="permno", right_index=True, how="inner").merge(perm_cik, on="permno", how="left")
     sec["permaticker"] = sec["permno"].astype(int)
@@ -122,13 +129,17 @@ def main(folder: str):
     sec["famaindustry"] = sec["siccd"].map(lambda s: industry(s, ranges))
     write("securities", pd.concat([sec.assign(table="SEP"), sec.assign(table="SF1")]))
 
-    act = dl.dropna(subset=["action"]).assign(ticker=lambda x: "P" + x["permno"].astype(int).astype(str), date=lambda x: x["dlstdt"])
+    act = dl.dropna(subset=["action"]).assign(
+        ticker=lambda x: "P" + x["permno"].astype(int).astype(str), date=lambda x: x["dlstdt"]
+    )
     write("actions", act)
 
     fa = _read(d, "comp_funda")
     fa["datadate"] = pd.to_datetime(fa["datadate"])
     link["linkdt"] = pd.to_datetime(link["linkdt"])
-    link["linkenddt"] = pd.to_datetime(link["linkenddt"].replace({"E": None}), errors="coerce").fillna(pd.Timestamp("2099-12-31"))
+    link["linkenddt"] = pd.to_datetime(link["linkenddt"].replace({"E": None}), errors="coerce").fillna(
+        pd.Timestamp("2099-12-31")
+    )
     m = fa.merge(link[["gvkey", "lpermno", "linkdt", "linkenddt"]], on="gvkey")
     m = m[(m["datadate"] >= m["linkdt"]) & (m["datadate"] <= m["linkenddt"])]
     out = pd.DataFrame(

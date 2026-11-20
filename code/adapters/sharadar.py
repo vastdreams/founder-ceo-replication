@@ -13,7 +13,6 @@ import pathlib
 import sys
 
 import pandas as pd
-
 from adapters.common import write
 
 
@@ -28,7 +27,6 @@ def write_chunked(name: str, src: pathlib.Path, cols: list[str], rows: int = 2_0
     """Stream a large CSV into Parquet a few million rows at a time, so SEP (about 1 GB) fits in modest memory."""
     import pyarrow as pa
     import pyarrow.parquet as pq
-
     from adapters.common import out_dir
 
     path, writer, n = out_dir() / f"{name}.parquet", None, 0

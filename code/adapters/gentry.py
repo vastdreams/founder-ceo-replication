@@ -11,10 +11,11 @@ import sys
 import urllib.request
 
 import pandas as pd
-
 from adapters.common import out_dir, write
 
-URL = "https://zenodo.org/records/17725939/files/CEO%20Dismissal%20Database%20Posted%20to%20Web%2010Oct24.xlsx?download=1"
+URL = (
+    "https://zenodo.org/records/17725939/files/CEO%20Dismissal%20Database%20Posted%20to%20Web%2010Oct24.xlsx?download=1"
+)
 MD5 = "cc56b45861bfdaf8086ccdd11c34b747"
 
 

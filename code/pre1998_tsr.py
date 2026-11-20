@@ -12,9 +12,8 @@ import json
 import pathlib
 import re
 
-import pandas as pd
-
 import datasource  # noqa: E402
+import pandas as pd
 from stats_returns import R, one_group, put, two_group  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent

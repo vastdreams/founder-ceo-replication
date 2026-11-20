@@ -7,9 +7,9 @@ ar_daily     daily abnormal return for trading days -30..+60 around day 0, one r
                     forward inflates later abnormal returns.
 bhar_monthly buy-and-hold abnormal return from day +2 to the end of month m (m = 1..60, 21 trading days a
              month), computed exactly as event_study.py computes the 1-, 3- and 5-year BHAR: firm returns
-             compound for 21*m trading days, the Shumway delisting return applies if the stock leaves the file
-             first, and the market compounds over the matching calendar span. A month is missing when the
-             horizon runs past the price file's end for a firm still listed.
+             compound for 21*m trading days, the delisting return applies if the stock leaves the file first and
+             the proceeds are then held in the market, and the market compounds over the matching calendar span. A
+             month is missing when the horizon runs past the end of the data, for every firm.
 Inputs : analysis/out/events.parquet, prices, factors and corporate actions via datasource.py
 Outputs: analysis/out/ar_daily.parquet, analysis/out/bhar_monthly.parquet
 """
@@ -21,7 +21,6 @@ import pandas as pd
 from event_study import delist_return, load
 
 HERE = pathlib.Path(__file__).parent / "out"
-DATA_END = pd.Timestamp("2026-06-01")
 DAYS = range(-30, 61)
 MONTHS = range(1, 61)
 
@@ -52,15 +51,17 @@ def paths(e, s, ff, acts):
     start = pos + 2
     d0 = days[min(start, len(days) - 1)]
     monthly = []
+    data_end = ff.index.max()
     for m in MONTHS:
         n = 21 * m
         end_date = d0 + pd.Timedelta(days=int(n * 365 / 252))
-        if end_date > DATA_END and last_price >= DATA_END:
-            break
+        if end_date > data_end:
+            break  # as event_study.py: a horizon counts only if it is complete for every firm
         firm = np.prod(1 + r.iloc[start : start + n].values)
         delisted = last_price < end_date
         if delisted:
-            firm *= 1 + dlret
+            after = ff["mkt"][(ff.index > last_price) & (ff.index <= end_date)]
+            firm *= (1 + dlret) * np.prod(1 + after.values)
         mk = ff["mkt"][(ff.index >= d0) & (ff.index <= end_date)]
         monthly.append((e["event_id"], m, float(firm - np.prod(1 + mk.values)), int(delisted)))
     return daily, monthly

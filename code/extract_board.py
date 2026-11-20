@@ -57,7 +57,6 @@ def main_sync():
 
 async def main():
     import aiohttp
-
     import keys
 
     key = keys.get("DEEPSEEK_API_KEY")

@@ -35,8 +35,11 @@ def ci(x):
 
 
 def main():
-    d = load_labelled()
+    d_all = load_labelled()
+    d = d_all[d_all["dated"] == 1]  # announcement windows: precisely dated departures (D-15)
     f, r = d[d["forced"] == 1], d[d["forced"] == 0]
+    fl, rl = d_all[d_all["forced"] == 1], d_all[d_all["forced"] == 0]  # long run: every departure
+    lr_groups = {"forced": fl, "retired": rl, "forced_founder": fl[fl["founder_v0"] == 1]}
     groups = {
         "forced": f,
         "retired": r,
@@ -45,7 +48,9 @@ def main():
         "conduct": f[f["conduct"] == 1],
         "performance": f[f["conduct"] == 0],
         "financial_misconduct": f[f["primary_reason"] == "financial_misconduct"],
-        "sex_or_relationship": f[f["primary_reason"].isin(["relationship_with_employee", "other_sexual_misconduct"])],
+        "sex_or_relationship": f[
+            f["primary_reason"].isin(["relationship_with_employee", "relationship_other", "other_sexual_misconduct"])
+        ],
     }
     S = {}
     ar = pd.read_parquet(HERE / "out" / "ar_daily.parquet")
@@ -64,7 +69,7 @@ def main():
         }
     bm = pd.read_parquet(HERE / "out" / "bhar_monthly.parquet")
     S["long_run"] = {"months": list(range(1, 61))}
-    for g, x in groups.items():
+    for g, x in lr_groups.items():
         b = bm[bm["event_id"].isin(x["event_id"])].groupby("month")["bhar"]
         S["long_run"][g] = {
             "mean": b.mean().round(6).tolist(),
@@ -74,7 +79,7 @@ def main():
     first = bm[bm["delisted"] == 1].groupby("event_id")["month"].min()
     S["exits"] = {"months": list(range(1, 61))}
     for g in ("forced", "retired", "forced_founder"):
-        x = groups[g].dropna(subset=["bhar_5y"])
+        x = lr_groups[g].dropna(subset=["bhar_5y"])
         m = x["event_id"].map(first)
         out = {"n": int(len(x))}
         for kind in ("acquired", "bankruptcy", "other"):
@@ -94,7 +99,10 @@ def main():
     for name, code in (("performance", 3), ("conduct", 4), ("retired", 5)):
         cnt = ev[ev["code"] == code].groupby("year").size()
         S["per_year"][name] = [int(cnt.get(y, 0)) for y in yrs]
-    fy = groups["forced_founder"].groupby("year").size()
+    # founders among all firings in the database (hand review), so the labels count the same events as the bars
+    fv = pd.read_csv(HERE.parent / "paper" / "founder_review.csv")
+    fyes = ev[ev["code"].isin([3, 4]) & ev["event_id"].isin(fv.loc[fv["decision"] == "yes", "event_id"])]
+    fy = fyes.groupby("year").size()
     S["per_year"]["founder"] = [int(fy.get(y, 0)) for y in yrs]
     S["reasons"] = []
     for reason, x in f.groupby("primary_reason"):

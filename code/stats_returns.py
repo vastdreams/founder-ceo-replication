@@ -24,6 +24,10 @@ OUT = HERE.parent / "outputs"
 OUT.mkdir(exist_ok=True)
 rng = np.random.default_rng(20261119)
 R = {}
+# Date sources precise enough for a three-day window (D-15). The 8-K dates agree with the database's within three
+# days only 58% of the time and their firings show a much weaker reaction, so they are a robustness row, not the main
+# sample.
+PRECISE = {"database", "hand-checked"}
 
 
 def put(key, value, **kw):
@@ -100,6 +104,12 @@ def load_labelled():
                 how="left",
             )
             d["founder_v0"] = d["founder_v0"].fillna(0).astype(int)
+        fr = HERE.parent / "paper" / "fraud_review.csv"
+        if fr.exists():  # hand review of every financial-misconduct label (paper/fraud_review.csv)
+            rv = pd.read_csv(fr)[["event_id", "decision"]]
+            d = d.merge(rv, on="event_id", how="left")
+            d["primary_reason"] = d["decision"].fillna(d["primary_reason"])
+            d = d.drop(columns=["decision"])
         cr = HERE.parent / "paper" / "conduct_review.csv"
         if cr.exists():  # hand review of every sexual-conduct and relationship label (paper/conduct_review.csv)
             rv = pd.read_csv(cr)[["event_id", "decision"]]
@@ -109,13 +119,16 @@ def load_labelled():
         d["relationship_v0"] = (d["primary_reason"] == "relationship_with_employee").astype(int)
         d["pushed_retirement"] = ((d["code"] == 5) & (d["forced_llm"] == "yes")).astype(int)
     d["year"] = pd.to_datetime(d["event_date"]).dt.year
+    # Precisely dated: the announcement date comes from the database, a hand check or the firm's own 8-K (redate.py),
+    # not from the day the CEO left office. Announcement-window results use these; long-run results use every
+    # departure, which a few days of dating error cannot move (D-15).
+    d["dated"] = d["date_source"].isin(PRECISE).astype(int) if "date_source" in d else 1
     return d
 
 
-def main():
-    d = load_labelled()
+def make_groups(d):
     f, r = d[d["forced"] == 1], d[d["forced"] == 0]
-    groups = {
+    return {
         "forced": f,
         "retired": r,
         "forced_founder": f[f["founder_v0"] == 1],
@@ -125,13 +138,67 @@ def main():
         "relationship": f[f["relationship_v0"] == 1],
         "retired_founder": r[r["founder_v0"] == 1],
         # sex vs money: sexual misconduct or a relationship with an employee, against financial misconduct
-        "sex_or_relationship": f[f["primary_reason"].isin(["relationship_with_employee", "other_sexual_misconduct"])],
+        "sex_or_relationship": f[
+            f["primary_reason"].isin(["relationship_with_employee", "relationship_other", "other_sexual_misconduct"])
+        ],
         "financial_misconduct": f[f["primary_reason"] == "financial_misconduct"],
         # strict: the database codes the exit forced and the evidence-based coding agrees (D-09)
         "forced_strict": f[f["forced_llm"] == "yes"],
         "forced_strict_founder": f[(f["forced_llm"] == "yes") & (f["founder_v0"] == 1)],
         "forced_strict_nonfounder": f[(f["forced_llm"] == "yes") & (f["founder_v0"] == 0)],
     }
+
+
+def main():
+    d_all = load_labelled()
+    d = d_all[d_all["dated"] == 1].copy()
+    f_all = d_all[d_all["forced"] == 1]
+    put("a.n_forced_all_dates", len(f_all))
+    put("a.n_forced_undated", int((f_all["dated"] == 0).sum()))
+    for src in ("database", "8-K", "NYT"):
+        put(f"a.n_forced_dated_{src.lower().replace('-', '')}", int((f_all.get("date_source") == src).sum()))
+    one_group("rob.all_dates.forced.mm_m1p1", f_all["car_mm_m1p1"])
+    two_group(
+        "rob.all_dates.founder_vs_nonfounder.mm_m1p1",
+        f_all[f_all["founder_v0"] == 1]["car_mm_m1p1"],
+        f_all[f_all["founder_v0"] == 0]["car_mm_m1p1"],
+    )
+    one_group("rob.undated.forced.mm_m1p1", f_all[f_all["dated"] == 0]["car_mm_m1p1"])
+    ga = make_groups(d_all)  # the splits on every firing, whatever its date source
+    for g in (
+        "forced_founder",
+        "forced_nonfounder",
+        "conduct",
+        "performance",
+        "financial_misconduct",
+        "sex_or_relationship",
+    ):
+        one_group(f"rob.all_dates.{g}.mm_m1p1", ga[g]["car_mm_m1p1"])
+    two_group(
+        "rob.all_dates.conduct_vs_performance.mm_m1p1", ga["conduct"]["car_mm_m1p1"], ga["performance"]["car_mm_m1p1"]
+    )
+    two_group(
+        "rob.all_dates.sex_vs_fraud.mm_m1p1",
+        ga["sex_or_relationship"]["car_mm_m1p1"],
+        ga["financial_misconduct"]["car_mm_m1p1"],
+    )
+    one_group("rob.datesrc_8k.mm_m1p1", f_all[f_all["date_source"] == "8-K"]["car_mm_m1p1"])
+    f, r = d[d["forced"] == 1], d[d["forced"] == 0]
+    if "forced_llm" in f:
+        for k in ("yes", "unclear", "no"):
+            put(f"a.n_llm_{k}", int((f["forced_llm"] == k).sum()))
+    one_group("rob.forced_excl_newopp.mm_m1p1", f[f["primary_reason"] != "new_opportunity"]["car_mm_m1p1"])
+    for src in ("database", "8-K", "hand-checked"):  # the announcement return by where its date comes from
+        one_group(f"rob.datesrc_{src.lower().replace('-', '')}.mm_m1p1", f[f["date_source"] == src]["car_mm_m1p1"])
+    ff_ = d[(d["forced"] == 1) & (d["founder_v0"] == 1)]["car_mm_m1p1"].dropna()
+    if len(ff_) > 5:
+        se_ = ff_.std(ddof=1) / np.sqrt(len(ff_))
+        put("car.forced_founder.mm_m1p1.ci_high", ff_.mean() + 1.96 * se_, n=len(ff_))
+        put("car.forced_founder.mm_m1p1.ci_low", ff_.mean() - 1.96 * se_, n=len(ff_))
+    groups = make_groups(d)  # announcement windows: precisely dated departures
+    groups_lr = make_groups(d_all)  # long run: every departure
+    for g, x in groups_lr.items():
+        put(f"a.n_lr_{g}", len(x))
 
     # H: robustness
     if "pushed_retirement" in d:
@@ -183,6 +250,14 @@ def main():
         for w in ("m1p1", "m5p5"):
             two_group(f"cardiff.{a}_vs_{b}.mm_{w}", groups[a][f"car_mm_{w}"], groups[b][f"car_mm_{w}"])
 
+    # The founder gap in every window, with the minimum detectable effect (80% power, 5% two-sided test)
+    for w in ("0p1", "m1p1", "m5p5", "m30p30"):
+        a = groups["forced_founder"][f"car_mm_{w}"].dropna()
+        b = groups["forced_nonfounder"][f"car_mm_{w}"].dropna()
+        two_group(f"cardiff.forced_founder_vs_forced_nonfounder.mm_{w}", a, b)
+        se = float(np.sqrt(a.var(ddof=1) / len(a) + b.var(ddof=1) / len(b)))
+        put(f"mde.founder_gap.mm_{w}", 2.8 * se, n=len(a) + len(b))
+        one_group(f"car.forced_founder.mm_{w}", a)
     m = smf.ols(
         "car_mm_m1p1 ~ forced + forced:founder_v0 + founder_v0 + conduct + C(year)",
         data=d.dropna(subset=["car_mm_m1p1"]),
@@ -199,7 +274,7 @@ def main():
     put("reg.car_m1p1.r2", m.rsquared, n=int(m.nobs))
 
     # E: long-run
-    for g, x in groups.items():
+    for g, x in groups_lr.items():
         for h in (1, 3, 5):
             one_group(f"bhar.{g}.{h}y", x[f"bhar_{h}y"])
             skew_adj(f"bhar.{g}.{h}y", x[f"bhar_{h}y"])
@@ -210,17 +285,27 @@ def main():
         ("forced_strict", "retired"),
     ]:
         for h in (1, 3, 5):
-            two_group(f"bhardiff.{a}_vs_{b}.{h}y", groups[a][f"bhar_{h}y"], groups[b][f"bhar_{h}y"])
+            two_group(f"bhardiff.{a}_vs_{b}.{h}y", groups_lr[a][f"bhar_{h}y"], groups_lr[b][f"bhar_{h}y"])
 
     # F: what happened to the firm within five years
-    for g, x in groups.items():
+    for g, x in groups_lr.items():
         x5 = x.dropna(subset=["bhar_5y"])
         put(f"exit.{g}.n5", len(x5))
         put(f"exit.{g}.delisted_5y", x5["delisted_5y"].mean() if len(x5) else None, n=len(x5))
         for k in ("acquired", "bankruptcy", "delisted_other", "unknown"):
             put(f"exit.{g}.{k}_5y", (x5["delist_kind_5y"] == k).mean() if len(x5) else None, n=len(x5))
-    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder"), ("forced_strict", "retired")]:
-        xa, xb = groups[a].dropna(subset=["bhar_5y"]), groups[b].dropna(subset=["bhar_5y"])
+    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder"), ("forced_strict", "retired")] + [
+        (g, "retired")
+        for g in (
+            "forced_founder",
+            "forced_nonfounder",
+            "conduct",
+            "performance",
+            "financial_misconduct",
+            "sex_or_relationship",
+        )
+    ]:
+        xa, xb = groups_lr[a].dropna(subset=["bhar_5y"]), groups_lr[b].dropna(subset=["bhar_5y"])
         tab = [
             [xa["delisted_5y"].sum(), len(xa) - xa["delisted_5y"].sum()],
             [xb["delisted_5y"].sum(), len(xb) - xb["delisted_5y"].sum()],
@@ -234,7 +319,7 @@ def main():
         )
 
     # F by horizon: delisted within 1, 3 and 5 years, each on the events whose horizon is complete
-    for g, x in groups.items():
+    for g, x in groups_lr.items():
         for h in (1, 3):
             xh = x.dropna(subset=[f"bhar_{h}y"])
             put(f"exit.{g}.n{h}", len(xh))
@@ -244,9 +329,17 @@ def main():
 
     # C by detailed reason: every primary reason with at least 10 forced exits
     f2 = f.copy()
+    reasons = []
     for reason, x in f2.groupby("primary_reason"):
         if len(x) >= 10:
             one_group(f"car.reason.{reason}.mm_m1p1", x["car_mm_m1p1"])
+            reasons.append(reason)
+    # Holm-adjusted p-values across the reasons tested (multiple comparisons)
+    ps = sorted((R[f"car.reason.{x}.mm_m1p1.mean"]["p"], x) for x in reasons if R.get(f"car.reason.{x}.mm_m1p1.mean"))
+    running = 0.0
+    for i, (pval, x) in enumerate(ps):
+        running = max(running, min(1.0, (len(ps) - i) * pval))
+        put(f"car.reason.{x}.mm_m1p1.holm_p", running, n=R[f"car.reason.{x}.mm_m1p1.mean"]["n"])
 
     # Before and after the announcement: market-adjusted CAR over trading days [-30,-2] and [+2,+60] (paths.py)
     # ar_daily.parquet (paths.py) is built from licensed daily prices and is not published; the per-event window
@@ -276,6 +369,14 @@ def main():
             "forced_founder": dd[(dd["forced"] == 1) & (dd["founder_v0"] == 1)],
             "conduct": dd[(dd["forced"] == 1) & (dd["conduct"] == 1)],
             "performance": dd[(dd["forced"] == 1) & (dd["conduct"] == 0)],
+            "forced_nonfounder": dd[(dd["forced"] == 1) & (dd["founder_v0"] == 0)],
+            "financial_misconduct": dd[(dd["forced"] == 1) & (dd["primary_reason"] == "financial_misconduct")],
+            "sex_or_relationship": dd[
+                (dd["forced"] == 1)
+                & dd["primary_reason"].isin(
+                    ["relationship_with_employee", "relationship_other", "other_sexual_misconduct"]
+                )
+            ],
         }
         for g, x in dg.items():
             one_group(f"drift.{g}.pre_m30m2", x["pre"])
@@ -284,7 +385,18 @@ def main():
             k = "pre_m30m2" if w == "pre" else "post_p2p60"
             two_group(f"driftdiff.forced_vs_retired.{k}", dg["forced"][w], dg["retired"][w])
             two_group(f"driftdiff.conduct_vs_performance.{k}", dg["conduct"][w], dg["performance"][w])
+            two_group(
+                f"driftdiff.forced_founder_vs_forced_nonfounder.{k}",
+                dg["forced_founder"][w],
+                dg["forced_nonfounder"][w],
+            )
 
+    # Delisting-return assumptions: 36-month BHAR with every delisting return set to 0, and with every delisting
+    # that is not a takeover set to -100% (event_study.py writes both).
+    for alt in ("dl0", "dlworst"):
+        if f"bhar_3y_{alt}" in d:
+            one_group(f"rob.bhar_{alt}.forced.3y", groups_lr["forced"][f"bhar_3y_{alt}"])
+            one_group(f"rob.bhar_{alt}.retired.3y", groups_lr["retired"][f"bhar_3y_{alt}"])
     (OUT / "returns_stats.json").write_text(json.dumps(R, indent=1))
     show = [
         "a.n_forced",

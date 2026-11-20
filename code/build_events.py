@@ -18,9 +18,8 @@ Writes analysis/out/events.parquet. Rules:
 import pathlib
 import re
 
-import pandas as pd
-
 import datasource  # noqa: E402
+import pandas as pd
 
 OUT = pathlib.Path(__file__).parent / "out"
 OUT.mkdir(exist_ok=True)
@@ -59,6 +58,28 @@ def main():
         }
     ).merge(links[["gvkey", "cik"]], on="gvkey", how="left")
     ev["event_date"] = pd.to_datetime(ev["event_date"])
+    # Announcement dates from the firm's 8-K or the first NYT report where the database has none (redate.py, D-15).
+    rd = OUT / "redate.parquet"
+    ev["date_source"] = ev["date_departure_announced"].notna().map({True: "database", False: "left office"})
+    if rd.exists():
+        r = pd.read_parquet(rd)[["event_id", "announce_date", "date_source"]]
+        ev = ev.drop(columns="date_source").merge(r, on="event_id", how="left")
+        ev["event_date"] = pd.to_datetime(ev["announce_date"]).fillna(ev["event_date"])
+        ev["date_source"] = ev["date_source"].fillna("left office")
+        ev = ev.drop(columns="announce_date")
+    # Hand-checked dates (paper/date_corrections.csv, each with a dated source) take precedence, and records that are
+    # not CEO exits or duplicate another record are dropped (paper/exclusions.csv).
+    paper = pathlib.Path(__file__).resolve().parent.parent / "paper"
+    dc = paper / "date_corrections.csv"
+    if dc.exists():
+        c = pd.read_csv(dc)
+        fix = dict(zip(c["event_id"], pd.to_datetime(c["announce_date"])))
+        hit = ev["event_id"].isin(fix)
+        ev.loc[hit, "event_date"] = ev.loc[hit, "event_id"].map(fix)
+        ev.loc[hit, "date_source"] = "hand-checked"
+    ex = paper / "exclusions.csv"
+    if ex.exists():
+        ev = ev[~ev["event_id"].isin(pd.read_csv(ex)["event_id"])]
     ev["forced"] = ev["code"].isin([3, 4]).astype(int)
     ev["conduct"] = (ev["code"] == 4).astype(int)
 

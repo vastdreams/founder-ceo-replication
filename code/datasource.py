@@ -28,16 +28,48 @@ import sys
 import pandas as pd
 
 TABLES = {
-    "gentry": ["dismissal_dataset_id", "gvkey", "coname", "fyear", "exec_fullname", "departure_code", "ceo_dismissal",
-               "notes", "sources", "date_departure_announced", "left_ceo_office"],
+    "gentry": [
+        "dismissal_dataset_id",
+        "gvkey",
+        "coname",
+        "fyear",
+        "exec_fullname",
+        "departure_code",
+        "ceo_dismissal",
+        "notes",
+        "sources",
+        "date_departure_announced",
+        "left_ceo_office",
+    ],
     "gvkey_cik": ["gvkey", "cik", "n_links"],
     "wikidata_founders": ["cik", "founder"],
-    "securities": ["table", "permaticker", "ticker", "name", "cik", "isdelisted", "firstpricedate", "lastpricedate",
-                   "category", "famaindustry"],
+    "securities": [
+        "table",
+        "permaticker",
+        "ticker",
+        "name",
+        "cik",
+        "isdelisted",
+        "firstpricedate",
+        "lastpricedate",
+        "category",
+        "famaindustry",
+    ],
     "prices": ["ticker", "date", "closeadj"],
     "actions": ["ticker", "date", "action"],
     "factors": ["date", "mkt_rf", "smb", "hml", "rmw", "cma", "rf", "mom"],
-    "fundamentals": ["ticker", "calendardate", "datekey", "assets", "ebitda", "netinc", "revenue", "marketcap", "rnd", "capex"],
+    "fundamentals": [
+        "ticker",
+        "calendardate",
+        "datekey",
+        "assets",
+        "ebitda",
+        "netinc",
+        "revenue",
+        "marketcap",
+        "rnd",
+        "capex",
+    ],
     "sec_filings": ["cik", "accession", "form", "filing_date", "items"],
 }
 
@@ -47,7 +79,9 @@ def backend() -> str:
 
 
 def _dir() -> pathlib.Path:
-    return pathlib.Path(os.environ.get("FCE_DATA_DIR") or pathlib.Path(__file__).resolve().parents[1] / "data" / "inputs")
+    return pathlib.Path(
+        os.environ.get("FCE_DATA_DIR") or pathlib.Path(__file__).resolve().parents[1] / "data" / "inputs"
+    )
 
 
 def _read(name: str, filters=None) -> pd.DataFrame:
@@ -97,7 +131,9 @@ def gvkey_cik() -> pd.DataFrame:
 
 
 def wikidata_founders() -> pd.DataFrame:
-    return _read("wikidata_founders") if backend() == "files" else _sql("select cik, founder from world.wikidata_founders")
+    return (
+        _read("wikidata_founders") if backend() == "files" else _sql("select cik, founder from world.wikidata_founders")
+    )
 
 
 def securities(table: str = "SEP") -> pd.DataFrame:
@@ -133,7 +169,9 @@ def actions(tickers) -> pd.DataFrame:
         d = _read("actions", filters=[("ticker", "in", list(tickers))])
         d = d[d["ticker"].isin(tickers)]
     else:
-        d = _sql("select ticker, date::date as date, action from sharadar.actions where ticker in %(t)s", {"t": tickers})
+        d = _sql(
+            "select ticker, date::date as date, action from sharadar.actions where ticker in %(t)s", {"t": tickers}
+        )
     return _dates(d, ["date"])
 
 
@@ -164,5 +202,7 @@ def sec_filings(forms) -> pd.DataFrame:
         d = _read("sec_filings")
         d = d[d["form"].isin(forms)]
     else:
-        d = _sql("select cik, accession, form, filing_date, items from world.sec_filings where form in %(f)s", {"f": forms})
+        d = _sql(
+            "select cik, accession, form, filing_date, items from world.sec_filings where form in %(f)s", {"f": forms}
+        )
     return _dates(d, ["filing_date"])

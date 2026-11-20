@@ -5,30 +5,31 @@ Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, Founders, and the 
 
 **The question.** What happens to a US public company after its board fires the CEO, and does it matter whether the
 CEO founded the company and why the board acted? We follow every forced CEO exit at an S&P 1500 firm from 1998 to
-2023 (1,396 forced exits, 2,254 retirements as the comparison) from six weeks before the announcement to five years
-after it, and report the number of firms measured at every horizon.
+2023 (1,393 firings with returns, 2,253 retirements as the comparison) from six weeks before the announcement to five
+years after it, and report the number of firms measured at every horizon. Announcement-window results use the 527
+firings whose announcement date is hand-coded; long-run results use every firing.
 
 ![Prices slide before the firing, drop on the news, then stop](figures/fig1_event_time.png)
 
 ## What we find
 
-| Horizon | Forced exits | Retirements | N forced |
+| Horizon | Firings | Retirements | N firings |
 |---|---|---|---|
-| Trading days −30 to −2, return minus the market | −5.7% | 0.4% | 1,396 |
-| Trading days −1 to +1, abnormal return | −1.6% | −0.1% | 1,390 |
-| Trading days +2 to +60, return minus the market | −0.5% (n.s.) | −0.1% | 1,371 |
-| 12 / 36 / 60 months, median return minus a matched firm | −4.2% / −2.9% (n.s.) / −8.2% | 0.1% / −0.9% / 1.7% | 1,326 / 1,324 / 1,278 |
-| Within 60 months, share no longer trading | 33.1% | 17.3% | 1,346 |
+| Trading days −30 to −2, return minus the market | −5.1% | −0.0% | 527 |
+| Trading days −1 to +1, abnormal return | −2.7% | −0.3% | 524 |
+| Trading days +2 to +60, return minus the market | −0.3% (n.s.) | −0.8% | 516 |
+| 12 / 36 / 60 months, median return minus a matched firm | −4.3% / −1.6% (n.s.) / −5.2% (n.s.) | −0.0% / 0.5% / 2.8% | 1,321 / 1,318 / 1,264 |
+| Within 60 months, share no longer trading | 32.1% | 16.8% | 1,335 |
 
 * **The market sees it coming** and reacts once: the stock slides for six weeks, drops on the news, then stops.
-* **Why matters more than who.** Firings for financial misconduct cost 6.4% in three days; sex and relationship
-  scandals cost 1.0% (difference p = 0.04, 17 against 89 cases). Fired founders cost 3.4% against 1.4% for hired
-  CEOs, a gap that is not statistically significant (p = 0.15).
-* **The lasting consequence is a change of owner.** A third of the firms stop trading within five years, mostly
-  through takeovers (20.1%) rather than bankruptcy (12.1%). Against the market the median fired-founder firm loses
-  80% over five years; against a matched firm, nothing.
+* **Fraud costs, sex scandals don't.** Firings over financial misconduct cost 6.1% in three days; firings over sex
+  scandals or relationships +0.7% (difference p = 0.006, 54 against 16 cases, all firings). Fired founders cost
+  5.4% against 2.5% for hired CEOs, a gap that is not significant over three days (p = 0.26).
+* **The lasting difference is survival.** A third of firing firms stop trading within five years, twice the rate
+  after retirements. With controls for size, profitability, year and industry, a firing adds 9.4 percentage points
+  (5.0 bankruptcy, 4.0 takeover). Against matched firms, returns differ little after the first year.
 
-![One in three is gone within five years, mostly sold](figures/fig3_exits.png)
+![One in three is gone within five years](figures/fig3_exits.png)
 
 ## Replicate it
 

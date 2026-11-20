@@ -2,7 +2,7 @@
 
 ## Abstract
 
-When a US board fires its CEO, the market has usually seen the trouble coming. At S&P {{index_size}} firms the stock slides {{drift.forced.pre_m30m2.mean|abs}} in the six weeks before the announcement, drops {{car.forced.mm_m1p1.mean|abs}} in the three days around it, then stops. Firings over fraud cost {{rob.all_dates.financial_misconduct.mm_m1p1.mean|abs}}; firings over sex scandals barely move the price. Fired founders may cost more than hired CEOs, but the evidence is weak. Within five years a third of firing firms stop trading, twice the rate after retirements, with bankruptcy the larger part of the gap. Against similar firms, returns differ little after the first year.
+This paper answers what happens when a board fires a founder CEO, and how that differs from firing a hired one. At S&P {{index_size}} firms the market has usually seen the trouble coming. The stock slides {{drift.forced.pre_m30m2.mean|abs}} in the six weeks before the announcement, drops {{car.forced.mm_m1p1.mean|abs}} in the three days around it, then stops. Fired founders fall {{car.forced_founder.mm_m1p1.mean|abs}} against {{car.forced_nonfounder.mm_m1p1.mean|abs}} for hired CEOs, though the gap is not significant. Firings over fraud cost {{rob.all_dates.financial_misconduct.mm_m1p1.mean|abs}}; sex scandals barely move the price. Within five years a third of firing firms stop trading, twice the rate after retirements.
 
 ## 1. Introduction
 

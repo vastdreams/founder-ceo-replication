@@ -2,7 +2,7 @@
 
 ## Abstract
 
-When a US board fires its CEO, the market has usually seen the trouble coming. At S&P 1500 firms the stock slides 5.1% in the six weeks before the announcement, drops 2.7% in the three days around it, then stops. Firings over fraud cost 6.1%; firings over sex scandals barely move the price. Fired founders may cost more than hired CEOs, but the evidence is weak. Within five years a third of firing firms stop trading, twice the rate after retirements, with bankruptcy the larger part of the gap. Against similar firms, returns differ little after the first year.
+This paper answers what happens when a board fires a founder CEO, and how that differs from firing a hired one. At S&P 1500 firms the market has usually seen the trouble coming. The stock slides 5.1% in the six weeks before the announcement, drops 2.7% in the three days around it, then stops. Fired founders fall 5.4% against 2.5% for hired CEOs, though the gap is not significant. Firings over fraud cost 6.1%; sex scandals barely move the price. Within five years a third of firing firms stop trading, twice the rate after retirements.
 
 ## 1. Introduction
 
@@ -134,7 +134,6 @@ Boards fire CEOs of firms that are already struggling [@huson2004; @jenter2015].
 
 *Notes.* Medians in the fiscal year before the departure, from as-reported annual statements; market value at that fiscal year-end. p is from a Mann-Whitney U test of forced exits against retirements. N forced is the number of forced exits with the item.
 
-
 ## 3. The market's verdict
 
 ::: answer
@@ -166,7 +165,6 @@ The difference of -2.4 percentage points is statistically significant. The stand
 | Fired for performance | -5.5% | <0.001 | -2.5% | <0.001 | -0.8% | 0.606 | 467 |
 
 *Notes.* Days -30 to -2 and +2 to +60 are cumulative market-adjusted returns (firm minus market), used because a forced-exit firm's alpha before the event is strongly negative and a market model would project it forward. Days -1 to +1 is the market-model return of Table 4. Events need every day of a window. N is the number of departures in the days -1 to +1 window; the outer windows differ by at most a few percent.
-
 
 Firms that fire for performance trail the market by 5.5% over the six weeks before; firms that fire for legal or personal conduct trail it by 2.5%. On the day the order reverses: conduct firings cost 4.7% and performance firings 2.5%. The gap is not statistically significant.
 
@@ -201,7 +199,6 @@ The comparison fits earlier evidence from sudden deaths, where founder-CEOs and 
 
 *Notes.* Cumulative market-model abnormal return from trading day -1 to day +1 around the announcement (day 0), with the model estimated over days -250 to -30 (at least 120 days). t is the cross-sectional t of the mean; p is two-sided. N is the number of departures with returns over the window. Firings dated by the database or a hand check; the last two rows use every firing, since few sex cases are hand-dated. Forced exits are database codes 3 and 4; founder status and the financial-misconduct, sexual-conduct and relationship labels are hand-checked.
 
-
 ### Sex, fraud and the rest
 
 Table 5 and Figure 3 split the firings by the reason the board acted. Financial misconduct costs 7.7% in the announcement window, and strategy or power disputes 3.6%. Most other reasons cost little, and each group is small.
@@ -233,7 +230,6 @@ Earlier studies point the same way. When executive misbehaviour first becomes pu
 
 *Notes.* Forced exits only, by the primary reason coded from the database notes, the 8-K filed within 10 days, cited press releases, Wikipedia and matched New York Times articles. Reasons with fewer than 10 cases are not shown. Holm p adjusts each p for the number of reasons tested. Financial-misconduct, sexual-conduct and relationship labels are hand-checked; the others are model codes.
 
-
 ![Figure 3. Fraud is expensive; sex scandals are not, at least on the day](/static/reports/founder-ceo/figures/fig4_reasons.png)
 
 *Figure 3. Fraud is expensive; sex scandals are not, at least on the day.* Notes. Mean abnormal return over trading days -1 to +1 by the coded reason the board acted, hand-dated firings, with 95% intervals; reasons with at least 10 firings. Crimson: money and legal cases; violet: personal conduct, including relationships with employees; grey: other reasons.
@@ -259,7 +255,6 @@ WWE rose 7.9% when Vince McMahon left in 2022 during an investigation of his con
 | Enzo Biochem | Elazar Rabbani | 2021 | Performance | 0.1 | -19.5% | -93.5% | under 5 years of data |
 
 *Notes.* Founder-CEOs fired, among exits the evidence-based coding also reads as forced, ranked by market value at the fiscal year-end before the departure. Database reason is the CEO dismissal database's code (performance = 3, legal or conduct = 4). Days -1 to +1 is the market-model abnormal return; 36 months is the buy-and-hold return minus the market from day +2; it can fall below -100% when the stock lost most of its value while the market rose. After 60 months reports whether the stock still traded, and if not, how it left.
-
 
 ## 4. After the dust settles: long-run returns and profits
 
@@ -297,7 +292,6 @@ The means tell a softer story still: -1.7%, 0.2% and 9.3% at one, three and five
 
 *Notes.* Medians of buy-and-hold returns from day +2 over 12, 36 and 60 months, all firings. Market subtracts the market's buy-and-hold return; Matched subtracts a control firm in the same industry with market value within 30 percent and the nearest ROA. Matched cells give the Wilcoxon p in parentheses. The last row gives means with t-test p; skewed returns can give means and medians of opposite sign. Delisted firms take their delisting return and then hold the market. N, 36m counts matched events at 36 months.
 
-
 ### Profits
 
 Table 8 follows operating return on assets against the same matched firm. In the first fiscal year after a firing, the median change is -0.4 percentage points below the matched firm's, which is statistically significant. The gap from retirements is -0.7 percentage points. By fiscal year +3 the firing firms' gap is 0.3.
@@ -316,7 +310,6 @@ Earlier work finds that operating performance falls before a CEO turnover and im
 | Fired for performance | -0.4 (0.064) | 0.3 (0.411) | 0.2 (0.729) | 937 | 734 |
 
 *Notes.* Median change in ROA (EBITDA over total assets) from fiscal year -1 to year +1, +2 and +3, minus the same change at the matched firm, in percentage points, with the Wilcoxon p in parentheses. ROA winsorized at the 1st and 99th percentiles. N falls with the horizon because firms stop filing after a sale or bankruptcy.
-
 
 ## 5. Sold, bankrupt, or still standing
 
@@ -357,7 +350,6 @@ Bankruptcies come early: 4.8% of firing firms fail within a year. After a founde
 
 *Notes.* Share of firms whose stock left the price file within 12, 36 and 60 months of the announcement. Each horizon uses the events whose horizon is complete in the data for every firm, delisted or not; N, 60m counts those for 60 months. Acquired and Bankrupt classify the corporate action within 60 days of the final price. p vs retired is a chi-square test of the 60-month share against retirements; Table IA.4 adds controls and matched firms. Small groups can show a lower share at 60 months than at 36 because fewer firms have a complete 60-month horizon.
 
-
 ## 6. Who stays on the board
 
 ::: answer
@@ -389,7 +381,6 @@ Figure 6 plots these results next to the profit path of Section 4. They cover th
 | Fired for conduct | 49.1% | 58 | 36.8% | 88.9% | 18 | 5.2% |
 
 *Notes.* Director lists from the last proxy filed before the departure and the first proxy filed at least 600 days after it. Directors match on surname and first initial. Split before and after: the chair and CEO roles held by different people in the earlier and the later proxy, on the departures where the later proxy names a chair (N, split; the earlier proxy names one slightly more often). For fired founders the last column is the founder; otherwise the departing CEO.
-
 
 ## 7. Conclusion
 
@@ -453,7 +444,6 @@ The median three-year return against the firm's own reported index is -68.3% aft
 
 *Notes.* Each row changes one thing against the main tables. Evidence agrees: the CEO dismissal database codes the exit forced and the evidence-based coding (8-K, press releases, Wikipedia, NYT) also reads it as forced. Pushed retirements: the database codes a retirement and the evidence reads it as forced. Pre-1998: departures announced 1992 to 1997, three-year return minus the index the firm itself reports in its proxy performance graph.
 
-
 ### Table IA.2. From the database to the main sample
 
 | Step | N |
@@ -471,7 +461,6 @@ The median three-year return against the firm's own reported index is -68.3% aft
 
 *Notes.* Firings are database codes 3 and 4. A price history covers the announcement when the security trades from 60 days before day 0. Founder codes come from the evidence-based model coding; every one on a firing was checked by hand, which also added founders the model had left unclear.
 
-
 ### Table IA.3. The founder gap in every window
 
 | Window (trading days) | Founder fired | Hired CEO fired | Gap, pp | p | Detectable gap, pp | N founders |
@@ -483,7 +472,6 @@ The median three-year return against the firm's own reported index is -68.3% aft
 
 *Notes.* Mean market-model abnormal returns of fired founders and fired hired CEOs over each window, the gap with its Welch p, and the smallest gap the test would detect with 80% power at the 5% level. The paper's main window is days -1 to +1.
 
-
 ### Table IA.4. Who stops trading within 60 months, with controls and against matched firms
 
 | Outcome | Firings | Retirements | Firing effect with controls, pp | p | N |
@@ -494,6 +482,5 @@ The median three-year return against the firm's own reported index is -68.3% aft
 | Stopped trading, against the matched firm | 31.2% | 24.2% (matched) | 7.0 | <0.001 | 1,264 |
 
 *Notes.* Firing effect with controls: the coefficient on the firing dummy in a linear probability model with log market value, ROA in year -1, event-year and Fama-French industry effects, standard errors clustered by year. The last row compares each firing firm with its own matched firm (paired t).
-
 
 ## References

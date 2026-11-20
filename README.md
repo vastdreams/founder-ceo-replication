@@ -3,6 +3,9 @@
 Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO*
 (working paper, November 2026). Every number, table and figure in the paper is produced by the code here.
 
+**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 16 pages). The text with every statistic
+filled in is [paper/paper.md](paper/paper.md).
+
 **The question.** What happens to a US public company after its board fires the CEO, and does it matter whether the
 CEO founded the company and why the board acted? We follow every forced CEO exit at an S&P 1500 firm from 1998 to
 2023 (1,393 firings with returns, 2,253 retirements as the comparison) from six weeks before the announcement to five

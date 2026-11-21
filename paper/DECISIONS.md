@@ -16,11 +16,14 @@ The choices behind every number in the paper, in the order they were made. Each 
    (`data/reviews/fraud_review.csv`, `conduct_review.csv`, `personal_conduct_review.csv`).
 5. **The main sample leaves out fraud, legal violations and criminal charges.** Those firings are a different event,
    since the firm itself is in trouble with the law; they return only as a comparison group (`code/sample.py`).
-6. **Announcement windows use only database or hand-checked dates.** 8-K dates agree with the database within three
-   days too rarely for a three-day window; results over months and years use every firing
-   (`code/redate.py`, `data/reviews/date_corrections.csv`).
-7. **Windows longer than a few days use returns minus the market.** A falling firm's negative market-model alpha would
-   otherwise forecast a rebound that is not in the prices (`code/paths.py`, `code/stats_returns.py`).
+6. **Announcement windows use only well-dated firings: dated by the database or by hand.** 8-K dates agree with the
+   database within three days too rarely for a three-day window. Founder and personal-scandal firings without a
+   database date were dated by hand from 8-K filings, press releases and New York Times reports, keeping a date only
+   when a dated source states it; each date and its source is in `data/reviews/date_corrections.csv`. Results over
+   months and years use every firing (`code/redate.py`).
+7. **Windows longer than a few days use returns minus the market.** A firm that was falling before the event has a
+   negative market-model alpha; carried forward, it would make ordinary returns afterwards look like a recovery
+   (`code/paths.py`, `code/stats_returns.py`).
 8. **Matched firms are chosen deterministically:** same Fama-French industry, market value within 30 percent, nearest
    return on assets, no chief executive change in the previous three years; the nearest firm in size when none is in
    the band (`code/ops_matched.py`).
@@ -33,3 +36,6 @@ The choices behind every number in the paper, in the order they were made. Each 
     paper's text is filled from the results file, so no number is typed by hand (`code/draft_paper.py`).
 12. **A second coder** will check a random fifth of the hand-coded founder flags and reasons before journal
     submission; the paper says so.
+13. **Tests read as nulls carry a 95% interval** (founder and personal-scandal gaps at the announcement and in
+    delisting, and the 36-month alpha), computed from each estimate and its test statistic in
+    `code/combine_results.py`; small groups in the event-time figure are drawn as medians (`code/figures.py`).

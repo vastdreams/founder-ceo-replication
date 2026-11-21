@@ -332,7 +332,12 @@ def main():
         put(f"exit.{g}.delisted_5y", x5["delisted_5y"].mean() if len(x5) else None, n=len(x5))
         for k in ("acquired", "bankruptcy", "delisted_other", "unknown"):
             put(f"exit.{g}.{k}_5y", (x5["delist_kind_5y"] == k).mean() if len(x5) else None, n=len(x5))
-    for a, b in [("forced", "retired"), ("forced_founder", "forced_nonfounder"), ("forced_strict", "retired")] + [
+    for a, b in [
+        ("forced", "retired"),
+        ("forced_founder", "forced_nonfounder"),
+        ("conduct", "performance"),  # personal scandal against other firings (review round 1, item 5)
+        ("forced_strict", "retired"),
+    ] + [
         (g, "retired")
         for g in (
             "forced_founder",

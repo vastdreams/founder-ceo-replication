@@ -136,29 +136,31 @@ def fig1_event_time(data: dict):
     panels = [
         (
             axes[0],
-            "(a) Firings and retirements",
+            "(a) Firings and retirements, means",
             [("forced", "Firings", FORCED, "main"), ("retired", "Retirements", RETIRED, "comparison")],
+            "mean",
         ),
         (
             axes[1],
-            "(b) Founders, personal scandals and other firings",
+            "(b) Founders, personal scandals and other firings, medians",
             [
                 ("forced_founder", "Founder fired", FOUNDER, "main"),
-                ("performance", "Other reasons", PERF, "comparison"),
+                ("performance", "Other firings", FORCED, "comparison"),  # firings stay red (review r1, item 33)
                 ("conduct", "Personal scandal", CONDUCT, "comparison"),
             ],
+            "median",  # small groups: one firm can move a mean (a +210% day at one founder firm), so medians
         ),
     ]
-    for ax, title, lines in panels:
+    for ax, title, lines, stat in panels:
         S.window(ax, -1, 1)
         S.zero(ax)
         items = []
         for key, label, color, weight in lines:
             s = et[key]
-            ax.plot(days, s["mean"], color=color, linewidth=S.LINE[weight], zorder=3)
+            ax.plot(days, s[stat], color=color, linewidth=S.LINE[weight], zorder=3)
             if key == "forced":  # the subgroups are too small for a band to say much
                 ax.fill_between(days, s["lo"], s["hi"], color=color, alpha=S.LINE["ci_alpha"], linewidth=0, zorder=2)
-            items.append((s["mean"][-1], f"{label}\n{S.pct(s['mean'][-1])}, n = {s['n']:,}", color))
+            items.append((s[stat][-1], f"{label}\n{S.pct(s[stat][-1])}, n = {s['n']:,}", color))
         _end_labels(ax, days[-1], items, 0.042)
         ax.set_xlim(-30, 60)
         ax.set_xticks([-30, -15, 0, 15, 30, 45, 60])
@@ -167,6 +169,7 @@ def fig1_event_time(data: dict):
         S.frame(ax, "Cumulative return minus the market, from day " + MINUS + "30")
     axes[0].set_ylim(-0.21, 0.03)
     axes[0].set_yticks([0, -0.05, -0.10, -0.15, -0.20])
+    axes[1].tick_params(labelleft=True)
     return save(fig, "fig1_event_time")
 
 
@@ -210,7 +213,7 @@ def fig2_long_run(data: dict):
         va="center",
     )
     ax.set_ylim(-1.0, 0.12)
-    ax.set_xlim(0, 60.5)
+    ax.set_xlim(0, 62)  # room for the 60-month diamonds, offset either side of month 60
     ax.set_xticks([0, 12, 24, 36, 48, 60])
     ax.set_xlabel("Months after the announcement (21 trading days each, from day +2)")
     S.frame(ax, "Median buy-and-hold return minus the market")
@@ -243,7 +246,7 @@ def fig3_exits(data: dict):
         ax.set_xticks([0, 12, 24, 36, 48, 60])
         ax.set_xlabel("Months after the announcement")
         ax.set_title(title, pad=16)
-        S.frame(ax, "Share of firms no longer trading")
+        S.frame(ax, "Share of firms delisted")
     axes[0].set_ylim(0, 0.36)
     axes[0].set_yticks([0, 0.1, 0.2, 0.3])
     return save(fig, "fig3_exits")
@@ -253,7 +256,7 @@ NICE = {
     "financial_misconduct": "Financial misconduct",
     "legal_or_regulatory": "Legal or regulatory",
     "merger_or_restructuring": "Merger or restructuring",
-    "retirement_or_health": "Pushed out, described as retirement",
+    "retirement_or_health": "Pushed out, described as retirement or health",
     "relationship_with_employee": "Relationship with an employee",
     "activist_or_shareholder_pressure": "Activist or shareholder pressure",
     "strategy_or_power_dispute": "Strategy or power dispute",
@@ -270,7 +273,7 @@ def fig4_reasons(data: dict):
     the largest fall. Every row is a firing, so every row is the focal red."""
     rs = sorted(data["reasons"], key=lambda r: r["mean"], reverse=True)
     fig, ax = plt.subplots(figsize=(S.FULL_W, 2.9))
-    fig.subplots_adjust(left=0.30, right=0.83, top=0.88, bottom=0.12)
+    fig.subplots_adjust(left=0.36, right=0.83, top=0.88, bottom=0.12)  # room for the longest reason label
     for i, r in enumerate(rs):
         ax.plot([r["lo"], r["hi"]], [i, i], color=FORCED, linewidth=1.4, alpha=0.45, solid_capstyle="butt")
         ax.scatter([r["mean"]], [i], color=FORCED, s=26, zorder=3)

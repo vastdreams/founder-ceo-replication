@@ -64,6 +64,8 @@ def main():
         S["event_time"][g] = {
             "n": int(len(c)),
             "mean": mean.round(6).tolist(),
+            # the median path, for small groups where one firm can move the mean (Figure 1(b); review r1, item 33)
+            "median": c.median().round(6).tolist(),
             "lo": (mean - 1.96 * se).round(6).tolist(),
             "hi": (mean + 1.96 * se).round(6).tolist(),
         }

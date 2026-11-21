@@ -3,16 +3,15 @@
 Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO*
 (working paper, November 2026). Every number, table and figure in the paper is produced by the code here.
 
-**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 17 pages). The text with every statistic
+**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 19 pages). The text with every statistic
 filled in is [paper/paper.md](paper/paper.md).
 
-**The question.** What happens to a US public company after its board fires the chief executive, and does it matter
-whether the chief executive founded the company, or was fired over a sex scandal rather than fraud? We follow every
-firing at an S&P 1500 firm from 1998 to 2023 (1,272 firings with prices, 83 of them of founders; 2,253 retirements as
-the comparison) from six weeks before the announcement to five years after it, with the number of firms measured at
-every horizon. The 121 firings over fraud, another legal violation or a criminal charge are kept apart as a
-comparison group. Announcement windows use the 486 firings dated by the database or by hand; long-run results use
-every firing.
+**The question.** What happens to a US public company after its board fires the CEO, and does it matter whether the
+CEO founded the company, or was fired over a sex or other personal scandal rather than fraud? We follow every firing at
+an S&P 1500 firm from 1998 to 2023 (1,272 firings with prices, 83 of them founders; 2,253 retirements as the
+comparison) from six weeks before the announcement to five years after it, with the number of firms measured at every
+horizon. The 121 firings over fraud or other legal violation are kept apart as a comparison group. Announcement
+windows use the 531 well-dated firings (dated by the database or by hand); long-run results use every firing.
 
 ![Prices slide before the firing, drop on the news, then stop](figures/fig1_event_time.png)
 
@@ -20,22 +19,24 @@ every firing.
 
 | Horizon | Firings | Retirements | N firings |
 |---|---|---|---|
-| Trading days −30 to −2, return minus the market | −5.2% | 0.0% | 486 |
-| Trading days −1 to +1, abnormal return | −2.4% | −0.3% | 483 |
-| Trading days +2 to +60, return minus the market | −0.5% (n.s.) | −0.8% | 476 |
-| 12 / 36 / 60 months, median return minus a matched firm | −4.8% / −0.5% (n.s.) / −4.7% (n.s.) | 0.0% / 0.5% / 2.8% | 1,220 / 1,217 / 1,164 |
-| 36 months, five-factor and momentum alpha, a month | 0.04% (n.s.) | 0.13% | 319 months |
-| Within 60 months, share delisted | 31.9% | 16.8% | 1,215 |
+| Trading days −30 to −2, return minus the market | −5.4% | 0.0% | 531 |
+| Trading days −1 to +1, abnormal return | −2.3% | −0.3% | 528 |
+| Trading days +2 to +60, return minus the market | −1.0% (n.s.) | −0.8% | 521 |
+| 12 / 36 / 60 months, median return minus a matched firm | −4.6% / 0.0% (n.s.) / −4.7% (n.s.) | 0.0% / 0.5% / 2.8% | 1,220 / 1,217 / 1,164 |
+| 36 months, five-factor and momentum alpha, a month | 0.03% (n.s.; 95% interval −0.35% to 0.42%) | 0.13% | 319 months |
+| Within 60 months, delisted | 31.9% (19.0% taken over, 12.0% bankrupt) | 16.8% (14.1%, 2.6%) | 1,215 |
 
-* **The market sees it coming.** The shares slide for six weeks, fall a further 2.4% over the three days around the
-  announcement, then stop.
-* **Founders and sex scandals change little; fraud does.** Fired founders' shares fall 5.0% against 2.2% for hired
-  chief executives, a gap that is not significant (p = 0.32) and is +0.6 points with size and prior-return controls.
-  After a sex or other personal scandal the fall is 1.1% (40 firings, every date source), about the same as other
-  firings; after fraud or another legal violation it is 4.8% (121 firings; difference 3.6 points, p = 0.021).
-* **The lasting difference is survival.** Within five years 31.9% of firing firms are delisted, against 16.8% after a
-  retirement, in every size band. With controls for size, profitability, prior return, leverage, book-to-market,
-  distress and losses, the gap is 6.5 percentage points (p = 0.006). Risk-adjusted returns are close to zero.
+* **Before and at the announcement.** In the six weeks before a firing is announced the shares lag the market by
+  5.4%; over the three trading days around it they fall a further 2.3%, and the next three months add no significant
+  move.
+* **The reason and the person.** After a firing over fraud or other legal violation the shares fall 6.9% (41
+  well-dated firings). After a personal scandal they fall 1.5% (39), not significantly different from the 2.3% after
+  other firings (95% interval for the gap −0.8 to 2.6 points). A fired founder's shares fall 3.2% (52) against 2.2%
+  for a hired CEO; the gap is not significant (p = 0.63; 95% interval −5.1 to 3.1 points).
+* **What becomes of the firm.** Within five years 12.0% of firing firms go bankrupt, against 2.6% after a retirement,
+  and 19.0% are taken over, against 14.1%. With controls for size, profitability, prior return, leverage,
+  book-to-market, distress and losses, the delisting gap is 6.6 percentage points (p = 0.005), 2.3 of them
+  bankruptcy.
 
 ![Within five years, 31.9% of firing firms are delisted](figures/fig3_exits.png)
 
@@ -52,7 +53,7 @@ Three levels, from no data at all to the full pipeline.
 ```bash
 git clone https://github.com/vastdreams/founder-ceo-replication && cd founder-ceo-replication
 python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
-python check.py      # 386 statistics and 16 tables checked, 0 differ; figures in outputs/figures/
+python check.py      # 422 statistics and 16 tables checked, 0 differ; figures in outputs/figures/
 ```
 
 **Bring your own data (Level 2).** The code never reads a vendor table. `code/datasource.py` serves nine canonical

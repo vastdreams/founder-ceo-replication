@@ -14,7 +14,7 @@
  "descdiff.forced_vs_retired.mcap.diff_median": {
   "value": -947070734.5,
   "n": 3461,
-  "p": 5.65188539459997e-25
+  "p": 5.6833002327034215e-25
  },
  "desc.forced.roa.median": {
   "value": 0.07778803619053215,
@@ -25,13 +25,13 @@
   "n": 2221
  },
  "desc.forced_founder.roa.median": {
-  "value": 0.07560028637645666,
+  "value": 0.07601286971549644,
   "n": 78
  },
  "descdiff.forced_vs_retired.roa.diff_median": {
   "value": -0.04542295872385771,
   "n": 3461,
-  "p": 8.3721823094854e-48
+  "p": 9.26133329103231e-48
  },
  "desc.forced.salesg.median": {
   "value": 0.028918015548127896,
@@ -48,7 +48,7 @@
  "descdiff.forced_vs_retired.salesg.diff_median": {
   "value": -0.038562940280981506,
   "n": 3400,
-  "p": 9.395851659264124e-11
+  "p": 8.834330210922655e-11
  },
  "desc.forced.rnd.median": {
   "value": 0.0,
@@ -76,13 +76,13 @@
   "n": 2221
  },
  "desc.forced_founder.capex.median": {
-  "value": 0.039592926776269764,
+  "value": 0.04175775639353857,
   "n": 78
  },
  "descdiff.forced_vs_retired.capex.diff_median": {
   "value": -0.0030642037519496568,
   "n": 3461,
-  "p": 0.00014773647015399374
+  "p": 0.00016043295089470403
  },
  "case.7398.car_m1p1": {
   "value": 0.0967771911568257,
@@ -90,6 +90,22 @@
  },
  "case.7398.bhar_3y": {
   "value": -0.23067883313642823,
+  "n": 1
+ },
+ "case.8761.car_m1p1": {
+  "value": 0.09571195084688497,
+  "n": 1
+ },
+ "case.8761.bhar_3y": {
+  "value": -0.9459637904099562,
+  "n": 1
+ },
+ "case.6350.car_m1p1": {
+  "value": 0.047297355998006066,
+  "n": 1
+ },
+ "case.6350.bhar_3y": {
+  "value": -1.1748122041898046,
   "n": 1
  },
  "case.8370.car_m1p1": {
@@ -100,12 +116,52 @@
   "value": 0.3767999384025029,
   "n": 1
  },
+ "case.7961.car_m1p1": {
+  "value": 0.14852143278387575,
+  "n": 1
+ },
+ "case.7961.bhar_3y": {
+  "value": 0.12900328078639878,
+  "n": 1
+ },
  "case.9469.car_m1p1": {
   "value": -0.08366849604510436,
   "n": 1
  },
  "case.9469.bhar_3y": {
   "value": 0.14899514709235606,
+  "n": 1
+ },
+ "case.6523.car_m1p1": {
+  "value": -0.048543030548562245,
+  "n": 1
+ },
+ "case.6523.bhar_3y": {
+  "value": 0.07388412778014009,
+  "n": 1
+ },
+ "case.3135.car_m1p1": {
+  "value": 0.0015525666912592634,
+  "n": 1
+ },
+ "case.3135.bhar_3y": {
+  "value": -0.476702214326863,
+  "n": 1
+ },
+ "case.8710.car_m1p1": {
+  "value": 0.02687548298590653,
+  "n": 1
+ },
+ "case.8710.bhar_3y": {
+  "value": -0.3048244920590635,
+  "n": 1
+ },
+ "case.7539.car_m1p1": {
+  "value": -0.5867734000348737,
+  "n": 1
+ },
+ "case.7539.bhar_3y": {
+  "value": -0.766322373170854,
   "n": 1
  },
  "case.9699.car_m1p1": {
@@ -116,24 +172,16 @@
   "value": -1.2563585713537504,
   "n": 1
  },
- "case.1862.car_m1p1": {
-  "value": -0.00015325586612127597,
+ "case.6881.car_m1p1": {
+  "value": -0.1589280507021891,
   "n": 1
  },
- "case.1862.bhar_3y": {
-  "value": 0.10497638534143605,
-  "n": 1
- },
- "case.1285.car_m1p1": {
-  "value": -0.19461059675815123,
-  "n": 1
- },
- "case.1285.bhar_3y": {
-  "value": -0.9351498900769573,
+ "case.6881.bhar_3y": {
+  "value": 2.2526296777589776,
   "n": 1
  },
  "case.n_listed": {
-  "value": 6.0
+  "value": 12.0
  },
  "flow.forced_db": {
   "value": 1799.0
@@ -154,7 +202,7 @@
   "value": 1272.0
  },
  "flow.forced_dated": {
-  "value": 486.0
+  "value": 531.0
  },
  "flow.founder_model": {
   "value": 191.0
@@ -169,7 +217,7 @@
   "value": 83.0
  },
  "flow.founder_dated": {
-  "value": 29.0
+  "value": 52.0
  },
  "hook.nvda.day_ret": {
   "value": -0.04340067921487356,
@@ -190,6 +238,24 @@
    "fate_5y": "still listed"
   },
   {
+   "event_id": 8761,
+   "company": "Wynn Resorts",
+   "ceo": "Steve Wynn",
+   "year": 2018,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 17255491718.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 6350,
+   "company": "Chesapeake Energy",
+   "ceo": "Aubrey McClendon",
+   "year": 2013,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 13131058626.0,
+   "fate_5y": "still listed"
+  },
+  {
    "event_id": 8370,
    "company": "WWE",
    "ceo": "Vince McMahon",
@@ -197,6 +263,15 @@
    "dismissal": "legal or conduct",
    "mcap_m1": 3579309371.0,
    "fate_5y": "under 5 years of data"
+  },
+  {
+   "event_id": 7961,
+   "company": "Career Education",
+   "ceo": "John Larson",
+   "year": 2006,
+   "dismissal": "performance",
+   "mcap_m1": 3379581843.0,
+   "fate_5y": "still listed"
   },
   {
    "event_id": 9469,
@@ -208,6 +283,42 @@
    "fate_5y": "still listed"
   },
   {
+   "event_id": 6523,
+   "company": "Papa Johns International",
+   "ceo": "John Schnatter",
+   "year": 2017,
+   "dismissal": "legal or conduct",
+   "mcap_m1": 3147392560.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 3135,
+   "company": "ICN Pharmaceuticals",
+   "ceo": "Milan Panic",
+   "year": 2002,
+   "dismissal": "performance",
+   "mcap_m1": 2666335669.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 8710,
+   "company": "Jetblue Airways",
+   "ceo": "David Gary Neeleman",
+   "year": 2007,
+   "dismissal": "performance",
+   "mcap_m1": 2357278654.0,
+   "fate_5y": "still listed"
+  },
+  {
+   "event_id": 7539,
+   "company": "Calpine",
+   "ceo": "Peter Cartwright",
+   "year": 2005,
+   "dismissal": "performance",
+   "mcap_m1": 1506448882.0,
+   "fate_5y": "bankrupt"
+  },
+  {
    "event_id": 9699,
    "company": "Cara Therapeutics",
    "ceo": "Derek Chalmers",
@@ -217,22 +328,13 @@
    "fate_5y": "under 5 years of data"
   },
   {
-   "event_id": 1862,
-   "company": "Inter-Tel",
-   "ceo": "Steven Mihaylo",
-   "year": 2006,
+   "event_id": 6881,
+   "company": "Pss World Medical",
+   "ceo": "Patrick Kelly",
+   "year": 2000,
    "dismissal": "performance",
-   "mcap_m1": 561125957.0,
-   "fate_5y": "acquired"
-  },
-  {
-   "event_id": 1285,
-   "company": "Enzo Biochem",
-   "ceo": "Elazar Rabbani",
-   "year": 2021,
-   "dismissal": "performance",
-   "mcap_m1": 100579605.0,
-   "fate_5y": "under 5 years of data"
+   "mcap_m1": 845873738.0,
+   "fate_5y": "still listed"
   }
  ]
 }

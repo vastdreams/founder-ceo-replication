@@ -57,7 +57,7 @@ def main():
     put("h.relaxed_matches", int(d["match_relaxed"].sum()))
     for g, x in groups.items():
         put(f"h.n_{g}", len(x))
-        for k in (1, 2, 3):
+        for k in (0, 1, 2, 3):  # year 0 is the fiscal year of the departure
             one_group(f"roa.{g}.abn_d_{k}", x[f"abn_d_roa_{k}_w"])
         for h in (1, 3, 5):
             one_group(f"mbhar.{g}.{h}y", x[f"mbhar_{h}y"])

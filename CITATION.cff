@@ -6,8 +6,8 @@ authors:
     given-names: Abhishek
     orcid: "https://orcid.org/0009-0000-9424-4695"
     affiliation: "FSE Research & Investments"
-date-released: 2026-11-20
-version: "2.0"
+date-released: 2026-11-21
+version: "2.1"
 license: MIT
 repository-code: "https://github.com/vastdreams/founder-ceo-replication"
 references:

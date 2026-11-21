@@ -14,6 +14,7 @@ import re
 
 import datasource  # noqa: E402
 import pandas as pd
+import sample
 from stats_returns import R, one_group, put, two_group  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent
@@ -84,6 +85,7 @@ def main():
     put("pre.events_1992_1997", len(ev))
     put("pre.events_with_tsr", len(d))
     if len(d):
+        d = sample.apply(d)  # firings for crimes out (D-18)
         f, r = d[d["forced"] == 1], d[d["forced"] == 0]
         put("pre.n_forced", len(f))
         put("pre.n_retired", len(r))

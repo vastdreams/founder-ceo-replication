@@ -12,6 +12,7 @@ import pathlib
 
 import numpy as np
 import pandas as pd
+import sample
 import statsmodels.formula.api as smf
 from scipy import stats
 from stats_returns import R, one_group, put, skew_adj, two_group  # shared helpers and result dict
@@ -37,6 +38,8 @@ def main():
     if ff.exists():  # hand-reviewed founder flag
         d = d.drop(columns=["founder"]).merge(pd.read_parquet(ff)[["event_id", "founder"]], on="event_id", how="left")
         d["founder"] = d["founder"].fillna(0).astype(int)
+    # The paper's sample: firings for crimes out, `conduct` = fired over a personal scandal (sample.py, D-18).
+    d = sample.apply(d)
     # Long-run results use every departure: a few days of dating error cannot move them (D-15).
     for k in (0, 1, 2, 3):
         if f"abn_d_roa_{k}" in d:
@@ -100,6 +103,35 @@ def main():
             p=m5.pvalues["forced"],
             n=int(m5.nobs),
         )
+    # The same with the controls a referee asks for (controls.py): the 12-month return before the announcement,
+    # leverage, book-to-market, an Altman-Z distress flag and a loss flag, all at the fiscal year-end before. Within
+    # firings, the founder and personal-scandal coefficients use the same controls.
+    cp = HERE / "out" / "controls.parquet"
+    if cp.exists():
+        xc = x.merge(pd.read_parquet(cp), on="event_id", how="left")
+        for k in ("prior_ret_12m", "leverage", "btm"):
+            xc[k + "_w"] = wins(xc[k])
+        xc = xc.dropna(subset=["prior_ret_12m_w", "leverage_w", "btm_w", "distress", "loss"])
+        ctrl = "log_mcap + roa_m1 + prior_ret_12m_w + leverage_w + btm_w + distress + loss + C(year) + C(famaindustry)"
+        for y in ("gone", "acquired", "bankrupt"):
+            mc = smf.ols(f"{y} ~ forced + {ctrl}", data=xc).fit(cov_type="cluster", cov_kwds={"groups": xc["year"]})
+            put(
+                f"reg.exit5c.{y}.forced",
+                mc.params["forced"],
+                se=mc.bse["forced"],
+                t=mc.tvalues["forced"],
+                p=mc.pvalues["forced"],
+                n=int(mc.nobs),
+            )
+        fx = xc[xc["forced"] == 1]
+        for k in ("founder", "conduct"):
+            mc = smf.ols(f"gone ~ {k} + {ctrl}", data=fx).fit(cov_type="cluster", cov_kwds={"groups": fx["year"]})
+            put(f"reg.exit5c.gone.{k}", mc.params[k], se=mc.bse[k], t=mc.tvalues[k], p=mc.pvalues[k], n=int(mc.nobs))
+        for k in ("prior_ret_12m_w", "leverage_w", "distress"):
+            mc = smf.ols(f"gone ~ forced + {ctrl}", data=xc).fit(cov_type="cluster", cov_kwds={"groups": xc["year"]})
+            put(f"reg.exit5c.gone.{k}", mc.params[k], se=mc.bse[k], t=mc.tvalues[k], p=mc.pvalues[k], n=int(mc.nobs))
+        put("h.controls_n", len(xc))
+
     # Against the matched firm: did the firm, and did its matched control, stop trading within five years?
     for g, flag in (("forced", 1), ("retired", 0)):
         y = d[(d["forced"] == flag)].dropna(subset=["delisted_5y", "ctrl_delisted_5y"])

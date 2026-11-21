@@ -108,6 +108,10 @@ def main():
     put("flow.forced_priced", int(fe["permaticker"].notna().sum()))
     allr = load_labelled()
     fr = allr[allr["forced"] == 1]
+    frc = load_labelled(include_criminal=True)
+    frc = frc[frc["forced"] == 1]
+    put("flow.forced_returns_all", len(frc))
+    put("flow.forced_criminal", int((frc["criminal"] == 1).sum()))
     put("flow.forced_returns", len(fr))
     put("flow.forced_dated", int((fr["dated"] == 1).sum()))
     fv = pd.read_csv(HERE.parent / "paper" / "founder_review.csv")

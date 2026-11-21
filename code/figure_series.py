@@ -20,6 +20,7 @@ import shutil
 
 import numpy as np
 import pandas as pd
+import sample
 from stats_returns import load_labelled
 
 HERE = pathlib.Path(__file__).parent
@@ -47,7 +48,6 @@ def main():
         "forced_nonfounder": f[f["founder_v0"] == 0],
         "conduct": f[f["conduct"] == 1],
         "performance": f[f["conduct"] == 0],
-        "financial_misconduct": f[f["primary_reason"] == "financial_misconduct"],
         "sex_or_relationship": f[
             f["primary_reason"].isin(["relationship_with_employee", "relationship_other", "other_sexual_misconduct"])
         ],
@@ -91,7 +91,7 @@ def main():
             out[kind] = [round(float(((m <= mm) & k).sum() / len(x)), 6) for mm in range(1, 61)]
         S["exits"][g] = out
     ev = pd.read_parquet(HERE / "out" / "events.parquet")
-    ev = ev[ev["code"].isin([3, 4, 5])].copy()
+    ev = sample.apply(ev[ev["code"].isin([3, 4, 5])].copy())  # firings for crimes out (D-18)
     ev["year"] = pd.to_datetime(ev["event_date"]).dt.year
     ev = ev[(ev["year"] >= 1998) & (ev["year"] <= 2023)]
     yrs = list(range(1998, 2024))
@@ -116,12 +116,11 @@ def main():
         "forced_nonfounder",
         "conduct",
         "performance",
-        "financial_misconduct",
         "sex_or_relationship",
     ):
         m, lo, hi, n = ci(groups[g]["car_mm_m1p1"])
         S.setdefault("groups", []).append({"group": g, "mean": m, "lo": lo, "hi": hi, "n": n})
-    ops = pd.read_parquet(HERE / "out" / "ops_matched.parquet")
+    ops = sample.apply(pd.read_parquet(HERE / "out" / "ops_matched.parquet"))  # firings for crimes out (D-18)
     S["roa"] = {"years": [0, 1, 2, 3]}
     for g, flag in (("forced", 1), ("retired", 0)):
         x = ops[ops["forced"] == flag]

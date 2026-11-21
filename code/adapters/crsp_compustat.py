@@ -11,7 +11,7 @@ Inputs (one CSV or Parquet file each in DIR, exported from WRDS with these colum
   crsp_names      permno, namedt, nameendt, ticker, comnam, shrcd, siccd (crsp.dsenames or crsp.msenames)
   crsp_delist     permno, dlstdt, dlstcd, dlret                          (crsp.dsedelist)
   ccm_link        gvkey, lpermno, linkdt, linkenddt, linktype, linkprim  (crsp.ccmxpf_lnkhist)
-  comp_funda      gvkey, datadate, fyear, at, oibdp, ni, revt, xrd, capx, csho, prcc_f
+  comp_funda      gvkey, datadate, fyear, at, oibdp, ni, revt, xrd, capx, csho, prcc_f, lt, ceq, wcap, re, oiadp
                   (comp.funda with indfmt='INDL', datafmt='STD', popsrc='D', consol='C')
   comp_company    gvkey, cik                                             (comp.company)
 Output : securities, prices, actions, fundamentals, gvkey_cik
@@ -24,7 +24,9 @@ Mapping to the canonical tables (DATA.md):
                 other 500-599 -> "delisted"; the action date is DLSTDT
   industry      famaindustry = Fama-French 48-industry name from SICCD (Ken French's Siccodes48 definitions)
   fundamentals  assets = AT, ebitda = OIBDP, netinc = NI, revenue = REVT, rnd = XRD, capex = CAPX,
-                marketcap = CSHO x PRCC_F x 1e6 (Sharadar reports USD, Compustat millions); datekey = datadate
+                marketcap = CSHO x PRCC_F x 1e6 (Sharadar reports USD, Compustat millions); datekey = datadate;
+                optional, for the distress controls: liabilities = LT, equity = CEQ, workingcapital = WCAP,
+                retearn = RE, ebit = OIADP
   gvkey_cik     from comp.company, so build_events links each departure through the firm's own CIK
 """
 
@@ -154,6 +156,18 @@ def main(folder: str):
             "rnd": m["xrd"],
             "capex": m["capx"],
             "marketcap": m["csho"] * m["prcc_f"] * 1e6,
+            # optional: the distress controls (controls.py) use them when present
+            **{
+                k: m[v]
+                for k, v in (
+                    ("liabilities", "lt"),
+                    ("equity", "ceq"),
+                    ("workingcapital", "wcap"),
+                    ("retearn", "re"),
+                    ("ebit", "oiadp"),
+                )
+                if v in m
+            },
         }
     )
     write("fundamentals", out)

@@ -2,29 +2,45 @@
 
 ## Abstract
 
-This paper answers what happens when a board fires a founder CEO, and how that differs from firing a hired one. At S&P {{index_size}} firms the market has usually seen the trouble coming. The stock slides {{drift.forced.pre_m30m2.mean|abs}} in the six weeks before the announcement, drops {{car.forced.mm_m1p1.mean|abs}} in the three days around it, then stops. Fired founders fall {{car.forced_founder.mm_m1p1.mean|abs}} against {{car.forced_nonfounder.mm_m1p1.mean|abs}} for hired CEOs, though the gap is not significant. Firings over fraud cost {{rob.all_dates.financial_misconduct.mm_m1p1.mean|abs}}; sex scandals barely move the price. Within five years a third of firing firms stop trading, twice the rate after retirements.
+This paper answers what happens when a board fires its chief executive. At Standard & Poor's {{index_size}} firms the shares, already lagging the market, fall {{car.forced.mm_m1p1.mean|abs}} over the three trading days around the announcement of a firing. After a sex or other personal scandal the fall is similar, and {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean}} smaller than after fraud or another legal violation. After a founder's firing it is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|abs}} larger, which is not significant (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|p}}). Risk-adjusted returns over three years are near zero, yet {{exit.forced.delisted_5y}} of the firms are delisted within five years, against {{exit.retired.delisted_5y}} after retirements.
+
+::: keynumbers
+
+- **[−{{car.forced.mm_m1p1.mean|abs}}]{.focal}** share price over trading days −1 to +1 around the announcement of a firing (n = {{car.forced.mm_m1p1.mean|n}})
+
+- **{{exit.forced.delisted_5y}}** of firing firms delisted within five years (n = {{exit.forced.delisted_5y|n}}), against {{exit.retired.delisted_5y}} after a retirement; {{reg.exit5c.gone.forced}} more with controls (p {{reg.exit5c.gone.forced|p}})
+
+:::
 
 ## 1. Introduction
 
 ::: findings
 
-1. The stock falls before the board acts: {{drift.forced.pre_m30m2.mean}} against the market over the six weeks before (Figure 2).
+1. In the six weeks before a firing is announced, the shares lag the market by {{drift.forced.pre_m30m2.mean|abs}} (Table 1).
 
-2. The firing itself costs {{car.forced.mm_m1p1.mean}} over the three days around the announcement, and the next three months add no significant move (Table 3).
+2. Over the three trading days around the announcement they fall a further {{car.forced.mm_m1p1.mean|abs}}, and the next three months add no significant move (Table 1).
 
-3. Fraud costs {{rob.all_dates.financial_misconduct.mm_m1p1.mean}}; sex and relationship scandals {{rob.all_dates.sex_or_relationship.mm_m1p1.mean}} (Table IA.1).
+3. Over those three days the shares fall {{car.forced_founder.mm_m1p1.mean|abs}} when a founder is fired and {{car.forced_nonfounder.mm_m1p1.mean|abs}} when a hired chief executive is, a gap that is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|sig}} (Table 2).
 
-4. Fired founders cost {{car.forced_founder.mm_m1p1.mean}}, against {{car.forced_nonfounder.mm_m1p1.mean}} for hired CEOs, a gap that is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|sig}} (Table 4).
+4. After a firing over a personal scandal the shares fall {{rob.all_dates.conduct.mm_m1p1.mean|abs}} over those three days, against {{rob.all_dates.criminal.mm_m1p1.mean|abs}} after a firing over fraud or another legal violation (Table 2).
 
-5. Within five years {{exit.forced.delisted_5y}} of firing firms have stopped trading, against {{exit.retired.delisted_5y}} after a retirement (Figure 5).
+5. Within five years firing firms are delisted more often than retirement firms of every size (Table 3). With controls for size, leverage and distress the gap is {{reg.exit5c.gone.forced}} (Table 4).
 
 :::
 
-In 1985 Apple's board sided with its new chief executive against Steve Jobs, and Jobs left the company he had founded. By 1997 Apple had bought his next company and he was back in charge. In November 2026 Nvidia's board accepted the resignation of its co-founder and chief executive, Jensen Huang [@nvidia2026form8k]. Three days earlier the board had opened an independent investigation after reports that Huang had been the target of a foreign intelligence effort [@nvidia2026board]. News reports also described an affair [@cnbc2026nvidia]. The board gave no reason for the departure.
+In 1985 Apple's board sided with its new chief executive against Steve Jobs, and Jobs left the company he had founded. By 1997 Apple had bought his next company and he was back in charge. In November 2026 Nvidia's board accepted the resignation of its co-founder and chief executive, Jensen Huang [@nvidia2026form8k]. Three days earlier it had opened an independent investigation after reports that Huang had been the target of a foreign intelligence effort [@nvidia2026board]. News reports also described an affair [@cnbc2026nvidia]. The board gave no reason.
 
-Nvidia's shares closed {{hook.nvda.day_ret|abs}} lower on the day the resignation was announced, after falling as much as {{nvda_intraday_low_pct}}% during the session [@cnbc2026nvidia]. From the last close before the board's statement, they had lost {{hook.nvda.since_board_statement|abs}} by 18 November. Few corporate events are more dramatic than a board turning on the person who built the company. They raise a plain question for investors, directors and employees. What happens to a company after its board fires the boss, and does it matter who the boss was and why the board acted?
+Nvidia's shares closed {{hook.nvda.day_ret|abs}} lower that day, after falling as much as {{nvda_intraday_low_pct}}% during the session [@cnbc2026nvidia]. By 18 November they had lost {{hook.nvda.since_board_statement|abs}} from the last close before the board's statement. Every investor, director and employee asks the same thing when a board turns on its chief executive: what happens to the company now? And does it matter that the person fired built it, or that the trouble was a scandal rather than the business?
 
-This paper answers that question for firings at S&P {{index_size}} firms over a quarter of a century. It answers it horizon by horizon, because a firing is not one event for the stock. There is a slide before the announcement, a drop on the day, and then months and years in which the firm is sold, fails or carries on. Results that mix these horizons, or that hide how many firms are still measured at each, can mislead. Table 1 therefore sets out the paper one horizon per row, with the number of firings measured at each.
+This paper answers both questions for the chief executives that Standard & Poor's (S&P) {{index_size}} boards fired from 1998 to 2023. There are {{a.n_lr_forced}} such firings with share prices, {{a.n_lr_forced_founder}} of them of founders. Firings over fraud or another legal violation are a different event, because the firm itself is in trouble with the law, so those {{a.n_criminal_all_dates}} are kept apart as a comparison.
+
+The short answer is that the market has usually seen it coming. Boards tend to fire chief executives after poor results [@jenter2015], and in the six weeks before the announcement the shares lag the market by {{drift.forced.pre_m30m2.mean|abs}}. At the announcement they fall a further {{car.forced.mm_m1p1.mean|abs}} over three trading days, and then they stop: the next three months add no significant move (Table 1). Against a similar firm they trail by a further {{mbhar.forced.1y.median|abs}} over the first year (p {{mbhar.forced.1y.median|p}}), and not significantly after that.
+
+Founders and sex scandals make the headlines, but they change the reaction little. When the chief executive founded the firm, the fall at the announcement is larger, {{car.forced_founder.mm_m1p1.mean|abs}} against {{car.forced_nonfounder.mm_m1p1.mean|abs}}, but not significantly so (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|p}}; Table 2). Hold firm size and the prior year's return constant, and the founder gap is {{regc.car_m1p1.founder}} in the other direction (p {{regc.car_m1p1.founder|p}}). A sex or other personal scandal is followed by about the same fall as any other firing. Fraud is the exception: after a firing over fraud or another legal violation the fall is {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean}} larger than after a personal scandal (Table 2).
+
+What does change is survival. Within five years {{exit.forced.delisted_5y}} of firing firms are delisted, against {{exit.retired.delisted_5y}} after a retirement, and the gap holds in every size band (Table 3 and Table 4). Yet once risk is priced the shares earn about what they should. A portfolio of firing firms, held for three years after each announcement, earns {{alpha.forced.ew.36m}} a month after the five Fama-French factors and momentum. That portfolio includes the firms that failed. One reading is that a firing marks a firm whose risk has risen, and that the price already reflects it.
+
+Table 1 sets out each result with its horizon and the number of firings behind it.
 
 ::: glance
 
@@ -37,283 +53,218 @@ This paper answers that question for firings at S&P {{index_size}} firms over a 
 | Trading days +2 to +60 | Return minus the market | {{drift.forced.post_p2p60.mean}} | {{drift.retired.post_p2p60.mean}} | {{drift.forced.post_p2p60.mean!n}} | {{drift.forced.post_p2p60.mean!pv}} |
 | {{months_1y}} months | Return minus a matched firm, median | {{mbhar.forced.1y.median}} | {{mbhar.retired.1y.median}} | {{mbhar.forced.1y.median!n}} | {{mbhar.forced.1y.median!pv}} |
 | {{months_3y}} months | Return minus a matched firm, median | {{mbhar.forced.3y.median}} | {{mbhar.retired.3y.median}} | {{mbhar.forced.3y.median!n}} | {{mbhar.forced.3y.median!pv}} |
+| {{months_3y}} months | Five-factor and momentum alpha, a month | {{alpha.forced.ew.36m}} | {{alpha.retired.ew.36m}} | {{alpha.forced.ew.36m!n}} | {{alpha.forced.ew.36m!pv}} |
 | {{months_5y}} months | Return minus a matched firm, median | {{mbhar.forced.5y.median}} | {{mbhar.retired.5y.median}} | {{mbhar.forced.5y.median!n}} | {{mbhar.forced.5y.median!pv}} |
-| Within {{months_5y}} months | Share no longer trading | {{exit.forced.delisted_5y}} | {{exit.retired.delisted_5y}} | {{exit.forced.delisted_5y!n}} | {{exitdiff.forced_vs_retired.delisted_5y!pv}} |
+| Within {{months_5y}} months | Share of firms delisted | {{exit.forced.delisted_5y}} | {{exit.retired.delisted_5y}} | {{exit.forced.delisted_5y!n}} | {{exitdiff.forced_vs_retired.delisted_5y!pv}} |
 | Fiscal year +1 | Change in ROA minus the matched firm, median (pp) | {{roa.forced.abn_d_1.median}} | {{roa.retired.abn_d_1.median}} | {{roa.forced.abn_d_1.median!n}} | {{roa.forced.abn_d_1.median!pv}} |
-| Fiscal year +3 | Change in ROA minus the matched firm, median (pp) | {{roa.forced.abn_d_3.median}} | {{roa.retired.abn_d_3.median}} | {{roa.forced.abn_d_3.median!n}} | {{roa.forced.abn_d_3.median!pv}} |
-| About two years | Share of the earlier directors gone | {{board.forced.director_turnover.mean}} | {{board.retired.director_turnover.mean}} | {{board.forced.director_turnover.mean!n}} | {{boarddiff.forced_vs_retired.director_turnover.diff_mean!pv}} |
+| About two years | Share of pre-firing directors not in the later proxy | {{board.forced.director_turnover.mean}} | {{board.retired.director_turnover.mean}} | {{board.forced.director_turnover.mean!n}} | {{boarddiff.forced_vs_retired.director_turnover.diff_mean!pv}} |
 
-*Notes.* Day 0 is the first trading day on or after the announcement. The first three rows use firings whose announcement date comes from the database, a hand check or the firm's 8-K; the other rows use every firing. A month is {{trading_days_per_month}} trading days counted from day +2. N firings falls with the horizon because recent firings have not reached it and firms that are sold or fail stop filing. The p column tests the firing number against zero; for the share no longer trading and the directors gone, it tests the difference from retirements.
+*Notes.* Firings exclude firings over fraud or another legal violation. Day 0 is the first trading day on or after the announcement. The first three rows use hand-dated firings, the rest every firing. A month is {{trading_days_per_month}} trading days from day +2. For the alpha row, N counts calendar months and the portfolio holds firms for 36 months after the announcement. N falls with the horizon as recent firings have not reached it. p tests the firing number against zero, or, for the delisted and directors rows, against retirements.
 
 :::
 
-Three findings stand out. First, the market sees the trouble coming. The slide starts weeks before the board acts, and the price stops moving within days of the news (Section 3).
+## 2. Related work
 
-Second, why the board acted matters, but less neatly than the usual story suggests. Firings over the accounts are costly on the day; firings over sex scandals are not. Conduct firings as a group and fired founders cost more than the rest, but neither gap is statistically significant over three days (Section 3).
+Boards fire chief executives after poor performance, including poor performance of the whole industry [@jenter2015], and returns fall well before the change [@weisbach1988]. Forced exits are rare, which suggests that boards behave as if replacing a chief executive were costly [@taylor2010; @kaplan2012]. How the market reacts depends on what the firing reveals about the firm [@kind2011; @chen2026]. A firing should therefore lower the share price at the announcement, but by less than the decline that preceded it.
 
-Third, the lasting difference is survival. Within five years a third of firing firms have stopped trading, twice the rate after a retirement. With controls for size, profitability, year and industry, a firing still adds about one in ten to the chance of leaving the market. More of that comes from bankruptcy than from takeover (Section 5). Returns against similar firms differ little after the first year (Section 4).
+Founder-led firms invest differently and have been valued more highly [@fahlenbrach2009]. Founder status itself responds to performance [@adams2009], founders are often replaced as their firms mature [@wasserman2003; @aran2024], and in venture-backed startups replacing the founder improves outcomes [@ewens2018]. If founders carry value a successor cannot replace, their firing should cost more. If boards act against founders only when the case is overwhelming, the firing could end entrenchment and be good news [@taylor2010].
 
-The paper adds to three lines of work. Boards fire CEOs after poor performance, including poor performance of the whole industry [@jenter2015], and returns fall well before the change [@weisbach1988]. Forced exits are rare, which suggests that boards behave as if replacing a CEO were costly [@taylor2010; @kaplan2012]. The market's reaction depends on what the firing reveals [@kind2011; @chen2026].
+Executive scandals and financial misreporting both cost shareholders [@cline2018; @larcker2016; @borellikjaer2021; @karpoff2008jfqa], and managers who misreport usually lose their jobs [@karpoff2008jfe]. Studies of misconduct usually combine the two. A fraud tells investors that numbers they relied on were wrong, while a personal scandal concerns one person, so a firing over a personal scandal should cost less.
 
-Founder-led firms invest differently and have been valued more highly [@fahlenbrach2009]. Founder status itself responds to performance [@adams2009], founders are often replaced as their firms mature [@wasserman2003; @aran2024], and in venture-backed startups replacing the founder improves outcomes [@ewens2018]. Executive scandals and financial misreporting both cost shareholders [@cline2018; @larcker2016; @borellikjaer2021; @karpoff2008jfqa], and managers who misreport usually lose their jobs [@karpoff2008jfe].
+Against this work, the paper separates firings over a personal scandal from firings over fraud, which studies of misconduct usually combine. It follows each firing from six weeks before the announcement to five years after, with the number of firms measured at every horizon. And it checks by hand who was a founder and why the board acted, wherever an error would change a result.
 
-We add three things. We follow firings from six weeks before the announcement to five years after it, and report the number of firms measured at every horizon. Where the database has no announcement date, we take it from the firm's own 8-K filing. We split the firings by founder status and by the reason the board acted, coded from filings and news and checked by hand where it matters most. And we compare sex scandals with fraud on the same sample and the same window.
+## 3. Data and design
 
-We test four hypotheses. H1: firings lower the stock price at the announcement. H2: firing a founder lowers it more than firing a hired CEO, because founders carry value a successor cannot replace [@fahlenbrach2009]. The alternative is that boards act against founders only when the case is overwhelming, so the firing ends entrenchment and is good news [@taylor2010]. H3: firings for conduct cost more than firings for performance, because they arrive as surprises. H4: firings change what happens afterwards to the firm's returns, survival, profitability and board.
+### Which firings
 
-Section 2 describes the data, the coding and how each horizon is measured. Section 3 reports how the market reacts before, at and after the announcement. Section 4 follows returns and profits for five years. Section 5 asks which firms are sold, go bankrupt or survive. Section 6 examines the board. Section 7 concludes.
+The departures come from the open CEO dismissal database of @gentry2021, extended by its authors to 2023. It codes the reason for every chief executive departure at S&P {{index_size}} firms from press coverage and filings, and an independent recoding agreed with it on {{lit_gentry_agreement_pct}}% of events [@gentry2021]. Codes 3 and 4, dismissal for job performance and for legal violations or personal conduct, are firings. Code 5, voluntary retirement, is the comparison group.
 
-## 2. Data and sample
+Press releases rarely say that a chief executive was fired [@gow2017], and how forced exits are classified changes the results [@fee2018]. Like the database, we treat a resignation under board pressure as a firing, including one during an investigation, a scandal or an activist campaign.
 
-### CEO departures
+From the firings we remove the {{a.n_criminal_all_dates}} whose main reason is fraud or another legal violation. These are financial misconduct, a legal or regulatory breach by the firm, or a criminal charge against the chief executive. A personal scandal is a firing over sexual misconduct, a relationship with an employee, conduct at work or another personal failing such as a false degree. There are {{a.n_lr_conduct}} of them, of which {{a.n_lr_founder_personal}} are founders, too few for a test.
 
-The departures come from the open CEO dismissal database of @gentry2021, extended by its authors to 2023. It codes the reason for every CEO departure at S&P {{index_size}} firms from press coverage and filings. An independent recoding agreed with it on {{lit_gentry_agreement_pct}}% of events [@gentry2021]. Codes 3 and 4 (dismissed for job performance, and for legal violations or personal conduct) are firings. Code 5 (voluntary retirement) is the comparison group.
-
-Press releases rarely say that a CEO was fired [@gow2017], and how forced exits are classified changes the results [@fee2018]. Like the database, we treat a resignation under board pressure as a firing. A CEO who resigns during an investigation, a scandal or an activist campaign counts as fired.
-
-We link each departure to the firm's SEC Central Index Key, and through it to daily prices that include firms later delisted. Failed and acquired firms therefore stay in the sample. Daily prices for delisted firms begin in {{sample_start_year}}. Table IA.2 traces the firings from the database to the analysis samples. Figure 1 shows how they spread over time.
-
-![Figure 1. Forced CEO exits per year](/static/reports/founder-ceo/figures/fig5_per_year.png)
-
-*Figure 1. Forced CEO exits per year.* Notes. Firings by year, 1998 to 2023, by the database's dismissal type; the amber numbers count the founders among them. The bars count every firing in the database, including firms without usable prices; the last year covers part of 2023.
+Each departure is linked to the firm's Central Index Key, its identifier at the Securities and Exchange Commission, and through it to daily prices that include firms later delisted. Table IA.1 traces the firings from the database to the samples, and Figure IA.1 shows them by year.
 
 ### Dating the announcement
 
-A three-day window needs the right day. The database gives an announcement date for about a third of departures. For the rest it gives only the day the CEO left office, which can come weeks after the news. We therefore look for the firm's own 8-K filing on the departure. It must be filed between 90 days before and 15 days after the CEO left, and from August 2004 it must be filed under the item for officer departures. It must name the CEO with a chief-executive title and a word such as resign, retire or terminate, and not describe an appointment. The 8-K's date of the earliest event reported is then the announcement date.
+A three-day window needs the right day. The database gives an announcement date for about a third of departures, and otherwise only the day the chief executive left office, which can come weeks after the news. The firm's own 8-K filing on the departure gives a second date, but on departures the database does date, the two agree within 3 days in only {{redate_agree_3d_pct}}% of cases.
 
-On departures the database does date, the 8-K date falls within 3 days of it in {{redate_agree_3d_pct}}% of cases and within 10 days in {{redate_agree_10d_pct}}%. Hand checks corrected a few further dates.
-
-The 8-K dates are useful but noisy. Firings dated by the database earn {{rob.datesrc_database.mm_m1p1.mean}} over three days; firings dated by an 8-K earn only {{rob.datesrc_8k.mm_m1p1.mean}}, as a misplaced day 0 would produce. Announcement-window results therefore use the {{a.n_forced}} firings dated by the database or a hand check.
-
-The other {{a.n_forced_undated}} firings earn {{rob.undated.forced.mm_m1p1.mean}}, which is {{rob.undated.forced.mm_m1p1.mean|sig}} (Table IA.1). Long-run results use all {{a.n_lr_forced}} firings with returns, since a few days of error cannot move a return measured over years.
+That is too noisy for a three-day window. Firings dated by the database earn {{rob.datesrc_database.mm_m1p1.mean}} over three days and firings dated from a filing {{rob.datesrc_8k.mm_m1p1.mean}}, as a misplaced day 0 would produce. Announcement results therefore use the {{a.n_forced}} firings dated by the database or by hand. Results over months and years use all {{a.n_lr_forced}}, which a few days of error cannot move.
 
 ### Founders and reasons
 
-For each departure we code whether the CEO founded or co-founded the firm or its direct predecessor, and the board's main reason for acting.
+For each departure a language model (DeepSeek, deepseek-chat, at temperature zero) codes whether the chief executive founded the firm or its predecessor. It also codes the board's main reason, each with a supporting quote. It reads the database's notes and sources, the firm's 8-K, cited press releases, the chief executive's Wikipedia article and matching New York Times articles.
 
-A language model (DeepSeek, deepseek-chat, at temperature zero) drafts each code with a supporting quote. It reads the database's notes and sources and the 8-K the firm filed within {{evidence_window_days}} days of the departure. It also reads cited press releases, the CEO's Wikipedia article and matching New York Times articles. The prompt is in the replication package.
+Every code that could change a result was then checked by hand, by one coder; a second coder's check of a random fifth of the codes is planned. The model coded {{b.model_founder_codes}} firings as founder removals; the review confirmed {{b.founders_confirmed}}, rejected {{b.founders_rejected}} and added {{b.founders_added}}. Every financial-misconduct, sexual-misconduct, relationship and other personal-conduct code was checked too. About half of the model's other personal-conduct codes turned out to be pay disputes, unexplained personal reasons or criminal charges.
 
-We then check by hand the codes where errors would matter most. Every founder code on a firing is checked against the firm's history: the model coded {{b.model_founder_codes}} firings as founder removals, and the review confirmed {{b.founders_confirmed}}, rejected {{b.founders_rejected}} and added {{b.founders_added}}. Every financial-misconduct, sexual-misconduct and relationship code is also checked. About a third of the model's financial-misconduct codes did not survive, usually because the misconduct came out only after the CEO had left.
+### Returns
 
-The database's own codes are not always right either. Some departures it codes as forced read as planned successions in the filings and the press. We therefore repeat the main results on a strict sample: the {{a.n_forced_strict}} hand-dated firings that our evidence-based coding also reads as forced (Table IA.1). The named cases in Table 6 come only from this strict sample.
-
-### How we measure returns
-
-The announcement return is the abnormal return over three trading days, from the day before the announcement to the day after it. It uses the market model of equation (1):
+The announcement return is the abnormal return over the three trading days from the day before the announcement to the day after it, from the market model of equation (1):
 
 $$AR_{it} = R_{it} - \hat\alpha_i - \hat\beta_i R_{mt}, \qquad CAR_i = AR_{i,-1} + AR_{i,0} + AR_{i,+1}. \tag{1}$$
 
-Here $R_{it}$ is the stock's total return and $R_{mt}$ the market's. The coefficients come from trading days {{estimation_window_start}} to {{estimation_window_end}} before the announcement, with at least {{min_estimation_days}} days of returns. We test the mean with the cross-sectional t and with the standardized test of @boehmer1991, which allows for event-induced variance. We test the median with the Wilcoxon signed-rank test [@kothari2007]. A five-factor model with momentum gives the same answers [@famafrench2015].
+Here $R_{it}$ is the stock's total return and $R_{mt}$ the market's. The coefficients come from trading days {{estimation_window_start}} to {{estimation_window_end}} before the announcement. We test the mean with the cross-sectional t and the standardized test of @boehmer1991, and the median with the Wilcoxon signed-rank test [@kothari2007]. Over the six weeks before and three months after, we use returns minus the market. A falling firm's negative alpha would otherwise forecast a rebound that is not in the prices.
 
-For the six weeks before the announcement (trading days -30 to -2) and the three months after it (+2 to +60), we use returns minus the market. These carry no estimated alpha. A firm about to fire its CEO has usually done badly in the year before, so its estimated alpha is strongly negative. Projected forward, that alpha would manufacture a rebound that is not in the prices.
-
-The long run is measured in months of {{trading_days_per_month}} trading days, counted from day +2. We compare each firm's buy-and-hold return with that of a benchmark, as in equation (2):
+The long run is measured three ways. The first is the buy-and-hold return over {{days_1y}}, {{days_3y}} or {{days_5y}} trading days from day +2, minus the market's or a matched firm's, as in equation (2):
 
 $$BHAR_i(h) = \prod_{t=2}^{T_h}(1+R_{it}) - \prod_{t=2}^{T_h}(1+R_{bt}). \tag{2}$$
 
-Here $T_h$ is {{days_1y}}, {{days_3y}} or {{days_5y}} trading days, and the benchmark $b$ is either the market or a matched firm. A horizon counts only if it ends inside the data for every firm, so recent firings never enter because they happened to delist. The matched firm is in the same Fama-French industry, with market value within {{matching_rule_pct}} percent and the nearest operating return on assets in the year before. It had no CEO turnover recorded in the database in the three years up to the event. When no firm meets the size band, the nearest firm in size is used ({{h.relaxed_matches}} matches; Table IA.1 drops them).
+The matched firm is in the same Fama-French industry, within {{matching_rule_pct}} percent in market value, with the nearest return on assets. It had no recorded chief executive change in the three years before. The second measure is calendar-time alpha. Each month a portfolio holds every firm in its first 36 months after an announcement, and its excess return is regressed on the five Fama-French factors and momentum [@famafrench2015; @lyon1999]. The third is whether the stock is still listed.
 
-A firm that stops trading inside the window takes a final return of zero for a takeover, minus 100% for a bankruptcy and minus 30% for other delistings [@shumway1997]. The proceeds are then held in the market until the horizon ends. Long-horizon returns are skewed, so we report medians with the Wilcoxon test and means with t-tests, adding the skewness-adjusted t of @lyon1999 for the three-year matched mean.
+On the day a firm is delisted, its return is set to zero for a takeover, minus 100% for a bankruptcy and minus 30% otherwise [@shumway1997]. Firms that fire their chief executive are about half the size of those whose chief executive retires. Their median market value at the fiscal year-end before is {{desc.forced.mcap.median}} billion dollars, against {{desc.retired.mcap.median}} (Table IA.2). Every long-run comparison is therefore also made against a matched firm or within size bands.
 
-Operating performance is EBITDA over total assets from as-reported annual statements, winsorized at the 1st and {{winsor_upper_pct}}th percentiles. We measure its change from fiscal year -1 against the matched firm, which @barber1996 show is needed when firms performed unusually before the event. Board composition comes from the last proxy statement before the departure and the first one filed at least {{board_post_lag_days}} days after it.
+## 4. The stock around the announcement
 
-### Who gets fired
+Figure 1 tells the story of the announcement in one picture. For firms whose chief executive retires, the line barely moves. For firms that fire the chief executive, it slides for six weeks, drops at the announcement and then goes sideways.
 
-Table 2 shows the firms before the departure. Firms that fire their CEO are about half the size of firms whose CEO retires: a median market value of {{desc.forced.mcap.median}} against {{desc.retired.mcap.median}} billion dollars. They are also less profitable, with a median return on assets of {{desc.forced.roa.median}} against {{desc.retired.roa.median}}, and their sales grow more slowly.
+![Figure 1. Prices slide before the firing, drop on the news, then stop](/static/reports/founder-ceo/figures/fig1_event_time.png)
 
-Boards fire CEOs of firms that are already struggling [@huson2004; @jenter2015]. That is why every long-run comparison in this paper is made against a matched firm as well as against the market.
+*Figure 1. Prices slide before the firing, drop on the news, then stop.* Notes. Mean cumulative return minus the market from trading day -30 to day +60 around the announcement (day 0), hand-dated firings. Panel (a) shows the {{ci_level}}% confidence band for firings; the grey band marks days -1 to +1. Panel (b) splits the firings by founder status and by whether the board acted over a personal scandal. N is the number of departures with every day of the window.
+
+Both the slide and the drop are large. In the six weeks before the announcement the shares of firing firms lag the market by {{drift.forced.pre_m30m2.mean|abs}}, while those of retirement firms do not move ({{drift.retired.pre_m30m2.mean}}). Over the three days around the announcement they fall a further {{car.forced.mm_m1p1.mean|abs}} (t = {{car.forced.mm_m1p1.mean|t}}), against {{car.retired.mm_m1p1.mean}} for retirements (Table 2).
+
+The drop survives the usual checks. On the same {{car.forced.mm_m1p1.mean|n}} firings the standardized test gives t = {{car.forced.mm_m1p1.bmp_t}}, and the five-factor model gives an abnormal return of {{car.forced.ff5_m1p1.mean}} over the same three days. Then the shares stop falling: over the next three months they earn {{drift.forced.post_p2p60.mean}} against the market, which is {{drift.forced.post_p2p60.mean|sig}} (p {{drift.forced.post_p2p60.mean|p}}, n = {{drift.forced.post_p2p60.mean|n}}).
 
 <!-- TABLE:2 -->
 
-## 3. The market's verdict
+### Founders
 
-::: answer
-**The question.** How does the stock react when a board fires its CEO, and does it matter who was fired and why?
+Theory pulls both ways on founders: a founder may carry value no successor can replace, or the firing may end an entrenched reign. The data lean neither way. A founder's firing is followed by a fall of {{car.forced_founder.mm_m1p1.mean|abs}} over the three days, against {{car.forced_nonfounder.mm_m1p1.mean|abs}} for a hired chief executive (Table 2). The gap of {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean}} is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|sig}} (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|p}}). Nor is there a hint of relief: the upper end of the {{ci_level}}% interval for fired founders is {{car.forced_founder.mm_m1p1.ci_high}}, so the data rule out more than a small gain.
 
-**The answer.** The stock falls before the board acts, falls again on the news, and then stops. Fraud is costly on the day; sex scandals are not. Fired founders cost more in point estimate, though not significantly.
-:::
+The test has little power, and a few large losses pull the average down. With only {{a.n_forced_founder}} hand-dated founder firings it could detect only a gap of about {{mde.founder_gap.mm_m1p1}} (Table IA.3). The median founder firing is followed by a fall of {{car.forced_founder.mm_m1p1.median|abs}}, against {{car.forced_nonfounder.mm_m1p1.median|abs}} for hired chief executives (Table 2). Holding firm size, the prior year's return and the year constant, the founder gap is {{regc.car_m1p1.founder}} in the other direction (p {{regc.car_m1p1.founder|p}}; Table IA.4).
 
-### Before, at and after the announcement
+Founder firms do slide further beforehand, {{drift.forced_founder.pre_m30m2.mean|abs}} over the six weeks against {{drift.forced.pre_m30m2.mean|abs}} for all firings (Table IA.5). Over trading days -30 to +30, however, the founder gap is only {{cardiff.forced_founder_vs_forced_nonfounder.mm_m30p30.diff_mean}} (Table IA.3). Whatever the market learns from a founder's firing, it seems to learn before the board speaks.
 
-Figure 2 follows the stock from six weeks before the announcement to three months after it. For firms whose CEO retires, the line is flat. For firms that fire their CEO, it slides for weeks, drops on the announcement and then moves sideways.
+### Personal scandals
 
-![Figure 2. Prices slide before the firing, drop on the news, then stop](/static/reports/founder-ceo/figures/fig1_event_time.png)
+Sex scandals make headlines, but the market reacts to them much as it does to any other firing. Only {{car.conduct.mm_m1p1.mean|n}} firings over a personal scandal have a hand-checked date, so we measure them on every date source. On all {{rob.all_dates.conduct.mm_m1p1.mean|n}}, the shares move {{rob.all_dates.conduct.mm_m1p1.mean}} over the three days, which is {{rob.all_dates.conduct.mm_m1p1.mean|sig}} (Table 2). Other firings move {{rob.all_dates.performance.mm_m1p1.mean}} on the same measure, a difference of {{rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean}} (p {{rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean|p}}). Table IA.6 and Figure IA.2 break the remaining firings down by the reason coded for them.
 
-*Figure 2. Prices slide before the firing, drop on the news, then stop.* Notes. Mean cumulative return minus the market from trading day -30 to day +60 around the announcement (day 0), departures dated by the database or a hand check, with {{ci_level}}% confidence bands. Panel (b) splits firings by founder status and by the database's dismissal type. N is the number of departures with every day of the window.
+With size, the prior year's return and the year held constant, the personal-scandal gap is {{regc.car_m1p1.conduct}} (p {{regc.car_m1p1.conduct|p}}, n = {{regc.car_m1p1.conduct|n}}; Table IA.4). Fraud is another matter: after a firing over fraud or another legal violation the shares fall {{rob.all_dates.criminal.mm_m1p1.mean|abs}} (Table 2). Why would the shares react so little to a scandal? The firing may say little about the business, or the market may have priced the scandal when it first broke. The firing alone cannot separate the two, so we went back to the first report.
 
-Table 3 gives the numbers. Over the six weeks before, firing firms trail the market by {{drift.forced.pre_m30m2.mean|abs}}, while retirement firms do not move ({{drift.retired.pre_m30m2.mean}}). In the announcement window firing firms lose another {{car.forced.mm_m1p1.mean|abs}} (t = {{car.forced.mm_m1p1.mean|t}}), and retirement firms earn {{car.retired.mm_m1p1.mean}}.
+We searched the New York Times Archive for personal misconduct by sitting chief executives of the sample's firms and checked each report by hand (Table IA.7). The search finds {{scandal.n_events}} scandals. In {{scandal.n_departed}} the chief executive left within a year; in {{scandal.n_kept}} the board kept them, among them Jeff Bezos at Amazon and Bobby Kotick at Activision Blizzard. It finds only {{scandal.n_known_firings_found}} of the database's firings over a personal scandal, mostly at the largest firms, so these cases describe prominent scandals and support no test.
 
-The difference of {{cardiff.forced_vs_retired.mm_m1p1.diff_mean}} is {{cardiff.forced_vs_retired.mm_m1p1.diff_mean|sig}}. The standardized test of the firing mean gives t = {{car.forced.mm_m1p1.bmp_t}}, the five-factor model {{car.forced.ff5_m1p1.mean}} and the eleven-day window {{car.forced.mm_m5p5.mean}}. Over the three months after, firing firms earn {{drift.forced.post_p2p60.mean}} against the market, which is {{drift.forced.post_p2p60.mean|sig}}. H1 holds.
+For the {{scandal.all.first_report.car_m1p1.mean|n}} scandals with share prices at the time, the shares fell {{scandal.all.first_report.car_m1p1.mean|abs}} against the market over the three trading days around the first report. They fell {{scandal.departed.first_report.car_m1p1.mean|abs}} where the chief executive later left ({{scandal.departed.first_report.car_m1p1.mean|n}} cases) and {{scandal.kept.first_report.car_m1p1.mean|abs}} where the board kept them ({{scandal.kept.first_report.car_m1p1.mean|n}}), too few cases to tell apart.
+
+Three founders were fired over a personal scandal: John Schnatter at Papa John's, Steve Wynn at Wynn Resorts and Vince McMahon at World Wrestling Entertainment (WWE). WWE's shares rose {{case.8370.car_m1p1}} over the three days around McMahon's departure (Table IA.8); three cases do not support a test.
+
+## 5. Which firms are delisted
+
+The lasting difference is survival. Figure 2 follows the firms with a complete five-year horizon month by month. Within five years of a firing {{exit.forced.delisted_5y}} of the {{exit.forced.delisted_5y|n}} firms have been delisted, against {{exit.retired.delisted_5y}} of the {{exit.retired.delisted_5y|n}} firms after a retirement. In that time {{exit.forced.acquired_5y}} of firing firms are taken over and {{exit.forced.bankruptcy_5y}} go bankrupt.
+
+![Figure 2. Within five years, {{exit.forced.delisted_5y}} of firing firms are delisted](/static/reports/founder-ceo/figures/fig3_exits.png)
+
+*Figure 2. Within five years, {{exit.forced.delisted_5y}} of firing firms are delisted.* Notes. Cumulative share of firms no longer trading, by month after the announcement, for firms with a complete {{months_5y}}-month horizon: (a) for any reason, (b) in bankruptcy. Most of the rest are takeovers; Table 4 gives the shares.
+
+A natural worry is size: firing firms are about half as large, and small firms fail more often. Table 3 therefore compares firms of similar size. In the smallest band, under $300 million, {{exit.forced.size_small.bankruptcy_5y}} of firing firms go bankrupt within five years, against {{exit.retired.size_small.bankruptcy_5y}} of retirement firms. Above $5 billion the bankrupt shares are {{exit.forced.size_mega.bankruptcy_5y}} and {{exit.retired.size_mega.bankruptcy_5y}}.
+
+The gap in delisting holds in every band. In the $1 to 5 billion band, {{exit.forced.size_large.delisted_5y}} of firing firms are delisted within five years, against {{exit.retired.size_large.delisted_5y}} of retirement firms (p {{exitdiff.forced_vs_retired.size_large.delisted_5y|p}}; Table 3).
 
 <!-- TABLE:3 -->
 
-Firms that fire for performance trail the market by {{drift.performance.pre_m30m2.mean|abs}} over the six weeks before; firms that fire for legal or personal conduct trail it by {{drift.conduct.pre_m30m2.mean|abs}}. On the day the order reverses: conduct firings cost {{car.conduct.mm_m1p1.mean|abs}} and performance firings {{car.performance.mm_m1p1.mean|abs}}. The gap is {{cardiff.conduct_vs_performance.mm_m1p1.diff_mean|sig}}.
+Some firms were already failing when the chief executive left: for {{exit.forced.early_bankruptcy_n}} of them a bankruptcy was recorded within 180 days of the announcement, as at Sears and Dana. Setting those aside, {{exit.forced.after.delisted_5y}} of firing firms are delisted within five years and {{exit.forced.after.bankruptcy_5y}} go bankrupt.
 
-The pattern fits H3, since conduct firings come with less warning and cost more on the day, but the evidence is weak. On every firing the gap is {{rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean}}, also {{rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean|sig}}.
+Controls shrink the gap but do not close it. With controls for size, return on assets, year and industry, firing firms remain {{reg.exit5.gone.forced}} more likely to be delisted within five years (Table 4 and Table IA.9). Adding the prior year's return, leverage, book-to-market, a distress score and a loss flag lowers the gap to {{reg.exit5c.gone.forced}} (p {{reg.exit5c.gone.forced|p}}). Of that, {{reg.exit5c.bankrupt.forced}} is bankruptcy. Leverage predicts delisting strongly (t = {{reg.exit5c.gone.leverage_w|t}}).
 
-### Founders
+Against their matched firms the difference is {{exitdiff.forced_vs_ctrl.delisted_5y}} (p {{exitdiff.forced_vs_ctrl.delisted_5y|p}}; Table IA.9). The firing need not cause the delisting: a board may fire the chief executive of a firm it already expects to struggle.
 
-Table 4 reports the announcement return for each group. Fired founders cost {{car.forced_founder.mm_m1p1.mean|abs}}, against {{car.forced_nonfounder.mm_m1p1.mean|abs}} for hired CEOs. The difference of {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean}} is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|sig}} (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|p}}). In a regression on all departures with event-year effects, the founder interaction is {{reg.car_m1p1.forced_x_founder}}, also {{reg.car_m1p1.forced_x_founder|sig}}.
-
-The test is not powerful: with {{a.n_forced_founder}} hand-dated founder firings, it would detect only a gap of about {{mde.founder_gap.mm_m1p1}}. Table IA.3 reports the gap in every window. Over trading days -5 to +5 founders cost {{cardiff.forced_founder_vs_forced_nonfounder.mm_m5p5.diff_mean|abs}} more, which is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m5p5.diff_mean|sig}} (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m5p5.diff_mean|p}}).
-
-On every firing, founders cost {{rob.all_dates.forced_founder.mm_m1p1.mean|abs}} against {{rob.all_dates.forced_nonfounder.mm_m1p1.mean|abs}}.
-
-Founder firms slide further before the announcement, by {{drift.forced_founder.pre_m30m2.mean|abs}} over the six weeks before, but the difference from hired CEOs is {{driftdiff.forced_founder_vs_forced_nonfounder.pre_m30m2.diff_mean|sig}}. The data cannot separate a founder premium from zero, though every estimate points the same way. They do rule out the strong form of the entrenchment view. The upper end of the 95% interval for fired founders is {{car.forced_founder.mm_m1p1.ci_high}}, so the market does not greet a founder's firing as good news.
-
-The comparison fits earlier evidence from sudden deaths, where founder-CEOs and other CEOs move prices down by similar amounts on average, {{lit_death_founder_pct}}% and {{lit_death_other_pct}}% [@jenter2023].
+Founders and scandals again look ordinary. Founder firms are delisted within five years in {{exit.forced_founder.delisted_5y}} of cases (Table 4). The difference from hired chief executives is {{exitdiff.forced_founder_vs_forced_nonfounder.delisted_5y|sig}} (p {{exitdiff.forced_founder_vs_forced_nonfounder.delisted_5y|p}}), and {{reg.exit5c.gone.founder}} with the full controls. After a personal scandal the share is {{exit.conduct.delisted_5y}}, close to the {{exit.retired.delisted_5y}} after a retirement. Most delistings are takeovers, which fits the view that board removal and takeover are two routes to a change of control [@morck1989].
 
 <!-- TABLE:4 -->
 
-### Sex, fraud and the rest
+## 6. Returns, profits and the board over five years
 
-Table 5 and Figure 3 split the firings by the reason the board acted. Financial misconduct costs {{car.reason.financial_misconduct.mm_m1p1.mean|abs}} in the announcement window, and strategy or power disputes {{car.reason.strategy_or_power_dispute.mm_m1p1.mean|abs}}. Most other reasons cost little, and each group is small.
+If firing firms fail more often, do their shareholders lose more? Once risk is priced, not by any margin the data can detect. A portfolio of every firm in its first 36 months after a firing earns an alpha of {{alpha.forced.ew.36m}} a month equally weighted (t = {{alpha.forced.ew.36m|t}}) and {{alpha.forced.vw.36m}} value-weighted (Table IA.10). The difference from a portfolio of retirement firms is {{alphadiff.forced_vs_retired.ew.36m}} a month (t = {{alphadiff.forced_vs_retired.ew.36m|t}}), which is {{alphadiff.forced_vs_retired.ew.36m|sig}}.
 
-With so many reasons tested, chance alone would produce a significant one. After a Holm correction for multiple tests, no single reason is significant: financial misconduct has a Holm p of {{car.reason.financial_misconduct.mm_m1p1.holm_p}} and strategy disputes {{car.reason.strategy_or_power_dispute.mm_m1p1.holm_p}}.
+Against the market alone the picture looks much worse. After five years the median firing firm's buy-and-hold return trails the market by {{bhar.forced.5y.median|abs}}, and the median retirement firm's by {{bhar.retired.5y.median|abs}} (Figure 3). The typical stock lags an index over long horizons because returns are skewed, and firing firms are small and have been falling; the factor model allows for both.
 
-Firings over sex scandals are a different matter. Only {{car.sex_or_relationship.mm_m1p1.mean|n}} have a hand-coded date, so we compare them with fraud on every firing. The {{rob.all_dates.sex_or_relationship.mm_m1p1.mean|n}} firings over sexual misconduct or a relationship earn {{rob.all_dates.sex_or_relationship.mm_m1p1.mean}}, against {{rob.all_dates.financial_misconduct.mm_m1p1.mean}} for the {{rob.all_dates.financial_misconduct.mm_m1p1.mean|n}} fraud firings.
+![Figure 3. Against the market the long run looks grim; against a matched firm it does not](/static/reports/founder-ceo/figures/fig2_long_run.png)
 
-That difference of {{rob.all_dates.sex_vs_fraud.mm_m1p1.diff_mean}} is {{rob.all_dates.sex_vs_fraud.mm_m1p1.diff_mean|sig}} (p {{rob.all_dates.sex_vs_fraud.mm_m1p1.diff_mean|p}}). On hand-dated firings it is {{cardiff.sex_or_relationship_vs_financial_misconduct.mm_m1p1.diff_mean}}.
+*Figure 3. Against the market the long run looks grim; against a matched firm it does not.* Notes. Median buy-and-hold return minus the market, month 1 to month {{months_5y}} after the announcement, in months of {{trading_days_per_month}} trading days from day +2, all firings. Diamonds mark the median return against a matched firm at {{months_1y}}, {{months_3y}} and {{months_5y}} months; Table IA.11 gives the numbers.
 
-The relationship cases include Intel, Boeing, McDonald's and Priceline, where the company said the CEO had broken its policy on relationships; we checked each label by hand. A fraud tells investors that the numbers they relied on were wrong. A sex scandal tells them about one person, and the firing removes that person. With so few sex cases, we treat the comparison as exploratory.
+A matched firm of the same industry, size and profitability is the fairer yardstick. Against it, the median firing firm's buy-and-hold return is {{mbhar.forced.1y.median}} after one year (p {{mbhar.forced.1y.median|p}}). After three and five years it is {{mbhar.forced.3y.median}} and {{mbhar.forced.5y.median}}, neither statistically significant (Table IA.11). For fired founders the matched medians are {{mbhar.forced_founder.3y.median}} and {{mbhar.forced_founder.5y.median}}.
 
-Earlier studies point the same way. When executive misbehaviour first becomes public, firms lose about {{lit_larcker_reveal_pct}}%, but the later firing itself costs about {{lit_larcker_fire_pct}}% [@larcker2016]. Personal indiscretions cost {{lit_cline_ceo_pct}}% when the offender is the CEO [@cline2018], and sexual-harassment scandals about {{lit_metoo_car_pct}}% [@borellikjaer2021]. Our window catches the firing, not the first report.
+Profits barely move either. Return on assets changes little against the matched firm (Table IA.12 and Figure IA.3). In the first fiscal year after a firing the median change is {{roa.forced.abn_d_1.median}} percentage points, which is {{roa.forced.abn_d_1.median|sig}} (p {{roa.forced.abn_d_1.median|p}}). By fiscal year +3 it is {{roa.forced.abn_d_3.median}}, on the firms still filing.
 
-<!-- TABLE:5 -->
+The board changes more visibly. About two years after a firing, {{board.forced.director_turnover.mean}} of the earlier directors are no longer named in the proxy statement, against {{board.retired.director_turnover.mean}} after a retirement (Table IA.13). A proxy statement lists the directors standing for election, not why others left, so these shares do not separate resignations, directors not nominated again and lost votes. Directors are matched on surname and first initial, which may overstate both shares.
 
-![Figure 3. Fraud is expensive; sex scandals are not, at least on the day](/static/reports/founder-ceo/figures/fig4_reasons.png)
+A fired founder sits on the board two years later at {{board.forced_founder.founder_stays.mean}} of firms, against {{board.forced_nonfounder.ceo_stays_director.mean}} for a fired hired chief executive and {{board.retired.ceo_stays_director.mean}} for a retired one (Table IA.13). These results cover the {{g.events_with_board_data}} departures whose firms filed a proxy statement both before and about two years after.
 
-*Figure 3. Fraud is expensive; sex scandals are not, at least on the day.* Notes. Mean abnormal return over trading days -1 to +1 by the coded reason the board acted, hand-dated firings, with {{ci_level}}% intervals; reasons with at least {{min_reason_cases}} firings. Crimson: money and legal cases; violet: personal conduct, including relationships with employees; grey: other reasons.
+## 7. Firings over fraud and legal violations
 
-### The largest founders fired
+Fraud does change the market's verdict. The {{a.n_criminal_all_dates}} firings over fraud, a legal or regulatory breach, or a criminal charge are a different event, since the firm itself is in trouble with the law. Over the three days around the announcement their shares fall {{rob.all_dates.criminal.mm_m1p1.mean|abs}}, on every firing whatever its date source (Table 2). After a personal scandal the shares fall {{rob.all_dates.conduct.mm_m1p1.mean|abs}} on the same measure. The difference of {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean}} is {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean|sig}} (p {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean|p}}; Table 2). One reading is that a fraud tells investors the numbers they relied on were wrong, while a personal scandal concerns one person, whom the firing removes.
 
-Table 6 lists the largest firms whose founder was fired, among the firings the evidence also reads as forced. The range is wide. WorldCom lost {{case.49.car_m1p1|abs}} in the announcement window when Bernard Ebbers left in 2002, and it was bankrupt within months. Yahoo gained {{case.7398.car_m1p1}} when Jerry Yang stepped aside in 2008.
+In the long run, {{exit.criminal.delisted_5y}} of the firms that fired their chief executive over fraud or another legal violation are delisted within five years. That is {{exitdiff.criminal_vs_retired.delisted_5y}} more than after a retirement (p {{exitdiff.criminal_vs_retired.delisted_5y|p}}). After a personal scandal the share is {{exit.conduct.delisted_5y}}, not significantly different from retirements (p {{exitdiff.conduct_vs_retired.delisted_5y|p}}; Table 4). Treating both as misconduct, as earlier studies often do, would hide the difference at the announcement.
 
-WWE rose {{case.8370.car_m1p1}} when Vince McMahon left in 2022 during an investigation of his conduct. There the market read the founder's exit as removing a problem rather than a source of value.
+## 8. Conclusion
 
-<!-- TABLE:6 -->
+Boards rarely surprise the market when they fire a chief executive. The shares have usually fallen for weeks; they fall a further {{car.forced.mm_m1p1.mean|abs}} over the three days around the announcement and then stop. Against similar firms they trail by a further {{mbhar.forced.1y.median|abs}} in the first year, and the gap is not significant at three or five years (Table 1).
 
-## 4. After the dust settles: long-run returns and profits
+Neither a founder at the top nor a sex scandal changes that picture much. When a founder is fired the shares fall {{car.forced_founder.mm_m1p1.mean|abs}} on average, against {{car.forced_nonfounder.mm_m1p1.mean|abs}} for a hired chief executive, a gap that is {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|sig}} (p {{cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean|p}}; Table 2). It disappears once firm size and the prior year's return are held constant. After a personal scandal the shares fall about as much as after any other firing, and {{rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean}} less than after fraud or another legal violation. These firms are delisted about as often as firms whose chief executive retired.
 
-::: answer
-**The question.** Does the firm do better or worse in the five years after the firing?
+What does change is the chance that the firm survives. Within five years firing firms are delisted more often than retirement firms in every size band, a gap that shrinks but remains once leverage and distress are held constant. A portfolio of all firing firms, including those that failed, earns an abnormal return close to zero once risk is priced.
 
-**The answer.** Against the market the median firm does far worse. Against similar firms with no recorded CEO change, it trails in the first year and differs little after that. Profits dip in the first year and then level.
-:::
-
-### Returns over five years
-
-Figure 4 follows the median firm for {{months_5y}} months. Against the market the picture is grim. The median firing firm trails the market by {{bhar.forced.1y.median|abs}} after one year, {{bhar.forced.3y.median|abs}} after three and {{bhar.forced.5y.median|abs}} after five. The median fired-founder firm trails it by {{bhar.forced_founder.5y.median|abs}} after five years.
-
-But the median retirement firm trails the market too, by {{bhar.retired.5y.median|abs}} after five years. Long-horizon returns are skewed, so the median stock in most groups lags an index. The fair comparison is with a similar firm.
-
-![Figure 4. Against the market the long run looks grim; against a matched firm it does not](/static/reports/founder-ceo/figures/fig2_long_run.png)
-
-*Figure 4. Against the market the long run looks grim; against a matched firm it does not.* Notes. Median buy-and-hold return minus the market, month 1 to month {{months_5y}} after the announcement, in months of {{trading_days_per_month}} trading days from day +2, all firings. Diamonds mark the median return against a matched firm at {{months_1y}}, {{months_3y}} and {{months_5y}} months; Table 7 gives their N at 36 months.
-
-Table 7 makes that comparison. Against a matched firm, the median firing firm's return is {{mbhar.forced.1y.median}} after one year, which is {{mbhar.forced.1y.median|sig}}. After three and five years the medians are {{mbhar.forced.3y.median}} and {{mbhar.forced.5y.median}}, and neither is statistically significant.
-
-The means tell a softer story still: {{mbhar.forced.1y.mean}}, {{mbhar.forced.3y.mean}} and {{mbhar.forced.5y.mean}} at one, three and five years, none significant. A few firing firms that recovered strongly pull the means above the medians. For fired founders the matched medians are {{mbhar.forced_founder.1y.median}}, {{mbhar.forced_founder.3y.median}} and {{mbhar.forced_founder.5y.median}}: similar firms with no recorded CEO change lost about as much as the founder firms did.
-
-<!-- TABLE:7 -->
-
-### Profits
-
-Table 8 follows operating return on assets against the same matched firm. In the first fiscal year after a firing, the median change is {{roa.forced.abn_d_1.median}} percentage points below the matched firm's, which is {{roa.forced.abn_d_1.median|sig}}. The gap from retirements is {{roadiff.forced_vs_retired.abn_d_1.diff_median}}. By fiscal year +3 the firing firms' gap is {{roa.forced.abn_d_3.median}}.
-
-Earlier work finds that operating performance falls before a CEO turnover and improves after it [@huson2004]. Here the recovery brings firing firms level with their matches within three years. Firing the CEO is followed by a short dip in profits, not by a lasting change.
-
-<!-- TABLE:8 -->
-
-## 5. Sold, bankrupt, or still standing
-
-::: answer
-**The question.** How many of these firms stop trading, and how?
-
-**The answer.** A third within five years, twice the rate after a retirement. Takeovers are the commonest exit, but bankruptcy explains more of the gap with retirements.
-:::
-
-The clearest long-run difference is whether the firm survives as an independent listed company. Figure 5 shows the share of firms that have stopped trading, month by month, among firms with a complete five-year horizon. Table 9 gives the shares at one, three and five years.
-
-![Figure 5. One in three is gone within five years](/static/reports/founder-ceo/figures/fig3_exits.png)
-
-*Figure 5. One in three is gone within five years.* Notes. Cumulative share of firms no longer trading, by month after the announcement and by how they left, for firms with a complete {{months_5y}}-month horizon: (a) after a firing, (b) after a retirement.
-
-After a firing, {{exit.forced.delisted_1y}} of firms stop trading within a year, {{exit.forced.delisted_3y}} within three years and {{exit.forced.delisted_5y}} within five. After a retirement the shares are {{exit.retired.delisted_1y}}, {{exit.retired.delisted_3y}} and {{exit.retired.delisted_5y}}.
-
-Takeovers are the commonest way out: {{exit.forced.acquired_5y}} of firing firms are acquired within five years and {{exit.forced.bankruptcy_5y}} go bankrupt. After a retirement the figures are {{exit.retired.acquired_5y}} and {{exit.retired.bankruptcy_5y}}. The excess over retirements therefore comes more from bankruptcy than from takeovers.
-
-Firing firms are smaller and weaker than retirement firms, so part of the gap could reflect who they are. Table IA.4 controls for size, profitability, year and industry. A firing still adds {{reg.exit5.gone.forced}} to the chance of leaving the market within five years. Of that, {{reg.exit5.bankrupt.forced}} is bankruptcy and {{reg.exit5.acquired.forced}} takeover.
-
-Matched firms give the same answer. Within five years {{exit.ctrl_of_forced.delisted_5y}} of the matched firms stopped trading, against {{exit.paired_forced.delisted_5y}} of the same firing firms, a difference of {{exitdiff.forced_vs_ctrl.delisted_5y}} that is {{exitdiff.forced_vs_ctrl.delisted_5y|sig}}.
-
-Bankruptcies come early: {{exit.forced.bankruptcy_1y}} of firing firms fail within a year. After a founder is fired, {{exit.forced_founder.delisted_5y}} of firms stop trading within five years, a difference from hired CEOs that is {{exitdiff.forced_founder_vs_forced_nonfounder.delisted_5y|sig}}. A board that fires its CEO is more likely to end with the firm sold or failed. That fits the view that board removal and takeover are two routes to a change of control [@morck1989].
-
-<!-- TABLE:9 -->
-
-## 6. Who stays on the board
-
-::: answer
-**The question.** What happens to the board after a firing?
-
-**The answer.** Nearly half of the earlier directors are gone two years later, more than after a retirement. Fired CEOs, founders included, rarely stay on the board.
-:::
-
-Firing the CEO is followed by a wider clear-out. About two years after a firing, {{board.forced.director_turnover.mean}} of the directors who served before the departure have left, against {{board.retired.director_turnover.mean}} after a retirement. The difference is {{boarddiff.forced_vs_retired.director_turnover.diff_mean|sig}}.
-
-Firing firms more often had separate chair and CEO roles before the departure, {{board.forced.split_before.mean}} against {{board.retired.split_before.mean}}. Two years later the shares are close, {{board.forced.split_after.mean}} and {{board.retired.split_after.mean}}. The rise comes after retirements, when a retiring CEO often hands over both roles.
-
-Fired CEOs almost always leave the board too. A fired founder still sits on the board two years later at {{board.forced_founder.founder_stays.mean}} of firms, against {{board.forced_nonfounder.ceo_stays_director.mean}} for fired hired CEOs and {{board.retired.ceo_stays_director.mean}} for CEOs who retire.
-
-Figure 6 plots these results next to the profit path of Section 4. They cover the {{g.events_with_board_data}} departures whose firms filed a proxy statement both before and about two years after the event. Firms sold or delisted in between are left out.
-
-![Figure 6. Profits dip and recover; the board turns over](/static/reports/founder-ceo/figures/fig6_roa_board.png)
-
-*Figure 6. Profits dip and recover; the board turns over.* Notes. (a) Median change in return on assets from fiscal year -1, minus the same change at the matched firm, in percentage points, for fiscal years 0 to +3. (b) The board about two years after the departure: the share of earlier directors gone, the share of firms with separate chair and CEO, and the share where the departing CEO is still a director, for firings (crimson) and retirements (slate); the diamond marks fired founders.
-
-<!-- TABLE:10 -->
-
-## 7. Conclusion
-
-Boards rarely fire the people who built their companies, and when they do, the story told is about the founder. The data tell a different story, horizon by horizon.
-
-The market sees the trouble weeks before the board acts. On the day it marks the firm down once. It marks it down more for fraud than for sex scandals, and perhaps more for a founder than for a hired CEO. After that the price stops moving.
-
-The lasting difference is survival. A firm that fires its CEO is about twice as likely as a retirement firm to stop trading within five years. Bankruptcy explains more of that gap than takeover does. Its returns against similar firms differ little after the first year, and its profits recover.
-
-For investors watching a board fire its CEO, three questions matter more than who built the company. Was the stock already falling? Did the CEO mislead investors about the numbers, or was the scandal personal? And how fragile is the firm? For boards, firing a founder may carry a larger penalty on the day, but none that lasts.
-
-::: limits
-**What these data cannot tell us.**
-
-- The sample covers S&P {{index_size}} firms, so it says little about smaller companies, where founders often hold more control.
-- Reasons other than financial misconduct, sexual conduct and relationships are model codes, checked by hand only where errors would matter most.
-- The sex-scandal and founder groups are small, so those tests can detect only large gaps.
-- Precise announcement dates exist for only part of the sample.
-- The window catches the firing, not the first public report of the problem behind it.
-- The comparisons describe what follows a firing. They cannot say what would have happened had the board kept the CEO.
-:::
+The sample covers S&P {{index_size}} firms, so it says little about smaller companies, where founders often hold more control. Only three founders were fired over a personal scandal, and too few scandals in which the board kept its chief executive reached the press to test. Announcement dates are precise for part of the sample only. Proxy statements do not say why a director left. The comparisons describe what follows a firing, not what would have happened had the board kept its chief executive.
 
 ## Internet Appendix
 
-Table IA.1 changes one thing at a time against the main tables. With the five-factor model plus momentum, the founder gap is {{rob.founder_vs_nonfounder_ff5.m1p1.diff_mean}} and the conduct gap {{rob.conduct_vs_performance_ff5.m1p1.diff_mean}}. Returns minus the market, with no estimated model, give {{rob.forced.ma_m1p1.mean}} in the announcement window. Using every firing, whatever its date source, gives {{rob.all_dates.forced.mm_m1p1.mean}}.
+### Sample and firms
 
-On the strict sample of {{a.n_forced_strict}} hand-dated firings that the evidence also reads as forced, the announcement return is {{car.forced_strict.mm_m1p1.mean}}, which is {{car.forced_strict.mm_m1p1.mean|sig}}. Fired founders there earn {{car.forced_strict_founder.mm_m1p1.mean}} against {{car.forced_strict_nonfounder.mm_m1p1.mean}} for hired CEOs. Within five years {{exit.forced_strict.delisted_5y}} of the strict sample stop trading.
-
-Our coding finds {{rob.n_pushed_retirements}} hand-dated departures that the database records as retirements but that followed board pressure. Adding them to the firings gives {{rob.forced_plus_pushed.mm_m1p1.mean}}. Excluding 2008 and 2009 gives {{rob.forced_excl_crisis.mm_m1p1.mean}}, and dropping firings coded as leaving for a new job gives {{rob.forced_excl_newopp.mm_m1p1.mean}}.
-
-The long-run results do not depend on how delisting returns are set. With every delisting return at zero, the median three-year return against the market is {{rob.bhar_dl0.forced.3y.median}}. Setting every delisting that is not a takeover to minus 100% gives {{rob.bhar_dlworst.forced.3y.median}}. Using only matches that meet the size rule, the median three-year matched return is {{rob.mbhar_strict_matches.3y.median}}.
-
-For departures from 1992 to 1997, before daily prices for delisted firms exist, we use the five-year return graphs that firms print in their proxy statements. Of these departures, {{pre.events_with_tsr}} have a usable graph, including {{pre.n_forced}} firings. A firm must still file a proxy three years later, so only survivors enter this check.
-
-The median three-year return against the firm's own reported index is {{pre.forced.abn_tsr_3y.median}} after firings and {{pre.retired.abn_tsr_3y.median}} after retirements. The difference of {{pre.forced_vs_retired.abn_tsr_3y.diff_median}} is {{pre.forced_vs_retired.abn_tsr_3y.diff_median|sig}}. Both groups trail their indexes, and the comparison between the groups points the same way as in the main sample.
+Table IA.1 traces the firings from the CEO dismissal database to the samples, and Figure IA.1 counts them by year. In the fiscal year before the departure, firing firms are smaller and less profitable than retirement firms: their median return on assets is {{desc.forced.roa.median}}, against {{desc.retired.roa.median}} (Table IA.2).
 
 <!-- TABLE:IA.1 -->
 
+![Figure IA.1. Firings per year](/static/reports/founder-ceo/figures/fig5_per_year.png)
+
+*Figure IA.1. Firings per year.* Notes. Firings by year, 1998 to 2023, by the database's dismissal type, after firings over fraud or another legal violation are removed; the number above each bar counts the founders among them. The last year covers part of 2023.
+
 <!-- TABLE:IA.2 -->
+
+### The announcement
+
+The founder gap is negative in all four windows of Table IA.3 and significant in none. With {{a.n_forced_founder}} founders, the smallest gap the main test could detect is {{mde.founder_gap.mm_m1p1}}.
 
 <!-- TABLE:IA.3 -->
 
+Table IA.4 changes one thing at a time against the main tables. With the five-factor model plus momentum, the founder gap is {{rob.founder_vs_nonfounder_ff5.m1p1.diff_mean}} and the personal-scandal gap {{rob.conduct_vs_performance_ff5.m1p1.diff_mean}}. Returns minus the market, with no estimated model, give {{rob.forced.ma_m1p1.mean}} over the three days. Using every firing, whatever its date source, gives {{rob.all_dates.forced.mm_m1p1.mean}}.
+
+On the {{a.n_forced_strict}} hand-dated firings that the evidence-based coding also reads as forced, the return over trading days -1 to +1 is {{car.forced_strict.mm_m1p1.mean}}. Excluding 2008 and 2009 gives {{rob.forced_excl_crisis.mm_m1p1.mean}}, and dropping firings coded as leaving for a new job gives {{rob.forced_excl_newopp.mm_m1p1.mean}}.
+
+The long-run results do not depend on how delisting returns are set. With every delisting return at zero, the median three-year return against the market is {{rob.bhar_dl0.forced.3y.median}}, and setting every delisting that is not a takeover to minus 100% gives {{rob.bhar_dlworst.forced.3y.median}}. When no firm meets the size band the nearest firm in size is the match ({{h.relaxed_matches}} matches); using only matches within the band, the median three-year matched return is {{rob.mbhar_strict_matches.3y.median}}.
+
+For departures from 1992 to 1997, before daily prices for delisted firms exist, we use the five-year return graphs that firms print in their proxy statements. Of these departures, {{pre.events_with_tsr}} have a usable graph, including {{pre.n_forced}} firings. The median three-year return against the firm's own reported index is {{pre.forced.abn_tsr_3y.median}} after firings and {{pre.retired.abn_tsr_3y.median}} after retirements. Only firms still filing three years later enter this check.
+
 <!-- TABLE:IA.4 -->
+
+<!-- TABLE:IA.5 -->
+
+Table IA.6 and Figure IA.2 split the firings by the reason coded for them. After a Holm correction for testing every reason, two falls remain statistically significant (Table IA.6). Where a push was described as a retirement or ill health the fall is {{car.reason.retirement_or_health.mm_m1p1.mean|abs}} (Holm p = {{car.reason.retirement_or_health.mm_m1p1.holm_p}}). Where the chief executive was coded as leaving for a new job it is {{car.reason.new_opportunity.mm_m1p1.mean|abs}} (Holm p = {{car.reason.new_opportunity.mm_m1p1.holm_p}}). Strategy or power disputes are followed by a fall of {{car.reason.strategy_or_power_dispute.mm_m1p1.mean|abs}} (Holm p = {{car.reason.strategy_or_power_dispute.mm_m1p1.holm_p}}).
+
+<!-- TABLE:IA.6 -->
+
+![Figure IA.2. The announcement return by the reason the board acted](/static/reports/founder-ceo/figures/fig4_reasons.png)
+
+*Figure IA.2. The announcement return by the reason the board acted.* Notes. Mean abnormal return over trading days -1 to +1 by the coded reason, hand-dated firings, with {{ci_level}}% intervals; reasons with at least {{min_reason_cases}} firings. Table IA.6 gives the numbers.
+
+Table IA.7 lists each scandal the New York Times search found, grouped by whether the board kept its chief executive, with the return around the first report. The boards that kept their chief executive include News Corp, Goldman Sachs, Amazon and Activision Blizzard; those whose chief executive left include Boeing, Hewlett-Packard, Intel and McDonald's. Sexual relationships and harassment allegations appear on both sides. Table IA.8 lists the largest founders fired, with the return at the announcement and what became of the firm.
+
+<!-- TABLE:IA.7 -->
+
+<!-- TABLE:IA.8 -->
+
+### Survival, returns, profits and the board
+
+<!-- TABLE:IA.9 -->
+
+<!-- TABLE:IA.10 -->
+
+<!-- TABLE:IA.11 -->
+
+<!-- TABLE:IA.12 -->
+
+![Figure IA.3. Profits and the board after the firing](/static/reports/founder-ceo/figures/fig6_roa_board.png)
+
+*Figure IA.3. Profits and the board after the firing.* Notes. (a) Median change in return on assets from fiscal year -1, minus the same change at the matched firm, in percentage points, fiscal years 0 to +3. (b) About two years after the departure, three shares: pre-departure directors not named in the later proxy, firms with a separate chair and chief executive, and firms where the departing chief executive is still a director. Firings are red and retirements grey; the diamond marks fired founders.
+
+<!-- TABLE:IA.13 -->
 
 ## References

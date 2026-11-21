@@ -1,0 +1,49 @@
+event_id,company,ceo,model_label,decision,basis
+13,American Airlines,Donald J. Carty,other_personal_conduct,pay_or_perks,"Stepped down after criticism for undisclosed executive perks during wage cuts; a pay controversy, not a personal scandal"
+120,Amdahl,E. Joseph Zemke,other_personal_conduct,unclear,Resigned for unstated personal reasons; no scandal on record
+307,ADP,Gary C. Butler,other_personal_conduct,personal_crime,Reported charged with domestic violence days before the resignation; a criminal charge
+540,KeySpan,William J. Catacosinos,other_personal_conduct,pay_or_perks,Forced out after revelations of a $42 million compensation package; a pay controversy
+720,Cleco,Darren J. Olagues,other_personal_conduct,personal_crime,Arrested and charged with domestic abuse; a criminal charge (later dropped)
+1041,Dana,Gary L. Convis,other_personal_conduct,pay_or_perks,Departure tied to undisclosed benefits and perks; a pay controversy
+1513,Genentech,G. Kirk Raab,other_personal_conduct,financial_misconduct,Sought a personal loan guarantee from the majority holder during merger talks; self-dealing
+1713,HP,Mark V. Hurd,other_personal_conduct,financial_misconduct,Found to have misused company funds (inaccurate expense reports)
+1732,Pinnacle Entertainment,R. D. Hubbard,other_personal_conduct,other_personal_conduct,Resigned when allegations about prostitutes came to light; personal conduct
+1734,Pinnacle Entertainment,Daniel R. Lee,other_personal_conduct,other_personal_conduct,Resigned after regulators opened an inquiry into his conduct at a public meeting; personal conduct
+1759,Starwood,Steven J. Heyer,other_personal_conduct,other_personal_conduct,"Ousted over management style, including messages to a female employee; personal conduct"
+1869,Interface,Jay D. Gould,other_personal_conduct,other_personal_conduct,Terminated after an investigation into personal behaviour that violated company policy
+2043,Keane,Brian T. Keane,other_personal_conduct,other_personal_conduct,Resigned after an employee's allegations about his conduct; harassment claim settled
+2103,Lam Research,Martin B. Anstice,other_personal_conduct,other_personal_conduct,Resigned during an investigation of workplace misconduct
+3311,Southwest Airlines,James F. Parker,other_personal_conduct,unclear,Left citing personal reasons; no scandal on record
+3495,RadioShack,David J. Edmondson,other_personal_conduct,other_personal_conduct,"Stepped down after misstating his education on his resume; personal dishonesty, not a crime"
+3563,Texas Instruments,Brian T. Crutcher,other_personal_conduct,other_personal_conduct,"Resigned for violations of the code of conduct, personal behaviour"
+3749,United Technologies,Louis R. Chenevert,other_personal_conduct,other_personal_conduct,Board concern about his focus on his private life
+3751,Sprint,William T. Esrey,other_personal_conduct,unclear,Personal tax-shelter dispute alongside weak performance; not a personal scandal
+4644,Bally Total Fitness,Lee S. Hillman,other_personal_conduct,financial_misconduct,Failed to disclose company purchases from his brother; related-party dealing
+4759,MGM Mirage,J. Terrence Lanni,other_personal_conduct,other_personal_conduct,Resigned after allegations about his academic degree; personal dishonesty
+5083,First BanCorp,Luis M. Beauchamp,other_personal_conduct,unclear,Resigned after an audit-committee review of personal matters not described
+5475,TrueBlue,A. Patrick Beharelle,other_personal_conduct,other_personal_conduct,Investigation found behaviour that violated the code of conduct
+5884,Horace Mann,Louis G. Lower II,other_personal_conduct,personal_crime,Left while serving a jail sentence for drunken driving; a criminal conviction
+6254,PeopleSoft,Craig A. Conway,other_personal_conduct,legal_or_regulatory,Ousted after untruthful statements to analysts; a securities matter
+6325,Ingevity,D. Michael Wilson,other_personal_conduct,other_personal_conduct,"Resignation for personal conduct, unrelated to financial reporting"
+6347,SITE Centers,David J. Oakes,other_personal_conduct,unclear,No reason given; the evidence only speculates about personal conduct
+6390,Avid Technology,Louis Hernandez Jr.,other_personal_conduct,other_personal_conduct,Violations of workplace-conduct policies
+6466,Arconic,Klaus-Christian Kleinfeld,other_personal_conduct,strategy_or_power_dispute,Left after an unauthorised letter to the activist investor; an activist fight
+6523,Papa John's,John H. Schnatter,other_personal_conduct,other_personal_conduct,Stepped down after public criticism of his remarks about NFL leadership; personal conduct
+7238,DaVita,Victor M. G. Chaltiel,other_personal_conduct,unclear,Left citing personal and family reasons; no scandal on record
+7747,Rambus,Ronald D. Black,other_personal_conduct,other_personal_conduct,Terminated for an incident of conduct unrelated to the business
+7763,Maximus,Lynn P. Davenport,other_personal_conduct,other_personal_conduct,Terminated for conduct towards a female employee
+7802,Equity Office,Timothy H. Callahan,other_personal_conduct,unclear,Resigned for personal reasons; little evidence
+7852,Children's Place,Ezra Dabah,other_personal_conduct,legal_or_regulatory,Fired for breaching securities-trading rules on share pledges and reporting
+8022,Frontier Financial,John J. Dickson,other_personal_conduct,unclear,Dispute over a vacation; no scandal on record
+8257,F5 Networks,Manuel F. Rivelo,other_personal_conduct,other_personal_conduct,Resigned over personal conduct matters
+8486,Visteon,Timothy D. Leuliette,other_personal_conduct,other_personal_conduct,"Personal conduct (prostitutes, pornography on a company device) later cited for the termination"
+8500,Berkshire Hills,Michael P. Daly,other_personal_conduct,other_personal_conduct,Left after employees described a toxic workplace; personal conduct
+8540,Tapestry,Jide J. Zeitlin,other_personal_conduct,other_personal_conduct,Left over a misconduct allegation tied to a past relationship
+8547,Ixia,Victor Alston,other_personal_conduct,other_personal_conduct,Resigned after misstating his academic credentials
+8664,GameStop,Michael K. Mauler,other_personal_conduct,unclear,Resigned for personal reasons; no scandal on record
+8958,IHS Markit,Scott C. Key,other_personal_conduct,unclear,"Personal decision, no scandal on record"
+9072,Synchronoss,Glenn Lurie,other_personal_conduct,other_personal_conduct,Board review of allegations of personal misconduct
+9201,Vitamin Shoppe,Thomas A. Tolworthy,other_personal_conduct,other_personal_conduct,Resigned over misrepresentations of his educational history
+9399,Whitestone REIT,James C. Mastandrea,other_personal_conduct,other_personal_conduct,Fired after an investigation into conduct below the company's standards
+9780,OptimizeRx,Shadron L. Stastney,other_personal_conduct,unclear,Resigned for personal reasons; no scandal on record
+10213,Keurig Dr Pepper,Ozan Dokmecioglu,other_personal_conduct,other_personal_conduct,"Code-of-conduct violations unrelated to strategy, operations or financial reporting"

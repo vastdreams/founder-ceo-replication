@@ -3,7 +3,7 @@
 Two backends, chosen by the environment variable FCE_DATA_SOURCE:
   files     (default when FCE_DATA_DIR is set) canonical tables as Parquet or CSV files in FCE_DATA_DIR, written by
             the adapters in adapters/ from Sharadar, CRSP/Compustat (WRDS), Ken French, EDGAR and Zenodo.
-  postgres  the authors' research database (R&D Alpha), via ~/fce_db.py.
+  postgres  the authors' research database (R&D Alpha), via the authors' own connector module (fce_db, not distributed).
 
 Each function returns the same columns whichever backend serves it; DATA.md defines every column, its source, and
 equivalent sources. The analysis never reads a vendor table directly.
@@ -190,7 +190,8 @@ def fundamentals() -> pd.DataFrame:
         d = _read("fundamentals")
     else:
         d = _sql(
-            """select ticker, calendardate, datekey, assets, ebitda, netinc, revenue, marketcap, rnd, capex
+            """select ticker, calendardate, datekey, assets, ebitda, netinc, revenue, marketcap, rnd, capex,
+                      liabilities, equity, workingcapital, retearn, ebit
                from sharadar.sf1 where dimension = 'ARY'"""
         )
     return _dates(d, ["calendardate", "datekey"])

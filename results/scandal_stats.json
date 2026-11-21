@@ -1,0 +1,223 @@
+{
+ "scandal.n_events": {
+  "value": 27.0
+ },
+ "scandal.n_departed": {
+  "value": 19.0
+ },
+ "scandal.n_kept": {
+  "value": 8.0
+ },
+ "scandal.n_known_firings_found": {
+  "value": 12.0
+ },
+ "scandal.all.first_report.car_m1p1.mean": {
+  "value": -0.022088052316237578,
+  "n": 24,
+  "p": 0.14039054390885267
+ },
+ "scandal.departed.first_report.car_m1p1.mean": {
+  "value": -0.023835057094671302,
+  "n": 16,
+  "p": 0.24639264443008205
+ },
+ "scandal.kept.first_report.car_m1p1.mean": {
+  "value": -0.018594042759370145,
+  "n": 8,
+  "p": 0.37576449029047737
+ },
+ "_cases": [
+  {
+   "company": "News Corp",
+   "ceo_name": "Rupert Murdoch",
+   "first_report_date": "1998-10-04",
+   "scandal_type": "sexual_relationship",
+   "departed": 0,
+   "car": -0.1503530524
+  },
+  {
+   "company": "Global Crossing",
+   "ceo_name": "John J. Legere",
+   "first_report_date": "2002-04-08",
+   "scandal_type": "harassment_allegation",
+   "departed": 0,
+   "car": 0.0254896552
+  },
+  {
+   "company": "Ashland Inc.",
+   "ceo_name": "Paul W. Chellgren",
+   "first_report_date": "2002-08-04",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": 0.0360035896
+  },
+  {
+   "company": "Bausch & Lomb",
+   "ceo_name": "Ronald L. Zarrella",
+   "first_report_date": "2002-10-19",
+   "scandal_type": "other_personal_conduct",
+   "departed": 0,
+   "car": -0.0106
+  },
+  {
+   "company": "Goldman Sachs Group",
+   "ceo_name": "Henry M. Paulson Jr.",
+   "first_report_date": "2003-02-04",
+   "scandal_type": "other_personal_conduct",
+   "departed": 0,
+   "car": 0.0033133183
+  },
+  {
+   "company": "Boeing Co",
+   "ceo_name": "Harry C. Stonecipher",
+   "first_report_date": "2005-03-08",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": 0.0011620123
+  },
+  {
+   "company": "RadioShack",
+   "ceo_name": "David J. Edmondson",
+   "first_report_date": "2006-02-16",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": -0.1308088725
+  },
+  {
+   "company": "Bear Stearns",
+   "ceo_name": "James Cayne",
+   "first_report_date": "2007-11-02",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": 0.0116957724
+  },
+  {
+   "company": "Hewlett-Packard",
+   "ceo_name": "Mark V. Hurd",
+   "first_report_date": "2010-08-06",
+   "scandal_type": "harassment_allegation",
+   "departed": 1,
+   "car": -0.0885009396
+  },
+  {
+   "company": "Best Buy",
+   "ceo_name": "Brian J. Dunn",
+   "first_report_date": "2012-04-10",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": -0.0066403959
+  },
+  {
+   "company": "Yahoo",
+   "ceo_name": "Scott Thompson",
+   "first_report_date": "2012-05-03",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": -0.0040049617
+  },
+  {
+   "company": "News Corporation",
+   "ceo_name": "Rupert Murdoch",
+   "first_report_date": "2012-11-19",
+   "scandal_type": "other_personal_conduct",
+   "departed": 0,
+   "car": 0.0109460082
+  },
+  {
+   "company": "KB Home",
+   "ceo_name": "Jeffrey Mezger",
+   "first_report_date": "2017-09-19",
+   "scandal_type": "other_personal_conduct",
+   "departed": 0,
+   "car": -0.0278916382
+  },
+  {
+   "company": "Wynn Resorts",
+   "ceo_name": "Stephen Wynn",
+   "first_report_date": "2018-01-26",
+   "scandal_type": "harassment_allegation",
+   "departed": 1,
+   "car": -0.2002838933
+  },
+  {
+   "company": "Lululemon Athletica",
+   "ceo_name": "Laurent Potdevin",
+   "first_report_date": "2018-02-06",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": 0.0574855708
+  },
+  {
+   "company": "Intel",
+   "ceo_name": "Brian Krzanich",
+   "first_report_date": "2018-06-21",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": -0.0041906292
+  },
+  {
+   "company": "Barnes & Noble",
+   "ceo_name": "Demos Parneros",
+   "first_report_date": "2018-07-03",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": -0.0556402709
+  },
+  {
+   "company": "Texas Instruments",
+   "ceo_name": "Brian Crutcher",
+   "first_report_date": "2018-07-18",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": -0.0039319795
+  },
+  {
+   "company": "Amazon",
+   "ceo_name": "Jeff Bezos",
+   "first_report_date": "2019-02-07",
+   "scandal_type": "sexual_relationship",
+   "departed": 0,
+   "car": 0.0083813076
+  },
+  {
+   "company": "McDonald's",
+   "ceo_name": "Steve Easterbrook",
+   "first_report_date": "2019-11-03",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": -0.0371954968
+  },
+  {
+   "company": "L Brands",
+   "ceo_name": "Leslie H. Wexner",
+   "first_report_date": "2020-01-29",
+   "scandal_type": "other_personal_conduct",
+   "departed": 1,
+   "car": 0.1434619191
+  },
+  {
+   "company": "Tapestry",
+   "ceo_name": "Jide Zeitlin",
+   "first_report_date": "2020-07-21",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": -0.0122712344
+  },
+  {
+   "company": "Activision Blizzard",
+   "ceo_name": "Bobby Kotick",
+   "first_report_date": "2021-07-29",
+   "scandal_type": "harassment_allegation",
+   "departed": 0,
+   "car": -0.0080379408
+  },
+  {
+   "company": "World Wrestling Entertainment",
+   "ceo_name": "Vince McMahon",
+   "first_report_date": "2022-06-17",
+   "scandal_type": "sexual_relationship",
+   "departed": 1,
+   "car": -0.087701104
+  }
+ ]
+}

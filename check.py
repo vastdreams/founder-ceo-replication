@@ -6,9 +6,12 @@ results/combined_results.json. Exit code 0 means everything matches.
 
     python check.py
 
-Two inputs enter as published rather than rebuilt, because rebuilding them needs data this package cannot ship:
-results/figure_series.json (aggregated daily and monthly paths; per-firm paths would expose licensed prices) and
-results/pre1998_stats.json (read from proxy-statement graphs; see code/pre1998_tsr.py).
+Four inputs enter as published rather than rebuilt, because rebuilding them needs data this package cannot ship:
+results/figure_series.json (aggregated daily and monthly paths; per-firm paths would expose licensed prices),
+results/pre1998_stats.json (read from proxy-statement graphs; see code/pre1998_tsr.py), results/alpha_stats.json
+(calendar-time portfolios built from licensed monthly returns; see code/calendar_alpha.py) and
+results/scandal_stats.json (returns around New York Times reports, from licensed daily prices; see
+code/scandal_stats.py).
 """
 
 import json
@@ -31,7 +34,8 @@ def stage():
     (PAPER / "figdata").mkdir(parents=True, exist_ok=True)
     shutil.copy(ROOT / "results" / "figure_series.json", PAPER / "figdata" / "figure_series.json")
     OUT.mkdir(exist_ok=True)
-    shutil.copy(ROOT / "results" / "pre1998_stats.json", OUT / "pre1998_stats.json")
+    for name in ("pre1998_stats.json", "alpha_stats.json", "scandal_stats.json"):
+        shutil.copy(ROOT / "results" / name, OUT / name)
 
 
 def compare(published: dict, rebuilt: dict, tol: float = 1e-9) -> list[str]:

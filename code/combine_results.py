@@ -1,4 +1,4 @@
-"""Assemble outputs/combined_results.json (LetteredReportPayload, backend/schemas/lettered_report.py).
+"""Assemble outputs/combined_results.json.
 
 Every statistic is read from a results file written by code and carries source_file and source_key. Each one also
 carries its horizon (``period``: how long after, or around, the announcement it is measured), the population it is
@@ -24,36 +24,40 @@ FILES = (
     "coding_stats.json",
     "pre1998_stats.json",
     "describe_stats.json",
+    "alpha_stats.json",
+    "scandal_stats.json",
 )
 SRC = {k: (json.loads((OUT / k).read_text()) if (OUT / k).exists() else {}) for k in FILES}
-RS, OS, BS, CS, PS, DS = FILES
+RS, OS, BS, CS, PS, DS, AS, SS = FILES
 TITLE = "Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO"
 REPO_URL = "https://github.com/vastdreams/founder-ceo-replication"
 
 GROUP_NAMES = {
-    "forced": "Forced exits",
-    "retired": "Voluntary retirements",
+    "forced": "CEOs fired",
+    "retired": "CEOs who retired",
     "forced_founder": "Founder fired",
     "forced_nonfounder": "Hired CEO fired",
-    "conduct": "Fired for conduct",
-    "performance": "Fired for performance",
+    "conduct": "Fired over a personal scandal",
+    "performance": "Fired for another reason",
+    "criminal": "Fired for fraud or a crime (comparison)",
     "relationship": "Relationship with an employee",
     "sex_or_relationship": "Sex or relationship scandal",
-    "financial_misconduct": "Financial misconduct",
-    "forced_strict": "Forced, evidence agrees",
+    "financial_misconduct": "Financial misconduct (comparison)",
+    "forced_strict": "Fired, evidence agrees",
     "forced_strict_founder": "Founder fired, evidence agrees",
     "forced_strict_nonfounder": "Hired CEO fired, evidence agrees",
 }
 POP = {
-    "forced": "Forced CEO exits (database codes 3 and 4)",
+    "forced": "CEO firings for any reason but a crime (database codes 3 and 4, less financial misconduct and legal violations)",
     "retired": "Voluntary CEO retirements (database code 5)",
     "forced_founder": "Forced exits of founder-CEOs (hand-checked)",
     "forced_nonfounder": "Forced exits of CEOs who did not found the firm",
-    "conduct": "Forced exits for legal violations or personal conduct (code 4)",
-    "performance": "Forced exits for job performance (code 3)",
+    "conduct": "Firings over a personal scandal: sex, a relationship or other personal conduct (hand-checked)",
+    "performance": "Firings for every other reason but a crime: performance, strategy, power, activists, restructuring",
+    "criminal": "Firings for financial misconduct or legal violations (comparison; not in the main sample)",
     "relationship": "Forced exits after a relationship with an employee (hand-checked)",
     "sex_or_relationship": "Forced exits after sexual misconduct or a relationship with an employee (hand-checked)",
-    "financial_misconduct": "Forced exits coded as financial misconduct",
+    "financial_misconduct": "Firings for financial misconduct (comparison; not in the main sample)",
     "forced_strict": "Forced exits the evidence-based coding also reads as forced",
 }
 BASE_POP = "S&P 1500 firms, announcements 1998-2023"
@@ -62,6 +66,15 @@ BASE_POP = "S&P 1500 firms, announcements 1998-2023"
 def horizon(key: str) -> str:
     """Pure: how long after (or around) the announcement the statistic is measured, read from its key."""
     k = key
+    m = re.match(r"alpha(?:diff)?\.[^.]+\.(?:ew|vw)\.(\d+)m$", k)
+    if m:
+        return f"Calendar months 1 to {m.group(1)} after the announcement month, portfolios formed each month"
+    if k.startswith("scandal.") and "first_report" in k:
+        return "Trading days -1 to +1 around the first New York Times report of the scandal (day 0)"
+    if k.startswith("scandal.n_"):
+        return "Sample definition: scandals first reported 1998 to 2023; departure within 12 months of the first report"
+    if k.endswith("early_bankruptcy_n"):
+        return "A bankruptcy recorded within 180 days after the announcement (day 0)"
     if k.startswith(("a.", "b.", "rob.n_", "flow.")) or k.startswith("g.events"):
         return "Sample definition: CEO departures announced 1998 to 2023"
     if k == "hook.nvda.day_ret":
@@ -116,7 +129,11 @@ def population(key: str) -> str:
 
 
 def basket(key: str) -> str:
-    """Pure: what the statistic measures, for the claim-scope gate (backend/services/gates/claim_scope.py)."""
+    """Pure: what the statistic measures, for the claim-scope gate."""
+    if key.startswith("scandal."):
+        return "New York Times reports of personal misconduct by sitting chief executives, and share returns"
+    if key.startswith(("alpha.", "alphadiff.")):
+        return "monthly portfolio returns net of the Fama-French five factors and momentum"
     if key.startswith(("exit.", "exitdiff.", "reg.exit5")):
         return "whether the stock still trades, and how it left the market"
     if key.startswith(("roa.", "roadiff.", "desc.", "descdiff.", "h.")):
@@ -140,7 +157,9 @@ def fmt(v, unit):
     if v is None:
         return "n/a"
     if unit == "pct":
-        return f"{v * 100:.1f}%"
+        return "0.0%" if abs(v) < 0.0005 else f"{v * 100:.1f}%"  # never "-0.0%"
+    if unit == "pct2":  # monthly alphas: a tenth of a percent a month is about 1.2% a year
+        return f"{v * 100:.2f}%"
     if unit == "pp":
         return f"{v * 100:.1f} percentage points"
     if unit == "pps":
@@ -152,7 +171,7 @@ def fmt(v, unit):
     if unit == "p3":
         return "<0.001" if v < 0.001 else f"{v:.3f}"
     if unit == "coef":
-        return f"{v:.3f}"
+        return f"{v:.2f}"
     return f"{v:.2f}"
 
 
@@ -165,9 +184,14 @@ def stat(file, key, label, unit, test="", group=""):
         "label": label,
         "value": r.get("value"),
         "formatted": fmt(r.get("value"), unit),
-        "unit": {"pct": "share", "pp": "difference", "count": "count", "coef": "coefficient", "bn": "USD billion"}.get(
-            unit, ""
-        ),
+        "unit": {
+            "pct": "share",
+            "pct2": "return a month",
+            "pp": "difference",
+            "count": "count",
+            "coef": "coefficient",
+            "bn": "USD billion",
+        }.get(unit, ""),
         "test": test,
         "source_file": f"outputs/{file}",
         "source_key": key,
@@ -234,7 +258,7 @@ def sec_a():
     rows, ids = [], []
     for var, name, unit in (
         ("mcap", "Market value, USD billion", "bn"),
-        ("roa", "Return on assets (EBITDA / assets)", "pct"),
+        ("roa", "Return on assets, year -1 (EBITDA / assets)", "pct"),
         ("salesg", "Sales growth", "pct"),
         ("capex", "Capital spending / assets", "pct"),
     ):
@@ -251,17 +275,21 @@ def sec_a():
         RS,
         [
             ("a.events_with_returns", "Departures with returns", "count", "count"),
-            ("a.n_forced", "Forced exits", "count", "count"),
+            ("a.n_forced", "CEOs fired, announcement sample", "count", "count"),
             ("a.n_retired", "Voluntary retirements", "count", "count"),
             ("a.n_forced_founder", "Founders fired", "count", "count"),
             ("a.n_forced_nonfounder", "Hired CEOs fired", "count", "count"),
-            ("a.n_conduct", "Fired for conduct", "count", "count"),
-            ("a.n_performance", "Fired for performance", "count", "count"),
+            ("a.n_conduct", "Fired over a personal scandal", "count", "count"),
+            ("a.n_performance", "Fired for another reason", "count", "count"),
             ("a.n_relationship", "Relationship with an employee", "count", "count"),
             ("a.n_sex_or_relationship", "Sex or relationship scandal", "count", "count"),
-            ("a.n_financial_misconduct", "Financial misconduct", "count", "count"),
+            ("a.n_criminal_all_dates", "Fired for fraud or a crime, all dates (comparison)", "count", "count"),
+            ("a.n_criminal_dated", "Fired for fraud or a crime, dated (comparison)", "count", "count"),
+            ("a.n_lr_conduct", "Fired over a personal scandal, all dates", "count", "count"),
+            ("a.n_lr_founder_personal", "Founders fired over a personal scandal, all dates", "count", "count"),
+            ("a.n_lr_forced_founder", "Founders fired, all dates (long run)", "count", "count"),
             ("a.n_forced_strict", "Forced exits the evidence also reads as forced", "count", "count"),
-            ("a.n_lr_forced", "Forced exits with returns, all dates (long run)", "count", "count"),
+            ("a.n_lr_forced", "CEOs fired with returns, all dates (long run)", "count", "count"),
             ("a.n_lr_retired", "Retirements with returns, all dates (long run)", "count", "count"),
         ],
         "sample",
@@ -305,19 +333,21 @@ def sec_a():
         stats,
         [
             table(
-                "Table 2. Who gets fired: the firm in the year before the departure",
+                "Table IA.2. Who gets fired: the firm in the year before the departure",
                 [
                     "Fiscal year -1, medians",
-                    "Forced exits",
+                    "Firings",
                     "Retirements",
                     "Founders fired",
-                    "p, forced vs retired",
-                    "N forced",
+                    "p, firings vs retirements",
+                    "N firings",
                 ],
                 rows,
                 ids,
                 "Medians in the fiscal year before the departure, from as-reported annual statements; market value at that fiscal year-end. "
-                "p is from a Mann-Whitney U test of forced exits against retirements. N forced is the number of forced exits with the item.",
+                "Return on assets is earnings before interest, taxes, depreciation and amortization (EBITDA) over total assets. "
+                "p is from a Mann-Whitney U test of firings against retirements. "
+                "N firings is the number of firings with the item.",
             )
         ],
     )
@@ -359,8 +389,6 @@ ANN_GROUPS = (
     "forced_nonfounder",
     "conduct",
     "performance",
-    "financial_misconduct",
-    "sex_or_relationship",
 )
 
 
@@ -379,7 +407,7 @@ def sec_c():
             ]
         )
         ids += [f"{k}.mean", f"{k}.median"]
-    for g in ("financial_misconduct", "sex_or_relationship"):  # too few hand-dated cases: also on every firing
+    for g in ("conduct", "sex_or_relationship", "criminal"):  # few hand-dated cases: also on every firing
         k = f"rob.all_dates.{g}.mm_m1p1"
         rows.append(
             [
@@ -391,6 +419,19 @@ def sec_c():
                 nv(RS, f"{k}.mean"),
             ]
         )
+    # The tests the abstract and conclusion state, in the main table (a body table must carry every number they use).
+    gaps = (
+        ("Founder minus hired CEO", "cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean"),
+        ("Personal scandal minus other firings, all dates", "rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean"),
+        ("Personal scandal minus fraud or a crime, all dates", "rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean"),
+    )
+    rows = (
+        [["Panel A. By group", "", "", "", "", ""]]
+        + rows
+        + [["Panel B. Differences, percentage points", "", "", "", "", ""]]
+        + [[name, v(RS, key, "pps"), "", tv(RS, key), pv(RS, key), nv(RS, key)] for name, key in gaps]
+    )
+    ids += [key for _, key in gaps]
     drows, dids = [], []
     for g in ("forced", "retired", "forced_founder", "conduct", "performance"):
         pre, ann, post = f"drift.{g}.pre_m30m2.mean", f"car.{g}.mm_m1p1.mean", f"drift.{g}.post_p2p60.mean"
@@ -491,19 +532,19 @@ def sec_c():
                 ),
                 (
                     "cardiff.conduct_vs_performance.mm_m1p1.diff_mean",
-                    "Conduct minus performance, CAR[-1,+1]",
+                    "Personal scandal minus other reasons, CAR[-1,+1]",
                     "pp",
                     "Welch t",
                 ),
                 (
-                    "cardiff.sex_or_relationship_vs_financial_misconduct.mm_m1p1.diff_mean",
-                    "Sex or relationship minus financial misconduct, CAR[-1,+1]",
+                    "cardiff.conduct_vs_criminal.mm_m1p1.diff_mean",
+                    "Personal scandal minus fraud or crime, CAR[-1,+1]",
                     "pp",
                     "Welch t",
                 ),
                 (
-                    "cardiff.sex_or_relationship_vs_financial_misconduct.mm_m1p1.diff_median",
-                    "Sex or relationship minus financial misconduct, median CAR[-1,+1]",
+                    "rob.all_dates.conduct_vs_criminal.mm_m1p1.diff_mean",
+                    "Personal scandal minus fraud or crime, CAR[-1,+1], all dates",
                     "pp",
                     "Mann-Whitney U",
                 ),
@@ -544,7 +585,7 @@ def sec_c():
                 ),
                 (
                     "driftdiff.conduct_vs_performance.pre_m30m2.diff_mean",
-                    "Conduct minus performance, days -30 to -2",
+                    "Personal scandal minus other reasons, days -30 to -2",
                     "pp",
                     "Welch t",
                 ),
@@ -567,7 +608,7 @@ def sec_c():
                 RS,
                 f"car.reason.{r}.mm_m1p1.holm_p",
                 f"Holm-adjusted p, reason: {r.replace('_', ' ')}",
-                "coef",
+                "p3",
                 "Holm",
                 "reason",
             )
@@ -575,6 +616,39 @@ def sec_c():
         ]
         + cstats
         + many(DS, [("case.n_listed", "Founder cases listed", "count", "count")], "case")
+        + many(
+            SS,
+            [
+                ("scandal.n_events", "Personal scandals of sitting CEOs found in the New York Times", "count", "count"),
+                ("scandal.n_departed", "Scandals after which the CEO left within 12 months", "count", "count"),
+                ("scandal.n_kept", "Scandals after which the CEO stayed for 12 months", "count", "count"),
+                (
+                    "scandal.n_known_firings_found",
+                    "Database firings over a personal scandal the search finds",
+                    "count",
+                    "count",
+                ),
+                (
+                    "scandal.all.first_report.car_m1p1.mean",
+                    "Market-adjusted return around the first report, all scandals",
+                    "pct",
+                    "one-sample t",
+                ),
+                (
+                    "scandal.departed.first_report.car_m1p1.mean",
+                    "Market-adjusted return around the first report, CEO later left",
+                    "pct",
+                    "one-sample t",
+                ),
+                (
+                    "scandal.kept.first_report.car_m1p1.mean",
+                    "Market-adjusted return around the first report, CEO stayed",
+                    "pct",
+                    "one-sample t",
+                ),
+            ],
+            "scandal",
+        )
         + many(
             DS,
             [
@@ -596,48 +670,60 @@ def sec_c():
         f"Over trading days -1 to +1, forced exits earn {v(RS, 'car.forced.mm_m1p1.mean', 'pct')} (t = {tv(RS, 'car.forced.mm_m1p1.mean')}, N = {nv(RS, 'car.forced.mm_m1p1.mean')}) "
         f"and retirements {v(RS, 'car.retired.mm_m1p1.mean', 'pct')}. Fired founders earn {v(RS, 'car.forced_founder.mm_m1p1.mean', 'pct')} against "
         f"{v(RS, 'car.forced_nonfounder.mm_m1p1.mean', 'pct')} (gap p {pv(RS, 'cardiff.forced_founder_vs_forced_nonfounder.mm_m1p1.diff_mean')}). "
-        f"Financial misconduct costs {v(RS, 'car.financial_misconduct.mm_m1p1.mean', 'pct')}, sex or relationship scandals {v(RS, 'car.sex_or_relationship.mm_m1p1.mean', 'pct')} "
-        f"(gap p {pv(RS, 'cardiff.sex_or_relationship_vs_financial_misconduct.mm_m1p1.diff_mean')}). Prices fall {v(RS, 'drift.forced.pre_m30m2.mean', 'pct')} over days -30 to -2 "
+        f"Firings over a personal scandal earn {v(RS, 'car.conduct.mm_m1p1.mean', 'pct')}, other firings {v(RS, 'car.performance.mm_m1p1.mean', 'pct')} "
+        f"(gap p {pv(RS, 'cardiff.conduct_vs_performance.mm_m1p1.diff_mean')}). Prices fall {v(RS, 'drift.forced.pre_m30m2.mean', 'pct')} over days -30 to -2 "
         f"and are flat over days +2 to +60 ({v(RS, 'drift.forced.post_p2p60.mean', 'pct')}).",
         {
             "test": "Cross-sectional t, Boehmer-Musumeci-Poulsen standardized t, Wilcoxon signed-rank; Welch t and Mann-Whitney U for differences",
             "data": "Daily total returns; market model estimated over trading days -250 to -30 for days -1 to +1; market-adjusted returns for longer windows",
             "library_call": "analysis/event_study.py; analysis/paths.py; analysis/stats_returns.py; analysis/describe.py",
-            "caveat": "Day 0 is the first trading day on or after the announcement. Reasons other than the hand-checked conduct labels are model codes.",
+            "caveat": "Day 0 is the first trading day on or after the announcement that the CEO is leaving. Firings for fraud or crime are not in the sample. Reasons other than the hand-checked conduct labels are model codes.",
         },
         stats,
         [
             table(
-                "Table 4. The market's verdict: abnormal returns over trading days -1 to +1",
+                "Table 2. The announcement: abnormal returns over trading days -1 to +1",
                 ["Group", "Mean", "Median", "t", "p", "N"],
                 rows,
                 ids,
-                "Cumulative market-model abnormal return from trading day -1 to day +1 around the announcement (day 0), with the model estimated over days -250 to -30 "
-                "(at least 120 days). t is the cross-sectional t of the mean; p is two-sided. N is the number of departures with returns over the window. "
-                "Firings dated by the database or a hand check; the last two rows use every firing, since few sex cases are hand-dated. "
-                "Forced exits are database codes 3 and 4; founder status and the financial-misconduct, "
-                "sexual-conduct and relationship labels are hand-checked.",
+                "Market-model abnormal return from trading day -1 to +1 around the announcement (day 0), the model estimated over days -250 to -30 "
+                "(at least 120 days). The t statistic is the cross-sectional t of the mean (Panel B: the Welch t of the difference); p is two-sided. N counts "
+                "departures with returns over the window. Firings are dated by the database or a hand check, except in rows marked all dates. Firings "
+                "exclude those for fraud or a crime, shown only as a comparison. A personal scandal is sex, a relationship or other personal conduct; "
+                "founder, scandal and fraud labels are hand-checked.",
             ),
             table(
-                "Table 3. Before, at and after the announcement",
+                "Table IA.5. Before, at and after the announcement, by group",
                 ["Group", "Days -30 to -2", "p", "Days -1 to +1", "p", "Days +2 to +60", "p", "N"],
                 drows,
                 dids,
-                "Days -30 to -2 and +2 to +60 are cumulative market-adjusted returns (firm minus market), used because a forced-exit firm's alpha before the event "
-                "is strongly negative and a market model would project it forward. Days -1 to +1 is the market-model return of Table 4. Events need every day of "
+                "Days -30 to -2 and +2 to +60 are cumulative market-adjusted returns (firm minus market), used because a firing firm's alpha before the event "
+                "is strongly negative and a market model would project it forward. Days -1 to +1 is the market-model return of Table 2. Events need every day of "
                 "a window. N is the number of departures in the days -1 to +1 window; the outer windows differ by at most a few percent.",
             ),
             table(
-                "Table 5. Why the board acted: abnormal returns over trading days -1 to +1 by coded reason",
+                "Table IA.6. Why the board acted: abnormal returns over trading days -1 to +1 by coded reason",
                 ["Coded primary reason", "Mean", "t", "p", "Holm p", "N"],
                 rrows,
                 [f"car.reason.{r}.mm_m1p1.mean" for r in reasons],
-                "Forced exits only, by the primary reason coded from the database notes, the 8-K filed within 10 days, cited press releases, Wikipedia and matched "
+                "Firings for any reason but a crime, by the primary reason coded from the database notes, the 8-K filed within 10 days, cited press releases, Wikipedia and matched "
                 "New York Times articles. Reasons with fewer than 10 cases are not shown. Holm p adjusts each p for the number of reasons "
                 "tested. Financial-misconduct, sexual-conduct and relationship labels are hand-checked; the others are model codes.",
             ),
             table(
-                "Table 6. The largest founders fired",
+                "Table IA.7. Personal scandals of sitting chief executives in the New York Times, 1998 to 2023",
+                ["Company", "Chief executive", "First report", "Scandal", "Days -1 to +1"],
+                scandal_rows(),
+                [f"scandal.{g}.first_report.car_m1p1.mean" for g in ("all", "kept", "departed")],
+                "Reports of personal misconduct by a sitting chief executive of a sample firm, found by searching the New York Times Archive and checked by hand. "
+                "Panel B: the chief executive departed within 12 months of the first report (CEO dismissal database, or a reported departure the "
+                "database misses). Days -1 to +1: market-adjusted return around the first report. The table lists the "
+                f"{len(SRC[SS].get('_cases', []))} of the {v(SS, 'scandal.n_events', 'count')} scandals found whose shares traded around the first report. "
+                "The search finds only a few of the database's firings over "
+                "a personal scandal, mostly at the largest firms, so the table describes prominent cases, not a sample.",
+            ),
+            table(
+                "Table IA.8. The largest founders fired",
                 [
                     "Company",
                     "Founder",
@@ -659,6 +745,31 @@ def sec_c():
     )
 
 
+def scandal_rows():
+    """The NYT scandal cases in two panels, the board kept its chief executive or the chief executive left within a year,
+    each closed by its mean return around the first report."""
+    cases = SRC[SS].get("_cases", [])
+    rows = []
+    for departed, head, key in (
+        (False, "Panel A. The board kept the chief executive", "kept"),
+        (True, "Panel B. The chief executive left within a year", "departed"),
+    ):
+        rows.append([head, "", "", "", ""])
+        for c in (c for c in cases if bool(c["departed"]) == departed):
+            rows.append(
+                [
+                    c["company"],
+                    c["ceo_name"],
+                    str(c["first_report_date"])[:10],
+                    str(c["scandal_type"]).replace("_", " ").capitalize(),
+                    "n/a" if c.get("car") is None else f"{c['car'] * 100:.1f}%",
+                ]
+            )
+        stat_key = f"scandal.{key}.first_report.car_m1p1.mean"
+        rows.append([f"Mean, {nv(SS, stat_key)} cases", "", "", "", v(SS, stat_key, "pct")])
+    return rows
+
+
 LR_GROUPS = ("forced", "retired", "forced_founder", "forced_nonfounder", "conduct", "performance")
 
 
@@ -675,7 +786,7 @@ def sec_d():
         rows.append(row)
     # long-run returns are skewed: the mean row shows how far means and medians part
     rows.append(
-        ["Forced exits, mean"]
+        ["CEOs fired, mean"]
         + [v(RS, f"bhar.forced.{h}y.mean", "pct") for h in (1, 3, 5)]
         + [f"{v(OS, f'mbhar.forced.{h}y.mean', 'pct')} ({pv(OS, f'mbhar.forced.{h}y.mean')})" for h in (1, 3, 5)]
         + [nv(OS, "mbhar.forced.3y.mean")]
@@ -753,19 +864,73 @@ def sec_d():
                 "Mann-Whitney U",
             ),
             (
-                "bhar.sex_or_relationship.3y.median",
-                "Median 36-month BHAR vs market, sex or relationship",
-                "pct",
-                "Wilcoxon",
-            ),
-            (
-                "bhar.financial_misconduct.3y.median",
-                "Median 36-month BHAR vs market, financial misconduct",
+                "bhar.criminal.3y.median",
+                "Median 36-month BHAR vs market, fraud or crime (comparison)",
                 "pct",
                 "Wilcoxon",
             ),
         ],
     )
+    arows, aids = [], []
+    for h in (12, 36):
+        for g, name in (
+            ("forced", "CEOs fired"),
+            ("retired", "CEOs who retired"),
+            ("forced_founder", "Founder fired"),
+            ("conduct", "Fired over a personal scandal"),
+        ):
+            ke, kv = f"alpha.{g}.ew.{h}m", f"alpha.{g}.vw.{h}m"
+            if SRC[AS].get(ke) is None:
+                continue
+            arows.append(
+                [
+                    f"{name}, {h} months",
+                    v(AS, ke, "pct2"),
+                    tv(AS, ke),
+                    v(AS, kv, "pct2"),
+                    tv(AS, kv),
+                    nv(AS, ke),
+                    f"{SRC[AS][ke].get('firms', 0):.0f}",
+                ]
+            )
+            aids += [ke, kv]
+            stats += many(
+                AS,
+                [
+                    (ke, f"Calendar-time alpha, equal-weighted, {name.lower()}, {h} months", "pct2", "OLS, Newey-West"),
+                    (kv, f"Calendar-time alpha, value-weighted, {name.lower()}, {h} months", "pct2", "OLS, Newey-West"),
+                ],
+            )
+        kd, kdv = f"alphadiff.forced_vs_retired.ew.{h}m", f"alphadiff.forced_vs_retired.vw.{h}m"
+        arows.append(
+            [
+                f"Firings minus retirements, {h} months",
+                v(AS, kd, "pct2"),
+                tv(AS, kd),
+                v(AS, kdv, "pct2"),
+                tv(AS, kdv),
+                nv(AS, kd),
+                "",
+            ]
+        )
+        aids += [kd, kdv]
+        stats += many(
+            AS,
+            [
+                (
+                    kd,
+                    f"Calendar-time alpha, firings minus retirements, equal-weighted, {h} months",
+                    "pct2",
+                    "OLS, Newey-West",
+                ),
+                (
+                    kdv,
+                    f"Calendar-time alpha, firings minus retirements, value-weighted, {h} months",
+                    "pct2",
+                    "OLS, Newey-West",
+                ),
+            ],
+        )
     return section(
         "D",
         "Long-run returns",
@@ -782,7 +947,7 @@ def sec_d():
         stats,
         [
             table(
-                "Table 7. Long-run returns at 12, 36 and 60 months",
+                "Table IA.11. Long-run returns at 12, 36 and 60 months",
                 [
                     "Group",
                     "Market, 12m",
@@ -796,10 +961,28 @@ def sec_d():
                 rows,
                 ids,
                 "Medians of buy-and-hold returns from day +2 over 12, 36 and 60 months, all firings. Market subtracts the market's "
-                "buy-and-hold return; Matched subtracts a control firm in the same industry with market value within 30 percent and the nearest ROA. "
+                "buy-and-hold return; Matched subtracts a control firm in the same industry with market value within 30 percent and the nearest return on assets. "
                 "Matched cells give the Wilcoxon p in parentheses. The last row gives means with t-test p; skewed returns can give means and medians of "
                 "opposite sign. Delisted firms take their delisting return and then hold the market. N, 36m counts matched events at 36 months.",
-            )
+            ),
+            table(
+                "Table IA.10. Calendar-time alpha after the announcement",
+                [
+                    "Portfolio",
+                    "Equal-weighted, % a month",
+                    "t",
+                    "Value-weighted, % a month",
+                    "t",
+                    "N months",
+                    "Firms a month",
+                ],
+                arows,
+                aids,
+                "Each calendar month the portfolio holds every firm whose announcement fell 1 to H months before. Its return minus the risk-free rate "
+                "is regressed on the Fama-French five factors and momentum; alpha is the intercept, with Newey-West t (6 lags). Value weights are market "
+                "values at the fiscal year-end before the event. Months with fewer than 10 firms are dropped. The difference rows regress the firing "
+                "portfolio's return minus the retirement portfolio's. Delisted firms take their delisting return in their last month.",
+            ),
         ],
     )
 
@@ -859,12 +1042,13 @@ def sec_e():
         stats,
         [
             table(
-                "Table 8. Profitability against the matched firm, fiscal years +1 to +3",
+                "Table IA.12. Profitability against the matched firm, fiscal years +1 to +3",
                 ["Group", "Year +1", "Year +2", "Year +3", "N, year +1", "N, year +3"],
                 rows,
                 ids,
-                "Median change in ROA (EBITDA over total assets) from fiscal year -1 to year +1, +2 and +3, minus the same change at the matched firm, in percentage "
-                "points, with the Wilcoxon p in parentheses. ROA winsorized at the 1st and 99th percentiles. N falls with the horizon because firms stop filing "
+                "Median change in return on assets (ROA) from fiscal year -1 to year +1, +2 and +3, minus the same change at the matched firm, in percentage "
+                "points, with the Wilcoxon p in parentheses. ROA is earnings before interest, taxes, depreciation and amortization (EBITDA) over "
+                "total assets, winsorized at the 1st and 99th percentiles. N falls with the horizon because firms stop filing "
                 "after a sale or bankruptcy.",
             )
         ],
@@ -873,7 +1057,7 @@ def sec_e():
 
 def sec_f():
     rows, ids = [], []
-    for g in LR_GROUPS + ("financial_misconduct", "sex_or_relationship"):
+    for g in LR_GROUPS + ("criminal",):
         rows.append(
             [
                 GROUP_NAMES[g],
@@ -887,8 +1071,34 @@ def sec_f():
             ]
         )
         ids += [f"exit.{g}.delisted_{h}y" for h in (1, 3, 5)]
+    # The firing gap without and with controls (Table IA.9 has the full set), in the main table: the abstract's key
+    # number with controls must be printed in a body table.
+    gap = "exitdiff.forced_vs_retired.delisted_5y"
+    rows = (
+        [["Panel A. Share of firms", "", "", "", "", "", "", ""]]
+        + rows
+        + [["Panel B. Firings minus retirements, percentage points", "", "", "", "", "", "", ""]]
+        + [["No controls", "", "", v(RS, gap, "pps"), "", "", pv(RS, gap), nv(RS, gap)]]
+        + [
+            [
+                name,
+                "",
+                "",
+                v(OS, f"{reg}.gone.forced", "pps"),
+                v(OS, f"{reg}.acquired.forced", "pps"),
+                v(OS, f"{reg}.bankrupt.forced", "pps"),
+                pv(OS, f"{reg}.gone.forced"),
+                nv(OS, f"{reg}.gone.forced"),
+            ]
+            for name, reg in (
+                ("Controls for size, return on assets, year and industry", "reg.exit5"),
+                ("Adding prior return, leverage, book-to-market, distress and loss", "reg.exit5c"),
+            )
+        ]
+    )
+    ids += [gap, "reg.exit5.gone.forced", "reg.exit5c.gone.forced"]
     stats = []
-    for g in LR_GROUPS + ("financial_misconduct", "sex_or_relationship"):
+    for g in LR_GROUPS + ("criminal",):
         for h in (1, 3, 5):
             stats.append(
                 stat(
@@ -942,6 +1152,109 @@ def sec_f():
             ("exit.forced.bankruptcy_3y", "Bankruptcy within 36 months, forced", "pct", "proportion"),
         ],
     )
+    bands = [
+        ("small", "Under $0.3 billion"),
+        ("mid", "$0.3 to 1 billion"),
+        ("large", "$1 to 5 billion"),
+        ("mega", "Over $5 billion"),
+    ]
+    srows, sids = [], []
+    for b, name in bands:
+        srows.append(
+            [
+                name,
+                v(RS, f"exit.forced.size_{b}.delisted_5y", "pct"),
+                v(RS, f"exit.retired.size_{b}.delisted_5y", "pct"),
+                pv(RS, f"exitdiff.forced_vs_retired.size_{b}.delisted_5y"),
+                v(RS, f"exit.forced.size_{b}.bankruptcy_5y", "pct"),
+                v(RS, f"exit.retired.size_{b}.bankruptcy_5y", "pct"),
+                v(RS, f"exit.forced.size_{b}.n5", "count"),
+                v(RS, f"exit.retired.size_{b}.n5", "count"),
+            ]
+        )
+        sids += [f"exit.forced.size_{b}.delisted_5y", f"exit.retired.size_{b}.delisted_5y"]
+        for g, gl in (("forced", "firings"), ("retired", "retirements")):
+            stats += many(
+                RS,
+                [
+                    (
+                        f"exit.{g}.size_{b}.delisted_5y",
+                        f"Stopped trading within 60 months, {gl}, market value {name.lower()}",
+                        "pct",
+                        "proportion",
+                    ),
+                    (
+                        f"exit.{g}.size_{b}.bankruptcy_5y",
+                        f"Bankrupt within 60 months, {gl}, market value {name.lower()}",
+                        "pct",
+                        "proportion",
+                    ),
+                    (
+                        f"exit.{g}.size_{b}.acquired_5y",
+                        f"Acquired within 60 months, {gl}, market value {name.lower()}",
+                        "pct",
+                        "proportion",
+                    ),
+                ],
+            )
+        stats += many(
+            RS,
+            [
+                (
+                    f"exitdiff.forced_vs_retired.size_{b}.delisted_5y",
+                    f"Firings minus retirements, stopped trading within 60 months, market value {name.lower()}",
+                    "pp",
+                    "chi-square",
+                )
+            ],
+        )
+    srows.append(
+        [
+            "All, bankruptcies within 180 days of the announcement set aside",
+            v(RS, "exit.forced.after.delisted_5y", "pct"),
+            v(RS, "exit.retired.after.delisted_5y", "pct"),
+            "",
+            v(RS, "exit.forced.after.bankruptcy_5y", "pct"),
+            v(RS, "exit.retired.after.bankruptcy_5y", "pct"),
+            nv(RS, "exit.forced.after.delisted_5y"),
+            nv(RS, "exit.retired.after.delisted_5y"),
+        ]
+    )
+    stats += many(
+        RS,
+        [
+            (
+                "exit.forced.after.delisted_5y",
+                "Stopped trading within 60 months, firings, early bankruptcies set aside",
+                "pct",
+                "proportion",
+            ),
+            (
+                "exit.retired.after.delisted_5y",
+                "Stopped trading within 60 months, retirements, early bankruptcies set aside",
+                "pct",
+                "proportion",
+            ),
+            (
+                "exit.forced.after.bankruptcy_5y",
+                "Bankrupt within 60 months, firings, early bankruptcies set aside",
+                "pct",
+                "proportion",
+            ),
+            (
+                "exit.retired.after.bankruptcy_5y",
+                "Bankrupt within 60 months, retirements, early bankruptcies set aside",
+                "pct",
+                "proportion",
+            ),
+            (
+                "exit.forced.early_bankruptcy_n",
+                "Firings with a bankruptcy within 180 days of the announcement",
+                "count",
+                "count",
+            ),
+        ],
+    )
     return section(
         "F",
         "What happened to the firm",
@@ -958,7 +1271,7 @@ def sec_f():
         stats,
         [
             table(
-                "Table 9. Firms that stop trading within 12, 36 and 60 months",
+                "Table 4. Firms that stop trading within 12, 36 and 60 months, by group",
                 [
                     "Group",
                     "Gone, 12m",
@@ -971,12 +1284,31 @@ def sec_f():
                 ],
                 rows,
                 ids,
-                "Share of firms whose stock left the price file within 12, 36 and 60 months of the announcement. Each horizon uses the events whose horizon "
-                "is complete in the data for every firm, delisted or not; N, 60m counts those for 60 months. Acquired and Bankrupt classify the corporate "
-                "action within 60 days of the final price. p vs retired is a chi-square test of the 60-month share against retirements; Table IA.4 adds "
-                "controls and matched firms. Small groups can show a lower share at 60 months than at 36 because fewer firms have a complete "
-                "60-month horizon.",
-            )
+                "Share of firms whose stock left the price file within 12, 36 and 60 months of the announcement, among events with that horizon complete; "
+                "N, 60m counts those for 60 months. Acquired and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: "
+                "chi-square test of the 60-month share against retirements. Small groups can show a lower share at 60 months than at 36, as fewer firms "
+                "reach 60 months. Panel B: the 60-month gap, raw and as the firing coefficient in a linear probability model with the controls named and "
+                "year and industry effects, standard errors clustered by year. Its N counts firings and retirements.",
+            ),
+            table(
+                "Table 3. Firms that stop trading within 60 months, by market value before the event",
+                [
+                    "Market value",
+                    "Gone, firings",
+                    "Gone, retirements",
+                    "p",
+                    "Bankrupt, firings",
+                    "Bankrupt, retirements",
+                    "N firings",
+                    "N retirements",
+                ],
+                srows,
+                sids,
+                "Market value at the fiscal year-end before the departure, in US dollars. Gone: the stock left the price file within 60 months of the "
+                "announcement. Bankrupt: the corporate action within 60 days of the final price was a bankruptcy or liquidation. p is a chi-square test of "
+                "the share gone, firings against retirements. The last row sets aside firms whose bankruptcy was recorded within 180 days after the "
+                "announcement, which were already failing when the CEO left. Only events with a complete 60-month horizon enter.",
+            ),
         ],
     )
 
@@ -1040,7 +1372,7 @@ def sec_g():
         stats,
         [
             table(
-                "Table 10. The board about two years after the departure",
+                "Table IA.13. The board about two years after the departure",
                 [
                     "Group",
                     "Earlier directors gone",
@@ -1052,8 +1384,9 @@ def sec_g():
                 ],
                 rows,
                 [],
-                "Director lists from the last proxy filed before the departure and the first proxy filed at least 600 days after it. Directors match on surname and first "
-                "initial. Split before and after: the chair and CEO roles held by different people in the earlier and the later proxy, on the departures where "
+                "Director lists from the last proxy before the departure and the first one at least 600 days after it, matched on surname and first initial. "
+                "Earlier directors gone: the share of earlier directors no longer on the board; a proxy does not say whether they resigned, were not "
+                "nominated again or lost a vote. Split before and after: the chair and CEO roles held by different people in the earlier and the later proxy, on the departures where "
                 "the later proxy names a chair (N, split; the earlier proxy names one slightly more often). For fired founders the last column is the founder; "
                 "otherwise the departing CEO.",
             )
@@ -1066,7 +1399,9 @@ def sec_h():
         ("Firings in the database, departures 1998 to 2023", "flow.forced_db"),
         ("with an SEC company identifier", "flow.forced_cik"),
         ("with a price history covering the announcement", "flow.forced_priced"),
-        ("with announcement returns", "flow.forced_returns"),
+        ("with announcement returns", "flow.forced_returns_all"),
+        ("less firings for fraud or a crime (comparison only)", "flow.forced_criminal"),
+        ("firings for any other reason (the paper's sample)", "flow.forced_returns"),
         ("dated by the database or a hand check (announcement sample)", "flow.forced_dated"),
         ("Founder codes from the model, all firings", "flow.founder_model"),
         ("founders confirmed by hand", "flow.founder_confirmed"),
@@ -1118,8 +1453,58 @@ def sec_h():
             nv(OS, "exitdiff.forced_vs_ctrl.delisted_5y"),
         ]
     )
+    for name, key in (
+        ("Stopped trading, adding prior return, leverage, book-to-market, distress and loss", "reg.exit5c.gone.forced"),
+        ("Acquired, same controls", "reg.exit5c.acquired.forced"),
+        ("Bankrupt, same controls", "reg.exit5c.bankrupt.forced"),
+        ("Founder, within firings, same controls", "reg.exit5c.gone.founder"),
+        ("Personal scandal, within firings, same controls", "reg.exit5c.gone.conduct"),
+    ):
+        exit_rows.append([name, "", "", v(OS, key, "pps"), pv(OS, key), nv(OS, key)])
     extra = (
-        [stat(DS, k, name, "count", "count", "sample") for name, k in flow]
+        many(
+            OS,
+            [
+                (
+                    "reg.exit5c.gone.forced",
+                    "Firing effect on stopping trading within 60 months, full controls",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+                (
+                    "reg.exit5c.acquired.forced",
+                    "Firing effect on takeover within 60 months, full controls",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+                (
+                    "reg.exit5c.bankrupt.forced",
+                    "Firing effect on bankruptcy within 60 months, full controls",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+                (
+                    "reg.exit5c.gone.founder",
+                    "Founder against hired CEO, stopping trading within 60 months, within firings, full controls",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+                (
+                    "reg.exit5c.gone.conduct",
+                    "Personal scandal against other firings, stopping trading within 60 months, full controls",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+                (
+                    "reg.exit5c.gone.leverage_w",
+                    "Leverage coefficient, stopping trading within 60 months",
+                    "pp",
+                    "OLS, year and industry effects, clustered by year",
+                ),
+            ],
+            "robustness",
+        )
+        + [stat(DS, k, name, "count", "count", "sample") for name, k in flow]
         + [
             stat(
                 RS,
@@ -1230,14 +1615,14 @@ def sec_h():
                     "Welch t",
                 ),
                 (
-                    "drift.financial_misconduct.pre_m30m2.mean",
-                    "Mean market-adjusted CAR, days -30 to -2, financial misconduct",
+                    "drift.criminal.pre_m30m2.mean",
+                    "Mean market-adjusted CAR, days -30 to -2, fraud or crime (comparison)",
                     "pct",
                     "one-sample t",
                 ),
                 (
-                    "drift.sex_or_relationship.pre_m30m2.mean",
-                    "Mean market-adjusted CAR, days -30 to -2, sex or relationship",
+                    "drift.conduct.pre_m30m2.mean",
+                    "Mean market-adjusted CAR, days -30 to -2, personal scandal",
                     "pct",
                     "one-sample t",
                 ),
@@ -1265,16 +1650,21 @@ def sec_h():
                     "pct",
                     "one-sample t",
                 ),
-                ("rob.all_dates.conduct.mm_m1p1.mean", "Mean CAR[-1,+1], conduct, all dates", "pct", "one-sample t"),
                 (
-                    "rob.all_dates.performance.mm_m1p1.mean",
-                    "Mean CAR[-1,+1], performance, all dates",
+                    "rob.all_dates.conduct.mm_m1p1.mean",
+                    "Mean CAR[-1,+1], personal scandal, all dates",
                     "pct",
                     "one-sample t",
                 ),
                 (
-                    "rob.all_dates.financial_misconduct.mm_m1p1.mean",
-                    "Mean CAR[-1,+1], financial misconduct, all dates",
+                    "rob.all_dates.performance.mm_m1p1.mean",
+                    "Mean CAR[-1,+1], other reasons, all dates",
+                    "pct",
+                    "one-sample t",
+                ),
+                (
+                    "rob.all_dates.criminal.mm_m1p1.mean",
+                    "Mean CAR[-1,+1], fraud or crime (comparison), all dates",
                     "pct",
                     "one-sample t",
                 ),
@@ -1298,8 +1688,7 @@ def sec_h():
                     "forced_nonfounder",
                     "conduct",
                     "performance",
-                    "financial_misconduct",
-                    "sex_or_relationship",
+                    "criminal",
                 )
             ],
             "robustness",
@@ -1307,18 +1696,30 @@ def sec_h():
     )
     specs = [
         (
+            "Founder minus hired CEO, controlling for size, prior 12-month return and year",
+            RS,
+            "regc.car_m1p1.founder_v0",
+            "pp",
+        ),
+        (
+            "Personal scandal minus other firings, same controls",
+            RS,
+            "regc.car_m1p1.conduct",
+            "pp",
+        ),
+        (
             "Five-factor plus momentum: founder minus hired CEO",
             RS,
             "rob.founder_vs_nonfounder_ff5.m1p1.diff_mean",
             "pp",
         ),
         (
-            "Five-factor plus momentum: conduct minus performance",
+            "Five-factor plus momentum: personal scandal minus other reasons",
             RS,
             "rob.conduct_vs_performance_ff5.m1p1.diff_mean",
             "pp",
         ),
-        ("Market-adjusted, forced exits", RS, "rob.forced.ma_m1p1.mean", "pct"),
+        ("Return minus the market instead of the market model", RS, "rob.forced.ma_m1p1.mean", "pct"),
         ("Evidence agrees the exit was forced", RS, "car.forced_strict.mm_m1p1.mean", "pct"),
         (
             "Evidence agrees: founder minus hired CEO",
@@ -1329,8 +1730,13 @@ def sec_h():
         ("Adding retirements the evidence reads as pushed", RS, "rob.forced_plus_pushed.mm_m1p1.mean", "pct"),
         ("Pushed retirements alone", RS, "rob.pushed.mm_m1p1.mean", "pct"),
         ("Excluding 2008 and 2009", RS, "rob.forced_excl_crisis.mm_m1p1.mean", "pct"),
-        ("Matched BHAR, 36 months, strict size matches", OS, "rob.mbhar_strict_matches.3y.median", "pct"),
-        ("Evidence agrees: BHAR vs market, 36 months", RS, "bhar.forced_strict.3y.median", "pct"),
+        (
+            "Return minus a matched firm, 36 months, matches within the size band only",
+            OS,
+            "rob.mbhar_strict_matches.3y.median",
+            "pct",
+        ),
+        ("Evidence agrees: return minus the market, 36 months", RS, "bhar.forced_strict.3y.median", "pct"),
         (
             "All dates, every firing with returns",
             RS,
@@ -1339,14 +1745,24 @@ def sec_h():
         ),
         ("Not precisely dated (8-K, news report or leaving office)", RS, "rob.undated.forced.mm_m1p1.mean", "pct"),
         ("Dated by an 8-K only", RS, "rob.datesrc_8k.mm_m1p1.mean", "pct"),
-        ("All dates: fraud minus sex or relationship", RS, "rob.all_dates.sex_vs_fraud.mm_m1p1.diff_mean", "pp"),
-        ("All dates: conduct minus performance", RS, "rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean", "pp"),
+        ("All dates: sex or relationship minus fraud", RS, "rob.all_dates.sex_vs_fraud.mm_m1p1.diff_mean", "pp"),
+        (
+            "All dates: personal scandal minus other firings",
+            RS,
+            "rob.all_dates.conduct_vs_performance.mm_m1p1.diff_mean",
+            "pp",
+        ),
         ("All dates: founder minus hired CEO", RS, "rob.all_dates.founder_vs_nonfounder.mm_m1p1.diff_mean", "pp"),
         ("Excluding firings coded as leaving for a new job", RS, "rob.forced_excl_newopp.mm_m1p1.mean", "pct"),
-        ("BHAR vs market, 36 months, every delisting return 0", RS, "rob.bhar_dl0.forced.3y.median", "pct"),
-        ("BHAR vs market, 36 months, non-takeover delistings -100%", RS, "rob.bhar_dlworst.forced.3y.median", "pct"),
+        ("Return minus the market, 36 months, every delisting return 0", RS, "rob.bhar_dl0.forced.3y.median", "pct"),
         (
-            "Pre-1998: 3-year return minus reported index, forced minus retired",
+            "Return minus the market, 36 months, non-takeover delistings -100%",
+            RS,
+            "rob.bhar_dlworst.forced.3y.median",
+            "pct",
+        ),
+        (
+            "Pre-1998: 3-year return minus reported index, firings minus retirements",
             PS,
             "pre.forced_vs_retired.abn_tsr_3y.diff_median",
             "pp",
@@ -1422,7 +1838,7 @@ def sec_h():
         "Robustness",
         "Do the results survive other models, samples and definitions?",
         f"With five factors plus momentum the founder gap is {v(RS, 'rob.founder_vs_nonfounder_ff5.m1p1.diff_mean', 'pp')} (p {pv(RS, 'rob.founder_vs_nonfounder_ff5.m1p1.diff_mean')}) "
-        f"and the conduct gap {v(RS, 'rob.conduct_vs_performance_ff5.m1p1.diff_mean', 'pp')} (p {pv(RS, 'rob.conduct_vs_performance_ff5.m1p1.diff_mean')}). "
+        f"and the personal-scandal gap {v(RS, 'rob.conduct_vs_performance_ff5.m1p1.diff_mean', 'pp')} (p {pv(RS, 'rob.conduct_vs_performance_ff5.m1p1.diff_mean')}). "
         f"On the {v(RS, 'a.n_forced_strict', 'count')} exits the evidence also reads as forced, the return is {v(RS, 'car.forced_strict.mm_m1p1.mean', 'pct')}.",
         {
             "test": "as in the main tables",
@@ -1433,20 +1849,20 @@ def sec_h():
         stats,
         [
             table(
-                "Table IA.1. Robustness",
+                "Table IA.4. Robustness",
                 ["Specification", "Estimate", "p", "N", "Horizon"],
                 rows,
                 [k for _, _, k, _ in specs],
                 "Each row changes one thing against the main tables. Evidence agrees: the CEO dismissal database codes the exit forced and the evidence-based coding "
-                "(8-K, press releases, Wikipedia, NYT) also reads it as forced. Pushed retirements: the database codes a retirement and the evidence reads it as forced. "
+                "(8-K, press releases, Wikipedia, New York Times) also reads it as forced. Pushed retirements: the database codes a retirement and the evidence reads it as forced. "
                 "Pre-1998: departures announced 1992 to 1997, three-year return minus the index the firm itself reports in its proxy performance graph.",
             ),
             table(
-                "Table IA.2. From the database to the main sample",
+                "Table IA.1. From the database to the main sample",
                 ["Step", "N"],
                 flow_rows,
                 [k for _, k in flow],
-                "Firings are database codes 3 and 4. A price history covers the announcement when the security trades from 60 days before day 0. Founder codes "
+                "Firings are database codes 3 and 4; firings for financial misconduct or legal violations leave the sample after the hand review of their codes. A price history covers the announcement when the security trades from 60 days before day 0. Founder codes "
                 "come from the evidence-based model coding; every one on a firing was checked by hand, which also added founders the model had left unclear.",
             ),
             table(
@@ -1466,12 +1882,14 @@ def sec_h():
                 "would detect with 80% power at the 5% level. The paper's main window is days -1 to +1.",
             ),
             table(
-                "Table IA.4. Who stops trading within 60 months, with controls and against matched firms",
+                "Table IA.9. Who stops trading within 60 months, with controls and against matched firms",
                 ["Outcome", "Firings", "Retirements", "Firing effect with controls, pp", "p", "N"],
                 exit_rows,
                 [f"reg.exit5.{y}.forced" for y in ("gone", "acquired", "bankrupt")],
-                "Firing effect with controls: the coefficient on the firing dummy in a linear probability model with log market value, ROA in year -1, event-year "
-                "and Fama-French industry effects, standard errors clustered by year. The last row compares each firing firm with its own matched firm (paired t).",
+                "Firing effect with controls: the coefficient on the firing dummy in a linear probability model with log market value, return on assets (ROA) in "
+                "fiscal year -1, event-year and Fama-French industry effects, standard errors clustered by year. The matched row compares each firing firm "
+                "with its own matched firm (paired t). The rows marked same controls add the prior 12-month return, leverage, book-to-market, an Altman Z "
+                "distress flag and a loss flag, on the firms with every item; the founder and personal-scandal rows estimate that model within firings.",
             ),
         ],
     )
@@ -1496,7 +1914,7 @@ def check(payload):
 
 
 def main():
-    for k in ("a.n_sex_or_relationship", "a.n_financial_misconduct", "a.n_forced_strict"):
+    for k in ("a.n_sex_or_relationship", "a.n_forced_strict"):
         g = k.split("a.n_")[1]
         c = SRC[RS].get(f"car.{g}.mm_m1p1.count")
         if c:

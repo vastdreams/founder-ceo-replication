@@ -1,58 +1,58 @@
 {
  "desc.forced.mcap.median": {
-  "value": 1043833764.0,
-  "n": 1347
+  "value": 999569567.5,
+  "n": 1240
  },
  "desc.retired.mcap.median": {
   "value": 1946640302.0,
   "n": 2221
  },
  "desc.forced_founder.mcap.median": {
-  "value": 841433042.0,
-  "n": 95
+  "value": 836372310.0,
+  "n": 78
  },
  "descdiff.forced_vs_retired.mcap.diff_median": {
-  "value": -902806538.0,
-  "n": 3568,
-  "p": 2.5986590511790315e-24
+  "value": -947070734.5,
+  "n": 3461,
+  "p": 5.65188539459997e-25
  },
  "desc.forced.roa.median": {
-  "value": 0.07868099590651104,
-  "n": 1347
+  "value": 0.07778803619053215,
+  "n": 1240
  },
  "desc.retired.roa.median": {
   "value": 0.12321099491438986,
   "n": 2221
  },
  "desc.forced_founder.roa.median": {
-  "value": 0.07695448606271776,
-  "n": 95
+  "value": 0.07560028637645666,
+  "n": 78
  },
  "descdiff.forced_vs_retired.roa.diff_median": {
-  "value": -0.04452999900787882,
-  "n": 3568,
-  "p": 4.560334162765993e-48
+  "value": -0.04542295872385771,
+  "n": 3461,
+  "p": 8.3721823094854e-48
  },
  "desc.forced.salesg.median": {
-  "value": 0.032266209112771116,
-  "n": 1318
+  "value": 0.028918015548127896,
+  "n": 1215
  },
  "desc.retired.salesg.median": {
   "value": 0.0674809558291094,
   "n": 2185
  },
  "desc.forced_founder.salesg.median": {
-  "value": 0.08436232515915743,
-  "n": 94
+  "value": 0.08459728536081546,
+  "n": 77
  },
  "descdiff.forced_vs_retired.salesg.diff_median": {
-  "value": -0.035214746716338285,
-  "n": 3503,
-  "p": 1.421924851674369e-09
+  "value": -0.038562940280981506,
+  "n": 3400,
+  "p": 9.395851659264124e-11
  },
  "desc.forced.rnd.median": {
   "value": 0.0,
-  "n": 1347
+  "n": 1240
  },
  "desc.retired.rnd.median": {
   "value": 0.0,
@@ -60,29 +60,29 @@
  },
  "desc.forced_founder.rnd.median": {
   "value": 0.0,
-  "n": 95
+  "n": 78
  },
  "descdiff.forced_vs_retired.rnd.diff_median": {
   "value": 0.0,
-  "n": 3568,
-  "p": 0.11368247463393312
+  "n": 3461,
+  "p": 0.12767732154890998
  },
  "desc.forced.capex.median": {
-  "value": 0.032372511944111663,
-  "n": 1347
+  "value": 0.032274458427267845,
+  "n": 1240
  },
  "desc.retired.capex.median": {
   "value": 0.0353386621792175,
   "n": 2221
  },
  "desc.forced_founder.capex.median": {
-  "value": 0.04267677089990789,
-  "n": 95
+  "value": 0.039592926776269764,
+  "n": 78
  },
  "descdiff.forced_vs_retired.capex.diff_median": {
-  "value": -0.0029661502351058383,
-  "n": 3568,
-  "p": 0.00024323278004781922
+  "value": -0.0030642037519496568,
+  "n": 3461,
+  "p": 0.00014773647015399374
  },
  "case.7398.car_m1p1": {
   "value": 0.0967771911568257,
@@ -90,14 +90,6 @@
  },
  "case.7398.bhar_3y": {
   "value": -0.23067883313642823,
-  "n": 1
- },
- "case.49.car_m1p1": {
-  "value": -0.3401419737976071,
-  "n": 1
- },
- "case.49.bhar_3y": {
-  "value": -1.1441488283449184,
   "n": 1
  },
  "case.8370.car_m1p1": {
@@ -124,28 +116,12 @@
   "value": -1.2563585713537504,
   "n": 1
  },
- "case.10065.car_m1p1": {
-  "value": 0.03567744942941358,
-  "n": 1
- },
- "case.10065.bhar_3y": {
-  "value": -0.7695646343354552,
-  "n": 1
- },
  "case.1862.car_m1p1": {
   "value": -0.00015325586612127597,
   "n": 1
  },
  "case.1862.bhar_3y": {
   "value": 0.10497638534143605,
-  "n": 1
- },
- "case.8592.car_m1p1": {
-  "value": -0.07331934328700354,
-  "n": 1
- },
- "case.8592.bhar_3y": {
-  "value": -0.9020887406665976,
   "n": 1
  },
  "case.1285.car_m1p1": {
@@ -157,7 +133,7 @@
   "n": 1
  },
  "case.n_listed": {
-  "value": 9.0
+  "value": 6.0
  },
  "flow.forced_db": {
   "value": 1799.0
@@ -168,11 +144,17 @@
  "flow.forced_priced": {
   "value": 1441.0
  },
- "flow.forced_returns": {
+ "flow.forced_returns_all": {
   "value": 1393.0
  },
+ "flow.forced_criminal": {
+  "value": 121.0
+ },
+ "flow.forced_returns": {
+  "value": 1272.0
+ },
  "flow.forced_dated": {
-  "value": 527.0
+  "value": 486.0
  },
  "flow.founder_model": {
   "value": 191.0
@@ -184,10 +166,10 @@
   "value": 132.0
  },
  "flow.founder_returns": {
-  "value": 103.0
+  "value": 83.0
  },
  "flow.founder_dated": {
-  "value": 34.0
+  "value": 29.0
  },
  "hook.nvda.day_ret": {
   "value": -0.04340067921487356,
@@ -206,15 +188,6 @@
    "dismissal": "performance",
    "mcap_m1": 37935372440.0,
    "fate_5y": "still listed"
-  },
-  {
-   "event_id": 49,
-   "company": "WorldCom",
-   "ceo": "Bernard Ebbers",
-   "year": 2002,
-   "dismissal": "legal or conduct",
-   "mcap_m1": 22768372498.0,
-   "fate_5y": "bankrupt"
   },
   {
    "event_id": 8370,
@@ -244,15 +217,6 @@
    "fate_5y": "under 5 years of data"
   },
   {
-   "event_id": 10065,
-   "company": "Trident Microsystems",
-   "ceo": "Frank Lin",
-   "year": 2006,
-   "dismissal": "legal or conduct",
-   "mcap_m1": 904615892.0,
-   "fate_5y": "still listed"
-  },
-  {
    "event_id": 1862,
    "company": "Inter-Tel",
    "ceo": "Steven Mihaylo",
@@ -260,15 +224,6 @@
    "dismissal": "performance",
    "mcap_m1": 561125957.0,
    "fate_5y": "acquired"
-  },
-  {
-   "event_id": 8592,
-   "company": "Northern Oil & Gas",
-   "ceo": "Michael Reger",
-   "year": 2016,
-   "dismissal": "performance",
-   "mcap_m1": 277160235.0,
-   "fate_5y": "still listed"
   },
   {
    "event_id": 1285,

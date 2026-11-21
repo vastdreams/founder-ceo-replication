@@ -3,14 +3,16 @@
 Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO*
 (working paper, November 2026). Every number, table and figure in the paper is produced by the code here.
 
-**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 16 pages). The text with every statistic
+**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 17 pages). The text with every statistic
 filled in is [paper/paper.md](paper/paper.md).
 
-**The question.** What happens to a US public company after its board fires the CEO, and does it matter whether the
-CEO founded the company and why the board acted? We follow every forced CEO exit at an S&P 1500 firm from 1998 to
-2023 (1,393 firings with returns, 2,253 retirements as the comparison) from six weeks before the announcement to five
-years after it, and report the number of firms measured at every horizon. Announcement-window results use the 527
-firings whose announcement date is hand-coded; long-run results use every firing.
+**The question.** What happens to a US public company after its board fires the chief executive, and does it matter
+whether the chief executive founded the company, or was fired over a sex scandal rather than fraud? We follow every
+firing at an S&P 1500 firm from 1998 to 2023 (1,272 firings with prices, 83 of them of founders; 2,253 retirements as
+the comparison) from six weeks before the announcement to five years after it, with the number of firms measured at
+every horizon. The 121 firings over fraud, another legal violation or a criminal charge are kept apart as a
+comparison group. Announcement windows use the 486 firings dated by the database or by hand; long-run results use
+every firing.
 
 ![Prices slide before the firing, drop on the news, then stop](figures/fig1_event_time.png)
 
@@ -18,21 +20,24 @@ firings whose announcement date is hand-coded; long-run results use every firing
 
 | Horizon | Firings | Retirements | N firings |
 |---|---|---|---|
-| Trading days −30 to −2, return minus the market | −5.1% | −0.0% | 527 |
-| Trading days −1 to +1, abnormal return | −2.7% | −0.3% | 524 |
-| Trading days +2 to +60, return minus the market | −0.3% (n.s.) | −0.8% | 516 |
-| 12 / 36 / 60 months, median return minus a matched firm | −4.3% / −1.6% (n.s.) / −5.2% (n.s.) | −0.0% / 0.5% / 2.8% | 1,321 / 1,318 / 1,264 |
-| Within 60 months, share no longer trading | 32.1% | 16.8% | 1,335 |
+| Trading days −30 to −2, return minus the market | −5.2% | 0.0% | 486 |
+| Trading days −1 to +1, abnormal return | −2.4% | −0.3% | 483 |
+| Trading days +2 to +60, return minus the market | −0.5% (n.s.) | −0.8% | 476 |
+| 12 / 36 / 60 months, median return minus a matched firm | −4.8% / −0.5% (n.s.) / −4.7% (n.s.) | 0.0% / 0.5% / 2.8% | 1,220 / 1,217 / 1,164 |
+| 36 months, five-factor and momentum alpha, a month | 0.04% (n.s.) | 0.13% | 319 months |
+| Within 60 months, share delisted | 31.9% | 16.8% | 1,215 |
 
-* **The market sees it coming** and reacts once: the stock slides for six weeks, drops on the news, then stops.
-* **Fraud costs, sex scandals don't.** Firings over financial misconduct cost 6.1% in three days; firings over sex
-  scandals or relationships +0.7% (difference p = 0.006, 54 against 16 cases, all firings). Fired founders cost
-  5.4% against 2.5% for hired CEOs, a gap that is not significant over three days (p = 0.26).
-* **The lasting difference is survival.** A third of firing firms stop trading within five years, twice the rate
-  after retirements. With controls for size, profitability, year and industry, a firing adds 9.4 percentage points
-  (5.0 bankruptcy, 4.0 takeover). Against matched firms, returns differ little after the first year.
+* **The market sees it coming.** The shares slide for six weeks, fall a further 2.4% over the three days around the
+  announcement, then stop.
+* **Founders and sex scandals change little; fraud does.** Fired founders' shares fall 5.0% against 2.2% for hired
+  chief executives, a gap that is not significant (p = 0.32) and is +0.6 points with size and prior-return controls.
+  After a sex or other personal scandal the fall is 1.1% (40 firings, every date source), about the same as other
+  firings; after fraud or another legal violation it is 4.8% (121 firings; difference 3.6 points, p = 0.021).
+* **The lasting difference is survival.** Within five years 31.9% of firing firms are delisted, against 16.8% after a
+  retirement, in every size band. With controls for size, profitability, prior return, leverage, book-to-market,
+  distress and losses, the gap is 6.5 percentage points (p = 0.006). Risk-adjusted returns are close to zero.
 
-![One in three is gone within five years](figures/fig3_exits.png)
+![Within five years, 31.9% of firing firms are delisted](figures/fig3_exits.png)
 
 ## Replicate it
 
@@ -47,7 +52,7 @@ Three levels, from no data at all to the full pipeline.
 ```bash
 git clone https://github.com/vastdreams/founder-ceo-replication && cd founder-ceo-replication
 python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
-python check.py      # 262 statistics and 10 tables checked, 0 differ; figures in outputs/figures/
+python check.py      # 386 statistics and 16 tables checked, 0 differ; figures in outputs/figures/
 ```
 
 **Bring your own data (Level 2).** The code never reads a vendor table. `code/datasource.py` serves nine canonical
@@ -71,10 +76,10 @@ DATA.md             data dictionary: every input, every column, sources, licence
 code/               the analysis (the same code that produced the paper) and the adapters
 data/inputs/        free canonical inputs: CEO dismissal database, gvkey-CIK links, Wikidata founders, SEC index
 data/events/        event-level results: returns, delistings, matched firms, codes, board outcomes
-data/reviews/       hand reviews of every founder code and every sexual-conduct and relationship code
-results/            the published statistics (combined_results.json) and figure series
+data/reviews/       hand reviews of every founder, fraud, conduct and scandal code, date corrections and exclusions
+results/            the published statistics (combined_results.json), figure series and the inputs that need licensed data to rebuild
 figures/            the paper's figures
-paper/              the paper as built from paper/template.md, and the decision log (DECISIONS.md)
+paper/              the paper (PDF and filled text), its template and the method decisions (DECISIONS.md)
 ```
 
 Every statistic carries its horizon (how long after the announcement it is measured) and its N, and the build

@@ -17,6 +17,7 @@ import pathlib
 import re
 
 import pandas as pd
+import sample
 from stats_returns import R, one_group, put, two_group
 
 HERE = pathlib.Path(__file__).parent
@@ -87,6 +88,7 @@ def main():
         )
     d = pd.DataFrame(rows)
     d.to_parquet(HERE / "out" / "board_outcomes.parquet", index=False)
+    d = sample.apply(d)  # firings for crimes out; conduct = fired over a personal scandal (D-18)
     f, r = d[d.forced == 1], d[d.forced == 0]
     groups = {
         "forced": f,

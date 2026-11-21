@@ -22,7 +22,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
 CODE, OUT, PAPER = ROOT / "code", ROOT / "outputs", ROOT / "paper"
-STEPS = ["founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "describe.py", "combine_results.py", "figures.py"]
+STEPS = ["founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "describe.py", "referee_checks.py", "combine_results.py", "figures.py"]
 
 
 def stage():

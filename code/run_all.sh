@@ -4,7 +4,7 @@
 set -e
 P=${PY:-python}
 export FCE_DATA_SOURCE=${FCE_DATA_SOURCE:-files}
-for s in build_events event_study paths ops_matched delist_dates coding_final founder_final stats_returns stats_ops board_outcomes pre1998_tsr describe calendar_alpha figure_series; do
+for s in build_events event_study paths ops_matched delist_dates coding_final founder_final stats_returns stats_ops board_outcomes referee_checks pre1998_tsr describe calendar_alpha figure_series; do
   echo "== $s"
   $P -W ignore $s.py | tail -3
 done

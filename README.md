@@ -31,8 +31,12 @@ windows use the 531 well-dated firings (dated by the database or by hand); long-
   move.
 * **The reason and the person.** After a firing over fraud or other legal violation the shares fall 6.9% (41
   well-dated firings). After a personal scandal they fall 1.5% (39), not significantly different from the 2.3% after
-  other firings (95% interval for the gap −0.8 to 2.6 points). A fired founder's shares fall 3.2% (52) against 2.2%
-  for a hired CEO; the gap is not significant (p = 0.63; 95% interval −5.1 to 3.1 points).
+  other firings (95% interval for the gap −0.9 to 2.6 points). A fired founder's shares fall 3.2% (52) against 2.2%
+  for a hired CEO; the gap is not significant (p = 0.63; 95% interval −5.2 to 3.2 points). Both groups are too small
+  for precise estimates.
+* **Who counts and which dates.** Firings the evidence-based coding also reads as forced fall 1.6% (190); reweighting
+  the well-dated firings to resemble every firing gives 2.2%; over trading days −5 to +5 every firing at any date
+  falls 2.0%. Delisting is also modelled as a duration (Cox hazard ratio 1.38 with every control).
 * **What becomes of the firm.** Within five years 12.0% of firing firms go bankrupt, against 2.6% after a retirement,
   and 19.0% are taken over, against 14.1%. With controls for size, profitability, prior return, leverage,
   book-to-market, distress and losses, the delisting gap is 6.6 percentage points (p = 0.005), 2.3 of them
@@ -53,7 +57,7 @@ Three levels, from no data at all to the full pipeline.
 ```bash
 git clone https://github.com/vastdreams/founder-ceo-replication && cd founder-ceo-replication
 python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
-python check.py      # 422 statistics and 16 tables checked, 0 differ; figures in outputs/figures/
+python check.py      # 517 statistics and 17 tables checked, 0 differ; figures in outputs/figures/
 ```
 
 **Bring your own data (Level 2).** The code never reads a vendor table. `code/datasource.py` serves nine canonical

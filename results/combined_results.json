@@ -1,7 +1,7 @@
 {
  "label": "Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO",
  "engine_version": "founder_ceo_exits 2.0",
- "generated_at": "2026-11-21T15:45:12.906886+00:00",
+ "generated_at": "2026-11-21T17:20:20.556907+00:00",
  "source_files": {
   "outputs/alpha_stats.json": "874ff51441440e4a",
   "outputs/board_stats.json": "dec5190441ede9a7",
@@ -6644,6 +6644,22 @@
      "n": 1269
     },
     {
+     "stat_id": "exit.forced.delisted_other_5y",
+     "label": "Delisted for another reason within 60 months, forced",
+     "value": 0.00823045267489712,
+     "formatted": "0.8%",
+     "unit": "share",
+     "test": "proportion",
+     "source_file": "outputs/returns_stats.json",
+     "source_key": "exit.forced.delisted_other_5y",
+     "group": "",
+     "population": "CEO firings for any reason but fraud or other legal violation (database codes 3 and 4); S&P 1500 firms, announcements 1998-2023",
+     "geography": "United States (S&P 1500 firms)",
+     "basket": "whether the stock still trades, and how it left the market",
+     "period": "departures announced 1998-2023; 60 months (1,260 trading days) from day +2 after the announcement",
+     "n": 1215
+    },
+    {
      "stat_id": "exitdiff.forced_strict_vs_retired.delisted_5y",
      "label": "Evidence agrees minus retired, stopped trading within 60 months",
      "value": 0.17349846327661975,
@@ -7518,13 +7534,13 @@
      "title": "Table 4. Firms delisted within 12, 36 and 60 months, by group",
      "columns": [
       "Group",
-      "Delisted, 12m",
-      "Delisted, 36m",
-      "Delisted, 60m",
-      "Acquired, 60m",
-      "Bankrupt, 60m",
+      "Delisted by 12 months",
+      "Delisted by 36 months",
+      "Delisted by 60 months",
+      "Taken over by 60 months",
+      "Bankrupt by 60 months",
       "p vs retired",
-      "N, 60m"
+      "N, 60 months"
      ],
      "rows": [
       [
@@ -7707,7 +7723,7 @@
       "reg.exit5.gone.forced",
       "reg.exit5c.gone.forced"
      ],
-     "notes": "Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Acquired and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month share. Panel B: the 60-month gap, raw or as a linear probability coefficient with year and industry effects; N counts firings and retirements. Size and profitability: log market value and return on assets. Every control adds the prior return, leverage, book-to-market, distress and loss. Table IA.10 adds the checks."
+     "notes": "Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Taken over and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month share. Panel B: the 60-month gap, raw or as a linear probability coefficient with year and industry effects; N counts firings and retirements. Size and profitability: log market value and return on assets. Every control adds the prior return, leverage, book-to-market, distress and loss. Table IA.10 adds the checks."
     },
     {
      "title": "Table 3. Firms delisted within 60 months, by market value before the firing",

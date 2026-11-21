@@ -67,13 +67,13 @@ A three-day window needs the right day. The database gives an announcement date 
 
 Of the 1,272 firings, 531 are well-dated: by the database, or by hand from a dated source. The announcement tests use these. Results over months and years use all 1,272 firings, since an error of a few days is small against a year.
 
-The well-dated firings are not a random draw. They are larger, fell less in the year before, and include more founders and personal scandals (Table IA.5). We dated those two groups by hand from 8-Ks, press releases and New York Times reports. Section 4 shows that the announcement fall survives reweighting and a wider window.
+The well-dated firings are not a random draw. Compared with the other firings, they are larger, fell less over the year before, and include more founders and personal scandals (Table IA.5). We dated those two groups by hand from 8-Ks, press releases and New York Times reports. Section 4 shows that the announcement fall survives reweighting and a wider window.
 
 ### Founders and reasons
 
 Who was a founder, and why the board acted, come in two steps. First, a language model (DeepSeek, deepseek-chat) reads the database's notes and sources, the 8-K, cited press releases, the CEO's Wikipedia article and New York Times articles. It codes whether the CEO founded the firm, whether the exit was forced and the board's main reason, each with a supporting quote. We call this the evidence-based coding.
 
-Second, one coder, the author, checked by hand every founder code on a firing and every code of fraud, sexual misconduct, a relationship or other personal conduct. The language model had coded 191 firings as founder removals; the hand check confirmed 148, rejected 43 and added 2. About half of the model's other personal-conduct codes turned out to be pay disputes, unexplained personal reasons or criminal charges. Table IA.1 reports how often each kind of code was changed. An independent second coder's check of a random fifth of the codes is planned before submission to a journal.
+Second, one coder, the author, checked by hand every founder code on a firing and every code of fraud, sexual misconduct, a relationship or other personal conduct. The hand check changed about a quarter of the model's founder codes and about half of its other personal-conduct codes (Table IA.1). An independent second coder's check of a random fifth of the codes is planned before submission to a journal.
 
 The evidence-based coding is cautious about whether an exit was forced. Of the 528 well-dated firings with returns, it reads 190 as forced, 46 as not forced and 292 as unclear, mostly because the sources do not say. Section 4 and Table 2 report the announcement return for the forced and the unclear groups separately.
 
@@ -101,7 +101,7 @@ If the market had already priced the firing, the announcement would not move the
 
 *Figure 1. Prices slide before the firing, drop on the news, then stop.* Notes. Cumulative return minus the market from trading day -30 to day +60 around the announcement (day 0), well-dated firings with every day of the window. Panel (a) shows means, with the 95% confidence band for firings; the grey band marks days -1 to +1. Panel (b) shows medians, so that one firm cannot move a small group's line. The lines sum daily returns, so their end points differ slightly from the window returns of Table 1.
 
-In the six weeks before the announcement, the shares of firing firms lag the market by 5.4%, while those of retirement firms do not move. Over the three trading days around it, their market-model abnormal return is -2.3%, against -0.3% for retirements (Table 2). Over the next three months they earn -1.0% against the market, which is not statistically significant (p = 0.465).
+In the six weeks before the announcement, the shares of firing firms lag the market by 5.4%, while those of retirement firms move with it (0.0%). Over the three trading days around it, their market-model abnormal return is -2.3%, against -0.3% for retirements (Table 2). Over the next three months they earn -1.0% against the market, which is not statistically significant (p = 0.465).
 
 Is the fall an artefact of how firings are defined or dated? Not of the definition (Table 2, Panel C). Where the evidence-based coding agrees the exit was forced, the fall is 1.6% (p = 0.032); where it is unclear, 2.8%; where it reads the exit as not forced, 1.5%. Reweighting the well-dated firings to resemble every firing gives 2.2%, and the five-factor model 2.2%.
 
@@ -137,7 +137,7 @@ Nor of the dating. Over every firing, whatever the source of its date, the three
 
 ### Personal scandals and fraud
 
-Is a firing over a personal scandal different? After one, the shares fall 1.5% over the three days, against 2.3% after other firings (Table 2). The scandal fall on its own is not quite significant (p = 0.054, n = 39). With size, the prior year's return and the year held constant, the gap between the two is 0.2 percentage points (Table IA.4).
+Is a firing over a personal scandal different? After one, the shares fall 1.5% over the three days, against 2.3% after other firings (Table 2). On its own the scandal fall is not significant at the 5% level (p = 0.054, n = 39). With size, the prior year's return and the year held constant, the gap between the two is 0.2 percentage points (Table IA.4).
 
 The scandal fall is 0.9 percentage points smaller, a gap that is not statistically significant (p = 0.317). With so few scandal firings the estimate is imprecise. Its 95% interval runs from -0.9 to 2.6 percentage points, and the test would detect only gaps of about 2.4 percentage points.
 
@@ -145,7 +145,7 @@ After a firing over fraud or other legal violation the shares fall 6.9%, 5.4 per
 
 A scandal firing may be followed by little because the market priced the scandal when it first broke. To check, we searched the New York Times Archive for personal misconduct by sitting CEOs of the sample's firms and checked each report by hand (Table IA.8). The search finds 27 scandals. In 19 the CEO left within a year; in 8 the board kept them, among them Jeff Bezos at Amazon and Bobby Kotick at Activision Blizzard.
 
-Over the three trading days around the first press report, the shares of the 24 scandal firms with prices fell 2.2% against the market. They fell 2.4% where the CEO later left and 1.9% where the board kept them, too few cases to tell apart. The search finds only 12 of the database's firings over a personal scandal, mostly at the largest firms, so these cases describe prominent scandals rather than test anything.
+Over the three trading days around the first press report, the shares of the 24 scandal firms with prices fell 2.2% against the market. They fell 2.4% where the CEO later left and 1.9% where the board kept them, too few cases to tell apart. The search finds only 12 of the database's firings over a personal scandal, mostly at the largest firms. These cases describe prominent scandals and are too few and too unusual for a test.
 
 ### Founders
 
@@ -159,7 +159,7 @@ Three founders were fired over a personal scandal: John Schnatter at Papa John's
 
 ## 5. Which firms are delisted
 
-If the announcement fall is modest, does the firm itself do worse? A firm is delisted when its stock leaves the price file, through a takeover, a bankruptcy or another exit. Of the 1,215 firing firms followed for a full 60 months, 31.9% were delisted in that time: 19.0% in a takeover and 12.0% in bankruptcy (Table 4, Figure 2).
+If the announcement fall is modest, does the firm itself do worse? A firm is delisted when its stock leaves the price file, through a takeover, a bankruptcy or another exit. Of the 1,215 firing firms followed for a full 60 months, 31.9% were delisted in that time (Table 4, Figure 2). Takeovers account for 19.0%, bankruptcies for 12.0% and other exits for 0.8%.
 
 ![Figure 2. Within five years, 31.9% of firing firms are delisted](../figures/fig3_exits.png)
 
@@ -191,7 +191,7 @@ The firing need not cause the delisting: a board may fire the CEO of a firm it a
 
 ### Table 4. Firms delisted within 12, 36 and 60 months, by group
 
-| Group | Delisted, 12m | Delisted, 36m | Delisted, 60m | Acquired, 60m | Bankrupt, 60m | p vs retired | N, 60m |
+| Group | Delisted by 12 months | Delisted by 36 months | Delisted by 60 months | Taken over by 60 months | Bankrupt by 60 months | p vs retired | N, 60 months |
 |---|---|---|---|---|---|---|---|
 | Panel A. Share of firms |  |  |  |  |  |  |  |
 | CEOs fired | 7.6% | 21.3% | 31.9% | 19.0% | 12.0% | <0.001 | 1,215 |
@@ -209,15 +209,13 @@ The firing need not cause the delisting: a board may fire the CEO of a firm it a
 | Founder minus hired CEO |  |  | 5.7 |  |  | 0.358 | 1,215 |
 | Personal scandal minus other firings |  |  | -12.2 |  |  | 0.179 | 1,215 |
 
-*Notes.* Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Acquired and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month share. Panel B: the 60-month gap, raw or as a linear probability coefficient with year and industry effects; N counts firings and retirements. Size and profitability: log market value and return on assets. Every control adds the prior return, leverage, book-to-market, distress and loss. Table IA.10 adds the checks.
+*Notes.* Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Taken over and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month share. Panel B: the 60-month gap, raw or as a linear probability coefficient with year and industry effects; N counts firings and retirements. Size and profitability: log market value and return on assets. Every control adds the prior return, leverage, book-to-market, distress and loss. Table IA.10 adds the checks.
 
 ## 6. Returns, profits and the board over five years
 
-Do the extra bankruptcies leave shareholders with lower returns? A portfolio holding every firm in its first three years after a firing earns an alpha of 0.03% a month (Table IA.11). Its 95% interval runs from -0.35% to 0.42% a month, wide enough to include gains or losses of several percent over three years. Against a portfolio of retirement firms the difference is -0.12% a month (p = 0.516).
+Do the extra bankruptcies leave shareholders with lower returns? Two benchmarks give opposite answers, and the right one is the matched firm. Over the 60 months after the announcement, the median firing firm's buy-and-hold return trails the market's by 32.1%, and the median retirement firm's by 7.4% (Figure 3). But a typical stock lags an index over long horizons, because a few large winners lift the index average.
 
-The portfolio of personal-scandal firms earns 1.49% a month (t = 4.68; Table IA.11). It holds about a dozen firms at a time, so one or two firms can drive it. We do not read it as evidence that scandal firms do better.
-
-Over the 60 months after the announcement, the median firing firm's buy-and-hold return trails the market's by 32.1%, and the median retirement firm's by 7.4% (Figure 3). But a typical stock lags an index over long horizons, because a few large winners lift the index average. A matched firm of the same industry, size and profitability removes that effect.
+A matched firm of the same industry, size and profitability removes that effect, and against it the picture changes.
 
 ![Figure 3. Against the market the long run looks grim; against a matched firm it does not](../figures/fig2_long_run.png)
 
@@ -225,13 +223,17 @@ Over the 60 months after the announcement, the median firing firm's buy-and-hold
 
 Against its matched firm, the median firing firm's buy-and-hold return is -4.6% after one year (p = 0.035). After three and five years it is 0.0% and -4.7%, neither significant (Table IA.12).
 
-The means at three and five years are 2.3% and 11.7%. Neither is significant with the skewness-adjusted t test (p = 0.709 and 0.286). A few large winners pull the mean above the median, which is why the median and the alpha are the measures we read.
+The mean returns against the matched firm at three and five years are 2.3% and 11.7%. Neither is significant with the skewness-adjusted t test (p = 0.709 and 0.286). A few large winners pull the mean above the median, so the median and a risk-adjusted portfolio return are the measures we read.
+
+The portfolio return gives the same answer. An alpha is the monthly return that market, size, value, profitability, investment and momentum risks do not explain. A portfolio holding every firm in its first three years after a firing earns an alpha of 0.03% a month (Table IA.11). Its 95% interval runs from -0.35% to 0.42% a month. Against a portfolio of retirement firms the difference is -0.12% a month (p = 0.516).
+
+The personal-scandal portfolio earns 1.49% a month, but it holds about a dozen firms at a time, so one or two firms can drive it. We do not read it as evidence that scandal firms do better.
 
 Profits fall in the year of the firing and then recover. In the fiscal year of the departure, return on assets falls 2.0 percentage points against the matched firm (p < 0.001; Table IA.13 and Figure IA.3). By fiscal year +2 the median gap is 0.3 percentage points, on the firms still filing.
 
 A firing may come with a wider change in who governs the firm, which would appear on the board. The proxy statement, the annual filing that lists the directors standing for election, records the board before and after a firing. Of the directors named in the last proxy statement before a firing, 48.0% are missing from the first one filed about two years later. After a retirement the share is 37.8% (Table IA.14). The measure counts every director who disappears, matched on surname and first initial; a proxy does not say whether a director resigned, was not nominated again or lost a vote.
 
-Two years later a fired founder still sits on the board at 9.7% of firms, against 3.6% for a fired hired CEO and 33.3% for a retired one (Table IA.14). The founder gap is not significant (p = 0.113). These results cover the 1,876 departures whose firms filed a proxy statement both before and about two years after.
+Two years later a fired founder still sits on the board at 9.7% of firms, against 3.6% for a fired hired CEO and 33.3% for a retired one (Table IA.14). The gap between fired founders and fired hired CEOs is not significant (p = 0.113). These results cover the 1,876 departures whose firms filed a proxy statement both before and about two years after.
 
 ## 7. Discussion
 
@@ -257,7 +259,11 @@ The sample covers S&P 1500 firms, so it says little about smaller companies, whe
 
 ### Sample and firms
 
-Table IA.1 traces the firings from the CEO dismissal database to the samples, and Figure IA.1 counts them by year. Panel B of Table IA.1 shows how often the hand check changed the model's codes. It kept 75.9% of founder codes, 61.2% of fraud and legal-violation codes and 52.1% of other personal-conduct codes. In the fiscal year before the departure, firing firms are smaller and less profitable than retirement firms: their median return on assets is 7.8%, against 12.3% (Table IA.2).
+Table IA.1 traces the firings from the CEO dismissal database to the samples, and Figure IA.1 counts them by year. Panel B of Table IA.1 shows how often the hand check changed the model's codes.
+
+The language model had coded 191 firings as founder removals; the hand check confirmed 148, rejected 43 and added 2. About half of the model's other personal-conduct codes turned out to be pay disputes, unexplained personal reasons or criminal charges.
+
+The hand check kept 75.9% of founder codes, 61.2% of fraud and legal-violation codes and 52.1% of other personal-conduct codes. In the fiscal year before the departure, firing firms are smaller and less profitable than retirement firms: their median return on assets is 7.8%, against 12.3% (Table IA.2).
 
 ### Table IA.1. From the database to the main sample
 

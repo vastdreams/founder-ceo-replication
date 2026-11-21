@@ -67,13 +67,13 @@ A three-day window needs the right day. The database gives an announcement date 
 
 Of the {{a.n_lr_forced}} firings, {{a.n_forced}} are well-dated: by the database, or by hand from a dated source. The announcement tests use these. Results over months and years use all {{a.n_lr_forced}} firings, since an error of a few days is small against a year.
 
-The well-dated firings are not a random draw. They are larger, fell less in the year before, and include more founders and personal scandals (Table IA.5). We dated those two groups by hand from 8-Ks, press releases and New York Times reports. Section 4 shows that the announcement fall survives reweighting and a wider window.
+The well-dated firings are not a random draw. Compared with the other firings, they are larger, fell less over the year before, and include more founders and personal scandals (Table IA.5). We dated those two groups by hand from 8-Ks, press releases and New York Times reports. Section 4 shows that the announcement fall survives reweighting and a wider window.
 
 ### Founders and reasons
 
 Who was a founder, and why the board acted, come in two steps. First, a language model (DeepSeek, deepseek-chat) reads the database's notes and sources, the 8-K, cited press releases, the CEO's Wikipedia article and New York Times articles. It codes whether the CEO founded the firm, whether the exit was forced and the board's main reason, each with a supporting quote. We call this the evidence-based coding.
 
-Second, one coder, the author, checked by hand every founder code on a firing and every code of fraud, sexual misconduct, a relationship or other personal conduct. The language model had coded {{b.model_founder_codes}} firings as founder removals; the hand check confirmed {{b.founders_confirmed}}, rejected {{b.founders_rejected}} and added {{b.founders_added}}. About half of the model's other personal-conduct codes turned out to be pay disputes, unexplained personal reasons or criminal charges. Table IA.1 reports how often each kind of code was changed. An independent second coder's check of a random fifth of the codes is planned before submission to a journal.
+Second, one coder, the author, checked by hand every founder code on a firing and every code of fraud, sexual misconduct, a relationship or other personal conduct. The hand check changed about a quarter of the model's founder codes and about half of its other personal-conduct codes (Table IA.1). An independent second coder's check of a random fifth of the codes is planned before submission to a journal.
 
 The evidence-based coding is cautious about whether an exit was forced. Of the {{car.forced.mm_m1p1.mean|n}} well-dated firings with returns, it reads {{strict.llm_yes.mm_m1p1.mean|n}} as forced, {{strict.llm_no.mm_m1p1.mean|n}} as not forced and {{strict.llm_unclear.mm_m1p1.mean|n}} as unclear, mostly because the sources do not say. Section 4 and Table 2 report the announcement return for the forced and the unclear groups separately.
 
@@ -101,7 +101,7 @@ If the market had already priced the firing, the announcement would not move the
 
 *Figure 1. Prices slide before the firing, drop on the news, then stop.* Notes. Cumulative return minus the market from trading day -30 to day +60 around the announcement (day 0), well-dated firings with every day of the window. Panel (a) shows means, with the {{ci_level}}% confidence band for firings; the grey band marks days -1 to +1. Panel (b) shows medians, so that one firm cannot move a small group's line. The lines sum daily returns, so their end points differ slightly from the window returns of Table 1.
 
-In the six weeks before the announcement, the shares of firing firms lag the market by {{drift.forced.pre_m30m2.mean|abs}}, while those of retirement firms do not move. Over the three trading days around it, their market-model abnormal return is {{car.forced.mm_m1p1.mean}}, against {{car.retired.mm_m1p1.mean}} for retirements (Table 2). Over the next three months they earn {{drift.forced.post_p2p60.mean}} against the market, which is {{drift.forced.post_p2p60.mean|sig}} (p {{drift.forced.post_p2p60.mean|p}}).
+In the six weeks before the announcement, the shares of firing firms lag the market by {{drift.forced.pre_m30m2.mean|abs}}, while those of retirement firms move with it ({{drift.retired.pre_m30m2.mean}}). Over the three trading days around it, their market-model abnormal return is {{car.forced.mm_m1p1.mean}}, against {{car.retired.mm_m1p1.mean}} for retirements (Table 2). Over the next three months they earn {{drift.forced.post_p2p60.mean}} against the market, which is {{drift.forced.post_p2p60.mean|sig}} (p {{drift.forced.post_p2p60.mean|p}}).
 
 Is the fall an artefact of how firings are defined or dated? Not of the definition (Table 2, Panel C). Where the evidence-based coding agrees the exit was forced, the fall is {{strict.llm_yes.mm_m1p1.mean|abs}} (p {{strict.llm_yes.mm_m1p1.mean|p}}); where it is unclear, {{strict.llm_unclear.mm_m1p1.mean|abs}}; where it reads the exit as not forced, {{strict.llm_no.mm_m1p1.mean|abs}}. Reweighting the well-dated firings to resemble every firing gives {{dsel.ipw.mm_m1p1.mean|abs}}, and the five-factor model {{car.forced.ff5_m1p1.mean|abs}}.
 
@@ -111,7 +111,7 @@ Nor of the dating. Over every firing, whatever the source of its date, the three
 
 ### Personal scandals and fraud
 
-Is a firing over a personal scandal different? After one, the shares fall {{car.conduct.mm_m1p1.mean|abs}} over the three days, against {{car.performance.mm_m1p1.mean|abs}} after other firings (Table 2). The scandal fall on its own is not quite significant (p {{car.conduct.mm_m1p1.mean|p}}, n = {{car.conduct.mm_m1p1.mean|n}}). With size, the prior year's return and the year held constant, the gap between the two is {{regc.car_m1p1.conduct}} (Table IA.4).
+Is a firing over a personal scandal different? After one, the shares fall {{car.conduct.mm_m1p1.mean|abs}} over the three days, against {{car.performance.mm_m1p1.mean|abs}} after other firings (Table 2). On its own the scandal fall is not significant at the 5% level (p {{car.conduct.mm_m1p1.mean|p}}, n = {{car.conduct.mm_m1p1.mean|n}}). With size, the prior year's return and the year held constant, the gap between the two is {{regc.car_m1p1.conduct}} (Table IA.4).
 
 The scandal fall is {{equiv.scandal_gap.mm_m1p1.diff}} smaller, a gap that is {{cardiff.conduct_vs_performance.mm_m1p1.diff_mean|sig}} (p {{cardiff.conduct_vs_performance.mm_m1p1.diff_mean|p}}). With so few scandal firings the estimate is imprecise. Its 95% interval runs from {{equiv.scandal_gap.mm_m1p1.ci95_low}} to {{equiv.scandal_gap.mm_m1p1.ci95_high}}, and the test would detect only gaps of about {{equiv.scandal_gap.mm_m1p1.mde}}.
 
@@ -119,7 +119,7 @@ After a firing over fraud or other legal violation the shares fall {{car.crimina
 
 A scandal firing may be followed by little because the market priced the scandal when it first broke. To check, we searched the New York Times Archive for personal misconduct by sitting CEOs of the sample's firms and checked each report by hand (Table IA.8). The search finds {{scandal.n_events}} scandals. In {{scandal.n_departed}} the CEO left within a year; in {{scandal.n_kept}} the board kept them, among them Jeff Bezos at Amazon and Bobby Kotick at Activision Blizzard.
 
-Over the three trading days around the first press report, the shares of the {{scandal.all.first_report.car_m1p1.mean|n}} scandal firms with prices fell {{scandal.all.first_report.car_m1p1.mean|abs}} against the market. They fell {{scandal.departed.first_report.car_m1p1.mean|abs}} where the CEO later left and {{scandal.kept.first_report.car_m1p1.mean|abs}} where the board kept them, too few cases to tell apart. The search finds only {{scandal.n_known_firings_found}} of the database's firings over a personal scandal, mostly at the largest firms, so these cases describe prominent scandals rather than test anything.
+Over the three trading days around the first press report, the shares of the {{scandal.all.first_report.car_m1p1.mean|n}} scandal firms with prices fell {{scandal.all.first_report.car_m1p1.mean|abs}} against the market. They fell {{scandal.departed.first_report.car_m1p1.mean|abs}} where the CEO later left and {{scandal.kept.first_report.car_m1p1.mean|abs}} where the board kept them, too few cases to tell apart. The search finds only {{scandal.n_known_firings_found}} of the database's firings over a personal scandal, mostly at the largest firms. These cases describe prominent scandals and are too few and too unusual for a test.
 
 ### Founders
 
@@ -133,7 +133,7 @@ Three founders were fired over a personal scandal: John Schnatter at Papa John's
 
 ## 5. Which firms are delisted
 
-If the announcement fall is modest, does the firm itself do worse? A firm is delisted when its stock leaves the price file, through a takeover, a bankruptcy or another exit. Of the {{exit.forced.delisted_5y|n}} firing firms followed for a full 60 months, {{exit.forced.delisted_5y}} were delisted in that time: {{exit.forced.acquired_5y}} in a takeover and {{exit.forced.bankruptcy_5y}} in bankruptcy (Table 4, Figure 2).
+If the announcement fall is modest, does the firm itself do worse? A firm is delisted when its stock leaves the price file, through a takeover, a bankruptcy or another exit. Of the {{exit.forced.delisted_5y|n}} firing firms followed for a full 60 months, {{exit.forced.delisted_5y}} were delisted in that time (Table 4, Figure 2). Takeovers account for {{exit.forced.acquired_5y}}, bankruptcies for {{exit.forced.bankruptcy_5y}} and other exits for {{exit.forced.delisted_other_5y}}.
 
 ![Figure 2. Within five years, {{exit.forced.delisted_5y}} of firing firms are delisted](/static/reports/founder-ceo/figures/fig3_exits.png)
 
@@ -157,11 +157,9 @@ The firing need not cause the delisting: a board may fire the CEO of a firm it a
 
 ## 6. Returns, profits and the board over five years
 
-Do the extra bankruptcies leave shareholders with lower returns? A portfolio holding every firm in its first three years after a firing earns an alpha of {{alpha.forced.ew.36m}} a month (Table IA.11). Its 95% interval runs from {{alpha.forced.ew.36m.ci_low}} to {{alpha.forced.ew.36m.ci_high}} a month, wide enough to include gains or losses of several percent over three years. Against a portfolio of retirement firms the difference is {{alphadiff.forced_vs_retired.ew.36m}} a month (p {{alphadiff.forced_vs_retired.ew.36m|p}}).
+Do the extra bankruptcies leave shareholders with lower returns? Two benchmarks give opposite answers, and the right one is the matched firm. Over the 60 months after the announcement, the median firing firm's buy-and-hold return trails the market's by {{bhar.forced.5y.median|abs}}, and the median retirement firm's by {{bhar.retired.5y.median|abs}} (Figure 3). But a typical stock lags an index over long horizons, because a few large winners lift the index average.
 
-The portfolio of personal-scandal firms earns {{alpha.conduct.ew.36m}} a month (t = {{alpha.conduct.ew.36m|t}}; Table IA.11). It holds about a dozen firms at a time, so one or two firms can drive it. We do not read it as evidence that scandal firms do better.
-
-Over the 60 months after the announcement, the median firing firm's buy-and-hold return trails the market's by {{bhar.forced.5y.median|abs}}, and the median retirement firm's by {{bhar.retired.5y.median|abs}} (Figure 3). But a typical stock lags an index over long horizons, because a few large winners lift the index average. A matched firm of the same industry, size and profitability removes that effect.
+A matched firm of the same industry, size and profitability removes that effect, and against it the picture changes.
 
 ![Figure 3. Against the market the long run looks grim; against a matched firm it does not](/static/reports/founder-ceo/figures/fig2_long_run.png)
 
@@ -169,13 +167,17 @@ Over the 60 months after the announcement, the median firing firm's buy-and-hold
 
 Against its matched firm, the median firing firm's buy-and-hold return is {{mbhar.forced.1y.median}} after one year (p {{mbhar.forced.1y.median|p}}). After three and five years it is {{mbhar.forced.3y.median}} and {{mbhar.forced.5y.median}}, neither significant (Table IA.12).
 
-The means at three and five years are {{mbhar.forced.3y.mean}} and {{mbhar.forced.5y.mean}}. Neither is significant with the skewness-adjusted t test (p {{mbhar.forced.3y.skewadj_t|p}} and {{mbhar.forced.5y.skewadj_t|pv}}). A few large winners pull the mean above the median, which is why the median and the alpha are the measures we read.
+The mean returns against the matched firm at three and five years are {{mbhar.forced.3y.mean}} and {{mbhar.forced.5y.mean}}. Neither is significant with the skewness-adjusted t test (p {{mbhar.forced.3y.skewadj_t|p}} and {{mbhar.forced.5y.skewadj_t|pv}}). A few large winners pull the mean above the median, so the median and a risk-adjusted portfolio return are the measures we read.
+
+The portfolio return gives the same answer. An alpha is the monthly return that market, size, value, profitability, investment and momentum risks do not explain. A portfolio holding every firm in its first three years after a firing earns an alpha of {{alpha.forced.ew.36m}} a month (Table IA.11). Its 95% interval runs from {{alpha.forced.ew.36m.ci_low}} to {{alpha.forced.ew.36m.ci_high}} a month. Against a portfolio of retirement firms the difference is {{alphadiff.forced_vs_retired.ew.36m}} a month (p {{alphadiff.forced_vs_retired.ew.36m|p}}).
+
+The personal-scandal portfolio earns {{alpha.conduct.ew.36m}} a month, but it holds about a dozen firms at a time, so one or two firms can drive it. We do not read it as evidence that scandal firms do better.
 
 Profits fall in the year of the firing and then recover. In the fiscal year of the departure, return on assets falls {{roa.forced.abn_d_0.median|abs}} percentage points against the matched firm (p {{roa.forced.abn_d_0.median|p}}; Table IA.13 and Figure IA.3). By fiscal year +2 the median gap is {{roa.forced.abn_d_2.median}} percentage points, on the firms still filing.
 
 A firing may come with a wider change in who governs the firm, which would appear on the board. The proxy statement, the annual filing that lists the directors standing for election, records the board before and after a firing. Of the directors named in the last proxy statement before a firing, {{board.forced.director_turnover.mean}} are missing from the first one filed about two years later. After a retirement the share is {{board.retired.director_turnover.mean}} (Table IA.14). The measure counts every director who disappears, matched on surname and first initial; a proxy does not say whether a director resigned, was not nominated again or lost a vote.
 
-Two years later a fired founder still sits on the board at {{board.forced_founder.founder_stays.mean}} of firms, against {{board.forced_nonfounder.ceo_stays_director.mean}} for a fired hired CEO and {{board.retired.ceo_stays_director.mean}} for a retired one (Table IA.14). The founder gap is not significant (p {{board.founder_vs_hired.ceo_stays_director.diff|p}}). These results cover the {{g.events_with_board_data}} departures whose firms filed a proxy statement both before and about two years after.
+Two years later a fired founder still sits on the board at {{board.forced_founder.founder_stays.mean}} of firms, against {{board.forced_nonfounder.ceo_stays_director.mean}} for a fired hired CEO and {{board.retired.ceo_stays_director.mean}} for a retired one (Table IA.14). The gap between fired founders and fired hired CEOs is not significant (p {{board.founder_vs_hired.ceo_stays_director.diff|p}}). These results cover the {{g.events_with_board_data}} departures whose firms filed a proxy statement both before and about two years after.
 
 ## 7. Discussion
 
@@ -201,7 +203,11 @@ The sample covers S&P {{index_size}} firms, so it says little about smaller comp
 
 ### Sample and firms
 
-Table IA.1 traces the firings from the CEO dismissal database to the samples, and Figure IA.1 counts them by year. Panel B of Table IA.1 shows how often the hand check changed the model's codes. It kept {{code.founder.share_kept}} of founder codes, {{code.fraud.share_kept}} of fraud and legal-violation codes and {{code.personal.share_kept}} of other personal-conduct codes. In the fiscal year before the departure, firing firms are smaller and less profitable than retirement firms: their median return on assets is {{desc.forced.roa.median}}, against {{desc.retired.roa.median}} (Table IA.2).
+Table IA.1 traces the firings from the CEO dismissal database to the samples, and Figure IA.1 counts them by year. Panel B of Table IA.1 shows how often the hand check changed the model's codes.
+
+The language model had coded {{b.model_founder_codes}} firings as founder removals; the hand check confirmed {{b.founders_confirmed}}, rejected {{b.founders_rejected}} and added {{b.founders_added}}. About half of the model's other personal-conduct codes turned out to be pay disputes, unexplained personal reasons or criminal charges.
+
+The hand check kept {{code.founder.share_kept}} of founder codes, {{code.fraud.share_kept}} of fraud and legal-violation codes and {{code.personal.share_kept}} of other personal-conduct codes. In the fiscal year before the departure, firing firms are smaller and less profitable than retirement firms: their median return on assets is {{desc.forced.roa.median}}, against {{desc.retired.roa.median}} (Table IA.2).
 
 <!-- TABLE:IA.1 -->
 

@@ -57,7 +57,7 @@ Three levels, from no data at all to the full pipeline.
 ```bash
 git clone https://github.com/vastdreams/founder-ceo-replication && cd founder-ceo-replication
 python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
-python check.py      # 517 statistics and 17 tables checked, 0 differ; figures in outputs/figures/
+python check.py      # 518 statistics and 17 tables checked, 0 differ; figures in outputs/figures/
 ```
 
 **Bring your own data (Level 2).** The code never reads a vendor table. `code/datasource.py` serves nine canonical

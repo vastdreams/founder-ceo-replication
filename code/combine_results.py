@@ -1463,6 +1463,12 @@ def sec_f():
                 ("exit.forced.acquired_3y", "Acquired within 36 months, forced", "pct", "proportion"),
                 ("exit.forced.bankruptcy_3y", "Bankruptcy within 36 months, forced", "pct", "proportion"),
                 (
+                    "exit.forced.delisted_other_5y",
+                    "Delisted for another reason within 60 months, forced",
+                    "pct",
+                    "proportion",
+                ),
+                (
                     "exitdiff.forced_strict_vs_retired.delisted_5y",
                     "Evidence agrees minus retired, stopped trading within 60 months",
                     "pp",
@@ -1594,18 +1600,18 @@ def sec_f():
                 "Table 4. Firms delisted within 12, 36 and 60 months, by group",
                 [
                     "Group",
-                    "Delisted, 12m",
-                    "Delisted, 36m",
-                    "Delisted, 60m",
-                    "Acquired, 60m",
-                    "Bankrupt, 60m",
+                    "Delisted by 12 months",
+                    "Delisted by 36 months",
+                    "Delisted by 60 months",
+                    "Taken over by 60 months",
+                    "Bankrupt by 60 months",
                     "p vs retired",
-                    "N, 60m",
+                    "N, 60 months",
                 ],
                 rows,
                 ids,
-                "Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Acquired "
-                "and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month "
+                "Firms whose stock left the price file within 12, 36 and 60 months of the announcement, among firms followed that long. Taken "
+                "over and Bankrupt classify the corporate action within 60 days of the final price. p vs retired: chi-square test of the 60-month "
                 "share. Panel B: the 60-month gap, raw or as a linear probability coefficient with year and industry effects; N counts firings "
                 "and retirements. Size and profitability: log market value and return on assets. Every control adds the prior return, "
                 "leverage, book-to-market, distress and loss. Table IA.10 adds the checks.",

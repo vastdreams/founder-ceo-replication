@@ -27,7 +27,6 @@ Minimum detectable effect = 2.8 x standard error (80% power, 5% two-sided).
 """
 
 import json
-import os
 import pathlib
 import sys
 

@@ -1,9 +1,9 @@
 {
  "b.founders_reviewed": {
-  "value": 195.0
+  "value": 198.0
  },
  "b.founders_confirmed": {
-  "value": 148.0
+  "value": 151.0
  },
  "b.founders_added": {
   "value": 2.0
@@ -12,12 +12,12 @@
   "value": 43.0
  },
  "b.model_founder_codes": {
-  "value": 191.0
+  "value": 194.0
  },
  "b.model_error_rate": {
-  "value": 0.225130890052356
+  "value": 0.22164948453608246
  },
  "b.forced_founders_all_years": {
-  "value": 149.0
+  "value": 140.0
  }
 }

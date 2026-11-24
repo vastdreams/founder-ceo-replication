@@ -80,6 +80,26 @@ def main():
     ex = paper / "exclusions.csv"
     if ex.exists():
         ev = ev[~ev["event_id"].isin(pd.read_csv(ex)["event_id"])]
+    # D-37: corrections from the hand check of every founder departure (paper/d37_corrections.csv). A new date moves
+    # day 0 to the first public report (a row whose new date equals the old one is a flag, not a change), and a
+    # departure the sources show was not a firing leaves the sample and joins no comparison group.
+    # D-38 applies the hired-CEO audit's fixes from paper/d38_corrections.csv in the same way.
+    # D-44 adds forced resignations the database coded as retirements (field "code", 5 -> 3).
+    for d37 in (paper / "d37_corrections.csv", paper / "d38_corrections.csv", paper / "d44_corrections.csv"):
+        if not d37.exists():
+            continue
+        c = pd.read_csv(d37)
+        codes = c[c["field"] == "code"]
+        if len(codes):
+            recode = dict(zip(codes["event_id"], codes["new"].astype(int)))
+            hit = ev["event_id"].isin(recode)
+            ev.loc[hit, "code"] = ev.loc[hit, "event_id"].map(recode)
+        dates = c[(c["field"] == "event_date") & (c["new"] != c["old"])]
+        fix = dict(zip(dates["event_id"], pd.to_datetime(dates["new"])))
+        hit = ev["event_id"].isin(fix)
+        ev.loc[hit, "event_date"] = ev.loc[hit, "event_id"].map(fix)
+        ev.loc[hit, "date_source"] = "hand-checked"
+        ev = ev[~ev["event_id"].isin(c.loc[c["field"] == "sample", "event_id"])]
     ev["forced"] = ev["code"].isin([3, 4]).astype(int)
     ev["conduct"] = (ev["code"] == 4).astype(int)
 

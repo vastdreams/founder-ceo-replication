@@ -194,3 +194,6 @@ event_id,company,ceo,model_code,decision,basis
 9059,Rosetta Resources,Bulent A. Berilgen,yes,no,"First CEO at the company's formation, not described as its founder. Strict rule D-03 (v2 news pass)"
 9267,CardioNet (BioTelemetry),James M. Sweeney,yes,no,"Hired CEO; his founder role was at other companies (v2 news pass)"
 10065,Trident Microsystems,Frank C. Lin,yes,yes,"Founded Trident in 1987 (v2 news pass)"
+7861,J.D. Edwards,C. Edward McVaney,yes,yes,"Co-founded J.D. Edwards in 1977 (D-44)"
+7188,Mednax,Roger J. Medel,yes,yes,"Co-founded Pediatrix (Mednax) in 1979 (D-44)"
+4161,Cypress Semiconductor,Thurman John Rodgers,yes,yes,"Founded Cypress Semiconductor in 1982 (D-44)"

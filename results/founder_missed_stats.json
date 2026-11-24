@@ -1,0 +1,18 @@
+{
+ "fmiss.n_hired": {
+  "value": 1170,
+  "n": 1170
+ },
+ "fmiss.n_wikidata": {
+  "value": 198,
+  "n": 1170
+ },
+ "fmiss.n_surname_match": {
+  "value": 4,
+  "n": 198
+ },
+ "fmiss.n_founder_found": {
+  "value": 0,
+  "n": 198
+ }
+}

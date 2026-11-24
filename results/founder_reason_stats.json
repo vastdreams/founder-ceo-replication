@@ -1,0 +1,1553 @@
+{
+ "fr.founder_fraud.n_all": {
+  "value": 21.0
+ },
+ "fr.founder_fraud.n_dated": {
+  "value": 21.0
+ },
+ "fr.founder_fraud.n5": {
+  "value": 21.0
+ },
+ "fr.founder_fraud.mm_m1p1.count": {
+  "value": 21.0
+ },
+ "fr.founder_fraud.mm_m1p1.mean": {
+  "value": -0.07943117879551786,
+  "n": 21,
+  "t": -2.5734292447322584,
+  "p": 0.018138373415424187
+ },
+ "fr.founder_fraud.mm_m1p1.median": {
+  "value": -0.05021640497987913,
+  "n": 21,
+  "p": 0.014165878295898438
+ },
+ "fr.founder_fraud.pre_m30m2.count": {
+  "value": 21.0
+ },
+ "fr.founder_fraud.pre_m30m2.mean": {
+  "value": -0.048564952611709,
+  "n": 21,
+  "t": -1.1361786694821894,
+  "p": 0.26931340727387215
+ },
+ "fr.founder_fraud.pre_m30m2.median": {
+  "value": 0.006046780370240771,
+  "n": 21,
+  "p": 0.49480247497558594
+ },
+ "fr.founder_fraud.delisted_5y": {
+  "value": 0.3333333333333333,
+  "n": 21
+ },
+ "fr.founder_fraud.delisted_5y.count": {
+  "value": 7.0,
+  "n": 21
+ },
+ "fr.founder_fraud.bankruptcy_5y": {
+  "value": 0.09523809523809523,
+  "n": 21
+ },
+ "fr.founder_fraud.bankruptcy_5y.count": {
+  "value": 2.0,
+  "n": 21
+ },
+ "fr.founder_event.n_all": {
+  "value": 9.0
+ },
+ "fr.founder_event.n_dated": {
+  "value": 9.0
+ },
+ "fr.founder_event.n5": {
+  "value": 7.0
+ },
+ "fr.founder_event.mm_m1p1.count": {
+  "value": 9.0
+ },
+ "fr.founder_event.pre_m30m2.count": {
+  "value": 9.0
+ },
+ "fr.founder_event.delisted_5y.count": {
+  "value": 1.0,
+  "n": 7
+ },
+ "fr.founder_event.bankruptcy_5y.count": {
+  "value": 0.0,
+  "n": 7
+ },
+ "fr.founder_scandal.n_all": {
+  "value": 4.0
+ },
+ "fr.founder_scandal.n_dated": {
+  "value": 4.0
+ },
+ "fr.founder_scandal.n5": {
+  "value": 3.0
+ },
+ "fr.founder_scandal.mm_m1p1.count": {
+  "value": 4.0
+ },
+ "fr.founder_scandal.pre_m30m2.count": {
+  "value": 4.0
+ },
+ "fr.founder_scandal.delisted_5y.count": {
+  "value": 0.0,
+  "n": 3
+ },
+ "fr.founder_scandal.bankruptcy_5y.count": {
+  "value": 0.0,
+  "n": 3
+ },
+ "frcase.6523.car_m1p1": {
+  "value": -0.048543030548562245,
+  "n": 1
+ },
+ "frcase.6523.pre_m30m2": {
+  "value": 0.005514362458720785,
+  "n": 1
+ },
+ "frcase.8370.car_m1p1": {
+  "value": -0.0911277288720887,
+  "n": 1
+ },
+ "frcase.8370.pre_m30m2": {
+  "value": 0.22055534646580183,
+  "n": 1
+ },
+ "frcase.8761.car_m1p1": {
+  "value": 0.09571195084688497,
+  "n": 1
+ },
+ "frcase.8761.pre_m30m2": {
+  "value": -0.029719564193593957,
+  "n": 1
+ },
+ "frcase.10360.car_m1p1": {
+  "value": -0.25171134081573837,
+  "n": 1
+ },
+ "frcase.10360.pre_m30m2": {
+  "value": 0.15191001125564615,
+  "n": 1
+ },
+ "fr.founder_coup.n_all": {
+  "value": 5.0
+ },
+ "fr.founder_coup.n_dated": {
+  "value": 5.0
+ },
+ "fr.founder_coup.n5": {
+  "value": 4.0
+ },
+ "fr.founder_coup.mm_m1p1.count": {
+  "value": 5.0
+ },
+ "fr.founder_coup.pre_m30m2.count": {
+  "value": 5.0
+ },
+ "fr.founder_coup.delisted_5y.count": {
+  "value": 1.0,
+  "n": 4
+ },
+ "fr.founder_coup.bankruptcy_5y.count": {
+  "value": 0.0,
+  "n": 4
+ },
+ "frcase.1862.car_m1p1": {
+  "value": -0.00015325586612127597,
+  "n": 1
+ },
+ "frcase.1862.pre_m30m2": {
+  "value": -0.016468344101744678,
+  "n": 1
+ },
+ "frcase.7230.car_m1p1": {
+  "value": 0.03497264758552908,
+  "n": 1
+ },
+ "frcase.7230.pre_m30m2": {
+  "value": -0.10363166972088944,
+  "n": 1
+ },
+ "frcase.7327.car_m1p1": {
+  "value": 0.0010206749585020165,
+  "n": 1
+ },
+ "frcase.7327.pre_m30m2": {
+  "value": 0.10772493002648631,
+  "n": 1
+ },
+ "frcase.7374.car_m1p1": {
+  "value": -0.10339814701658079,
+  "n": 1
+ },
+ "frcase.7374.pre_m30m2": {
+  "value": -0.26322420439266886,
+  "n": 1
+ },
+ "frcase.9699.car_m1p1": {
+  "value": 0.010102610314636648,
+  "n": 1
+ },
+ "frcase.9699.pre_m30m2": {
+  "value": 0.07734399304936812,
+  "n": 1
+ },
+ "fr.founder_other.n_all": {
+  "value": 64.0
+ },
+ "fr.founder_other.n_dated": {
+  "value": 48.0
+ },
+ "fr.founder_other.n5": {
+  "value": 62.0
+ },
+ "fr.founder_other.mm_m1p1.count": {
+  "value": 48.0
+ },
+ "fr.founder_other.mm_m1p1.mean": {
+  "value": -0.03189754522171703,
+  "n": 48,
+  "t": -1.4739223171281148,
+  "p": 0.14716931682447465
+ },
+ "fr.founder_other.mm_m1p1.median": {
+  "value": -0.0038262738554148672,
+  "n": 48,
+  "p": 0.4301168309991752
+ },
+ "fr.founder_other.pre_m30m2.count": {
+  "value": 48.0
+ },
+ "fr.founder_other.pre_m30m2.mean": {
+  "value": -0.09063322107231762,
+  "n": 48,
+  "t": -2.9081225329091716,
+  "p": 0.00553544137644068
+ },
+ "fr.founder_other.pre_m30m2.median": {
+  "value": -0.054023056145401926,
+  "n": 48,
+  "p": 0.0048198435071000745
+ },
+ "fr.founder_other.delisted_5y": {
+  "value": 0.43548387096774194,
+  "n": 62
+ },
+ "fr.founder_other.delisted_5y.count": {
+  "value": 27.0,
+  "n": 62
+ },
+ "fr.founder_other.bankruptcy_5y": {
+  "value": 0.16129032258064516,
+  "n": 62
+ },
+ "fr.founder_other.bankruptcy_5y.count": {
+  "value": 10.0,
+  "n": 62
+ },
+ "fr.founder_main.n_all": {
+  "value": 73.0
+ },
+ "fr.founder_main.n_dated": {
+  "value": 57.0
+ },
+ "fr.founder_main.n5": {
+  "value": 69.0
+ },
+ "fr.founder_main.mm_m1p1.count": {
+  "value": 57.0
+ },
+ "fr.founder_main.mm_m1p1.mean": {
+  "value": -0.033056277018525544,
+  "n": 57,
+  "t": -1.750452295013259,
+  "p": 0.08551722058264444
+ },
+ "fr.founder_main.mm_m1p1.median": {
+  "value": -0.0026058059411919517,
+  "n": 57,
+  "p": 0.2677078712837242
+ },
+ "fr.founder_main.pre_m30m2.count": {
+  "value": 57.0
+ },
+ "fr.founder_main.pre_m30m2.mean": {
+  "value": -0.07369104825656352,
+  "n": 57,
+  "t": -2.6617824281075184,
+  "p": 0.010125267550309876
+ },
+ "fr.founder_main.pre_m30m2.median": {
+  "value": -0.047301954907397845,
+  "n": 57,
+  "p": 0.016242278527386345
+ },
+ "fr.founder_main.delisted_5y": {
+  "value": 0.4057971014492754,
+  "n": 69
+ },
+ "fr.founder_main.delisted_5y.count": {
+  "value": 28.0,
+  "n": 69
+ },
+ "fr.founder_main.bankruptcy_5y": {
+  "value": 0.14492753623188406,
+  "n": 69
+ },
+ "fr.founder_main.bankruptcy_5y.count": {
+  "value": 10.0,
+  "n": 69
+ },
+ "fr.founder_all.n_all": {
+  "value": 94.0
+ },
+ "fr.founder_all.n_dated": {
+  "value": 78.0
+ },
+ "fr.founder_all.n5": {
+  "value": 90.0
+ },
+ "fr.founder_all.mm_m1p1.count": {
+  "value": 78.0
+ },
+ "fr.founder_all.mm_m1p1.mean": {
+  "value": -0.04554182749694656,
+  "n": 78,
+  "t": -2.815460568708628,
+  "p": 0.006182333005952703
+ },
+ "fr.founder_all.mm_m1p1.median": {
+  "value": -0.012902032356735137,
+  "n": 78,
+  "p": 0.024524607156994775
+ },
+ "fr.founder_all.pre_m30m2.count": {
+  "value": 78.0
+ },
+ "fr.founder_all.pre_m30m2.mean": {
+  "value": -0.06692633019833344,
+  "n": 78,
+  "t": -2.8888266338999404,
+  "p": 0.005019295331218779
+ },
+ "fr.founder_all.pre_m30m2.median": {
+  "value": -0.03971115851254935,
+  "n": 78,
+  "p": 0.01603167014627211
+ },
+ "fr.founder_all.delisted_5y": {
+  "value": 0.3888888888888889,
+  "n": 90
+ },
+ "fr.founder_all.delisted_5y.count": {
+  "value": 35.0,
+  "n": 90
+ },
+ "fr.founder_all.bankruptcy_5y": {
+  "value": 0.13333333333333333,
+  "n": 90
+ },
+ "fr.founder_all.bankruptcy_5y.count": {
+  "value": 12.0,
+  "n": 90
+ },
+ "fr.hired_fraud.n_all": {
+  "value": 102.0
+ },
+ "fr.hired_fraud.n_dated": {
+  "value": 37.0
+ },
+ "fr.hired_fraud.n5": {
+  "value": 101.0
+ },
+ "fr.hired_fraud.mm_m1p1.count": {
+  "value": 37.0
+ },
+ "fr.hired_fraud.mm_m1p1.mean": {
+  "value": -0.06560130553924758,
+  "n": 37,
+  "t": -3.0254672292135214,
+  "p": 0.00456198462401746
+ },
+ "fr.hired_fraud.mm_m1p1.median": {
+  "value": -0.03260508640189079,
+  "n": 37,
+  "p": 0.004124105369555764
+ },
+ "fr.hired_fraud.pre_m30m2.count": {
+  "value": 37.0
+ },
+ "fr.hired_fraud.pre_m30m2.mean": {
+  "value": -0.02668267758415728,
+  "n": 37,
+  "t": -1.2969606937056266,
+  "p": 0.20289587869006775
+ },
+ "fr.hired_fraud.pre_m30m2.median": {
+  "value": -0.014925947784115792,
+  "n": 37,
+  "p": 0.21885200531687587
+ },
+ "fr.hired_fraud.delisted_5y": {
+  "value": 0.3564356435643564,
+  "n": 101
+ },
+ "fr.hired_fraud.delisted_5y.count": {
+  "value": 36.0,
+  "n": 101
+ },
+ "fr.hired_fraud.bankruptcy_5y": {
+  "value": 0.10891089108910891,
+  "n": 101
+ },
+ "fr.hired_fraud.bankruptcy_5y.count": {
+  "value": 11.0,
+  "n": 101
+ },
+ "fr.hired_event.n_all": {
+  "value": 130.0
+ },
+ "fr.hired_event.n_dated": {
+  "value": 60.0
+ },
+ "fr.hired_event.n5": {
+  "value": 124.0
+ },
+ "fr.hired_event.mm_m1p1.count": {
+  "value": 60.0
+ },
+ "fr.hired_event.mm_m1p1.mean": {
+  "value": -0.026348939407876748,
+  "n": 60,
+  "t": -3.067944665177165,
+  "p": 0.003252527435994815
+ },
+ "fr.hired_event.mm_m1p1.median": {
+  "value": -0.019331044464877274,
+  "n": 60,
+  "p": 0.0008764642805709032
+ },
+ "fr.hired_event.pre_m30m2.count": {
+  "value": 60.0
+ },
+ "fr.hired_event.pre_m30m2.mean": {
+  "value": -0.0339565276060909,
+  "n": 60,
+  "t": -1.7268041043485547,
+  "p": 0.08943565334387317
+ },
+ "fr.hired_event.pre_m30m2.median": {
+  "value": -0.025934481245410278,
+  "n": 60,
+  "p": 0.03461959700142556
+ },
+ "fr.hired_event.delisted_5y": {
+  "value": 0.22580645161290322,
+  "n": 124
+ },
+ "fr.hired_event.delisted_5y.count": {
+  "value": 28.0,
+  "n": 124
+ },
+ "fr.hired_event.bankruptcy_5y": {
+  "value": 0.06451612903225806,
+  "n": 124
+ },
+ "fr.hired_event.bankruptcy_5y.count": {
+  "value": 8.0,
+  "n": 124
+ },
+ "fr.hired_scandal.n_all": {
+  "value": 37.0
+ },
+ "fr.hired_scandal.n_dated": {
+  "value": 36.0
+ },
+ "fr.hired_scandal.n5": {
+  "value": 33.0
+ },
+ "fr.hired_scandal.mm_m1p1.count": {
+  "value": 36.0
+ },
+ "fr.hired_scandal.mm_m1p1.mean": {
+  "value": -0.019289734677125376,
+  "n": 36,
+  "t": -2.881743924400864,
+  "p": 0.006713892102816028
+ },
+ "fr.hired_scandal.mm_m1p1.median": {
+  "value": -0.016286059192659377,
+  "n": 36,
+  "p": 0.00858427706407383
+ },
+ "fr.hired_scandal.pre_m30m2.count": {
+  "value": 36.0
+ },
+ "fr.hired_scandal.pre_m30m2.mean": {
+  "value": -0.046752108800372456,
+  "n": 36,
+  "t": -2.2909849308718284,
+  "p": 0.02810009099155719
+ },
+ "fr.hired_scandal.pre_m30m2.median": {
+  "value": -0.04127349117211455,
+  "n": 36,
+  "p": 0.006657465972239152
+ },
+ "fr.hired_scandal.delisted_5y": {
+  "value": 0.21212121212121213,
+  "n": 33
+ },
+ "fr.hired_scandal.delisted_5y.count": {
+  "value": 7.0,
+  "n": 33
+ },
+ "fr.hired_scandal.bankruptcy_5y": {
+  "value": 0.030303030303030304,
+  "n": 33
+ },
+ "fr.hired_scandal.bankruptcy_5y.count": {
+  "value": 1.0,
+  "n": 33
+ },
+ "fr.hired_coup.n_all": {
+  "value": 93.0
+ },
+ "fr.hired_coup.n_dated": {
+  "value": 24.0
+ },
+ "fr.hired_coup.n5": {
+  "value": 91.0
+ },
+ "fr.hired_coup.mm_m1p1.count": {
+  "value": 24.0
+ },
+ "fr.hired_coup.mm_m1p1.mean": {
+  "value": -0.036937746504003804,
+  "n": 24,
+  "t": -1.9397000208470603,
+  "p": 0.06477655407421043
+ },
+ "fr.hired_coup.mm_m1p1.median": {
+  "value": -0.02892874563316405,
+  "n": 24,
+  "p": 0.036649227142333984
+ },
+ "fr.hired_coup.pre_m30m2.count": {
+  "value": 24.0
+ },
+ "fr.hired_coup.pre_m30m2.mean": {
+  "value": -0.014763155814668574,
+  "n": 24,
+  "t": -0.3808570355764452,
+  "p": 0.7068044867624713
+ },
+ "fr.hired_coup.pre_m30m2.median": {
+  "value": -0.004679858382078897,
+  "n": 24,
+  "p": 0.899570107460022
+ },
+ "fr.hired_coup.delisted_5y": {
+  "value": 0.23076923076923078,
+  "n": 91
+ },
+ "fr.hired_coup.delisted_5y.count": {
+  "value": 21.0,
+  "n": 91
+ },
+ "fr.hired_coup.bankruptcy_5y": {
+  "value": 0.07692307692307693,
+  "n": 91
+ },
+ "fr.hired_coup.bankruptcy_5y.count": {
+  "value": 7.0,
+  "n": 91
+ },
+ "fr.hired_other.n_all": {
+  "value": 1053.0
+ },
+ "fr.hired_other.n_dated": {
+  "value": 418.0
+ },
+ "fr.hired_other.n5": {
+  "value": 1007.0
+ },
+ "fr.hired_other.mm_m1p1.count": {
+  "value": 415.0
+ },
+ "fr.hired_other.mm_m1p1.mean": {
+  "value": -0.02087162055518616,
+  "n": 415,
+  "t": -4.3488516866361095,
+  "p": 1.7250851415311957e-05
+ },
+ "fr.hired_other.mm_m1p1.median": {
+  "value": -0.012490324381202832,
+  "n": 415,
+  "p": 1.0791276034729998e-06
+ },
+ "fr.hired_other.pre_m30m2.count": {
+  "value": 418.0
+ },
+ "fr.hired_other.pre_m30m2.mean": {
+  "value": -0.0541409366099827,
+  "n": 418,
+  "t": -4.4224003114586345,
+  "p": 1.2469467020165547e-05
+ },
+ "fr.hired_other.pre_m30m2.median": {
+  "value": -0.03402619067451147,
+  "n": 418,
+  "p": 4.2130660708229974e-10
+ },
+ "fr.hired_other.delisted_5y": {
+  "value": 0.32671300893743793,
+  "n": 1007
+ },
+ "fr.hired_other.delisted_5y.count": {
+  "value": 329.0,
+  "n": 1007
+ },
+ "fr.hired_other.bankruptcy_5y": {
+  "value": 0.12512413108242304,
+  "n": 1007
+ },
+ "fr.hired_other.bankruptcy_5y.count": {
+  "value": 126.0,
+  "n": 1007
+ },
+ "fr.hired_main.n_all": {
+  "value": 1183.0
+ },
+ "fr.hired_main.n_dated": {
+  "value": 478.0
+ },
+ "fr.hired_main.n5": {
+  "value": 1131.0
+ },
+ "fr.hired_main.mm_m1p1.count": {
+  "value": 475.0
+ },
+ "fr.hired_main.mm_m1p1.mean": {
+  "value": -0.021563492410262865,
+  "n": 475,
+  "t": -4.980735605700924,
+  "p": 8.888698679803373e-07
+ },
+ "fr.hired_main.mm_m1p1.median": {
+  "value": -0.01366193647878923,
+  "n": 475,
+  "p": 1.2661154543764721e-08
+ },
+ "fr.hired_main.pre_m30m2.count": {
+  "value": 478.0
+ },
+ "fr.hired_main.pre_m30m2.mean": {
+  "value": -0.051607328785226406,
+  "n": 478,
+  "t": -4.697879065522299,
+  "p": 3.4432792228942334e-06
+ },
+ "fr.hired_main.pre_m30m2.median": {
+  "value": -0.03234392152922914,
+  "n": 478,
+  "p": 5.0672928795186444e-11
+ },
+ "fr.hired_main.delisted_5y": {
+  "value": 0.3156498673740053,
+  "n": 1131
+ },
+ "fr.hired_main.delisted_5y.count": {
+  "value": 357.0,
+  "n": 1131
+ },
+ "fr.hired_main.bankruptcy_5y": {
+  "value": 0.1184792219274978,
+  "n": 1131
+ },
+ "fr.hired_main.bankruptcy_5y.count": {
+  "value": 134.0,
+  "n": 1131
+ },
+ "fr.hired_all.n_all": {
+  "value": 1285.0
+ },
+ "fr.hired_all.n_dated": {
+  "value": 515.0
+ },
+ "fr.hired_all.n5": {
+  "value": 1232.0
+ },
+ "fr.hired_all.mm_m1p1.count": {
+  "value": 512.0
+ },
+ "fr.hired_all.mm_m1p1.mean": {
+  "value": -0.024745912499662154,
+  "n": 512,
+  "t": -5.710565316126668,
+  "p": 1.912431426802814e-08
+ },
+ "fr.hired_all.mm_m1p1.median": {
+  "value": -0.014917330658608513,
+  "n": 512,
+  "p": 4.103966690244052e-10
+ },
+ "fr.hired_all.pre_m30m2.count": {
+  "value": 515.0
+ },
+ "fr.hired_all.pre_m30m2.mean": {
+  "value": -0.04981662568922726,
+  "n": 515,
+  "t": -4.835122369869323,
+  "p": 1.7604566968729189e-06
+ },
+ "fr.hired_all.pre_m30m2.median": {
+  "value": -0.03194883246075255,
+  "n": 515,
+  "p": 2.4423379527248367e-11
+ },
+ "fr.hired_all.delisted_5y": {
+  "value": 0.3189935064935065,
+  "n": 1232
+ },
+ "fr.hired_all.delisted_5y.count": {
+  "value": 393.0,
+  "n": 1232
+ },
+ "fr.hired_all.bankruptcy_5y": {
+  "value": 0.1176948051948052,
+  "n": 1232
+ },
+ "fr.hired_all.bankruptcy_5y.count": {
+  "value": 145.0,
+  "n": 1232
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 21.0
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 37.0
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.diff": {
+  "value": -0.01382987325627029,
+  "n": 58,
+  "se": 0.03772077620649279,
+  "t": -0.3666380877361104,
+  "p": 0.7158559502722146
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.diff.ci_low": {
+  "value": -0.09010909069606014,
+  "n": 58
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.diff.ci_high": {
+  "value": 0.062449344183519565,
+  "n": 58
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 21.0
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 37.0
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.diff": {
+  "value": -0.021882275027551717,
+  "n": 58,
+  "se": 0.04743751097604593,
+  "t": -0.46128632336130376,
+  "p": 0.6479808647865122
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.diff.ci_low": {
+  "value": -0.11883692407119235,
+  "n": 58
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.diff.ci_high": {
+  "value": 0.07507237401608892,
+  "n": 58
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.n_a": {
+  "value": 21.0
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.n_b": {
+  "value": 101.0
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.diff": {
+  "value": -0.023102310231023104,
+  "n": 122,
+  "p": 1.0,
+  "test": "chi2"
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.diff.ci_low": {
+  "value": -0.21144187268137718,
+  "n": 122
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.diff.ci_high": {
+  "value": 0.20675484922627613,
+  "n": 122
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 21.0
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 101.0
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.diff": {
+  "value": -0.013672795851013678,
+  "n": 122,
+  "p": 1.0,
+  "test": "fisher"
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.diff.ci_low": {
+  "value": -0.11588164795545791,
+  "n": 122
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.diff.ci_high": {
+  "value": 0.18584525377612898,
+  "n": 122
+ },
+ "frdiff.event.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 9.0
+ },
+ "frdiff.event.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 60.0
+ },
+ "frdiff.event.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 9.0
+ },
+ "frdiff.event.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 60.0
+ },
+ "frdiff.event.founder_vs_hired.delisted_5y.n_a": {
+  "value": 7.0
+ },
+ "frdiff.event.founder_vs_hired.delisted_5y.n_b": {
+  "value": 124.0
+ },
+ "frdiff.event.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 7.0
+ },
+ "frdiff.event.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 124.0
+ },
+ "frdiff.scandal.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 4.0
+ },
+ "frdiff.scandal.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 36.0
+ },
+ "frdiff.scandal.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 4.0
+ },
+ "frdiff.scandal.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 36.0
+ },
+ "frdiff.scandal.founder_vs_hired.delisted_5y.n_a": {
+  "value": 3.0
+ },
+ "frdiff.scandal.founder_vs_hired.delisted_5y.n_b": {
+  "value": 33.0
+ },
+ "frdiff.scandal.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 3.0
+ },
+ "frdiff.scandal.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 33.0
+ },
+ "frdiff.coup.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 5.0
+ },
+ "frdiff.coup.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 24.0
+ },
+ "frdiff.coup.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 5.0
+ },
+ "frdiff.coup.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 24.0
+ },
+ "frdiff.coup.founder_vs_hired.delisted_5y.n_a": {
+  "value": 4.0
+ },
+ "frdiff.coup.founder_vs_hired.delisted_5y.n_b": {
+  "value": 91.0
+ },
+ "frdiff.coup.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 4.0
+ },
+ "frdiff.coup.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 91.0
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 48.0
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 415.0
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.diff": {
+  "value": -0.011025924666530872,
+  "n": 463,
+  "se": 0.022167049264552572,
+  "t": -0.4974015501541054,
+  "p": 0.6210139293348593
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.diff.ci_low": {
+  "value": -0.055513044512798086,
+  "n": 463
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.diff.ci_high": {
+  "value": 0.03346119517973634,
+  "n": 463
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 48.0
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 418.0
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.diff": {
+  "value": -0.03649228446233493,
+  "n": 466,
+  "se": 0.03348385117142739,
+  "t": -1.0898472901311516,
+  "p": 0.2799675518561757
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.diff.ci_low": {
+  "value": -0.10341582200262608,
+  "n": 466
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.diff.ci_high": {
+  "value": 0.030431253077956237,
+  "n": 466
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.n_a": {
+  "value": 62.0
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.n_b": {
+  "value": 1007.0
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.diff": {
+  "value": 0.108770862030304,
+  "n": 1069,
+  "p": 0.1041732486776177,
+  "test": "chi2"
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.diff.ci_low": {
+  "value": -0.01099708769800374,
+  "n": 1069
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.diff.ci_high": {
+  "value": 0.23554738807232645,
+  "n": 1069
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 62.0
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 1007.0
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.diff": {
+  "value": 0.03616619149822212,
+  "n": 1069,
+  "p": 0.5266617067971209,
+  "test": "chi2"
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.diff.ci_low": {
+  "value": -0.038364554696643835,
+  "n": 1069
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.diff.ci_high": {
+  "value": 0.14856048223856966,
+  "n": 1069
+ },
+ "frdiff.main.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 57.0
+ },
+ "frdiff.main.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 475.0
+ },
+ "frdiff.main.founder_vs_hired.mm_m1p1.diff": {
+  "value": -0.011492784608262679,
+  "n": 532,
+  "se": 0.019374334998053612,
+  "t": -0.5931963398701049,
+  "p": 0.555206848813645
+ },
+ "frdiff.main.founder_vs_hired.mm_m1p1.diff.ci_low": {
+  "value": -0.050221267352965074,
+  "n": 532
+ },
+ "frdiff.main.founder_vs_hired.mm_m1p1.diff.ci_high": {
+  "value": 0.02723569813643972,
+  "n": 532
+ },
+ "frdiff.main.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 57.0
+ },
+ "frdiff.main.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 478.0
+ },
+ "frdiff.main.founder_vs_hired.pre_m30m2.diff": {
+  "value": -0.02208371947133711,
+  "n": 535,
+  "se": 0.02978466781909583,
+  "t": -0.7414458877120189,
+  "p": 0.4607445700020705
+ },
+ "frdiff.main.founder_vs_hired.pre_m30m2.diff.ci_low": {
+  "value": -0.08142036101165165,
+  "n": 535
+ },
+ "frdiff.main.founder_vs_hired.pre_m30m2.diff.ci_high": {
+  "value": 0.037252922068977436,
+  "n": 535
+ },
+ "frdiff.main.founder_vs_hired.delisted_5y.n_a": {
+  "value": 69.0
+ },
+ "frdiff.main.founder_vs_hired.delisted_5y.n_b": {
+  "value": 1131.0
+ },
+ "frdiff.main.founder_vs_hired.delisted_5y.diff": {
+  "value": 0.09014723407527009,
+  "n": 1200,
+  "p": 0.1542906805183508,
+  "test": "chi2"
+ },
+ "frdiff.main.founder_vs_hired.delisted_5y.diff.ci_low": {
+  "value": -0.021252456932554037,
+  "n": 1200
+ },
+ "frdiff.main.founder_vs_hired.delisted_5y.diff.ci_high": {
+  "value": 0.2109174673433319,
+  "n": 1200
+ },
+ "frdiff.main.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 69.0
+ },
+ "frdiff.main.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 1131.0
+ },
+ "frdiff.main.founder_vs_hired.bankruptcy_5y.diff": {
+  "value": 0.026448314304386267,
+  "n": 1200,
+  "p": 0.6415404670234132,
+  "test": "chi2"
+ },
+ "frdiff.main.founder_vs_hired.bankruptcy_5y.diff.ci_low": {
+  "value": -0.04089009829677856,
+  "n": 1200
+ },
+ "frdiff.main.founder_vs_hired.bankruptcy_5y.diff.ci_high": {
+  "value": 0.12965997019333683,
+  "n": 1200
+ },
+ "frdiff.all.founder_vs_hired.mm_m1p1.n_a": {
+  "value": 78.0
+ },
+ "frdiff.all.founder_vs_hired.mm_m1p1.n_b": {
+  "value": 512.0
+ },
+ "frdiff.all.founder_vs_hired.mm_m1p1.diff": {
+  "value": -0.020795914997284407,
+  "n": 590,
+  "se": 0.01674600667380419,
+  "t": -1.2418432287988692,
+  "p": 0.21757987914644938
+ },
+ "frdiff.all.founder_vs_hired.mm_m1p1.diff.ci_low": {
+  "value": -0.05407308929152081,
+  "n": 590
+ },
+ "frdiff.all.founder_vs_hired.mm_m1p1.diff.ci_high": {
+  "value": 0.012481259296952,
+  "n": 590
+ },
+ "frdiff.all.founder_vs_hired.pre_m30m2.n_a": {
+  "value": 78.0
+ },
+ "frdiff.all.founder_vs_hired.pre_m30m2.n_b": {
+  "value": 515.0
+ },
+ "frdiff.all.founder_vs_hired.pre_m30m2.diff": {
+  "value": -0.017109704509106177,
+  "n": 593,
+  "se": 0.025355027185452506,
+  "t": -0.674805212550626,
+  "p": 0.5012176306234504
+ },
+ "frdiff.all.founder_vs_hired.pre_m30m2.diff.ci_low": {
+  "value": -0.06735829953476619,
+  "n": 593
+ },
+ "frdiff.all.founder_vs_hired.pre_m30m2.diff.ci_high": {
+  "value": 0.03313889051655384,
+  "n": 593
+ },
+ "frdiff.all.founder_vs_hired.delisted_5y.n_a": {
+  "value": 90.0
+ },
+ "frdiff.all.founder_vs_hired.delisted_5y.n_b": {
+  "value": 1232.0
+ },
+ "frdiff.all.founder_vs_hired.delisted_5y.diff": {
+  "value": 0.0698953823953824,
+  "n": 1322,
+  "p": 0.21080192112593232,
+  "test": "chi2"
+ },
+ "frdiff.all.founder_vs_hired.delisted_5y.diff.ci_low": {
+  "value": -0.027965931497152915,
+  "n": 1322
+ },
+ "frdiff.all.founder_vs_hired.delisted_5y.diff.ci_high": {
+  "value": 0.1762661690416067,
+  "n": 1322
+ },
+ "frdiff.all.founder_vs_hired.bankruptcy_5y.n_a": {
+  "value": 90.0
+ },
+ "frdiff.all.founder_vs_hired.bankruptcy_5y.n_b": {
+  "value": 1232.0
+ },
+ "frdiff.all.founder_vs_hired.bankruptcy_5y.diff": {
+  "value": 0.015638528138528132,
+  "n": 1322,
+  "p": 0.7841207450501113,
+  "test": "chi2"
+ },
+ "frdiff.all.founder_vs_hired.bankruptcy_5y.diff.ci_low": {
+  "value": -0.042979436131762,
+  "n": 1322
+ },
+ "frdiff.all.founder_vs_hired.bankruptcy_5y.diff.ci_high": {
+  "value": 0.10268445454191373,
+  "n": 1322
+ },
+ "frdiff.other.founder_vs_hired.mm_m1p1.holm_p": {
+  "value": 1.0,
+  "n": 463,
+  "p": 1.0
+ },
+ "frdiff.fraud.founder_vs_hired.mm_m1p1.holm_p": {
+  "value": 1.0,
+  "n": 58,
+  "p": 1.0
+ },
+ "frdiff.other.founder_vs_hired.pre_m30m2.holm_p": {
+  "value": 0.5599351037123514,
+  "n": 466,
+  "p": 0.5599351037123514
+ },
+ "frdiff.fraud.founder_vs_hired.pre_m30m2.holm_p": {
+  "value": 0.6479808647865122,
+  "n": 58,
+  "p": 0.6479808647865122
+ },
+ "frdiff.other.founder_vs_hired.delisted_5y.holm_p": {
+  "value": 0.2083464973552354,
+  "n": 1069,
+  "p": 0.2083464973552354
+ },
+ "frdiff.fraud.founder_vs_hired.delisted_5y.holm_p": {
+  "value": 1.0,
+  "n": 122,
+  "p": 1.0
+ },
+ "frdiff.other.founder_vs_hired.bankruptcy_5y.holm_p": {
+  "value": 1.0,
+  "n": 1069,
+  "p": 1.0
+ },
+ "frdiff.fraud.founder_vs_hired.bankruptcy_5y.holm_p": {
+  "value": 1.0,
+  "n": 122,
+  "p": 1.0
+ },
+ "frdiff.founder.fraud_vs_event.mm_m1p1.n_a": {
+  "value": 21.0
+ },
+ "frdiff.founder.fraud_vs_event.mm_m1p1.n_b": {
+  "value": 9.0
+ },
+ "frdiff.hired.fraud_vs_event.mm_m1p1.n_a": {
+  "value": 37.0
+ },
+ "frdiff.hired.fraud_vs_event.mm_m1p1.n_b": {
+  "value": 60.0
+ },
+ "frdiff.hired.fraud_vs_event.mm_m1p1.diff": {
+  "value": -0.03925236613137083,
+  "n": 97,
+  "se": 0.023321999707679845,
+  "t": -1.683061771004361,
+  "p": 0.09892997422189809
+ },
+ "frdiff.hired.fraud_vs_event.mm_m1p1.diff.ci_low": {
+  "value": -0.08615794038517169,
+  "n": 97
+ },
+ "frdiff.hired.fraud_vs_event.mm_m1p1.diff.ci_high": {
+  "value": 0.007653208122430033,
+  "n": 97
+ },
+ "frdiff.founder.fraud_vs_event.pre_m30m2.n_a": {
+  "value": 21.0
+ },
+ "frdiff.founder.fraud_vs_event.pre_m30m2.n_b": {
+  "value": 9.0
+ },
+ "frdiff.hired.fraud_vs_event.pre_m30m2.n_a": {
+  "value": 37.0
+ },
+ "frdiff.hired.fraud_vs_event.pre_m30m2.n_b": {
+  "value": 60.0
+ },
+ "frdiff.hired.fraud_vs_event.pre_m30m2.diff": {
+  "value": 0.00727385002193362,
+  "n": 97,
+  "se": 0.028459545869918734,
+  "t": 0.2555855970148125,
+  "p": 0.7988717642665484
+ },
+ "frdiff.hired.fraud_vs_event.pre_m30m2.diff.ci_low": {
+  "value": -0.04928943863055606,
+  "n": 97
+ },
+ "frdiff.hired.fraud_vs_event.pre_m30m2.diff.ci_high": {
+  "value": 0.0638371386744233,
+  "n": 97
+ },
+ "frdiff.founder.fraud_vs_event.delisted_5y.n_a": {
+  "value": 21.0
+ },
+ "frdiff.founder.fraud_vs_event.delisted_5y.n_b": {
+  "value": 7.0
+ },
+ "frdiff.hired.fraud_vs_event.delisted_5y.n_a": {
+  "value": 101.0
+ },
+ "frdiff.hired.fraud_vs_event.delisted_5y.n_b": {
+  "value": 124.0
+ },
+ "frdiff.hired.fraud_vs_event.delisted_5y.diff": {
+  "value": 0.1306291919514532,
+  "n": 225,
+  "p": 0.044253501910657876,
+  "test": "chi2"
+ },
+ "frdiff.hired.fraud_vs_event.delisted_5y.diff.ci_low": {
+  "value": 0.0119488733270834,
+  "n": 225
+ },
+ "frdiff.hired.fraud_vs_event.delisted_5y.diff.ci_high": {
+  "value": 0.24730486520043016,
+  "n": 225
+ },
+ "frdiff.founder.fraud_vs_event.bankruptcy_5y.n_a": {
+  "value": 21.0
+ },
+ "frdiff.founder.fraud_vs_event.bankruptcy_5y.n_b": {
+  "value": 7.0
+ },
+ "frdiff.hired.fraud_vs_event.bankruptcy_5y.n_a": {
+  "value": 101.0
+ },
+ "frdiff.hired.fraud_vs_event.bankruptcy_5y.n_b": {
+  "value": 124.0
+ },
+ "frdiff.hired.fraud_vs_event.bankruptcy_5y.diff": {
+  "value": 0.04439476205685085,
+  "n": 225,
+  "p": 0.34202406898259763,
+  "test": "chi2"
+ },
+ "frdiff.hired.fraud_vs_event.bankruptcy_5y.diff.ci_low": {
+  "value": -0.02997553042050094,
+  "n": 225
+ },
+ "frdiff.hired.fraud_vs_event.bankruptcy_5y.diff.ci_high": {
+  "value": 0.12633598145006225,
+  "n": 225
+ },
+ "frdiff.founder.scandal_vs_coup.mm_m1p1.n_a": {
+  "value": 4.0
+ },
+ "frdiff.founder.scandal_vs_coup.mm_m1p1.n_b": {
+  "value": 5.0
+ },
+ "frdiff.founder.scandal_vs_coup.pre_m30m2.n_a": {
+  "value": 4.0
+ },
+ "frdiff.founder.scandal_vs_coup.pre_m30m2.n_b": {
+  "value": 5.0
+ },
+ "frdiff.hired.scandal_vs_coup.mm_m1p1.n_a": {
+  "value": 36.0
+ },
+ "frdiff.hired.scandal_vs_coup.mm_m1p1.n_b": {
+  "value": 24.0
+ },
+ "frdiff.hired.scandal_vs_coup.mm_m1p1.diff": {
+  "value": 0.01764801182687843,
+  "n": 60,
+  "se": 0.020185222036540516,
+  "t": 0.8743035768906047,
+  "p": 0.3891990831340806
+ },
+ "frdiff.hired.scandal_vs_coup.mm_m1p1.diff.ci_low": {
+  "value": -0.02365122841843773,
+  "n": 60
+ },
+ "frdiff.hired.scandal_vs_coup.mm_m1p1.diff.ci_high": {
+  "value": 0.05894725207219459,
+  "n": 60
+ },
+ "frdiff.hired.scandal_vs_coup.pre_m30m2.n_a": {
+  "value": 36.0
+ },
+ "frdiff.hired.scandal_vs_coup.pre_m30m2.n_b": {
+  "value": 24.0
+ },
+ "frdiff.hired.scandal_vs_coup.pre_m30m2.diff": {
+  "value": -0.03198895298570388,
+  "n": 60,
+  "se": 0.04380655589105117,
+  "t": -0.7302320927776613,
+  "p": 0.47001168883046307
+ },
+ "frdiff.hired.scandal_vs_coup.pre_m30m2.diff.ci_low": {
+  "value": -0.12085755033439594,
+  "n": 60
+ },
+ "frdiff.hired.scandal_vs_coup.pre_m30m2.diff.ci_high": {
+  "value": 0.056879644362988174,
+  "n": 60
+ },
+ "frmix.founder_fraud.share": {
+  "value": 0.22340425531914893,
+  "n": 94
+ },
+ "frmix.hired_fraud.share": {
+  "value": 0.07937743190661478,
+  "n": 1285
+ },
+ "frmix.fraud.founder_vs_hired.share.n_a": {
+  "value": 94.0
+ },
+ "frmix.fraud.founder_vs_hired.share.n_b": {
+  "value": 1285.0
+ },
+ "frmix.fraud.founder_vs_hired.share.diff": {
+  "value": 0.14402682341253414,
+  "n": 1379,
+  "p": 5.576838595007244e-06,
+  "test": "chi2"
+ },
+ "frmix.fraud.founder_vs_hired.share.diff.ci_low": {
+  "value": 0.06988040094692419,
+  "n": 1379
+ },
+ "frmix.fraud.founder_vs_hired.share.diff.ci_high": {
+  "value": 0.23910299680611383,
+  "n": 1379
+ },
+ "frmix.founder_event.share": {
+  "value": 0.09574468085106383,
+  "n": 94
+ },
+ "frmix.hired_event.share": {
+  "value": 0.10116731517509728,
+  "n": 1285
+ },
+ "frmix.event.founder_vs_hired.share.n_a": {
+  "value": 94.0
+ },
+ "frmix.event.founder_vs_hired.share.n_b": {
+  "value": 1285.0
+ },
+ "frmix.event.founder_vs_hired.share.diff": {
+  "value": -0.0054226343240334485,
+  "n": 1379,
+  "p": 1.0,
+  "test": "chi2"
+ },
+ "frmix.event.founder_vs_hired.share.diff.ci_low": {
+  "value": -0.05336053599651102,
+  "n": 1379
+ },
+ "frmix.event.founder_vs_hired.share.diff.ci_high": {
+  "value": 0.07239621281579325,
+  "n": 1379
+ },
+ "frmix.founder_other.share": {
+  "value": 0.6808510638297872,
+  "n": 94
+ },
+ "frmix.hired_other.share": {
+  "value": 0.8194552529182879,
+  "n": 1285
+ },
+ "frmix.other.founder_vs_hired.share.n_a": {
+  "value": 94.0
+ },
+ "frmix.other.founder_vs_hired.share.n_b": {
+  "value": 1285.0
+ },
+ "frmix.other.founder_vs_hired.share.diff": {
+  "value": -0.1386041890885007,
+  "n": 1379,
+  "p": 0.001521602711648001,
+  "test": "chi2"
+ },
+ "frmix.other.founder_vs_hired.share.diff.ci_low": {
+  "value": -0.2403417221804599,
+  "n": 1379
+ },
+ "frmix.other.founder_vs_hired.share.diff.ci_high": {
+  "value": -0.050289693626714954,
+  "n": 1379
+ },
+ "frmix.founder_scandal.share": {
+  "value": 0.0425531914893617,
+  "n": 94
+ },
+ "frmix.hired_scandal.share": {
+  "value": 0.028793774319066146,
+  "n": 1285
+ },
+ "frmix.founder_coup.share": {
+  "value": 0.05319148936170213,
+  "n": 94
+ },
+ "frmix.hired_coup.share": {
+  "value": 0.07237354085603113,
+  "n": 1285
+ },
+ "frmix.founder_main.share": {
+  "value": 0.776595744680851,
+  "n": 94
+ },
+ "frmix.hired_main.share": {
+  "value": 0.9206225680933852,
+  "n": 1285
+ },
+ "frmix.partition.chi2": {
+  "value": 22.474015807654283,
+  "n": 1379,
+  "p": 1.3177392266338409e-05
+ },
+ "_cases": {
+  "founder_scandal": [
+   {
+    "event_id": 6523,
+    "company": "PAPA JOHNS INTERNATIONAL INC",
+    "ceo": "John H. Schnatter",
+    "year": 2017,
+    "reason": "other_personal_conduct",
+    "well_dated": 1,
+    "car_m1p1": -0.048543030548562245,
+    "pre_m30m2": 0.005514362458720785,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   },
+   {
+    "event_id": 8370,
+    "company": "WORLD WRESTLING ENTMT INC",
+    "ceo": "Vincent K. McMahon",
+    "year": 2022,
+    "reason": "other_sexual_misconduct",
+    "well_dated": 1,
+    "car_m1p1": -0.0911277288720887,
+    "pre_m30m2": 0.22055534646580183,
+    "followed_60m": 0,
+    "after_60m": null
+   },
+   {
+    "event_id": 8761,
+    "company": "WYNN RESORTS LTD",
+    "ceo": "Stephen A. Wynn",
+    "year": 2018,
+    "reason": "other_sexual_misconduct",
+    "well_dated": 1,
+    "car_m1p1": 0.09571195084688497,
+    "pre_m30m2": -0.029719564193593957,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   },
+   {
+    "event_id": 10360,
+    "company": "ADAPTHEALTH CORP",
+    "ceo": "Luke McGee",
+    "year": 2021,
+    "reason": "other_personal_conduct",
+    "well_dated": 1,
+    "car_m1p1": -0.25171134081573837,
+    "pre_m30m2": 0.15191001125564615,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   }
+  ],
+  "founder_coup": [
+   {
+    "event_id": 1862,
+    "company": "INTER-TEL INC -SER A",
+    "ceo": "Steven G. Mihaylo",
+    "year": 2006,
+    "reason": "strategy_or_power_dispute",
+    "well_dated": 1,
+    "car_m1p1": -0.00015325586612127597,
+    "pre_m30m2": -0.016468344101744678,
+    "followed_60m": 1,
+    "after_60m": "acquired"
+   },
+   {
+    "event_id": 7230,
+    "company": "RADISYS CORP",
+    "ceo": "Glenford J. Myers",
+    "year": 2002,
+    "reason": "strategy_or_power_dispute",
+    "well_dated": 1,
+    "car_m1p1": 0.03497264758552908,
+    "pre_m30m2": -0.10363166972088944,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   },
+   {
+    "event_id": 7327,
+    "company": "LCA VISION INC",
+    "ceo": "Stephen N. Joffe",
+    "year": 2006,
+    "reason": "strategy_or_power_dispute",
+    "well_dated": 1,
+    "car_m1p1": 0.0010206749585020165,
+    "pre_m30m2": 0.10772493002648631,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   },
+   {
+    "event_id": 7374,
+    "company": "PRGX GLOBAL INC",
+    "ceo": "John M. Cook",
+    "year": 2005,
+    "reason": "strategy_or_power_dispute",
+    "well_dated": 1,
+    "car_m1p1": -0.10339814701658079,
+    "pre_m30m2": -0.26322420439266886,
+    "followed_60m": 1,
+    "after_60m": "listed"
+   },
+   {
+    "event_id": 9699,
+    "company": "CARA THERAPEUTICS INC",
+    "ceo": "Derek T. Chalmers, D.Sc., Ph.D.",
+    "year": 2021,
+    "reason": "strategy_or_power_dispute",
+    "well_dated": 1,
+    "car_m1p1": 0.010102610314636648,
+    "pre_m30m2": 0.07734399304936812,
+    "followed_60m": 0,
+    "after_60m": null
+   }
+  ]
+ }
+}

@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite the paper and the CEO dismissal database."
-title: "Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO (replication package)"
+title: "Sacked: Sex, Fraud, and the Fate of Firms That Fire Their Founder CEO (replication package)"
 authors:
   - family-names: Sehgal
     given-names: Abhishek
     orcid: "https://orcid.org/0009-0000-9424-4695"
     affiliation: "FSE Research & Investments"
 date-released: 2026-11-22
-version: "2.4"
+version: "3.0"
 license: MIT
 repository-code: "https://github.com/vastdreams/founder-ceo-replication"
 references:

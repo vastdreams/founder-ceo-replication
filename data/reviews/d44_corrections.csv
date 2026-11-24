@@ -1,0 +1,9 @@
+event_id,field,old,new,source
+7861,code,5,3,"D-44: forced resignation: ""its board decided to swap long-term chief executive officer Ed McVaney for Robert Dutkowsky"" (Computer Weekly, 4 Jan 2002, as quoted in the database note)"
+7861,reason,,performance,"D-44: ""The ailing enterprise resource planning and supply chain management software company"" (Computer Weekly, 4 Jan 2002, as quoted in the database note)"
+7188,code,5,3,"D-44: forced resignation: ""pursuant to an agreement that Mednax has reached with Starboard Value LP ... which owns approximately 9.9%"" (Business Wire, 13 Jul 2020, as quoted in the database note)"
+7188,event_date,2020-07-12,2020-07-13,D-44: Business Wire release of 13 Jul 2020; 12 Jul is the day he left office
+7188,reason,,activist_or_shareholder_pressure,D-44: agreement with Starboard Value
+4161,code,5,3,"D-44: forced resignation: database coder ""the board of directors pressured Mr. Rodgers to make way for new blood""; MarketWatch title ""ousted CEO"""
+4161,event_date,2016-04-01,2016-04-28,D-44: Mercury News report of 28 Apr 2016; 1 Apr is the left-office date
+4161,reason,,unclear,D-44: no source gives the board's reason

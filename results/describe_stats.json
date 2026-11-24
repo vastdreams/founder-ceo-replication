@@ -1,88 +1,88 @@
 {
  "desc.forced.mcap.median": {
-  "value": 999569567.5,
-  "n": 1240
+  "value": 992865044.0,
+  "n": 1225
  },
  "desc.retired.mcap.median": {
-  "value": 1946640302.0,
-  "n": 2221
+  "value": 1948156587.5,
+  "n": 2218
  },
  "desc.forced_founder.mcap.median": {
-  "value": 836372310.0,
-  "n": 78
+  "value": 789975852.0,
+  "n": 69
  },
  "descdiff.forced_vs_retired.mcap.diff_median": {
-  "value": -947070734.5,
-  "n": 3461,
-  "p": 5.6833002327034215e-25
+  "value": -955291543.5,
+  "n": 3443,
+  "p": 1.3790439807697814e-25
  },
  "desc.forced.roa.median": {
-  "value": 0.07778803619053215,
-  "n": 1240
+  "value": 0.07712848923377624,
+  "n": 1225
  },
  "desc.retired.roa.median": {
-  "value": 0.12321099491438986,
-  "n": 2221
+  "value": 0.12333828041634182,
+  "n": 2218
  },
  "desc.forced_founder.roa.median": {
-  "value": 0.07601286971549644,
-  "n": 78
+  "value": 0.06104670578693765,
+  "n": 69
  },
  "descdiff.forced_vs_retired.roa.diff_median": {
-  "value": -0.04542295872385771,
-  "n": 3461,
-  "p": 9.26133329103231e-48
+  "value": -0.046209791182565574,
+  "n": 3443,
+  "p": 1.0882747151402512e-49
  },
  "desc.forced.salesg.median": {
-  "value": 0.028918015548127896,
-  "n": 1215
+  "value": 0.0280518431377883,
+  "n": 1200
  },
  "desc.retired.salesg.median": {
-  "value": 0.0674809558291094,
-  "n": 2185
+  "value": 0.06748982845631046,
+  "n": 2182
  },
  "desc.forced_founder.salesg.median": {
-  "value": 0.08459728536081546,
-  "n": 77
+  "value": 0.08436232515915743,
+  "n": 68
  },
  "descdiff.forced_vs_retired.salesg.diff_median": {
-  "value": -0.038562940280981506,
-  "n": 3400,
-  "p": 8.834330210922655e-11
+  "value": -0.03943798531852216,
+  "n": 3382,
+  "p": 6.887785426644387e-11
  },
  "desc.forced.rnd.median": {
   "value": 0.0,
-  "n": 1240
+  "n": 1225
  },
  "desc.retired.rnd.median": {
   "value": 0.0,
-  "n": 2221
+  "n": 2218
  },
  "desc.forced_founder.rnd.median": {
   "value": 0.0,
-  "n": 78
+  "n": 69
  },
  "descdiff.forced_vs_retired.rnd.diff_median": {
   "value": 0.0,
-  "n": 3461,
-  "p": 0.12767732154890998
+  "n": 3443,
+  "p": 0.09744203774425868
  },
  "desc.forced.capex.median": {
-  "value": 0.032274458427267845,
-  "n": 1240
+  "value": 0.03207135724136057,
+  "n": 1225
  },
  "desc.retired.capex.median": {
-  "value": 0.0353386621792175,
-  "n": 2221
+  "value": 0.035345214883798465,
+  "n": 2218
  },
  "desc.forced_founder.capex.median": {
-  "value": 0.04175775639353857,
-  "n": 78
+  "value": 0.037061302360685985,
+  "n": 69
  },
  "descdiff.forced_vs_retired.capex.diff_median": {
-  "value": -0.0030642037519496568,
-  "n": 3461,
-  "p": 0.00016043295089470403
+  "value": -0.0032738576424378926,
+  "n": 3443,
+  "p": 4.9171296728791475e-05
  },
  "case.7398.car_m1p1": {
   "value": 0.0967771911568257,
@@ -109,11 +109,11 @@
   "n": 1
  },
  "case.8370.car_m1p1": {
-  "value": 0.07897143829910047,
+  "value": -0.0911277288720887,
   "n": 1
  },
  "case.8370.bhar_3y": {
-  "value": 0.3767999384025029,
+  "value": 0.5998763808759469,
   "n": 1
  },
  "case.7961.car_m1p1": {
@@ -148,6 +148,14 @@
   "value": -0.476702214326863,
   "n": 1
  },
+ "case.4161.car_m1p1": {
+  "value": 0.03758781448355707,
+  "n": 1
+ },
+ "case.4161.bhar_3y": {
+  "value": 0.5706083478286361,
+  "n": 1
+ },
  "case.8710.car_m1p1": {
   "value": 0.02687548298590653,
   "n": 1
@@ -156,68 +164,60 @@
   "value": -0.3048244920590635,
   "n": 1
  },
- "case.7539.car_m1p1": {
-  "value": -0.5867734000348737,
+ "case.7706.car_m1p1": {
+  "value": -0.03882210463543705,
   "n": 1
  },
- "case.7539.bhar_3y": {
-  "value": -0.766322373170854,
+ "case.7706.bhar_3y": {
+  "value": -0.11329766269460961,
   "n": 1
  },
- "case.9699.car_m1p1": {
-  "value": 0.010102610314636648,
+ "case.7861.car_m1p1": {
+  "value": -0.03769419964247271,
   "n": 1
  },
- "case.9699.bhar_3y": {
-  "value": -1.2563585713537504,
-  "n": 1
- },
- "case.6881.car_m1p1": {
-  "value": -0.1589280507021891,
-  "n": 1
- },
- "case.6881.bhar_3y": {
-  "value": 2.2526296777589776,
+ "case.7861.bhar_3y": {
+  "value": 0.02974433452913261,
   "n": 1
  },
  "case.n_listed": {
   "value": 12.0
  },
  "flow.forced_db": {
-  "value": 1799.0
+  "value": 1785.0
  },
  "flow.forced_cik": {
-  "value": 1620.0
+  "value": 1606.0
  },
  "flow.forced_priced": {
-  "value": 1441.0
+  "value": 1427.0
  },
  "flow.forced_returns_all": {
-  "value": 1393.0
+  "value": 1379.0
  },
  "flow.forced_criminal": {
-  "value": 121.0
+  "value": 123.0
  },
  "flow.forced_returns": {
-  "value": 1272.0
+  "value": 1256.0
  },
  "flow.forced_dated": {
-  "value": 531.0
+  "value": 535.0
  },
  "flow.founder_model": {
-  "value": 191.0
+  "value": 194.0
  },
  "flow.founder_confirmed": {
-  "value": 150.0
+  "value": 153.0
  },
  "flow.founder_in_years": {
-  "value": 132.0
+  "value": 123.0
  },
  "flow.founder_returns": {
-  "value": 83.0
+  "value": 73.0
  },
  "flow.founder_dated": {
-  "value": 52.0
+  "value": 57.0
  },
  "hook.nvda.day_ret": {
   "value": -0.04340067921487356,
@@ -301,6 +301,15 @@
    "fate_5y": "still listed"
   },
   {
+   "event_id": 4161,
+   "company": "Cypress Semiconductor",
+   "ceo": "Thurman John Rodgers",
+   "year": 2016,
+   "dismissal": "performance",
+   "mcap_m1": 2588817434.0,
+   "fate_5y": "acquired"
+  },
+  {
    "event_id": 8710,
    "company": "Jetblue Airways",
    "ceo": "David Gary Neeleman",
@@ -310,31 +319,22 @@
    "fate_5y": "still listed"
   },
   {
-   "event_id": 7539,
-   "company": "Calpine",
-   "ceo": "Peter Cartwright",
+   "event_id": 7706,
+   "company": "CarMax",
+   "ceo": "Austin Ligon",
    "year": 2005,
    "dismissal": "performance",
-   "mcap_m1": 1506448882.0,
-   "fate_5y": "bankrupt"
-  },
-  {
-   "event_id": 9699,
-   "company": "Cara Therapeutics",
-   "ceo": "Derek Chalmers",
-   "year": 2021,
-   "dismissal": "performance",
-   "mcap_m1": 960626493.0,
-   "fate_5y": "under 5 years of data"
-  },
-  {
-   "event_id": 6881,
-   "company": "Pss World Medical",
-   "ceo": "Patrick Kelly",
-   "year": 2000,
-   "dismissal": "performance",
-   "mcap_m1": 845873738.0,
+   "mcap_m1": 2310369112.0,
    "fate_5y": "still listed"
+  },
+  {
+   "event_id": 7861,
+   "company": "Edwards J D &",
+   "ceo": "Edward McVaney",
+   "year": 2002,
+   "dismissal": "performance",
+   "mcap_m1": 1894519017.0,
+   "fate_5y": "acquired"
   }
  ]
 }

@@ -1,11 +1,12 @@
 """
 PATH: data/founder_ceo_exits/analysis/figures.py
 PURPOSE: The paper's figures from paper/figdata/figure_series.json, one function per figure named after its image
-         file, written to outputs/figures.
-WHY: Each figure is drawn from the same aggregated series the statistics use.
+         file, written to outputs/figures and backend/static/reports/founder-ceo/figures.
+WHY: MedTwin redraws these on the server (backend/services/finance_figures/packs.py, FOUNDER_CEO) and the figure
+     editor shows each function, so a figure is built in the product from the same series the statistics use.
      Every figure states its horizon on the axis and its N on the plot: a reader never has to guess how long
      after the firing a number is measured, or on how many firms.
-LOOK: the shared working-paper style (wp_figstyle.py, beside this file):
+LOOK: the shared working-paper style (wp_figstyle.py, beside this file; ~/Desktop/ssrn-design/COLOUR_ROLES.md):
       drawn at print size (6.6 in across both columns), Source Sans 3, hairline grid, the unit above the plot.
       Colour belongs to data: firings red (the focal series), retirements grey (the comparison), founders amber,
       personal scandals violet, other reasons teal. Direct labels are ink beside a short colour key.
@@ -29,7 +30,7 @@ import wp_figstyle as S  # noqa: E402
 
 SERIES = HERE.parent / "paper" / "figdata" / "figure_series.json"
 OUT = Path(os.environ.get("FCE_OUTPUT_DIR") or HERE.parent / "outputs")
-# An optional second output folder (DRE_STATIC_REPORT_ROOT) for the authors' publishing setup;
+# The served figures folder: DRE_STATIC_REPORT_ROOT in the MedTwin image, backend/static/reports in a MedTwin checkout,
 # and nothing in the standalone replication package (figures then go to outputs/figures only).
 _STATIC_ROOT = os.environ.get("DRE_STATIC_REPORT_ROOT") or (
     HERE.parents[2] / "backend" / "static" / "reports" if (HERE.parents[2] / "backend").is_dir() else None
@@ -45,6 +46,7 @@ def _font_dir() -> Path | None:
         candidates.append(Path(FONT_DIR))
     except Exception:  # nosec B110 - a checkout without the backend on the path falls back below
         pass
+    candidates.append(Path("/app/backend/services/paper_export/fonts"))
     return next((c for c in candidates if any(c.glob("SourceSans3-*.otf"))), None)
 
 

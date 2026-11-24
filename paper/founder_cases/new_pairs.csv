@@ -1,0 +1,92 @@
+event_id,coname,ticker,event_date,why,sicindustry,pr_ticker,pr_name,pr_sicindustry,pr_level
+49,WORLDCOM INC,WCOEQ,2002-04-30,fraud,Telephone Communications (No Radiotelephone),COX,COX COMMUNICATIONS INC,Cable & Other Pay Television Services,industry
+466,BIOMET INC,BMET,2006-03-27,other,Orthopedic Prosthetic & Surgical Appliances & Supplies,SNN,SMITH & NEPHEW PLC,Orthopedic Prosthetic & Surgical Appliances & Supplies,sic4
+911,CA INC,CA1,2000-08-08,other,,,,,
+1285,ENZO BIOCHEM INC,ENZB,2021-10-18,other,Services-Medical Laboratories,OPGN,OPGEN INC,Services-Medical Laboratories,sic4
+1862,INTER-TEL INC -SER A,INTL1,2006-02-22,coup,Telephone & Telegraph Apparatus,AUDC,AUDIOCODES LTD,Telephone & Telegraph Apparatus,sic4
+2126,LEGG MASON INC,LM,2008-01-28,other,Investment Advice,AMP,AMERIPRISE FINANCIAL INC,Investment Advice,sic4
+2440,RUBY TUESDAY INC,RT,2012-06-07,other,Retail-Eating  Places,SONC,SONIC CORP,Retail-Eating  Places,sic4
+3135,VALEANT PHARMACEUTICALS -OLD,VRX1,2002-06-12,other,Pharmaceutical Preparations,MRX1,MEDICIS PHARMACEUTICAL CORP,Pharmaceutical Preparations,sic4
+3432,SUNRISE MEDICAL INC,SMD1,1999-10-04,other,Orthopedic Prosthetic & Surgical Appliances & Supplies,PBSOQ,POINT BLANK SOLUTIONS INC,Orthopedic Prosthetic & Surgical Appliances & Supplies,sic4
+4119,SUN MICROSYSTEMS INC,JAVA1,2006-04-24,other,Electronic Computers,XRX,XEROX HOLDINGS CORP,Computer Peripheral Equipment Nec,sic3
+4377,COMVERSE TECHNOLOGY INC,CMVT,2006-05-01,fraud,,,,,
+4646,TILE SHOP HOLDINGS INC,TTSH,2014-10-28,other,Retail-Home Furniture Furnishings & Equipment Stores,HVT,HAVERTY FURNITURE COMPANIES INC,Retail-Furniture Stores,industry
+4652,MAYORS JEWELERS INC/DE,MYR,2002-03-01,other,Jewelry Precious Metal,DGJL1,D G JEWELRY INC,Jewelry Precious Metal,sic4
+4824,PRESIDENTIAL LIFE CORP,PLFE,2008-04-17,fraud,Life Insurance,CIA,CITIZENS INC,Life Insurance,sic4
+5014,LECHTERS INC,LECH,2000-11-16,other,Retail-Home Furniture Furnishings & Equipment Stores,TAC1,TANDYCRAFTS INC,Retail-Miscellaneous Shopping Goods Stores,industry
+5182,FIRST NBC BANK HOLDING CO,FNBCQ,2016-01-01,other,State Commercial Banks,HBNC,HORIZON BANCORP INC,State Commercial Banks,sic4
+5212,SIRIUSPOINT LTD,SPNT,2017-02-23,other,Fire Marine & Casualty Insurance,IPCC,INFINITY PROPERTY & CASUALTY CORP,Fire Marine & Casualty Insurance,sic4
+5269,EAGLE PHARMACEUTICALS INC,EGRX,2023-11-29,other,Pharmaceutical Preparations,STTK,SHATTUCK LABS INC,Pharmaceutical Preparations,sic4
+5298,ICONIX BRAND GROUP INC,ICON1,2015-08-06,fraud,Footwear (No Rubber),CAL,CALERES INC,Footwear (No Rubber),sic4
+5306,OPUS BANK,OPB,2018-11-27,other,,,,,
+5365,DIPLOMAT PHARMACY INC,DPLO,2018-01-05,other,Retail-Drug Stores And Proprietary Stores,ITCI,INTRA-CELLULAR THERAPIES INC,Pharmaceutical Preparations,industry
+5471,TRUEBLUE INC,TBI,2000-05-16,other,Services-Help Supply Services,KFRC,KFORCE INC,Services-Help Supply Services,sic4
+5502,SWIFT TRANSPORTATION CO INC,SWFT1,2005-10-27,fraud,Trucking (No Local),HTLD,HEARTLAND EXPRESS INC,Trucking (No Local),sic4
+5615,ATMEL CORP,ATML,2006-08-07,fraud,Semiconductors & Related Devices,SIRF,SIRF TECHNOLOGY HOLDINGS INC,Semiconductors & Related Devices,sic4
+5688,WISCONSIN CENTRAL TRANSPORTN,WCLX,1998-12-31,other,Railroads Line-Haul Operating,,,,
+5723,AES CORP,AES,2002-06-18,other,Cogeneration Services & Small Power Producers,,,,
+5774,PROGRESS SOFTWARE CORP,PRGS,2009-03-30,other,Services-Prepackaged Software,MANH,MANHATTAN ASSOCIATES INC,Services-Prepackaged Software,sic4
+5931,VITESSE SEMICONDUCTOR CORP,VTSS,2006-04-18,fraud,Semiconductors & Related Devices,TUNE1,MICROTUNE INC,Semiconductors & Related Devices,sic4
+5946,PHYCOR INC,PHYCQ,2000-06-09,other,Services-Offices & Clinics Of Doctors Of Medicine,PMCOQ,PROMEDCO MANAGEMENT CO,Services-Offices & Clinics Of Doctors Of Medicine,sic4
+5993,POLYMEDICA CORP,PLMD,2002-08-05,fraud,Pharmaceutical Preparations,MICU,VICURON PHARMACEUTICALS INC,Pharmaceutical Preparations,sic4
+6022,PROVELL INC -CL A,PRVL1,2001-02-01,other,Retail-Catalog & Mail-Order Houses,RGTC1,REAL GOODS TRADING CORP,Retail-Catalog & Mail-Order Houses,sic4
+6350,CHESAPEAKE ENERGY CORP,CHKAQ,2013-01-29,other,Crude Petroleum & Natural Gas,CXO,CONCHO RESOURCES INC,Crude Petroleum & Natural Gas,sic4
+6408,WALL DATA INC,WALL,1999-08-11,other,,,,,
+6426,APPLIED SIGNAL TECHNOLOGY,APSG1,2008-05-01,other,Communications Equipment Nec,SNT,SENSTAR TECHNOLOGIES CORP,Communications Equipment Nec,sic4
+6523,PAPA JOHNS INTERNATIONAL INC,PZZA,2017-12-21,scandal,Retail-Eating  Places,EAT,BRINKER INTERNATIONAL INC,Retail-Eating  Places,sic4
+6659,MERCURY INTERACTIVE CORP,MERQ,2005-11-02,fraud,Services-Prepackaged Software,NOVL,NOVELL INC,Services-Prepackaged Software,sic4
+6702,VIAVI SOLUTIONS INC,VIAV,2003-08-21,other,Semiconductors & Related Devices,NVDA,NVIDIA CORP,Semiconductors & Related Devices,sic4
+6818,JUST FOR FEET INC,FEET,1999-07-01,other,Retail-Shoe Stores,FCHDQ,FAIRCHILD CORP,Retail-Apparel & Accessory Stores,industry
+6881,PSS WORLD MEDICAL INC,PSSI,2000-10-03,other,Wholesale-Medical Dental & Hospital Equipment & Supplies,HSIC,HENRY SCHEIN INC,Wholesale-Medical Dental & Hospital Equipment & Supplies,sic4
+6940,AMEDISYS INC,AMED,2014-02-24,fraud,Services-Home Health Care Services,LHCG,LHC GROUP INC,Services-Home Health Care Services,sic4
+7030,RENT-A-CENTER INC,UPBD,2018-01-02,other,Services-Equipment Rental & Leasing Nec,CAI1,CAI INTERNATIONAL INC,Services-Equipment Rental & Leasing Nec,sic4
+7037,SMART GLOBAL HOLDINGS INC,PENG,2020-08-13,other,Semiconductors & Related Devices,LASR,NLIGHT INC,Semiconductors & Related Devices,sic4
+7133,PSINET INC,PSIXQ,2001-04-30,other,Services-Computer Programming Data Processing Etc.,MYPT,MYPOINTS COM INC,Services-Computer Programming Data Processing Etc.,sic4
+7230,RADISYS CORP,RSYS,2002-05-03,coup,Computer Peripheral Equipment Nec,INVE,INVE TECHNOLOGIES INC,Computer Peripheral Equipment Nec,sic4
+7327,LCA VISION INC,LCAV,2006-02-03,coup,Services-Specialty Outpatient Facilities Nec,TLCVF,TLC VISION CORP,Services-Specialty Outpatient Facilities Nec,sic4
+7344,IMPATH INC,IBLTZ,2003-02-10,fraud,Services-Medical Laboratories,OPK,OPKO HEALTH INC,Pharmaceutical Preparations,industry
+7364,VERTRO INC,VTRO1,2006-04-03,other,Services-Business Services Nec,SRVY,GREENFIELD ONLINE INC,Services-Business Services Nec,sic4
+7374,PRGX GLOBAL INC,PRGX,2005-06-07,coup,Services-Engineering Accounting Research Management,FORR,FORRESTER RESEARCH INC,Services-Engineering Accounting Research Management,sic4
+7394,SAPIENT CORP,SAPE,2006-10-17,fraud,Services-Computer Integrated Systems Design,AGYS,AGILYSYS INC,Services-Computer Integrated Systems Design,sic4
+7398,ALTABA INC,YHOO,2008-11-17,other,Services-Computer Integrated Systems Design,INFY,INFOSYS LTD,Services-Computer Programming Services,sic3
+7452,SUNRISE SENIOR LIVING INC,SRZ,2008-11-01,other,Services-Nursing & Personal Care Facilities,RSCR,RES CARE INC,Services-Nursing & Personal Care Facilities,sic4
+7539,CALPINE CORP,CPNLQ,2005-11-29,other,Electric Services,TXNM,TXNM ENERGY INC,Electric Services,sic4
+7561,EDGEWATER TECHNOLOGY INC,EDGW,2002-01-08,other,Services-Computer Programming Data Processing Etc.,HSTM,HEALTHSTREAM INC,Services-Computer Programming Data Processing Etc.,sic4
+7562,EDGEWATER TECHNOLOGY INC,EDGW,2017-03-08,other,Services-Computer Programming Data Processing Etc.,ARIS1,ARI NETWORK SERVICES INC,Services-Computer Programming Data Processing Etc.,sic4
+7657,MONSTER WORLDWIDE INC,MWW,2006-10-09,fraud,Services-Help Supply Services,MAN,MANPOWERGROUP INC,Services-Help Supply Services,sic4
+7706,CARMAX INC,KMX,2005-10-06,other,Retail-Auto Dealers & Gasoline Stations,PAG,PENSKE AUTOMOTIVE GROUP INC,Retail-Auto Dealers & Gasoline Stations,sic4
+7715,NEOMAGIC CORP,NMGC,2005-04-22,other,Semiconductors & Related Devices,IBIS,IBIS TECHNOLOGY CORP,Semiconductors & Related Devices,sic4
+7734,TAKE-TWO INTERACTIVE SFTWR,TTWO,2001-02-01,other,Services-Prepackaged Software,DRTE,DENDRITE INTERNATIONAL INC,Services-Prepackaged Software,sic4
+7740,EGGHEAD.COM INC,EGHDQ,2000-07-25,other,Retail-Catalog & Mail-Order Houses,DLIA1,DELIA S CORP,Retail-Catalog & Mail-Order Houses,sic4
+7915,SONIC AUTOMOTIVE INC -CL A,SAH,2018-09-26,other,Retail-Auto Dealers & Gasoline Stations,,,,
+7961,CAREER EDUCATION CORP,PRDO,2006-09-25,other,Services-Educational Services,LAUR1,LAUREATE EDUCATION INC,Services-Educational Services,sic4
+7979,ASTROPOWER INC,APWRQ,2003-05-27,fraud,,,,,
+8000,BROADCOM CORP -CL A,BRCM,2003-01-23,other,Semiconductors & Related Devices,LSI1,LSI CORP,Semiconductors & Related Devices,sic4
+8045,AXT INC,AXTI,2004-05-24,other,Semiconductors & Related Devices,PSITY,PSI TECHNOLOGIES HOLDINGS INC,Semiconductors & Related Devices,sic4
+8085,MANNATECH INC,MTEX,2007-08-21,fraud,Medicinal Chemicals & Botanical Products,UGNEQ,UNIGENE LABORATORIES INC,Medicinal Chemicals & Botanical Products,sic4
+8097,DIGITAL RIVER INC,DRIV1,2012-11-01,other,Wholesale-Computers & Peripheral Equipment & Software,SCSC,SCANSOURCE INC,Wholesale-Computers & Peripheral Equipment & Software,sic4
+8348,INTERNAP CORP,INAPQ,2001-07-25,other,Services-Computer Programming Data Processing Etc.,VNWI,VIA NET WORKS INC,Services-Computer Programming Data Processing Etc.,sic4
+8370,WORLD WRESTLING ENTMT INC,WWE,2022-07-22,scandal,Services-Motion Picture & Video Tape Production,LGF.B,LIONS GATE ENTERTAINMENT CORP,Services-Motion Picture & Video Tape Production,sic4
+8543,PHARMANET DEVELOPMENT GROUP,PDGI,2006-01-03,fraud,Services-Commercial Physical & Biological Research,CRGN,CURAGEN CORP,Services-Commercial Physical & Biological Research,sic4
+8592,NORTHERN OIL & GAS INC,NOG,2016-08-16,fraud,Crude Petroleum & Natural Gas,PGHEF,PENGROWTH ENERGY CORP,Crude Petroleum & Natural Gas,sic4
+8710,JETBLUE AIRWAYS CORP,JBLU,2007-05-10,other,Air Transportation Scheduled,ALK,ALASKA AIR GROUP INC,Air Transportation Scheduled,sic4
+8733,FORMFACTOR INC,FORM,2008-06-04,other,Semiconductors & Related Devices,SMOD,SMART MODULAR TECHNOLOGIES (WWH) INC,Semiconductors & Related Devices,sic4
+8761,WYNN RESORTS LTD,WYNN,2018-02-06,scandal,Hotels & Motels,MLCO,MELCO RESORTS & ENTERTAINMENT LTD,Hotels & Motels,sic4
+8801,TRUE RELIGION APPAREL INC,TRLG,2013-03-19,other,Apparel & Other Finishd Prods Of Fabrics & Similar Matl,GIII,G III APPAREL GROUP LTD,Apparel & Other Finishd Prods Of Fabrics & Similar Matl,sic4
+9053,CHIPOTLE MEXICAN GRILL INC,CMG,2017-11-29,other,Retail-Eating  Places,ARMK,ARAMARK,Retail-Eating  Places,sic4
+9071,SYNCHRONOSS TECHNOLOGIES,SNCR,2017-11-13,fraud,Services-Computer Programming Services,SYNT,SYNTEL INC,Services-Computer Programming Services,sic4
+9197,DOLAN CO,DOLNQ,2014-03-20,other,,,,,
+9231,APPROACH RESOURCES INC,AREXQ,2019-04-09,other,Crude Petroleum & Natural Gas,EPEGQ,EP ENERGY CORP,Crude Petroleum & Natural Gas,sic4
+9374,GREEN DOT CORP,GDOT,2019-12-18,other,Finance Services,LX,LEXINFINTECH HOLDINGS LTD,Finance Services,sic4
+9386,TANGOE INC,TNGO,2016-05-04,fraud,,,,,
+9406,SAGENT PHARMACEUTICALS INC,SGNT,2015-03-26,other,Pharmaceutical Preparations,CBM,CAMBREX CORP,Pharmaceutical Preparations,sic4
+9454,LAREDO PETROLEUM INC,VTLE,2019-09-27,other,Crude Petroleum & Natural Gas,XOGAQ,EXTRACTION OIL & GAS INC,Crude Petroleum & Natural Gas,sic4
+9469,ACADIA HEALTHCARE CO INC,ACHC,2018-12-17,other,Services-Specialty Outpatient Facilities Nec,CHE,CHEMED CORP,Services-Home Health Care Services,industry
+9556,JAZZ PHARMACEUTICALS PLC,JAZZ,2009-04-02,other,Pharmaceutical Preparations,CEGE,CELL GENESYS INC,Pharmaceutical Preparations,sic4
+9699,CARA THERAPEUTICS INC,TVRD,2021-11-04,coup,Pharmaceutical Preparations,COLL,COLLEGIUM PHARMACEUTICAL INC,Pharmaceutical Preparations,sic4
+9750,APOLLO MEDICAL HOLDING INC,ASTH,2019-03-28,other,Services-Management Consulting Services,HCKT,HACKETT GROUP INC,Services-Management Consulting Services,sic4
+10065,TRIDENT MICROSYSTEMS INC,TRIDQ,2006-11-21,fraud,Semiconductors & Related Devices,IDTI,INTEGRATED DEVICE TECHNOLOGY INC,Semiconductors & Related Devices,sic4
+10281,A10 NETWORKS INC,ATEN,2019-07-30,other,Computer Communications Equipment,DGII,DIGI INTERNATIONAL INC,Computer Communications Equipment,sic4
+10287,CLEARFIELD INC,CLFD,2007-06-29,other,Telephone & Telegraph Apparatus,THNKQ,THINKENGINE NETWORKS INC,Telephone & Telegraph Apparatus,sic4
+10360,ADAPTHEALTH CORP,AHCO,2021-04-13,scandal,Services-Home Health Care Services,LHCG,LHC GROUP INC,Services-Home Health Care Services,sic4
+10421,ENCOMPASS HEALTH CORP,EHC,2003-03-20,fraud,,,,,

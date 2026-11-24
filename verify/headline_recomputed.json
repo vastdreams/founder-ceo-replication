@@ -1,0 +1,72 @@
+{
+ "fv.founder.sp.slideann.ret.mean": {
+  "value": -0.12028327906276705,
+  "n": 73,
+  "level": "A"
+ },
+ "fv.founder.pr.slideann.ret.mean": {
+  "value": -0.04161419191090416,
+  "n": 66,
+  "level": "A"
+ },
+ "fv.founder.pr3.slideann.ret.mean": {
+  "value": -0.10367693329611352,
+  "n": 46,
+  "level": "A"
+ },
+ "fv.founder.ind.slideann.ret.mean": {
+  "value": -0.11280372270233756,
+  "n": 69,
+  "level": "B"
+ },
+ "fv.founder.roa.slideann.ret.mean": {
+  "value": -0.09076192122145832,
+  "n": 66,
+  "level": "B"
+ },
+ "founder.d1.inv_firm.median": {
+  "value": 91.63108454312552,
+  "n": 73,
+  "level": "A"
+ },
+ "founder.d1.inv_pr3.median": {
+  "value": 102.63759270171983,
+  "n": 46,
+  "level": "A"
+ },
+ "founder.d1.inv_sp.median": {
+  "value": 101.60952724648142,
+  "n": 73,
+  "level": "A"
+ },
+ "fvinv.founder.firm_pr3.d1.median": {
+  "value": 91.65655886740979,
+  "n": 46,
+  "level": "A"
+ },
+ "fvinv.founder.pr3.d1.median": {
+  "value": 102.63759270171983,
+  "n": 46,
+  "level": "A"
+ },
+ "exit.forced.bankruptcy_5y": {
+  "value": 0.12233169129720854,
+  "n": 1218,
+  "level": "A"
+ },
+ "exit.retired.bankruptcy_5y": {
+  "value": 0.025956284153005466,
+  "n": 2196,
+  "level": "A"
+ },
+ "car.conduct.mm_m1p1.mean": {
+  "value": -0.024741954086162116,
+  "n": 40,
+  "level": "A"
+ },
+ "car.criminal.mm_m1p1.mean": {
+  "value": -0.07062703990146395,
+  "n": 58,
+  "level": "A"
+ }
+}

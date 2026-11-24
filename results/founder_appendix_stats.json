@@ -1,0 +1,1918 @@
+{
+ "fa.n_kept": {
+  "value": 94.0,
+  "n": 94
+ },
+ "fa.n_planned_dropped": {
+  "value": 12.0,
+  "n": 106
+ },
+ "fa.n_checked": {
+  "value": 103.0,
+  "n": 103
+ },
+ "fa.n_forced_resign_added": {
+  "value": 3.0,
+  "n": 106
+ },
+ "fa.n_retirements_scanned": {
+  "value": 448.0,
+  "n": 448
+ },
+ "fa.n_forced_resign_unclear": {
+  "value": 11.0,
+  "n": 448
+ },
+ "fa.outcome.all.lost": {
+  "value": 24.0,
+  "n": 94
+ },
+ "fa.outcome.all.gained": {
+  "value": 23.0,
+  "n": 94
+ },
+ "fa.outcome.all.taken_over": {
+  "value": 21.0,
+  "n": 94
+ },
+ "fa.outcome.all.bankrupt": {
+  "value": 12.0,
+  "n": 94
+ },
+ "fa.outcome.all.about_even": {
+  "value": 6.0,
+  "n": 94
+ },
+ "fa.outcome.all.no_competitor": {
+  "value": 5.0,
+  "n": 94
+ },
+ "fa.outcome.all.delisted_other": {
+  "value": 2.0,
+  "n": 94
+ },
+ "fa.outcome.all.under_3_years": {
+  "value": 1.0,
+  "n": 94
+ },
+ "fa.outcome.all.n": {
+  "value": 94.0,
+  "n": 94
+ },
+ "fa.outcome.main.gained": {
+  "value": 18.0,
+  "n": 73
+ },
+ "fa.outcome.main.lost": {
+  "value": 18.0,
+  "n": 73
+ },
+ "fa.outcome.main.taken_over": {
+  "value": 16.0,
+  "n": 73
+ },
+ "fa.outcome.main.bankrupt": {
+  "value": 10.0,
+  "n": 73
+ },
+ "fa.outcome.main.about_even": {
+  "value": 5.0,
+  "n": 73
+ },
+ "fa.outcome.main.no_competitor": {
+  "value": 3.0,
+  "n": 73
+ },
+ "fa.outcome.main.delisted_other": {
+  "value": 2.0,
+  "n": 73
+ },
+ "fa.outcome.main.under_3_years": {
+  "value": 1.0,
+  "n": 73
+ },
+ "fa.outcome.main.n": {
+  "value": 73.0,
+  "n": 73
+ },
+ "fa.outcome.fraud.lost": {
+  "value": 6.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.gained": {
+  "value": 5.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.taken_over": {
+  "value": 5.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.bankrupt": {
+  "value": 2.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.no_competitor": {
+  "value": 2.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.about_even": {
+  "value": 1.0,
+  "n": 21
+ },
+ "fa.outcome.fraud.n": {
+  "value": 21.0,
+  "n": 21
+ },
+ "fa.push.pushed": {
+  "value": 51.0,
+  "n": 94
+ },
+ "fa.push.unclear": {
+  "value": 43.0,
+  "n": 94
+ },
+ "fa.fate.stayed_on_the_board": {
+  "value": 39.0,
+  "n": 94
+ },
+ "fa.fate.left_the_board": {
+  "value": 39.0,
+  "n": 94
+ },
+ "fa.fate.board_seat_not_established": {
+  "value": 16.0,
+  "n": 94
+ },
+ "fa.fate.came_back_as_ceo_within_five_years": {
+  "value": 3.0,
+  "n": 94
+ },
+ "fa.fate.started_or_led_a_new_firm": {
+  "value": 7.0,
+  "n": 94
+ },
+ "fa.fate.went_after_the_firm": {
+  "value": 6.0,
+  "n": 94
+ },
+ "fa.fate.legal_action_naming_the_founder": {
+  "value": 26.0,
+  "n": 94
+ },
+ "fa.fate.died_within_five_years": {
+  "value": 2.0,
+  "n": 94
+ },
+ "fa.audit.hired.n": {
+  "value": 60.0,
+  "n": 60
+ },
+ "fa.audit.hired.planned": {
+  "value": 5.0,
+  "n": 60
+ },
+ "fa.audit.hired.redate": {
+  "value": 5.0,
+  "n": 60
+ },
+ "fa.audit.hired.recode": {
+  "value": 1.0,
+  "n": 60
+ },
+ "fa.audit.hired.keep": {
+  "value": 49.0,
+  "n": 60
+ },
+ "fa.audit.founder.n": {
+  "value": 77.0,
+  "n": 77
+ },
+ "fa.audit.founder.planned": {
+  "value": 12.0,
+  "n": 77
+ },
+ "fa.pairs.level.sic4": {
+  "value": 74.0,
+  "n": 94
+ },
+ "fa.pairs.level.none": {
+  "value": 11.0,
+  "n": 94
+ },
+ "fa.pairs.level.industry": {
+  "value": 7.0,
+  "n": 94
+ },
+ "fa.pairs.level.sic3": {
+  "value": 2.0,
+  "n": 94
+ },
+ "_tables": {
+  "cases": [
+   [
+    "Wisconsin Central Transportn, 1998",
+    "Edward A. Burkhardt",
+    "performance or other",
+    "pushed",
+    "insider",
+    "\u2013",
+    "taken over",
+    "left the board; new firm: Rail World"
+   ],
+   [
+    "Just For Feet Inc, 1999",
+    "Harold Ruttenberg",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "-29",
+    "bankrupt",
+    "left the board; legal action"
+   ],
+   [
+    "Wall Data Inc, 1999",
+    "John R. Wall",
+    "performance or other",
+    "unclear",
+    "insider",
+    "\u2013",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Sunrise Medical Inc, 1999",
+    "Richard H. Chandler",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "+38",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Trueblue Inc, 2000",
+    "Glenn A. Welstad",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "+34",
+    "gained",
+    "left the board; new firm: Command Center"
+   ],
+   [
+    "Phycor Inc, 2000",
+    "Joseph C. Hutts",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "+0",
+    "bankrupt",
+    "stayed on the board"
+   ],
+   [
+    "Egghead.Com Inc, 2000",
+    "S. Jerrold Kaplan",
+    "performance or other",
+    "unclear",
+    "insider",
+    "-24",
+    "bankrupt",
+    "stayed on the board"
+   ],
+   [
+    "Ca Inc, 2000",
+    "Charles B. Wang",
+    "performance or other",
+    "unclear",
+    "insider",
+    "\u2013",
+    "no competitor",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Pss World Medical Inc, 2000",
+    "Patrick C. Kelly",
+    "performance or other",
+    "pushed",
+    "insider",
+    "+36",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Lechters Inc, 2000",
+    "Donald Jonas",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "+0",
+    "bankrupt",
+    "board unclear"
+   ],
+   [
+    "Provell Inc -Cl A, 2001",
+    "Mark A. Cohn",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "\u2013",
+    "bankrupt",
+    "board unclear"
+   ],
+   [
+    "Take-Two Interactive Sftwr, 2001",
+    "Ryan A. Brant",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+163",
+    "gained",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Psinet Inc, 2001",
+    "William L. Schrader",
+    "performance or other",
+    "pushed",
+    "insider",
+    "-366",
+    "bankrupt",
+    "stayed on the board"
+   ],
+   [
+    "Internap Corp, 2001",
+    "Anthony C. Naughtin",
+    "performance or other",
+    "unclear",
+    "interim",
+    "-9",
+    "about even",
+    "stayed on the board"
+   ],
+   [
+    "Edwards J D & Co, 2002",
+    "C. Edward McVaney",
+    "performance or other",
+    "pushed",
+    "outsider",
+    "-42",
+    "taken over",
+    "board unclear"
+   ],
+   [
+    "Edgewater Technology Inc, 2002",
+    "Clete T. Brewer",
+    "performance or other",
+    "pushed",
+    "not recorded",
+    "-102",
+    "lost",
+    "left the board"
+   ],
+   [
+    "Mayors Jewelers Inc/De, 2002",
+    "Isaac Arguetty",
+    "performance or other",
+    "pushed",
+    "not recorded",
+    "+66",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Worldcom Inc, 2002",
+    "Bernard John Ebbers",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-68",
+    "bankrupt",
+    "left the board; legal action"
+   ],
+   [
+    "Radisys Corp, 2002",
+    "Glenford J. Myers",
+    "boardroom coup",
+    "pushed",
+    "interim",
+    "+79",
+    "gained",
+    "left the board; new firm: IP Fabrics"
+   ],
+   [
+    "Valeant Pharmaceuticals -Old, 2002",
+    "Milan Panic",
+    "performance or other",
+    "pushed",
+    "not recorded",
+    "-52",
+    "lost",
+    "stayed on the board; new firm: MP Biomedicals"
+   ],
+   [
+    "Aes Corp, 2002",
+    "Dennis W. Bakke",
+    "performance or other",
+    "pushed",
+    "insider",
+    "\u2013",
+    "no competitor",
+    "stayed on the board"
+   ],
+   [
+    "Polymedica Corp, 2002",
+    "Steven J. Lee",
+    "fraud",
+    "unclear",
+    "interim",
+    "+15",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Broadcom Corp -Cl A, 2003",
+    "Henry T. Nicholas III",
+    "performance or other",
+    "unclear",
+    "interim",
+    "+196",
+    "gained",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Impath Inc, 2003",
+    "Anu D. Saad",
+    "fraud",
+    "pushed",
+    "outsider",
+    "-44",
+    "lost",
+    "left the board; legal action"
+   ],
+   [
+    "Encompass Health Corp, 2003",
+    "Richard M. Scrushy",
+    "fraud",
+    "pushed",
+    "named, type not recorded",
+    "\u2013",
+    "no competitor",
+    "board unclear; legal action"
+   ],
+   [
+    "Astropower Inc, 2003",
+    "Allen M. Barnett",
+    "fraud",
+    "pushed",
+    "named, type not recorded",
+    "\u2013",
+    "bankrupt",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Viavi Solutions Inc, 2003",
+    "Jozef Straus",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "-214",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Axt Inc, 2004",
+    "Morris S. Young, Ph.D.",
+    "performance or other",
+    "pushed",
+    "interim",
+    "+127",
+    "gained",
+    "stayed on the board; back as CEO 2009 (after 5 years)"
+   ],
+   [
+    "Neomagic Corp, 2005",
+    "Prakash C. Agarwal",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+19",
+    "delisted, other",
+    "board unclear"
+   ],
+   [
+    "Prgx Global Inc, 2005",
+    "John M. Cook",
+    "boardroom coup",
+    "unclear",
+    "not recorded",
+    "-152",
+    "lost",
+    "board unclear"
+   ],
+   [
+    "Carmax Inc, 2005",
+    "W. Austin Ligon",
+    "performance or other",
+    "pushed",
+    "insider",
+    "+23",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Swift Transportation Co Inc, 2005",
+    "Jerry C. Moyes",
+    "fraud",
+    "pushed",
+    "insider",
+    "+6",
+    "taken over",
+    "board unclear; back as CEO 2007; went after the firm; legal action"
+   ],
+   [
+    "Mercury Interactive Corp, 2005",
+    "Amnon Landan",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "+79",
+    "taken over",
+    "left the board; legal action"
+   ],
+   [
+    "Calpine Corp, 2005",
+    "Peter Cartwright",
+    "performance or other",
+    "pushed",
+    "insider",
+    "-43",
+    "bankrupt",
+    "stayed on the board"
+   ],
+   [
+    "Pharmanet Development Group, 2006",
+    "Arnold Hantman",
+    "fraud",
+    "pushed",
+    "insider",
+    "-11",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Lca Vision Inc, 2006",
+    "Stephen N. Joffe",
+    "boardroom coup",
+    "unclear",
+    "interim",
+    "+3",
+    "about even",
+    "stayed on the board; went after the firm"
+   ],
+   [
+    "Inter-Tel Inc -Ser A, 2006",
+    "Steven G. Mihaylo",
+    "boardroom coup",
+    "pushed",
+    "named, type not recorded",
+    "+65",
+    "taken over",
+    "stayed on the board; went after the firm"
+   ],
+   [
+    "Biomet Inc, 2006",
+    "Dane A. Miller",
+    "performance or other",
+    "pushed",
+    "interim",
+    "-1",
+    "taken over",
+    "board unclear"
+   ],
+   [
+    "Vertro Inc, 2006",
+    "Craig A. Pisaris-Henderson",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "-243",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Vitesse Semiconductor Corp, 2006",
+    "Louis R. Tomasetta",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-21",
+    "lost",
+    "left the board; legal action"
+   ],
+   [
+    "Sun Microsystems Inc, 2006",
+    "Scott G. McNealy",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "+4",
+    "taken over",
+    "stayed on the board; new firm: Wayin"
+   ],
+   [
+    "Comverse Technology Inc, 2006",
+    "Kobi Alexander",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "\u2013",
+    "no competitor",
+    "left the board; legal action"
+   ],
+   [
+    "Atmel Corp, 2006",
+    "George Perlegos",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "+54",
+    "gained",
+    "left the board; went after the firm; legal action"
+   ],
+   [
+    "Career Education Corp, 2006",
+    "John M. Larson",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "-3",
+    "about even",
+    "stayed on the board"
+   ],
+   [
+    "Monster Worldwide Inc, 2006",
+    "Andrew J. McKelvey",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-52",
+    "lost",
+    "left the board; legal action; died within 5 years"
+   ],
+   [
+    "Sapient Corp, 2006",
+    "Jerry A. Greenberg",
+    "fraud",
+    "pushed",
+    "insider",
+    "+118",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Trident Microsystems Inc, 2006",
+    "Frank C. Lin",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-26",
+    "lost",
+    "board unclear; legal action"
+   ],
+   [
+    "Jetblue Airways Corp, 2007",
+    "David Gary Neeleman",
+    "performance or other",
+    "pushed",
+    "insider",
+    "-102",
+    "lost",
+    "stayed on the board; new firm: Azul"
+   ],
+   [
+    "Clearfield Inc, 2007",
+    "Anil K. Jain",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "+223",
+    "gained",
+    "stayed on the board; went after the firm"
+   ],
+   [
+    "Mannatech Inc, 2007",
+    "Samuel L. Caster",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-1",
+    "about even",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Legg Mason Inc, 2008",
+    "Raymond Adams Mason",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "-75",
+    "lost",
+    "board unclear"
+   ],
+   [
+    "Presidential Life Corp, 2008",
+    "Herbert Kurz",
+    "fraud",
+    "unclear",
+    "not recorded",
+    "-27",
+    "taken over",
+    "stayed on the board; went after the firm; legal action"
+   ],
+   [
+    "Applied Signal Technology, 2008",
+    "Gary L. Yancey",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+255",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Formfactor Inc, 2008",
+    "Igor Y. Khandros, Ph.D.",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "-131",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Sunrise Senior Living Inc, 2008",
+    "Paul J. Klaassen",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "+82",
+    "taken over",
+    "stayed on the board"
+   ],
+   [
+    "Altaba Inc, 2008",
+    "Chih-Yuan Yang",
+    "performance or other",
+    "pushed",
+    "outsider",
+    "-98",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Progress Software Corp, 2009",
+    "Joseph W. Alsop",
+    "performance or other",
+    "unclear",
+    "insider",
+    "-73",
+    "lost",
+    "left the board"
+   ],
+   [
+    "Jazz Pharmaceuticals Plc, 2009",
+    "Samuel R. Saks, M.D.",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+4764",
+    "gained",
+    "board unclear"
+   ],
+   [
+    "Ruby Tuesday Inc, 2012",
+    "Samuel E. Beall, III",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "-273",
+    "lost",
+    "left the board"
+   ],
+   [
+    "Digital River Inc, 2012",
+    "Joel A. Ronning",
+    "performance or other",
+    "pushed",
+    "interim",
+    "+61",
+    "taken over",
+    "stayed on the board"
+   ],
+   [
+    "Chesapeake Energy Corp, 2013",
+    "Aubrey K. McClendon",
+    "performance or other",
+    "pushed",
+    "outsider",
+    "-83",
+    "lost",
+    "left the board; new firm: American Energy Partners; legal action; died within 5 years"
+   ],
+   [
+    "True Religion Apparel Inc, 2013",
+    "Jeffrey Lubell",
+    "performance or other",
+    "pushed",
+    "interim",
+    "-150",
+    "taken over",
+    "left the board"
+   ],
+   [
+    "Amedisys Inc, 2014",
+    "William F. Borne",
+    "fraud",
+    "pushed",
+    "interim",
+    "+88",
+    "gained",
+    "left the board; legal action"
+   ],
+   [
+    "Dolan Co, 2014",
+    "James P. Dolan",
+    "performance or other",
+    "pushed",
+    "named, type not recorded",
+    "\u2013",
+    "bankrupt",
+    "left the board"
+   ],
+   [
+    "Tile Shop Holdings Inc, 2014",
+    "Robert A. Rucker",
+    "performance or other",
+    "unclear",
+    "named, type not recorded",
+    "-15",
+    "lost",
+    "stayed on the board; back as CEO 2017"
+   ],
+   [
+    "Sagent Pharmaceuticals Inc, 2015",
+    "Jeffrey M. Yordon",
+    "performance or other",
+    "unclear",
+    "interim",
+    "-31",
+    "taken over",
+    "stayed on the board"
+   ],
+   [
+    "Iconix Brand Group Inc, 2015",
+    "Neil Cole",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "-109",
+    "lost",
+    "left the board; legal action"
+   ],
+   [
+    "First Nbc Bank Holding Co, 2016",
+    "Ashton Joseph Ryan, Jr., CPA",
+    "performance or other",
+    "pushed",
+    "named, type not recorded",
+    "-141",
+    "bankrupt",
+    "left the board"
+   ],
+   [
+    "Cypress Semiconductor Corp, 2016",
+    "Thurman John Rodgers, Ph.D.",
+    "performance or other",
+    "pushed",
+    "not recorded",
+    "+86",
+    "taken over",
+    "board unclear"
+   ],
+   [
+    "Tangoe Inc, 2016",
+    "Albert R. Subbloie, Jr.",
+    "fraud",
+    "pushed",
+    "not recorded",
+    "\u2013",
+    "taken over",
+    "board unclear; legal action"
+   ],
+   [
+    "Northern Oil & Gas Inc, 2016",
+    "Michael L. Reger",
+    "fraud",
+    "pushed",
+    "interim",
+    "+17",
+    "gained",
+    "left the board; back as CEO 2018; legal action"
+   ],
+   [
+    "Siriuspoint Ltd, 2017",
+    "John Robert Berger",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "-107",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Edgewater Technology Inc, 2017",
+    "Shirley Singleton",
+    "performance or other",
+    "pushed",
+    "interim",
+    "-78",
+    "taken over",
+    "stayed on the board"
+   ],
+   [
+    "Synchronoss Technologies, 2017",
+    "Stephen G. Waldis",
+    "fraud",
+    "pushed",
+    "outsider",
+    "-190",
+    "lost",
+    "stayed on the board"
+   ],
+   [
+    "Chipotle Mexican Grill Inc, 2017",
+    "M. Steven Ells",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "+337",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Papa Johns International Inc, 2017",
+    "John H. Schnatter",
+    "personal scandal",
+    "unclear",
+    "insider",
+    "+5",
+    "about even",
+    "stayed on the board; legal action"
+   ],
+   [
+    "Rent-A-Center Inc, 2018",
+    "Mark E. Speese",
+    "performance or other",
+    "pushed",
+    "insider",
+    "+300",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Diplomat Pharmacy Inc, 2018",
+    "Philip R. Hagerman",
+    "performance or other",
+    "unclear",
+    "interim",
+    "-167",
+    "taken over",
+    "stayed on the board"
+   ],
+   [
+    "Wynn Resorts Ltd, 2018",
+    "Stephen A. Wynn",
+    "personal scandal",
+    "pushed",
+    "insider",
+    "+2",
+    "about even",
+    "left the board; legal action"
+   ],
+   [
+    "Sonic Automotive Inc -Cl A, 2018",
+    "B. Scott Smith",
+    "performance or other",
+    "unclear",
+    "insider",
+    "\u2013",
+    "no competitor",
+    "left the board"
+   ],
+   [
+    "Opus Bank, 2018",
+    "Stephen H. Gordon",
+    "performance or other",
+    "unclear",
+    "not recorded",
+    "\u2013",
+    "delisted, other",
+    "left the board"
+   ],
+   [
+    "Acadia Healthcare Co Inc, 2018",
+    "Joey A. Jacobs",
+    "performance or other",
+    "pushed",
+    "insider",
+    "+21",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Apollo Medical Holding Inc, 2019",
+    "Warren Hosseinion, M.D.",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+116",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Approach Resources Inc, 2019",
+    "J. Ross Craft, P.E.",
+    "performance or other",
+    "unclear",
+    "insider",
+    "+0",
+    "bankrupt",
+    "left the board"
+   ],
+   [
+    "A10 Networks Inc, 2019",
+    "Lee Chen",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "-24",
+    "lost",
+    "board unclear"
+   ],
+   [
+    "Laredo Petroleum Inc, 2019",
+    "Randy A. Foutch",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "+131",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Green Dot Corp, 2019",
+    "Steven W. Streit",
+    "performance or other",
+    "unclear",
+    "interim",
+    "+55",
+    "gained",
+    "left the board"
+   ],
+   [
+    "Mednax Inc, 2020",
+    "Roger J. Medel, M.D.",
+    "performance or other",
+    "pushed",
+    "named, type not recorded",
+    "-63",
+    "lost",
+    "board unclear"
+   ],
+   [
+    "Smart Global Holdings Inc, 2020",
+    "Ajay B. Shah",
+    "performance or other",
+    "unclear",
+    "outsider",
+    "+129",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Adapthealth Corp, 2021",
+    "Luke McGee",
+    "personal scandal",
+    "pushed",
+    "named, type not recorded",
+    "-76",
+    "lost",
+    "left the board; legal action"
+   ],
+   [
+    "Enzo Biochem Inc, 2021",
+    "Elazar Rabbani, Ph.D.",
+    "performance or other",
+    "pushed",
+    "named, type not recorded",
+    "+35",
+    "gained",
+    "stayed on the board"
+   ],
+   [
+    "Cara Therapeutics Inc, 2021",
+    "Derek T. Chalmers, D.Sc., Ph.D.",
+    "boardroom coup",
+    "pushed",
+    "insider",
+    "-167",
+    "lost",
+    "left the board"
+   ],
+   [
+    "World Wrestling Entmt Inc, 2022",
+    "Vincent K. McMahon",
+    "personal scandal",
+    "pushed",
+    "insider",
+    "+166",
+    "gained",
+    "left the board; legal action"
+   ],
+   [
+    "Eagle Pharmaceuticals Inc, 2023",
+    "Scott L. Tarriff",
+    "performance or other",
+    "pushed",
+    "not recorded",
+    "\u2013",
+    "under 3 years",
+    "board unclear"
+   ]
+  ],
+  "excluded": [
+   [
+    "Enron Corp, 2000",
+    "Kenneth Lee Lay",
+    "\"will succeed Kenneth Lay as CEO in February 2001. Lay will remain as chairman\"; proxy: \"From 1986 until February 2001, Mr. Lay was also the Chief Executive Officer..."
+   ],
+   [
+    "Cree Inc, 2001",
+    "F. Neal Hunter",
+    "'Neal Hunter will continue in a full-time capacity as Executive Chairman of Cree and focus on strategic initiatives'"
+   ],
+   [
+    "Aspen Technology Inc, 2002",
+    "Lawrence B. Evans",
+    "\"long-planned management succession process\" (ir.aspentech.com/node/6706, search snippet)"
+   ],
+   [
+    "Alpha Natural Resources Inc, 2008",
+    "Michael J. Quillen",
+    "Five-and-a-half months between announcement and exit (DB); later source title 'Michael Quillen to retire as chairman at Alpha Natural Resources in May'"
+   ],
+   [
+    "Datascope Corp, 2009",
+    "Lawrence Saper",
+    "8-K filed 8 Jan 2009: on 31 Dec 2008 Datascope entered an amended employment agreement \"with Lawrence Saper, Chairman of the Board of Directors and Chief Executive..."
+   ],
+   [
+    "Five Below Inc, 2014",
+    "Thomas G. Vellios",
+    "'stayed on as the Chairman as part of routine succession' (DB coder); announced with weak holiday guidance (WSJ headline, DB)"
+   ],
+   [
+    "Guess Inc, 2015",
+    "Paul Marciano",
+    "\"Paul Marciano ... moved into the executive chairman role\" (Fox Business / Chain Store Age, search snippets)"
+   ],
+   [
+    "Ralph Lauren Corp, 2015",
+    "Ralph Lauren",
+    "'Lauren didn't leave and sounded like he wanted the outside blood' (database coder note); no source of board pressure found"
+   ],
+   [
+    "Bankunited Inc, 2016",
+    "John Adam Kanas",
+    "'Performance appears good for the transition and the COO took over' (DB)"
+   ],
+   [
+    "Klx Energy Servs Hldng, 2020",
+    "Amin J. Khoury, Ph.D.",
+    "\"Mr. Khoury informed the Board of his decision to resign on April 16, 2020\" (8-K)"
+   ],
+   [
+    "Viasat Inc, 2020",
+    "Mark D. Dankberg",
+    "'an initial step in the company's long-term succession plan'"
+   ],
+   [
+    "Greenbrier Companies Inc, 2021",
+    "William A. Furman",
+    "\"is retiring as CEO in March but will remain executive chairman until September 2022\" (database note)"
+   ]
+  ],
+  "fates": [
+   [
+    "stayed on the board",
+    "39 (41%)",
+    ""
+   ],
+   [
+    "left the board",
+    "39 (41%)",
+    ""
+   ],
+   [
+    "board seat not established",
+    "16 (17%)",
+    ""
+   ],
+   [
+    "came back as CEO within five years",
+    "3",
+    "Swift Transportation Co Inc, 2005, Jerry C. Moyes, back 2007; Tile Shop Holdings Inc, 2014, Robert A. Rucker, back 2017; Northern Oil & Gas Inc, 2016, Michael L. Reger, back 2018"
+   ],
+   [
+    "started or led a new firm",
+    "7",
+    "Wisconsin Central Transportn, 1998, Edward A. Burkhardt: Rail World; Trueblue Inc, 2000, Glenn A. Welstad: Command Center, a rival day-labour firm; Radisys Corp, 2002, Glenford J. Myers: IP Fabrics; Valeant Pharmaceuticals -Old, 2002, Milan Panic: MP Biomedicals, spun off from ICN; Sun Microsystems Inc, 2006, Scott G. McNealy: Wayin; Jetblue Airways Corp, 2007, David Gary Neeleman: Azul, a Brazilian airline; Chesapeake Energy Corp, 2013, Aubrey K. McClendon: American Energy Partners"
+   ],
+   [
+    "went after the firm",
+    "6",
+    "Swift Transportation Co Inc, 2005, Jerry C. Moyes, back 2007; Lca Vision Inc, 2006, Stephen N. Joffe; Inter-Tel Inc -Ser A, 2006, Steven G. Mihaylo; Atmel Corp, 2006, George Perlegos; Clearfield Inc, 2007, Anil K. Jain; Presidential Life Corp, 2008, Herbert Kurz"
+   ],
+   [
+    "legal action naming the founder",
+    "26 (28%)",
+    ""
+   ],
+   [
+    "died within five years",
+    "2",
+    "Monster Worldwide Inc, 2006, Andrew J. McKelvey; Chesapeake Energy Corp, 2013, Aubrey K. McClendon: American Energy Partners"
+   ]
+  ],
+  "pairs": [
+   [
+    "Wisconsin Central Transportn, 1998",
+    "Railroads Line-Haul Operating",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Just For Feet Inc, 1999",
+    "Retail-Shoe Stores",
+    "Fairchild Corp",
+    "Retail-Apparel & Accessory Stores",
+    "Sharadar industry"
+   ],
+   [
+    "Wall Data Inc, 1999",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Sunrise Medical Inc, 1999",
+    "Orthopedic Prosthetic & Surgical Appliances & Supplies",
+    "Point Blank Solutions Inc",
+    "Orthopedic Prosthetic & Surgical Appliances & Supplies",
+    "4-digit SIC"
+   ],
+   [
+    "Trueblue Inc, 2000",
+    "Services-Help Supply Services",
+    "Kforce Inc",
+    "Services-Help Supply Services",
+    "4-digit SIC"
+   ],
+   [
+    "Phycor Inc, 2000",
+    "Services-Offices & Clinics Of Doctors Of Medicine",
+    "Promedco Management Co",
+    "Services-Offices & Clinics Of Doctors Of Medicine",
+    "4-digit SIC"
+   ],
+   [
+    "Egghead.Com Inc, 2000",
+    "Retail-Catalog & Mail-Order Houses",
+    "Delia S Corp",
+    "Retail-Catalog & Mail-Order Houses",
+    "4-digit SIC"
+   ],
+   [
+    "Ca Inc, 2000",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Pss World Medical Inc, 2000",
+    "Wholesale-Medical Dental & Hospital Equipment & Supplies",
+    "Henry Schein Inc",
+    "Wholesale-Medical Dental & Hospital Equipment & Supplies",
+    "4-digit SIC"
+   ],
+   [
+    "Lechters Inc, 2000",
+    "Retail-Home Furniture Furnishings & Equipment Stores",
+    "Tandycrafts Inc",
+    "Retail-Miscellaneous Shopping Goods Stores",
+    "Sharadar industry"
+   ],
+   [
+    "Provell Inc -Cl A, 2001",
+    "Retail-Catalog & Mail-Order Houses",
+    "Real Goods Trading Corp",
+    "Retail-Catalog & Mail-Order Houses",
+    "4-digit SIC"
+   ],
+   [
+    "Take-Two Interactive Sftwr, 2001",
+    "Services-Prepackaged Software",
+    "Dendrite International Inc",
+    "Services-Prepackaged Software",
+    "4-digit SIC"
+   ],
+   [
+    "Psinet Inc, 2001",
+    "Services-Computer Programming Data Processing Etc.",
+    "Mypoints Com Inc",
+    "Services-Computer Programming Data Processing Etc.",
+    "4-digit SIC"
+   ],
+   [
+    "Internap Corp, 2001",
+    "Services-Computer Programming Data Processing Etc.",
+    "Via Net Works Inc",
+    "Services-Computer Programming Data Processing Etc.",
+    "4-digit SIC"
+   ],
+   [
+    "Edwards J D & Co, 2002",
+    "Services-Prepackaged Software",
+    "Cognos Inc",
+    "Services-Prepackaged Software",
+    "4-digit SIC"
+   ],
+   [
+    "Edgewater Technology Inc, 2002",
+    "Services-Computer Programming Data Processing Etc.",
+    "Healthstream Inc",
+    "Services-Computer Programming Data Processing Etc.",
+    "4-digit SIC"
+   ],
+   [
+    "Mayors Jewelers Inc/De, 2002",
+    "Jewelry Precious Metal",
+    "D G Jewelry Inc",
+    "Jewelry Precious Metal",
+    "4-digit SIC"
+   ],
+   [
+    "Worldcom Inc, 2002",
+    "Telephone Communications (No Radiotelephone)",
+    "Cox Communications Inc",
+    "Cable & Other Pay Television Services",
+    "Sharadar industry"
+   ],
+   [
+    "Radisys Corp, 2002",
+    "Computer Peripheral Equipment Nec",
+    "Inve Technologies Inc",
+    "Computer Peripheral Equipment Nec",
+    "4-digit SIC"
+   ],
+   [
+    "Valeant Pharmaceuticals -Old, 2002",
+    "Pharmaceutical Preparations",
+    "Medicis Pharmaceutical Corp",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ],
+   [
+    "Aes Corp, 2002",
+    "Cogeneration Services & Small Power Producers",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Polymedica Corp, 2002",
+    "Pharmaceutical Preparations",
+    "Vicuron Pharmaceuticals Inc",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ],
+   [
+    "Broadcom Corp -Cl A, 2003",
+    "Semiconductors & Related Devices",
+    "Lsi Corp",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Impath Inc, 2003",
+    "Services-Medical Laboratories",
+    "Opko Health Inc",
+    "Pharmaceutical Preparations",
+    "Sharadar industry"
+   ],
+   [
+    "Encompass Health Corp, 2003",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Astropower Inc, 2003",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Viavi Solutions Inc, 2003",
+    "Semiconductors & Related Devices",
+    "Nvidia Corp",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Axt Inc, 2004",
+    "Semiconductors & Related Devices",
+    "Psi Technologies Holdings Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Neomagic Corp, 2005",
+    "Semiconductors & Related Devices",
+    "Ibis Technology Corp",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Prgx Global Inc, 2005",
+    "Services-Engineering Accounting Research Management",
+    "Forrester Research Inc",
+    "Services-Engineering Accounting Research Management",
+    "4-digit SIC"
+   ],
+   [
+    "Carmax Inc, 2005",
+    "Retail-Auto Dealers & Gasoline Stations",
+    "Penske Automotive Group Inc",
+    "Retail-Auto Dealers & Gasoline Stations",
+    "4-digit SIC"
+   ],
+   [
+    "Swift Transportation Co Inc, 2005",
+    "Trucking (No Local)",
+    "Heartland Express Inc",
+    "Trucking (No Local)",
+    "4-digit SIC"
+   ],
+   [
+    "Mercury Interactive Corp, 2005",
+    "Services-Prepackaged Software",
+    "Novell Inc",
+    "Services-Prepackaged Software",
+    "4-digit SIC"
+   ],
+   [
+    "Calpine Corp, 2005",
+    "Electric Services",
+    "Txnm Energy Inc",
+    "Electric Services",
+    "4-digit SIC"
+   ],
+   [
+    "Pharmanet Development Group, 2006",
+    "Services-Commercial Physical & Biological Research",
+    "Curagen Corp",
+    "Services-Commercial Physical & Biological Research",
+    "4-digit SIC"
+   ],
+   [
+    "Lca Vision Inc, 2006",
+    "Services-Specialty Outpatient Facilities Nec",
+    "Tlc Vision Corp",
+    "Services-Specialty Outpatient Facilities Nec",
+    "4-digit SIC"
+   ],
+   [
+    "Inter-Tel Inc -Ser A, 2006",
+    "Telephone & Telegraph Apparatus",
+    "Audiocodes Ltd",
+    "Telephone & Telegraph Apparatus",
+    "4-digit SIC"
+   ],
+   [
+    "Biomet Inc, 2006",
+    "Orthopedic Prosthetic & Surgical Appliances & Supplies",
+    "Smith & Nephew Plc",
+    "Orthopedic Prosthetic & Surgical Appliances & Supplies",
+    "4-digit SIC"
+   ],
+   [
+    "Vertro Inc, 2006",
+    "Services-Business Services Nec",
+    "Greenfield Online Inc",
+    "Services-Business Services Nec",
+    "4-digit SIC"
+   ],
+   [
+    "Vitesse Semiconductor Corp, 2006",
+    "Semiconductors & Related Devices",
+    "Microtune Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Sun Microsystems Inc, 2006",
+    "Electronic Computers",
+    "Xerox Holdings Corp",
+    "Computer Peripheral Equipment Nec",
+    "3-digit SIC"
+   ],
+   [
+    "Comverse Technology Inc, 2006",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Atmel Corp, 2006",
+    "Semiconductors & Related Devices",
+    "Sirf Technology Holdings Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Career Education Corp, 2006",
+    "Services-Educational Services",
+    "Laureate Education Inc",
+    "Services-Educational Services",
+    "4-digit SIC"
+   ],
+   [
+    "Monster Worldwide Inc, 2006",
+    "Services-Help Supply Services",
+    "Manpowergroup Inc",
+    "Services-Help Supply Services",
+    "4-digit SIC"
+   ],
+   [
+    "Sapient Corp, 2006",
+    "Services-Computer Integrated Systems Design",
+    "Agilysys Inc",
+    "Services-Computer Integrated Systems Design",
+    "4-digit SIC"
+   ],
+   [
+    "Trident Microsystems Inc, 2006",
+    "Semiconductors & Related Devices",
+    "Integrated Device Technology Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Jetblue Airways Corp, 2007",
+    "Air Transportation Scheduled",
+    "Alaska Air Group Inc",
+    "Air Transportation Scheduled",
+    "4-digit SIC"
+   ],
+   [
+    "Clearfield Inc, 2007",
+    "Telephone & Telegraph Apparatus",
+    "Thinkengine Networks Inc",
+    "Telephone & Telegraph Apparatus",
+    "4-digit SIC"
+   ],
+   [
+    "Mannatech Inc, 2007",
+    "Medicinal Chemicals & Botanical Products",
+    "Unigene Laboratories Inc",
+    "Medicinal Chemicals & Botanical Products",
+    "4-digit SIC"
+   ],
+   [
+    "Legg Mason Inc, 2008",
+    "Investment Advice",
+    "Ameriprise Financial Inc",
+    "Investment Advice",
+    "4-digit SIC"
+   ],
+   [
+    "Presidential Life Corp, 2008",
+    "Life Insurance",
+    "Citizens Inc",
+    "Life Insurance",
+    "4-digit SIC"
+   ],
+   [
+    "Applied Signal Technology, 2008",
+    "Communications Equipment Nec",
+    "Senstar Technologies Corp",
+    "Communications Equipment Nec",
+    "4-digit SIC"
+   ],
+   [
+    "Formfactor Inc, 2008",
+    "Semiconductors & Related Devices",
+    "Smart Modular Technologies (Wwh) Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Sunrise Senior Living Inc, 2008",
+    "Services-Nursing & Personal Care Facilities",
+    "Res Care Inc",
+    "Services-Nursing & Personal Care Facilities",
+    "4-digit SIC"
+   ],
+   [
+    "Altaba Inc, 2008",
+    "Services-Computer Integrated Systems Design",
+    "Infosys Ltd",
+    "Services-Computer Programming Services",
+    "3-digit SIC"
+   ],
+   [
+    "Progress Software Corp, 2009",
+    "Services-Prepackaged Software",
+    "Manhattan Associates Inc",
+    "Services-Prepackaged Software",
+    "4-digit SIC"
+   ],
+   [
+    "Jazz Pharmaceuticals Plc, 2009",
+    "Pharmaceutical Preparations",
+    "Cell Genesys Inc",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ],
+   [
+    "Ruby Tuesday Inc, 2012",
+    "Retail-Eating  Places",
+    "Sonic Corp",
+    "Retail-Eating  Places",
+    "4-digit SIC"
+   ],
+   [
+    "Digital River Inc, 2012",
+    "Wholesale-Computers & Peripheral Equipment & Software",
+    "Scansource Inc",
+    "Wholesale-Computers & Peripheral Equipment & Software",
+    "4-digit SIC"
+   ],
+   [
+    "Chesapeake Energy Corp, 2013",
+    "Crude Petroleum & Natural Gas",
+    "Concho Resources Inc",
+    "Crude Petroleum & Natural Gas",
+    "4-digit SIC"
+   ],
+   [
+    "True Religion Apparel Inc, 2013",
+    "Apparel & Other Finishd Prods Of Fabrics & Similar Matl",
+    "G Iii Apparel Group Ltd",
+    "Apparel & Other Finishd Prods Of Fabrics & Similar Matl",
+    "4-digit SIC"
+   ],
+   [
+    "Amedisys Inc, 2014",
+    "Services-Home Health Care Services",
+    "Lhc Group Inc",
+    "Services-Home Health Care Services",
+    "4-digit SIC"
+   ],
+   [
+    "Dolan Co, 2014",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Tile Shop Holdings Inc, 2014",
+    "Retail-Home Furniture Furnishings & Equipment Stores",
+    "Haverty Furniture Companies Inc",
+    "Retail-Furniture Stores",
+    "Sharadar industry"
+   ],
+   [
+    "Sagent Pharmaceuticals Inc, 2015",
+    "Pharmaceutical Preparations",
+    "Cambrex Corp",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ],
+   [
+    "Iconix Brand Group Inc, 2015",
+    "Footwear (No Rubber)",
+    "Caleres Inc",
+    "Footwear (No Rubber)",
+    "4-digit SIC"
+   ],
+   [
+    "First Nbc Bank Holding Co, 2016",
+    "State Commercial Banks",
+    "Horizon Bancorp Inc",
+    "State Commercial Banks",
+    "4-digit SIC"
+   ],
+   [
+    "Cypress Semiconductor Corp, 2016",
+    "Semiconductors & Related Devices",
+    "Ambarella Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Tangoe Inc, 2016",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Northern Oil & Gas Inc, 2016",
+    "Crude Petroleum & Natural Gas",
+    "Pengrowth Energy Corp",
+    "Crude Petroleum & Natural Gas",
+    "4-digit SIC"
+   ],
+   [
+    "Siriuspoint Ltd, 2017",
+    "Fire Marine & Casualty Insurance",
+    "Infinity Property & Casualty Corp",
+    "Fire Marine & Casualty Insurance",
+    "4-digit SIC"
+   ],
+   [
+    "Edgewater Technology Inc, 2017",
+    "Services-Computer Programming Data Processing Etc.",
+    "Ari Network Services Inc",
+    "Services-Computer Programming Data Processing Etc.",
+    "4-digit SIC"
+   ],
+   [
+    "Synchronoss Technologies, 2017",
+    "Services-Computer Programming Services",
+    "Syntel Inc",
+    "Services-Computer Programming Services",
+    "4-digit SIC"
+   ],
+   [
+    "Chipotle Mexican Grill Inc, 2017",
+    "Retail-Eating  Places",
+    "Aramark",
+    "Retail-Eating  Places",
+    "4-digit SIC"
+   ],
+   [
+    "Papa Johns International Inc, 2017",
+    "Retail-Eating  Places",
+    "Brinker International Inc",
+    "Retail-Eating  Places",
+    "4-digit SIC"
+   ],
+   [
+    "Rent-A-Center Inc, 2018",
+    "Services-Equipment Rental & Leasing Nec",
+    "Cai International Inc",
+    "Services-Equipment Rental & Leasing Nec",
+    "4-digit SIC"
+   ],
+   [
+    "Diplomat Pharmacy Inc, 2018",
+    "Retail-Drug Stores And Proprietary Stores",
+    "Intra-Cellular Therapies Inc",
+    "Pharmaceutical Preparations",
+    "Sharadar industry"
+   ],
+   [
+    "Wynn Resorts Ltd, 2018",
+    "Hotels & Motels",
+    "Melco Resorts & Entertainment Ltd",
+    "Hotels & Motels",
+    "4-digit SIC"
+   ],
+   [
+    "Sonic Automotive Inc -Cl A, 2018",
+    "Retail-Auto Dealers & Gasoline Stations",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Opus Bank, 2018",
+    "\u2013",
+    "\u2013",
+    "\u2013",
+    "none"
+   ],
+   [
+    "Acadia Healthcare Co Inc, 2018",
+    "Services-Specialty Outpatient Facilities Nec",
+    "Chemed Corp",
+    "Services-Home Health Care Services",
+    "Sharadar industry"
+   ],
+   [
+    "Apollo Medical Holding Inc, 2019",
+    "Services-Management Consulting Services",
+    "Hackett Group Inc",
+    "Services-Management Consulting Services",
+    "4-digit SIC"
+   ],
+   [
+    "Approach Resources Inc, 2019",
+    "Crude Petroleum & Natural Gas",
+    "Ep Energy Corp",
+    "Crude Petroleum & Natural Gas",
+    "4-digit SIC"
+   ],
+   [
+    "A10 Networks Inc, 2019",
+    "Computer Communications Equipment",
+    "Digi International Inc",
+    "Computer Communications Equipment",
+    "4-digit SIC"
+   ],
+   [
+    "Laredo Petroleum Inc, 2019",
+    "Crude Petroleum & Natural Gas",
+    "Extraction Oil & Gas Inc",
+    "Crude Petroleum & Natural Gas",
+    "4-digit SIC"
+   ],
+   [
+    "Green Dot Corp, 2019",
+    "Finance Services",
+    "Lexinfintech Holdings Ltd",
+    "Finance Services",
+    "4-digit SIC"
+   ],
+   [
+    "Mednax Inc, 2020",
+    "Services-Hospitals",
+    "New Frontier Health Corp",
+    "Services-Hospitals",
+    "4-digit SIC"
+   ],
+   [
+    "Smart Global Holdings Inc, 2020",
+    "Semiconductors & Related Devices",
+    "Nlight Inc",
+    "Semiconductors & Related Devices",
+    "4-digit SIC"
+   ],
+   [
+    "Adapthealth Corp, 2021",
+    "Services-Home Health Care Services",
+    "Lhc Group Inc",
+    "Services-Home Health Care Services",
+    "4-digit SIC"
+   ],
+   [
+    "Enzo Biochem Inc, 2021",
+    "Services-Medical Laboratories",
+    "Opgen Inc",
+    "Services-Medical Laboratories",
+    "4-digit SIC"
+   ],
+   [
+    "Cara Therapeutics Inc, 2021",
+    "Pharmaceutical Preparations",
+    "Collegium Pharmaceutical Inc",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ],
+   [
+    "World Wrestling Entmt Inc, 2022",
+    "Services-Motion Picture & Video Tape Production",
+    "Lions Gate Entertainment Corp",
+    "Services-Motion Picture & Video Tape Production",
+    "4-digit SIC"
+   ],
+   [
+    "Eagle Pharmaceuticals Inc, 2023",
+    "Pharmaceutical Preparations",
+    "Shattuck Labs Inc",
+    "Pharmaceutical Preparations",
+    "4-digit SIC"
+   ]
+  ]
+ }
+}

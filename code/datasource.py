@@ -17,6 +17,7 @@ equivalent sources. The analysis never reads a vendor table directly.
   factors()            daily Fama-French five factors, momentum and the risk-free rate, in percent
   fundamentals()       annual as-reported fundamentals
   sec_filings(forms)   SEC filing index: cik, accession, form, filing date, 8-K items
+  sp500()              daily dividend-adjusted close of the SPDR S&P 500 ETF (SPY): the S&P 500 total return
 """
 
 from __future__ import annotations
@@ -71,6 +72,8 @@ TABLES = {
         "capex",
     ],
     "sec_filings": ["cik", "accession", "form", "filing_date", "items"],
+    "sp500": ["date", "closeadj"],
+    "sic": ["ticker", "siccode", "sicindustry", "industry"],
 }
 
 
@@ -207,3 +210,29 @@ def sec_filings(forms) -> pd.DataFrame:
             "select cik, accession, form, filing_date, items from world.sec_filings where form in %(f)s", {"f": forms}
         )
     return _dates(d, ["filing_date"])
+
+
+def sp500() -> pd.DataFrame:
+    """The S&P 500 total return (D-34 addendum): the SPDR S&P 500 ETF (SPY), its close with each dividend reinvested
+    on the ex-dividend day. Returned as an index in the column closeadj, whose daily change is the total return."""
+    if backend() == "files":
+        return _dates(_read("sp500"), ["date"]).sort_values("date")
+    px = _sql("select date, close from public.fmp_daily_prices where symbol = 'SPY' and close > 0 order by date")
+    dv = _sql("select date, dividend from public.fmp_dividends where symbol = 'SPY' and dividend > 0")
+    px, dv = _dates(px, ["date"]), _dates(dv, ["date"])
+    px["close"] = px["close"].astype(float)
+    d = px.merge(dv.groupby("date", as_index=False)["dividend"].sum(), on="date", how="left")
+    d["dividend"] = d["dividend"].astype(float).fillna(0.0)
+    ret = (d["close"] + d["dividend"]) / d["close"].shift(1) - 1
+    d["closeadj"] = d["close"].iloc[0] * (1 + ret.fillna(0.0)).cumprod()
+    return d[["date", "closeadj"]].sort_values("date")
+
+
+def sic_codes() -> pd.DataFrame:
+    """One row per SF1 ticker: SIC code and description and the Sharadar industry (D-37 competitor match)."""
+    if backend() == "files":
+        return _read("sic")
+    return _sql(
+        """select distinct on (ticker) ticker, siccode, sicindustry, industry
+           from sharadar.tickers where "table" = 'SF1' order by ticker, permaticker"""
+    )

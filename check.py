@@ -15,6 +15,7 @@ code/scandal_stats.py).
 """
 
 import json
+import os
 import pathlib
 import shutil
 import subprocess
@@ -22,7 +23,18 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
 CODE, OUT, PAPER = ROOT / "code", ROOT / "outputs", ROOT / "paper"
-STEPS = ["founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "describe.py", "referee_checks.py", "combine_results.py", "figures.py"]
+STEPS = [
+    "founder_final.py", "stats_returns.py", "stats_ops.py", "board_outcomes.py", "describe.py", "referee_checks.py",
+    "screen.py", "combine_results.py", "draft_paper.py", "figures.py",
+]
+# Results that need licensed prices or statements to rebuild enter as published (Level 2 rebuilds them):
+PUBLISHED = (
+    "pre1998_stats.json", "alpha_stats.json", "scandal_stats.json", "founder_reason_stats.json",
+    "founder_value_stats.json", "founder_value_versions.json", "founder_value_stats_d34.json",
+    "founder_value_stats_d37.json", "founder_value_stats_screen.json", "founder_value_stats_uncorrected_newmatch.json",
+    "founder_growth_stats.json", "founder_alpha_stats.json", "founder_timing_stats.json", "d44_stats.json",
+    "founder_missed_stats.json", "founder_appendix_stats.json",
+)
 
 
 def stage():
@@ -34,7 +46,7 @@ def stage():
     (PAPER / "figdata").mkdir(parents=True, exist_ok=True)
     shutil.copy(ROOT / "results" / "figure_series.json", PAPER / "figdata" / "figure_series.json")
     OUT.mkdir(exist_ok=True)
-    for name in ("pre1998_stats.json", "alpha_stats.json", "scandal_stats.json"):
+    for name in PUBLISHED:
         shutil.copy(ROOT / "results" / name, OUT / name)
 
 
@@ -62,7 +74,8 @@ def compare(published: dict, rebuilt: dict, tol: float = 1e-9) -> list[str]:
 def main():
     stage()
     for step in STEPS:
-        r = subprocess.run([sys.executable, "-W", "ignore", step], cwd=CODE, capture_output=True, text=True)
+        env = {**os.environ, "FCE_DATA_SOURCE": "files"}  # the published inputs in data/inputs
+        r = subprocess.run([sys.executable, "-W", "ignore", step], cwd=CODE, capture_output=True, text=True, env=env)
         if r.returncode:
             sys.exit(f"{step} failed:\n{r.stderr[-3000:]}")
     published = json.loads((ROOT / "results" / "combined_results.json").read_text())

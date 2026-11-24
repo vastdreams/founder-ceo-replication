@@ -1,13 +1,13 @@
 """
-PATH: wp_figstyle.py (beside figures.py; matplotlib only)
-PURPOSE: The figure style of the two-column working paper (design "Exhibit", the two-column working-paper 
+PATH: wp_figstyle.py (copy it beside a pack's figures.py; it has no MedTwin imports)
+PURPOSE: The figure style of the two-column working paper (design "Exhibit", backend/services/paper_export/
          wp2col_template.tex): one palette shared with the page, Source Sans 3 at print size, a hairline grid,
          direct labels, the two print widths, and the cover's headline chart ("at a glance"), so every figure reads
          as one system with the tables and boxes around it.
 WHY: Figures drawn at 17 cm and scaled into a 6.6 in or 3.4 in slot print their text at random sizes. Drawn at the
      slot's own width, 8 pt in matplotlib is 8 pt on the page.
 
-COLOUR ROLES (21 Nov 2026): colour belongs to data, the frame is
+COLOUR ROLES (operator, 21 Nov 2026; ~/Desktop/ssrn-design/COLOUR_ROLES.md): colour belongs to data, the frame is
     neutral. The paper's focal series is red (firings, in the founder-CEO paper); comparison and benchmark groups
     (retirements, the market, "other") are a light-mid grey; further series take violet, teal and amber in that order;
     no blue or navy in data (navy is the page's frame and links).

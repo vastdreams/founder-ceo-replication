@@ -1,0 +1,1428 @@
+{
+ "screen.validation.n_checked": {
+  "value": 166.0,
+  "n": 166
+ },
+ "screen.validation.n_planned": {
+  "value": 17.0,
+  "n": 166
+ },
+ "screen.validation.flag.sensitivity": {
+  "value": 0.5882352941176471,
+  "n": 17
+ },
+ "screen.validation.flag.true_positives": {
+  "value": 10.0,
+  "n": 17
+ },
+ "screen.validation.flag.false_positives": {
+  "value": 11.0,
+  "n": 149
+ },
+ "screen.validation.flag.false_positive_rate": {
+  "value": 0.0738255033557047,
+  "n": 149
+ },
+ "screen.validation.flag.specificity": {
+  "value": 0.9261744966442953,
+  "n": 149
+ },
+ "screen.validation.flag.precision": {
+  "value": 0.47619047619047616,
+  "n": 21
+ },
+ "screen.validation.flag_a.sensitivity": {
+  "value": 0.47058823529411764,
+  "n": 17
+ },
+ "screen.validation.flag_a.true_positives": {
+  "value": 8.0,
+  "n": 17
+ },
+ "screen.validation.flag_a.false_positives": {
+  "value": 9.0,
+  "n": 149
+ },
+ "screen.validation.flag_a.false_positive_rate": {
+  "value": 0.06040268456375839,
+  "n": 149
+ },
+ "screen.validation.flag_a.specificity": {
+  "value": 0.9395973154362416,
+  "n": 149
+ },
+ "screen.validation.flag_a.precision": {
+  "value": 0.47058823529411764,
+  "n": 17
+ },
+ "screen.validation.flag_b.sensitivity": {
+  "value": 0.17647058823529413,
+  "n": 17
+ },
+ "screen.validation.flag_b.true_positives": {
+  "value": 3.0,
+  "n": 17
+ },
+ "screen.validation.flag_b.false_positives": {
+  "value": 2.0,
+  "n": 149
+ },
+ "screen.validation.flag_b.false_positive_rate": {
+  "value": 0.013422818791946308,
+  "n": 149
+ },
+ "screen.validation.flag_b.specificity": {
+  "value": 0.9865771812080537,
+  "n": 149
+ },
+ "screen.validation.flag_b.precision": {
+  "value": 0.6,
+  "n": 5
+ },
+ "screen.forced.n": {
+  "value": 1983.0,
+  "n": 1983
+ },
+ "screen.forced.flagged": {
+  "value": 149.0,
+  "n": 1983
+ },
+ "screen.forced.flag_a": {
+  "value": 99.0,
+  "n": 1983
+ },
+ "screen.forced.flag_b": {
+  "value": 55.0,
+  "n": 1983
+ },
+ "_validation_cases": [
+  {
+   "event_id": 49,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 208,
+   "truth": 0,
+   "gap_days": 53.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 466,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 478,
+   "truth": 0,
+   "gap_days": 20.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 493,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 585,
+   "truth": 0,
+   "gap_days": -2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 648,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 689,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 736,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 848,
+   "truth": 1,
+   "gap_days": 102.0,
+   "flag_a": 1,
+   "flag_b": 1,
+   "flag": 1
+  },
+  {
+   "event_id": 850,
+   "truth": 1,
+   "gap_days": 142.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 911,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 934,
+   "truth": 1,
+   "gap_days": 239.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 1001,
+   "truth": 0,
+   "gap_days": 42.0,
+   "flag_a": 0,
+   "flag_b": 1,
+   "flag": 1
+  },
+  {
+   "event_id": 1053,
+   "truth": 1,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 1162,
+   "truth": 1,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 1285,
+   "truth": 0,
+   "gap_days": 21.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 1452,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 1862,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 1923,
+   "truth": 1,
+   "gap_days": 61.0,
+   "flag_a": 0,
+   "flag_b": 1,
+   "flag": 1
+  },
+  {
+   "event_id": 1937,
+   "truth": 0,
+   "gap_days": 7.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7740,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 1,
+   "flag": 1
+  },
+  {
+   "event_id": 2109,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 2126,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 2440,
+   "truth": 0,
+   "gap_days": 176.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 2494,
+   "truth": 0,
+   "gap_days": 168.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 2857,
+   "truth": 0,
+   "gap_days": 3.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 2919,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 3007,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 3052,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 3135,
+   "truth": 0,
+   "gap_days": 6.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 3291,
+   "truth": 0,
+   "gap_days": 2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 3432,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4119,
+   "truth": 0,
+   "gap_days": -23.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4161,
+   "truth": 0,
+   "gap_days": -27.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4250,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4314,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4341,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4377,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4378,
+   "truth": 0,
+   "gap_days": 7.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4400,
+   "truth": 0,
+   "gap_days": -18.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4646,
+   "truth": 0,
+   "gap_days": 65.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4652,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 4824,
+   "truth": 0,
+   "gap_days": 390.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 4851,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5014,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5041,
+   "truth": 0,
+   "gap_days": 4.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5182,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5212,
+   "truth": 0,
+   "gap_days": 6.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5269,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5276,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5298,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5306,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5311,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5312,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5365,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5433,
+   "truth": 0,
+   "gap_days": -3.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5471,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5502,
+   "truth": 0,
+   "gap_days": -26.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5688,
+   "truth": 0,
+   "gap_days": 243.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 5615,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5676,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5723,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5774,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5931,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5946,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5985,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 5993,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6022,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6749,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6350,
+   "truth": 0,
+   "gap_days": 62.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6352,
+   "truth": 1,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6378,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6401,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6408,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6426,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6523,
+   "truth": 0,
+   "gap_days": -20.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6659,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6702,
+   "truth": 0,
+   "gap_days": 11.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6768,
+   "truth": 0,
+   "gap_days": 9.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6818,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6921,
+   "truth": 1,
+   "gap_days": 126.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 6881,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6940,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 6969,
+   "truth": 1,
+   "gap_days": 196.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 7030,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7037,
+   "truth": 0,
+   "gap_days": 18.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7116,
+   "truth": 1,
+   "gap_days": 11.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7133,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7157,
+   "truth": 0,
+   "gap_days": 15.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7188,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7230,
+   "truth": 0,
+   "gap_days": 33.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7233,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7327,
+   "truth": 0,
+   "gap_days": 26.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7344,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7364,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7374,
+   "truth": 0,
+   "gap_days": 43.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7394,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7398,
+   "truth": 0,
+   "gap_days": 45.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7452,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7510,
+   "truth": 1,
+   "gap_days": 18.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7539,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7561,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7562,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7647,
+   "truth": 1,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 1,
+   "flag": 1
+  },
+  {
+   "event_id": 7657,
+   "truth": 0,
+   "gap_days": -3.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7706,
+   "truth": 0,
+   "gap_days": 258.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 7715,
+   "truth": 0,
+   "gap_days": -3.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7734,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7758,
+   "truth": 1,
+   "gap_days": 32.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7797,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7861,
+   "truth": 0,
+   "gap_days": -2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7915,
+   "truth": 0,
+   "gap_days": -2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7961,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 7979,
+   "truth": 0,
+   "gap_days": -4.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8000,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8045,
+   "truth": 0,
+   "gap_days": -23.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8085,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8097,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8115,
+   "truth": 0,
+   "gap_days": 94.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 8257,
+   "truth": 0,
+   "gap_days": 18.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8348,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8370,
+   "truth": 0,
+   "gap_days": 35.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8486,
+   "truth": 0,
+   "gap_days": 105.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 8519,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8543,
+   "truth": 0,
+   "gap_days": -3.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8592,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8622,
+   "truth": 0,
+   "gap_days": 9.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8629,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8710,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8733,
+   "truth": 0,
+   "gap_days": 27.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8734,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8761,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8801,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8845,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8894,
+   "truth": 0,
+   "gap_days": -2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 8942,
+   "truth": 1,
+   "gap_days": 169.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 8950,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9023,
+   "truth": 0,
+   "gap_days": 19.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9052,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9053,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9060,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9071,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9087,
+   "truth": 1,
+   "gap_days": 58.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9197,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9222,
+   "truth": 1,
+   "gap_days": 128.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 9231,
+   "truth": 0,
+   "gap_days": 2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9374,
+   "truth": 0,
+   "gap_days": 13.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9386,
+   "truth": 0,
+   "gap_days": -2.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9406,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9469,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9454,
+   "truth": 0,
+   "gap_days": 4.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9560,
+   "truth": 1,
+   "gap_days": 123.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 9556,
+   "truth": 0,
+   "gap_days": 1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9699,
+   "truth": 0,
+   "gap_days": 5.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9750,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9910,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 9938,
+   "truth": 0,
+   "gap_days": 95.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 10065,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10213,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10281,
+   "truth": 0,
+   "gap_days": 125.0,
+   "flag_a": 1,
+   "flag_b": 0,
+   "flag": 1
+  },
+  {
+   "event_id": 10287,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10305,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10360,
+   "truth": 0,
+   "gap_days": 63.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10367,
+   "truth": 0,
+   "gap_days": 0.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  },
+  {
+   "event_id": 10421,
+   "truth": 0,
+   "gap_days": -1.0,
+   "flag_a": 0,
+   "flag_b": 0,
+   "flag": 0
+  }
+ ]
+}

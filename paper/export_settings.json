@@ -1,0 +1,41 @@
+{
+  "jf_export": {
+    "authors": [
+      "Abhishek Sehgal"
+    ],
+    "affiliation": "FSE Research & Investments Pty Ltd",
+    "orcid": "0009-0000-9424-4695",
+    "web": "",
+    "titlenote": "Email: abhishek@finsoeasy.com.",
+    "keywords": [
+      "CEO turnover",
+      "founder-CEOs",
+      "CEO dismissals",
+      "personal scandals",
+      "event study",
+      "delisting"
+    ],
+    "jel": [
+      "G14",
+      "G30",
+      "G34"
+    ],
+    "disclosures": [
+      "Acknowledgements: The author thanks Richard Gentry, Joseph Harrison, Timothy Quigley and Steven Boivie for the open CEO dismissal database, and Kenneth French for the factor data. No one else contributed.",
+      "Funding: FSE Research & Investments Pty Ltd, Bravada Group Pty Ltd and Eye Dream Pty Ltd (trading as Finsoeasy); no other funding.",
+      "Conflicts of interest: The author is the founder of FSE Research & Investments Pty Ltd, Chairman of Bravada Group Pty Ltd and Managing Director of Eye Dream Pty Ltd (trading as Finsoeasy), the funders. No others.",
+      "Ethics approval: Not applicable (public and licensed data on public companies; no human participants).",
+      "Data availability: Code, event-level results and the case files at https://github.com/vastdreams/founder-ceo-replication; one command rebuilds every statistic, table and figure. Licensed daily prices and fundamentals (Sharadar) are not redistributed.",
+      "Use of AI tools: A language model (DeepSeek, deepseek-chat) drafted founder, reason and board codes from filings and news, each with a quoted source; every code on a founder, fraud or personal conduct was then reviewed against the sources. Anthropic's Claude, run as research assistants under rules fixed in advance, checked every founder departure and a random sample of hired-CEO dismissals against filings and press reports, and helped write and check the code and edit the text. No second human coder has checked the codes. The author designed the study and is responsible for the content."
+    ],
+    "edition_label": "",
+    "columns": 2,
+    "standfirst": "From six weeks before the announcement to the day after, a founder's firm trails its industry by {{fv.founder.ind.slideann.ret.mean|abs}} and its three closest competitors by {{fv.founder.pr3.slideann.ret.mean|abs}} when the board dismisses the founder, most of it before the news. Within five years {{exit.forced.bankruptcy_5y}} of firms that dismiss their CEO for reasons other than fraud go bankrupt, against {{exit.retired.bankruptcy_5y}} after a retirement.",
+    "cover_page": false,
+    "hero_figure": "",
+    "hero_title": "",
+    "hero_unit": "",
+    "hero_note": ""
+  },
+  "standfirst": "When boards dismiss founder CEOs, the firms have usually fallen behind already. This paper prices that loss against the market, the industry and the closest competitors, and asks what is left for an investor once the news is public."
+}

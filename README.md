@@ -1,48 +1,50 @@
-# Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO
+# Sacked: Sex, Fraud, and the Fate of Firms That Fire Their Founder CEO
 
-Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, Founders, and the Fate of Firms That Fire Their CEO*
-(working paper, November 2026). Every number, table and figure in the paper is produced by the code here.
+Replication package for Abhishek Sehgal, *Sacked: Sex, Fraud, and the Fate of Firms That Fire Their Founder CEO*
+(working paper, November 2026, version 3.0). Every number, table and figure in the paper is produced by the code here,
+and every printed number carries its provenance.
 
-**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 19 pages). The text with every statistic
-filled in is [paper/paper.md](paper/paper.md).
+**Read the paper:** [paper/Sacked.pdf](paper/Sacked.pdf) (two columns, 53 pages with the Internet Appendix). The text
+with every statistic filled in is [paper/paper.md](paper/paper.md).
 
-**The question.** What happens to a US public company after its board fires the CEO, and does it matter whether the
-CEO founded the company, or was fired over a sex or other personal scandal rather than fraud? We follow every firing at
-an S&P 1500 firm from 1998 to 2023 (1,272 firings with prices, 83 of them founders; 2,253 retirements as the
-comparison) from six weeks before the announcement to five years after it, with the number of firms measured at every
-horizon. The 121 firings over fraud or other legal violation are kept apart as a comparison group. Announcement
-windows use the 531 well-dated firings (dated by the database or by hand); long-run results use every firing.
+**The question.** What do shareholders of a US public company lose against normal firms when its board dismisses the
+founder CEO, and when does the loss arrive? We study every founder CEO dismissal at S&P 1500 firms from 1998 to 2023
+in an open CEO dismissal database (Gentry et al. 2021), each checked case by case against filings and press reports:
+94 founder dismissals, 73 of them for reasons other than fraud. All 1,256 dismissals and 2,253 retirements give the
+supporting comparisons.
 
-![Prices slide before the firing, drop on the news, then stop](figures/fig1_event_time.png)
+![Prices slide before the dismissal, drop on the news, then stop](figures/fig1_event_time.png)
 
 ## What we find
 
-| Horizon | Firings | Retirements | N firings |
-|---|---|---|---|
-| Trading days −30 to −2, return minus the market | −5.4% | 0.0% | 531 |
-| Trading days −1 to +1, abnormal return | −2.3% | −0.3% | 528 |
-| Trading days +2 to +60, return minus the market | −1.0% (n.s.) | −0.8% | 521 |
-| 12 / 36 / 60 months, median return minus a matched firm | −4.6% / 0.0% (n.s.) / −4.7% (n.s.) | 0.0% / 0.5% / 2.8% | 1,220 / 1,217 / 1,164 |
-| 36 months, five-factor and momentum alpha, a month | 0.03% (n.s.; 95% interval −0.35% to 0.42%) | 0.13% | 319 months |
-| Within 60 months, delisted | 31.9% (19.0% taken over, 12.0% bankrupt) | 16.8% (14.1%, 2.6%) | 1,215 |
+> Founder CEOs are dismissed once their firms have fallen behind normal firms. We study 73 founder dismissals not over
+> fraud at S&P 1500 firms, 1998 to 2023, each checked against filings and press. From six weeks before the
+> announcement to the day after, these firms trail the S&P 500 by 12.0%, their industry by 11.3% and their three
+> closest competitors by 10.2%. Most of it comes before the news. Against the closest single competitor the gap, 3.8%,
+> could be chance. Across all dismissals, shares fall 2.5% over the three announcement days after a personal scandal
+> and 7.1% after fraud.
 
-* **Before and at the announcement.** In the six weeks before a firing is announced the shares lag the market by
-  5.4%; over the three trading days around it they fall a further 2.3%, and the next three months add no significant
-  move.
-* **The reason and the person.** After a firing over fraud or other legal violation the shares fall 6.9% (41
-  well-dated firings). After a personal scandal they fall 1.5% (39), not significantly different from the 2.3% after
-  other firings (95% interval for the gap −0.9 to 2.6 points). A fired founder's shares fall 3.2% (52) against 2.2%
-  for a hired CEO; the gap is not significant (p = 0.63; 95% interval −5.2 to 3.2 points). Both groups are too small
-  for precise estimates.
-* **Who counts and which dates.** Firings the evidence-based coding also reads as forced fall 1.6% (190); reweighting
-  the well-dated firings to resemble every firing gives 2.2%; over trading days −5 to +5 every firing at any date
-  falls 2.0%. Delisting is also modelled as a duration (Cox hazard ratio 1.38 with every control).
-* **What becomes of the firm.** Within five years 12.0% of firing firms go bankrupt, against 2.6% after a retirement,
-  and 19.0% are taken over, against 14.1%. With controls for size, profitability, prior return, leverage,
-  book-to-market, distress and losses, the delisting gap is 6.6 percentage points (p = 0.005), 2.3 of them
-  bankruptcy.
+* **Benchmarks.** The founder loss holds against the S&P 500, the industry, the average of two to five closest
+  competitors and a profitability-matched firm; against a single competitor matched on the prior year it could be
+  chance (Tables 3 and IA.31).
+* **Failure.** Within five years 12.0% of dismissing firms go bankrupt, against 2.6% after a retirement (Table 7).
+* **For an investor.** Much of the move comes at the first trade after the news; no founder trading rule built on
+  the public release survives a correction for testing several rules (Section 5.5, Table IA.33).
+* **The census.** AI research assistants checked every founder departure case by case under rules fixed in advance;
+  no second human coder has checked them yet. The case files, with every source quoted, are in
+  [paper/founder_cases/](paper/founder_cases/). Decisions are logged in [paper/DECISIONS.md](paper/DECISIONS.md).
 
-![Within five years, 31.9% of firing firms are delisted](figures/fig3_exits.png)
+## Provenance of every number
+
+* `code/constants.py` lists every constant the paper prints (sample years, windows, thresholds, dates of named cases)
+  with its source; the template contains no typed numbers.
+* `code/provenance.py` attaches to every statistic its results file and key, the script and function that computed
+  it, the input data, the window, N and a one-line formula. Table cells are traced to the key and field they were
+  read from.
+* `code/draft_paper.py` refuses to print a number without full provenance and writes `paper/PROVENANCE.csv`, one row
+  per printed number (generated by the build).
+* `verify/recompute_headline.py` recomputes the headline numbers from raw prices without the analysis code; see
+  [verify/README.md](verify/README.md) for the agreement.
 
 ## Replicate it
 
@@ -57,7 +59,7 @@ Three levels, from no data at all to the full pipeline.
 ```bash
 git clone https://github.com/vastdreams/founder-ceo-replication && cd founder-ceo-replication
 python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
-python check.py      # 518 statistics and 17 tables checked, 0 differ; figures in outputs/figures/
+python check.py      # 7,561 statistics and 42 tables checked, 0 differ; figures in outputs/figures/
 ```
 
 **Bring your own data (Level 2).** The code never reads a vendor table. `code/datasource.py` serves nine canonical

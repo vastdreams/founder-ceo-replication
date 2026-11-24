@@ -8,7 +8,8 @@ reported only as a comparison in the discussion (operator, 20 Nov 2026; paper/DE
 
 The reason is the final code: the evidence-based coding (event_coding_final.jsonl) after the hand reviews of every
 financial-misconduct code (paper/fraud_review.csv), every sexual-conduct and relationship code (paper/conduct_review.csv) and every
-other-personal-conduct code (paper/personal_conduct_review.csv; criminal charges there become personal_crime).
+other-personal-conduct code (paper/personal_conduct_review.csv; criminal charges there become personal_crime), and
+then the D-37 recodes (paper/d37_corrections.csv).
 """
 
 import json
@@ -35,6 +36,12 @@ def final_reasons() -> pd.Series:
             c = c.merge(rv, on="event_id", how="left")
             c["primary_reason"] = c["decision"].fillna(c["primary_reason"])
             c = c.drop(columns=["decision"])
+    for name in ("d37_corrections.csv", "d38_corrections.csv", "d44_corrections.csv"):  # recodes after the hand checks
+        f = HERE.parent / "paper" / name
+        if f.exists():
+            r = pd.read_csv(f)
+            r = dict(zip(r.loc[r["field"] == "reason", "event_id"], r.loc[r["field"] == "reason", "new"]))
+            c["primary_reason"] = c["event_id"].map(r).fillna(c["primary_reason"])
     return c.set_index("event_id")["primary_reason"]
 
 
